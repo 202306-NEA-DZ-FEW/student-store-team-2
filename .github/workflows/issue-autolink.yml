@@ -1,13 +1,15 @@
 name: "Issue Autolink"
+
 on:
-    pull_request:
-        types: [opened]
+  pull_request:
+    types: [opened]
 
 jobs:
-    issue-links:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: tkt-actions/add-issue-links@v1.8.1
-              with:
-                  repo-token: "${{ secrets.GITHUB_TOKEN }}"
-                  resolve: "true"
+  issue-links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Issue Links
+        uses: tkt-actions/add-issue-links@v1.8.1
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          resolve: "true"
