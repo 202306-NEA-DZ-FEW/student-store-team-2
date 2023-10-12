@@ -1,7 +1,8 @@
-name: "Issue Links"
+
+name: 'Issue Links'
 on:
-    pull_request:
-        types: [opened]
+  pull_request:
+    types: [opened]
 
 jobs:
     issue-links:
@@ -14,3 +15,4 @@ jobs:
               with:
                   repo-token: "${{ secrets.GITHUB_TOKEN }}" # required
                   branch-prefix: "issue-" # required
+
