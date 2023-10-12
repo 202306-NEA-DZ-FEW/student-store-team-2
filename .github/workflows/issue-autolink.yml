@@ -1,4 +1,3 @@
-
 name: 'Issue Links'
 on:
   pull_request:
