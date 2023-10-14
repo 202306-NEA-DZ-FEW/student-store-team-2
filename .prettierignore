@@ -40,6 +40,3 @@ CHANGELOG.md
 #github workflow
 .github/*
 
-# tailwind 
- postcss.config.js 
- tailwind.config.js

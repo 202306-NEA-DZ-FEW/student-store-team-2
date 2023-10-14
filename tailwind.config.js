@@ -11,12 +11,12 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-              bkg: "rgb(var(--color-bkg) / <alpha-value>)",
-              content: "rgb(var(--color-content) / <alpha-value>)",
-              accent: "rgb(var(--color-accent) / <alpha-value>)",
-              accent2: "rgb(var(--color-accent2) / <alpha-value>)",
-              border: "rgb(var( --color-border) / <alpha-value>)",
-              titleContent: "rgb(var( --color-titleContent) / <alpha-value>)",
+                bkg: "rgb(var(--color-bkg) / <alpha-value>)",
+                content: "rgb(var(--color-content) / <alpha-value>)",
+                accent: "rgb(var(--color-accent) / <alpha-value>)",
+                accent2: "rgb(var(--color-accent2) / <alpha-value>)",
+                border: "rgb(var( --color-border) / <alpha-value>)",
+                titleContent: "rgb(var( --color-titleContent) / <alpha-value>)",
             },
             fontFamily: {
                 jost: ["Jost", "sans-serif"],
@@ -24,8 +24,8 @@ module.exports = {
                 jua: ["Jua", "sans-serif"],
             },
             letterSpacing: {
-                title: 'tracking-normal',
-                navigation: 'tracking-normal',
+                title: "tracking-normal",
+                navigation: "tracking-normal",
             },
         },
     },
