@@ -1,0 +1,168 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className=" bg-white"
+>
+  <div
+    className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8"
+  >
+    <div
+      className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8"
+    >
+      <div
+        className="group relative"
+      >
+        <div
+          className="relative w-full overflow-hidden rounded-md bg-gray-200  group-hover:opacity-75 lg:h-80"
+        >
+          <a
+            href="/product/1"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onTouchStart={[Function]}
+          >
+            <img
+              alt="Front of men's Basic Tee in black."
+              className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+              data-nimg="1"
+              decoding="async"
+              height={500}
+              loading="lazy"
+              onError={[Function]}
+              onLoad={[Function]}
+              src="/_next/image?url=https%3A%2F%2Ftailwindui.com%2Fimg%2Fecommerce-images%2Fproduct-page-01-related-product-01.jpg&w=1080&q=75"
+              srcSet="/_next/image?url=https%3A%2F%2Ftailwindui.com%2Fimg%2Fecommerce-images%2Fproduct-page-01-related-product-01.jpg&w=640&q=75 1x, /_next/image?url=https%3A%2F%2Ftailwindui.com%2Fimg%2Fecommerce-images%2Fproduct-page-01-related-product-01.jpg&w=1080&q=75 2x"
+              style={
+                Object {
+                  "color": "transparent",
+                }
+              }
+              width={500}
+            />
+          </a>
+          <p
+            className="absolute bottom-0 left-0 mt-6 text-black"
+          >
+            6/10
+          </p>
+           
+        </div>
+        <div
+          className="mt-3 flex justify-between"
+        >
+          <div>
+            <h3
+              className="text-sm text-gray-700"
+            >
+              <a
+                href="/category"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onTouchStart={[Function]}
+              >
+                <div
+                  aria-hidden="true"
+                  className="absolute"
+                />
+                Clothing
+              </a>
+            </h3>
+            <a
+              href="/product/1"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
+            >
+              <p
+                className="mt-1 text-lg font-medium text-gray-900"
+              >
+                Basic Tee
+              </p>
+              <div>
+                <a
+                  href="/dashboard"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                  onTouchStart={[Function]}
+                >
+                  <p
+                    className="mt-1 flex justify-between text-sm font-small text-gray-900"
+                  >
+                    <svg
+                      className=" text-xl text-blue-500"
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      strokeWidth="0"
+                      style={
+                        Object {
+                          "color": undefined,
+                        }
+                      }
+                      viewBox="0 0 256 256"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M219.07,61.44A4,4,0,0,0,216,60H51.34L45.86,29.85A12,12,0,0,0,34.05,20H16a4,4,0,0,0,0,8h18A4,4,0,0,1,38,31.28l25.5,140.3A20,20,0,0,0,71,183.85,24,24,0,1,0,101.87,188h60.26A24,24,0,1,0,180,180H83.17a12,12,0,0,1-11.8-9.85l-4-22.15H188.1a20,20,0,0,0,19.68-16.42l12.16-66.86A4,4,0,0,0,219.07,61.44ZM100,204a16,16,0,1,1-16-16A16,16,0,0,1,100,204Zm96,0a16,16,0,1,1-16-16A16,16,0,0,1,196,204Zm3.91-73.85A12,12,0,0,1,188.1,140H65.88L52.79,68H211.21Z"
+                      />
+                    </svg>
+                     
+                    $35
+                  </p>
+                </a>
+                <a
+                  href="/dashboard"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                  onTouchStart={[Function]}
+                >
+                  <p
+                    className="mt-1 flex justify-between text-sm font-small text-gray-900"
+                  >
+                    <svg
+                      className=" text-lg text-blue-500"
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      strokeWidth="0"
+                      style={
+                        Object {
+                          "color": undefined,
+                        }
+                      }
+                      viewBox="0 0 576 512"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M159.88,175.82h64v64a16,16,0,0,0,16,16h64a16,16,0,0,0,16-16v-64h64a16,16,0,0,0,16-16v-64a16,16,0,0,0-16-16h-64v-64a16,16,0,0,0-16-16h-64a16,16,0,0,0-16,16v64h-64a16,16,0,0,0-16,16v64A16,16,0,0,0,159.88,175.82ZM568.07,336.13a39.91,39.91,0,0,0-55.93-8.47L392.47,415.84H271.86a16,16,0,0,1,0-32H350.1c16,0,30.75-10.87,33.37-26.61a32.06,32.06,0,0,0-31.62-37.38h-160a117.7,117.7,0,0,0-74.12,26.25l-46.5,37.74H15.87a16.11,16.11,0,0,0-16,16v96a16.11,16.11,0,0,0,16,16h347a104.8,104.8,0,0,0,61.7-20.27L559.6,392A40,40,0,0,0,568.07,336.13Z"
+                      />
+                    </svg>
+                     
+                    $35
+                  </p>
+                </a>
+              </div>
+            </a>
+          </div>
+          <a
+            href="/offer"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onTouchStart={[Function]}
+          >
+            <div
+              className="mt-1 text-sm font-medium text-gray-900"
+            >
+              product offer
+            </div>
+             
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
