@@ -9,7 +9,7 @@ import Searchbar from "../search/Searchbar";
 
 export default function Navbar() {
     const navigation = [
-        { name: "Dashboard", href: "/" },
+        { name: "Home", href: "/" },
         {
             name: "Products",
             href: "/products",
