@@ -9,6 +9,9 @@
     --color-accent2: 237 241 243;
     --color-border: 216 209 202;
     --color-title: 85 88 91;
+    --color-secondaryGreen: 6 205 62;
+    --color-secondaryYellow: 255 189 0;
+    --color-secondaryBlue: 9 137 255;
 }
 
 @media (prefers-color-scheme: dark) {
