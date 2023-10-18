@@ -12,6 +12,7 @@
     --color-secondaryGreen: 6 205 62;
     --color-secondaryYellow: 255 189 0;
     --color-secondaryBlue: 9 137 255;
+    --color-navbar: 39 39 39;
 }
 
 @media (prefers-color-scheme: dark) {

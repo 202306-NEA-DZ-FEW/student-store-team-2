@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
     return (
         <html lang='en'>
             <body
-                className={`${jua.variable} font-jua ${lato.variable} font-lato ${jost.variable} font-jost ${poppins.variable} font-poppins`}
+                className={`relative ${jua.variable} font-jua ${lato.variable} font-lato ${jost.variable} font-jost ${poppins.variable} font-poppins`}
             >
                 <Navbar />
                 {children}
