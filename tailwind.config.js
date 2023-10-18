@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
     content: [
         "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -17,6 +18,7 @@ module.exports = {
                 accent2: "rgb(var(--color-accent2) / <alpha-value>)",
                 border: "rgb(var( --color-border) / <alpha-value>)",
                 titleContent: "rgb(var( --color-titleContent) / <alpha-value>)",
+                navbar: "rgb(var( --color-navbar) / <alpha-value>)",
             },
             fontFamily: {
                 jost: ["Jost", "sans-serif"],
