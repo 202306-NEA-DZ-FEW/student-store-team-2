@@ -18,12 +18,19 @@ module.exports = {
                 accent2: "rgb(var(--color-accent2) / <alpha-value>)",
                 border: "rgb(var( --color-border) / <alpha-value>)",
                 titleContent: "rgb(var( --color-titleContent) / <alpha-value>)",
+                secondaryGreen:
+                    "rgb(var( --color-secondaryGreen) / <alpha-value>)",
+                secondaryYellow:
+                    "rgb(var( --color-secondaryYellow) / <alpha-value>)",
+                secondaryBlue:
+                    "rgb(var( --color-secondaryBlue) / <alpha-value>)",
                 navbar: "rgb(var( --color-navbar) / <alpha-value>)",
             },
             fontFamily: {
-                jost: ["Jost", "sans-serif"],
-                lato: ["Lato", "sans-serif"],
-                jua: ["Jua", "sans-serif"],
+                jost: ["var(--font-jost)"],
+                lato: ["var(--font-lato)"],
+                jua: ["var(--font-jua)"],
+                poppins: ["var(--font-poppins)"],
             },
             letterSpacing: {
                 title: "tracking-normal",
@@ -31,5 +38,5 @@ module.exports = {
             },
         },
     },
-    plugins: [],
+    plugins: [require("@tailwindcss/aspect-ratio")],
 };
