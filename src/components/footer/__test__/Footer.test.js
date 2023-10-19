@@ -1,6 +1,8 @@
 import renderer from "react-test-renderer";
 
+import Footer from "../Footer";
+
 it("renders correctly", () => {
-    const tree = renderer.create(<div>Navbar</div>).toJSON();
+    const tree = renderer.create(<Footer />).toJSON();
     expect(tree).toMatchSnapshot();
 });

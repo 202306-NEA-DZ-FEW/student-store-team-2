@@ -12,7 +12,7 @@ const ItemLabel = ({ textContent }) => {
 
     return (
         <div
-            className={`flex justify-center text-center items-center font-jua rounded-full ${style} text-white text-sm w-[105px] h-[26px] subpixel-antialiased`}
+            className={`flex justify-center text-center items-center font-jost font-bold rounded-full ${style} text-white text-sm w-[105px] h-[26px]`}
         >
             {textContent}
         </div>
