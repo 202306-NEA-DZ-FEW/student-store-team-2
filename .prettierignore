@@ -40,3 +40,6 @@ CHANGELOG.md
 #github workflow
 .github/*
 
+#tailwind
+next.config.js
+tailwind.config.js
