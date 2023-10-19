@@ -36,6 +36,15 @@ module.exports = {
                 title: "tracking-normal",
                 navigation: "tracking-normal",
             },
+            keyframes: {
+                wiggle: {
+                    "0%": { transform: "translate(700px,0)" },
+                    "100%": { transform: "translate(0,0)" },
+                },
+            },
+            animation: {
+                wiggle: "wiggle 0.5s ease-in-out ",
+            },
         },
     },
     plugins: [require("@tailwindcss/aspect-ratio")],
