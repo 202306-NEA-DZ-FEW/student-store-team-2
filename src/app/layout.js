@@ -1,11 +1,22 @@
-import { Inter } from "next/font/google";
+import { Jost, Jua, Lato, Poppins } from "next/font/google";
 
 import "./globals.css";
 
 import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/navbar/Navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+const jua = Jua({ weight: "400", subsets: ["latin"], variable: "--font-jua" });
+const lato = Lato({
+    subsets: ["latin"],
+    weight: ["100", "300", "400", "700", "900"],
+    variable: "--font-lato",
+});
+const jost = Jost({ subsets: ["cyrillic"], variable: "--font-jost" });
+const poppins = Poppins({
+    subsets: ["latin"],
+    weight: ["100", "300", "400", "700", "900"],
+    variable: "--font-poppins",
+});
 
 export const metadata = {
     title: "Create Next App",
@@ -15,7 +26,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang='en'>
-            <body className={inter.className}>
+            <body
+                className={`relative ${jua.variable} font-jua ${lato.variable} font-lato ${jost.variable} font-jost ${poppins.variable} font-poppins`}
+            >
                 <Navbar />
                 {children}
                 <Footer />
