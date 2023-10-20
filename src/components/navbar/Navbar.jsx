@@ -1,13 +1,17 @@
 "use client";
-import { Disclosure } from "@headlessui/react";
 import Link from "next/link";
 import { BiMenu, BiMenuAltRight, BiUser } from "react-icons/bi";
 
 import MobileSidebar from "../mobileSidebar/MobileSidebar";
 import Portal from "../portal/Portal";
 import Searchbar from "../search/Searchbar";
+import { useState } from "react";
 
 export default function Navbar() {
+    const [isOpen, setIsOpen] = useState(false);
+    const toggleMobileMenu = () => {
+        setIsOpen(!isOpen);
+    };
     const navigation = [
         { name: "Home", href: "/" },
         {
@@ -20,15 +24,18 @@ export default function Navbar() {
         },
     ];
     return (
-        <Disclosure as='nav' className='bg-none text-navbar w-full'>
-            {({ open }) => (
+        <nav className='bg-none text-navbar absolute z-20 w-full'>
+            {
                 <>
                     <div className='mx-auto px-2 sm:px-6 lg:px-8 '>
                         <div className='relative flex h-16 items-center justify-between'>
                             <div className='absolute inset-y-0 right-0 flex items-center sm:hidden '>
                                 {/* Mobile menu button */}
-                                <Disclosure.Button className='text-titleContent inline-flex items-center justify-center rounded-md p-2  hover:bg-accent2 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white transition-all duration-300 ease-in-out'>
-                                    {open ? (
+                                <button
+                                    onClick={toggleMobileMenu}
+                                    className='text-titleContent inline-flex items-center justify-center rounded-md p-2  hover:bg-accent2 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white transition-all duration-300 ease-in-out'
+                                >
+                                    {isOpen ? (
                                         <BiMenu
                                             className='block h-8 w-8 '
                                             aria-hidden='true'
@@ -39,19 +46,19 @@ export default function Navbar() {
                                             aria-hidden='true'
                                         />
                                     )}
-                                </Disclosure.Button>
+                                </button>
                             </div>
                             <div className='flex flex-1 items-center justify-between'>
                                 <Link href='/'>
-                                    <div className='flex flex-shrink-0 items-center'>
+                                    <div className='flex flex-shrink-0 items-center  w-1/3'>
                                         <h1 className=' tracking-widest font-lato font-semibold text-2xl px-5'>
                                             MiniStore.
                                         </h1>
                                     </div>
                                 </Link>
 
-                                <div className='hidden sm:block '>
-                                    <div className='  flex space-x-4 items-center'>
+                                <div className='hidden sm:block'>
+                                    <div className=' flex-1  flex space-x-4 items-center '>
                                         {navigation.map((item) => (
                                             <Link
                                                 key={item.name}
@@ -64,24 +71,37 @@ export default function Navbar() {
                                                 </div>
                                             </Link>
                                         ))}
+                                    </div>
+                                </div>
+                                <div className='hidden sm:block mr-48'>
+                                    <div className='flex space-x-4 items-center'>
                                         <Link href='/profile'>
                                             <BiUser
                                                 className='block h-6 w-6 antialiased  hover:text-accent rounded-xl font-semibold '
                                                 aria-hidden='true'
                                             />
                                         </Link>
-                                        <Searchbar />
+                                        <Searchbar
+                                            toggleMobileMenu={() => {}}
+                                        />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <Portal>
-                        <MobileSidebar navigation={navigation} />
-                    </Portal>
+                    {isOpen && (
+                        <Portal>
+                            <div className='sm:hidden fixed bg-accent2 z-50 w-screen h-screen top-0'>
+                                <MobileSidebar
+                                    navigation={navigation}
+                                    toggleMobileMenu={toggleMobileMenu}
+                                    isOpen={isOpen}
+                                />
+                            </div>
+                        </Portal>
+                    )}
                 </>
-            )}
-        </Disclosure>
+            }
+        </nav>
     );
 }
