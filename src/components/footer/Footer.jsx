@@ -1,4 +1,4 @@
-//import Logo from "../Nav/Logo"
+import Image from "next/image";
 import Link from "next/link";
 
 function Footer() {
@@ -180,7 +180,7 @@ function Footer() {
                             </Link>
                         </div>
                         <div className='w-40  flex justify-start flex-col'>
-                            <p className='font-semibold tracking-wider  tracking-wide'>
+                            <p className='font-semibold tracking-wide'>
                                 HELP AND INFO
                             </p>
                             <Link
@@ -210,7 +210,7 @@ function Footer() {
                         </div>
 
                         <div className='w-40  flex justify-start flex-col uppercase'>
-                            <p className='font-semibold tracking-wider py-1 tracking-wide'>
+                            <p className='font-semibold tracking-wide py-1'>
                                 ABOUT STUDENT STORE
                             </p>
                             <Link
@@ -244,27 +244,31 @@ function Footer() {
                     <div className='text-sm text-content sm:text-base sm:text-center  flex justify-around items-start flex-col  md:flex-row'>
                         <div className='sb_footer-copyright text-lg tracking-wider font- text-[13px] leading-[15px]  '>
                             <p>
-                                we ship with:
+                                We ship with:
                                 <a
                                     href='https://www.dhl.com/dz-fr/home.html'
                                     className='icon-link'
                                 >
-                                    <img
+                                    <Image
                                         src='/img/dhl.png'
                                         alt='dhl icon'
                                         className='icon'
                                         style={{ display: "inline" }}
+                                        height={8.49}
+                                        width={60}
                                     />
                                 </a>
                                 <a
                                     href='https://yalidine.com/'
                                     className='icon-link'
                                 >
-                                    <img
+                                    <Image
                                         src='/img/yalidine.png'
                                         className='icon'
                                         alt='yalidine icon'
                                         style={{ display: "inline" }}
+                                        height={8.49}
+                                        width={40}
                                     />
                                 </a>
                             </p>
