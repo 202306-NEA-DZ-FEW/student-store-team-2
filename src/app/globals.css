@@ -10,6 +10,7 @@
     --color-border: 216 209 202;
     --color-title: 85 88 91;
     --color-navbar: 39 39 39;
+    --color-title2: 28, 28, 30;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,4 +22,7 @@
 }
 
 body {
+}
+.capitalize-words {
+    text-transform: capitalize;
 }
