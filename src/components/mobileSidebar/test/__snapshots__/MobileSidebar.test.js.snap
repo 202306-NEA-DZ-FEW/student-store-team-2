@@ -21,7 +21,7 @@ exports[`renders correctly 1`] = `
         <h1
           className="tracking-widest font-lato font-semibold text-2xl px-5"
         >
-          MiniStore.
+          MiniStore
         </h1>
       </div>
     </a>

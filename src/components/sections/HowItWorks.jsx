@@ -1,7 +1,10 @@
+import { useTranslations } from "next-intl";
+
 const HowItWorks = () => {
+    const t = useTranslations("Index");
     return (
         <div className='text-center'>
-            <h1 className='text-2xl md:text-4xl'>How It Works</h1>
+            <h1 className='text-2xl md:text-4xl'>{t("How It Works")}</h1>
             <div className='flex flex-col pt-12 items-center space-y-0 md:flex-row md:space-y-0 md:space-x-0'>
                 <div className='flex items-center bg-accent2 p-4 pt-4 sm:h-64 md:flex-1 '>
                     <p>

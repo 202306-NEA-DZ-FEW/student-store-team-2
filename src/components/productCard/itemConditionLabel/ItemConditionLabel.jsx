@@ -1,7 +1,10 @@
 import Image from "next/image";
 import React from "react";
+import { useTranslations } from "next-intl";
 
 const ItemConditionLabel = ({ itemCondition }) => {
+    const t = useTranslations("Index");
+
     return (
         <div className='relative'>
             <Image
@@ -12,8 +15,7 @@ const ItemConditionLabel = ({ itemCondition }) => {
                 height={39}
             ></Image>
             <div className='font-jost font-extrabold text-sm text-bkg absolute bottom-1 left-2'>
-                {" "}
-                State: {itemCondition}
+                {t("State")}: {itemCondition}
             </div>
         </div>
     );
