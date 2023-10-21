@@ -28,6 +28,7 @@ body {
 }
 .capitalize-words {
     text-transform: capitalize;
+}
 .icon-link {
     transition: transform 0.3s ease; /* Add a transition for the 'transform' property */
 }

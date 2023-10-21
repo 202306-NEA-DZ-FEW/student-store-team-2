@@ -18,7 +18,7 @@ const ProductItem = (text) => {
             </h5>
             <div className='flex justify-start items-start'>
                 <Image
-                    src='/imag/dress.png'
+                    src='https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg'
                     alt='Product dress'
                     width={130}
                     height={235}
