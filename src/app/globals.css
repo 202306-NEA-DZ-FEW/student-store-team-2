@@ -8,7 +8,10 @@
     --color-accent: 114 174 200;
     --color-accent2: 237 241 243;
     --color-border: 216 209 202;
-    --color-title: 85 88 91;
+    --color-titleContent: 85 88 91;
+    --color-secondaryGreen: 6 205 62;
+    --color-secondaryYellow: 255 189 0;
+    --color-secondaryBlue: 9 137 255;
     --color-navbar: 39 39 39;
     --color-title2: 28, 28, 30;
 }
@@ -25,4 +28,11 @@ body {
 }
 .capitalize-words {
     text-transform: capitalize;
+.icon-link {
+    transition: transform 0.3s ease; /* Add a transition for the 'transform' property */
+}
+.icon-link:hover .icon {
+    transform: scale(
+        1.2
+    ); /* When hovering, scale the icon to 1.2 times its original size */
 }

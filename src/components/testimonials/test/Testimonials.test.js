@@ -1,6 +1,8 @@
 import renderer from "react-test-renderer";
 
+import Testimonials from "../Testimonials";
+
 it("renders correctly", () => {
-    const tree = renderer.create(<div>Navbar</div>).toJSON();
+    const tree = renderer.create(<Testimonials />).toJSON();
     expect(tree).toMatchSnapshot();
 });
