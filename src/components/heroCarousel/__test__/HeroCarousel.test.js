@@ -1,4 +1,5 @@
 import renderer from "react-test-renderer";
+
 import HeroCarousel from "../HeroCarousel";
 
 it("renders correctly", () => {
