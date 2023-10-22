@@ -1,6 +1,7 @@
 import { Jost, Jua, Lato, Poppins } from "next/font/google";
 
 import "./globals.css";
+import "./carousel.css";
 
 import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/navbar/Navbar";
