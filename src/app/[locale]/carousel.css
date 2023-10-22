@@ -1,0 +1,135 @@
+.carousel__item {
+    width: 220px;
+    height: 350px;
+    background-position: 50% 50%;
+    display: inline-block;
+    transition: 0.7s cubic-bezier(0.645, 0.045, 0.355, 1);
+    background-size: cover;
+    position: absolute;
+    z-index: 1;
+    top: 60%;
+    transform: translate(0, -30%);
+    border-radius: 20px;
+    box-shadow: 0 30px 50px #505050;
+}
+
+.carousel__item:nth-child(1),
+.carousel__item:nth-child(2) {
+    left: 0;
+    top: 0;
+    transform: translate(0, 0);
+    border-radius: 0;
+    width: 100%;
+    height: 100vh;
+    box-shadow: none;
+}
+.carousel__item:nth-child(3) {
+    left: 50%;
+}
+.carousel__item:nth-child(4) {
+    left: calc(50% + 240px);
+}
+.carousel__item:nth-child(5) {
+    left: calc(50% + 480px);
+}
+.carousel__item:nth-child(6) {
+    left: calc(50% + 720px);
+}
+.carousel__item:nth-child(n + 7) {
+    left: calc(50% + 960px);
+    opacity: 0;
+}
+.carousel__item .content {
+    position: absolute;
+    top: 50%;
+    text-align: left;
+    padding: 0;
+    color: #eee;
+    transform: translate(0, -50%);
+    display: none;
+    font-family: system-ui;
+}
+.carousel__item:nth-child(2) .content {
+    display: block;
+    z-index: 11111;
+}
+.carousel__item .title {
+    opacity: 0;
+    animation: showcontent 1s ease-in-out 1 forwards;
+}
+.carousel__item .des {
+    margin: 20px 0;
+    opacity: 0;
+    animation: showcontent 1s ease-in-out 0.3s 1 forwards;
+}
+.carousel__item button {
+    padding: 10px 20px;
+    border: none;
+    opacity: 0;
+    animation: showcontent 1s ease-in-out 0.6s 1 forwards;
+}
+@keyframes showcontent {
+    from {
+        opacity: 0;
+        transform: translate(0, 100px);
+        filter: blur(33px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+        filter: blur(0);
+    }
+}
+
+.carousel-container {
+    animation: showCarousel 1s ease-in-out 0.6s 1 forwards;
+}
+
+@keyframes showCarousel {
+    from {
+        opacity: 0;
+        transform: translate(calc(-100vw), 0);
+        filter: blur(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+        filter: blur(0);
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    .carousel__item:nth-child(3) {
+        left: 100%;
+    }
+
+    .carousel__item:nth-child(4) {
+        left: calc(100% + 240px);
+    }
+    .carousel__item:nth-child(5) {
+        left: calc(100% + 480px);
+    }
+    .carousel__item:nth-child(6) {
+        left: calc(100% + 720px);
+    }
+    .carousel__item:nth-child(n + 7) {
+        left: calc(100% + 960px);
+        opacity: 0;
+    }
+}
+
+nav {
+    animation: showNavbar 0.5s ease-in-out 0.6s 1 forwards;
+}
+
+@keyframes showNavbar {
+    from {
+        top: -80px;
+    }
+    to {
+        top: 0px;
+    }
+}
+
+.prev:hover {
+}

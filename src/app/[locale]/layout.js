@@ -6,6 +6,7 @@ export function generateStaticParams() {
     return [{ locale: "en" }, { locale: "ar" }];
 }
 import "./globals.css";
+import "./carousel.css";
 
 import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/navbar/Navbar";

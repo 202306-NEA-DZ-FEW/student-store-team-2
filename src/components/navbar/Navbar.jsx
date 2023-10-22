@@ -21,7 +21,7 @@ export default function Navbar() {
     ];
 
     return (
-        <nav className='bg-white text-navbar absolute z-20 w-full'>
+        <nav className=' text-navbar absolute z-20 w-full text-white'>
             {
                 <>
                     <div className='mx-auto px-2 sm:px-6 lg:px-8 '>
