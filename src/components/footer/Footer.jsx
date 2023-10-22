@@ -1,7 +1,11 @@
+"use client";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 
 function Footer() {
+    const t = useTranslations("Index");
+
     return (
         <footer className='h-1/5 w-full mx-auto'>
             <div className='flex lg:flex-col flex-row lg:justify-between justify-center'>
@@ -10,16 +14,11 @@ function Footer() {
                         <div className='w-40 m-4 flex justify-start flex-col'>
                             <Link href='/'>
                                 <button className='font-bold text-3xl sm:text-base tracking-wide md:hover:tracking-widest transform-all ease-in-out duration-500 font-mono text-black z-50 '>
-                                    <span className=' tracking-white mb-5'>
-                                        Mini
-                                    </span>
-                                    Store
+                                    {t("Title")}
                                 </button>
                             </Link>
                             <p className='mt-10 text-content sm:text-base'>
-                                This platform is a win-win for everyone involved
-                                , lenders earn extra income, borrowers cut
-                                costs.
+                                {t("Description")}
                             </p>
                         </div>
 

@@ -25,18 +25,13 @@ exports[`renders correctly 1`] = `
             <button
               className="font-bold text-3xl sm:text-base tracking-wide md:hover:tracking-widest transform-all ease-in-out duration-500 font-mono text-black z-50 "
             >
-              <span
-                className=" tracking-white mb-5"
-              >
-                Mini
-              </span>
-              Store
+              MiniStore
             </button>
           </a>
           <p
             className="mt-10 text-content sm:text-base"
           >
-            This platform is a win-win for everyone involved , lenders earn extra income, borrowers cut costs.
+            This platform is a win-win for everyone involved lenders earn extra income, borrowers cut costs.
           </p>
         </div>
         <div

@@ -1,30 +1,27 @@
 "use client";
 import Link from "next/link";
 import { BiMenu, BiMenuAltRight, BiUser } from "react-icons/bi";
-
 import MobileSidebar from "../mobileSidebar/MobileSidebar";
 import Portal from "../portal/Portal";
 import Searchbar from "../search/Searchbar";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 export default function Navbar() {
+    const t = useTranslations("Index");
+
     const [isOpen, setIsOpen] = useState(false);
     const toggleMobileMenu = () => {
         setIsOpen(!isOpen);
     };
     const navigation = [
-        { name: "Home", href: "/" },
-        {
-            name: "Products",
-            href: "/products",
-        },
-        {
-            name: "Orders",
-            href: "/order",
-        },
+        { name: t("Home"), href: "/" },
+        { name: t("Products"), href: "/products" },
+        { name: t("Orders"), href: "/order" },
     ];
+
     return (
-        <nav className='bg-none text-navbar absolute z-20 w-full'>
+        <nav className='bg-white text-navbar absolute z-20 w-full'>
             {
                 <>
                     <div className='mx-auto px-2 sm:px-6 lg:px-8 '>
@@ -52,7 +49,7 @@ export default function Navbar() {
                                 <Link href='/'>
                                     <div className='flex flex-shrink-0 items-center  w-1/3'>
                                         <h1 className=' tracking-widest font-lato font-semibold text-2xl px-5'>
-                                            MiniStore.
+                                            {t("Title")}.
                                         </h1>
                                     </div>
                                 </Link>
@@ -81,6 +78,7 @@ export default function Navbar() {
                                                 aria-hidden='true'
                                             />
                                         </Link>
+
                                         <Searchbar
                                             toggleMobileMenu={() => {}}
                                         />

@@ -1,6 +1,7 @@
 import renderer from "react-test-renderer";
 import MobileSidebar from "../MobileSidebar";
-import { useRouter } from "next/navigation";
+import { NextIntlClientProvider } from "next-intl";
+import messages from "../../../../messages/en.json";
 
 jest.mock("next/navigation");
 const pushMock = jest.fn();
@@ -10,7 +11,11 @@ it("renders correctly", () => {
     const navigationMock = [];
 
     const tree = renderer
-        .create(<MobileSidebar navigation={navigationMock} />)
+        .create(
+            <NextIntlClientProvider locale='en' messages={messages}>
+                <MobileSidebar navigation={navigationMock} />
+            </NextIntlClientProvider>
+        )
         .toJSON();
     expect(tree).toMatchSnapshot();
 });

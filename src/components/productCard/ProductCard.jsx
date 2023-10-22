@@ -2,11 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaShoppingCart } from "react-icons/fa";
 import { SiHandshake } from "react-icons/si";
+import { useTranslations } from "next-intl";
 
 import ItemConditionLabel from "./itemConditionLabel/ItemConditionLabel";
 import ItemLabel from "./itemLabel/ItemLabel";
 
 export default function ProductCard() {
+    const t = useTranslations("Index");
+
     // Placeholder object to be replaced with data from Firestore
     const products = [
         {
@@ -46,7 +49,7 @@ export default function ProductCard() {
                     <Link href='/dashboard'>
                         <div className='mt-1 font-jost flex justify-between text-base font-small text-titleContent'>
                             <SiHandshake className='text-lg mr-8 text-blue-500' />{" "}
-                            {product.price.borrow_price}/Day
+                            {product.price.borrow_price}/{t("Day")}
                         </div>
                     </Link>
                 )}
@@ -56,11 +59,11 @@ export default function ProductCard() {
     // This determins what ItemLabel displays according the product offer type
     const determineLabel = (product) => {
         if (product.is_sold && product.is_borrowed) {
-            return "Sale & Borrow";
+            return "Sale & Borrow"; // Translate the label
         } else if (product.is_sold) {
-            return "For Sale";
+            return "For Sale"; // Translate the label
         } else if (product.is_borrowed) {
-            return "For Borrow";
+            return "For Borrow"; // Translate the label
         }
         return "";
     };
