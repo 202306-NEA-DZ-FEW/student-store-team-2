@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <nav
-  className="bg-none text-navbar absolute z-20 w-full"
+  className="bg-white text-navbar absolute z-20 w-full"
 >
   <div
     className="mx-auto px-2 sm:px-6 lg:px-8 "
@@ -54,7 +54,8 @@ exports[`renders correctly 1`] = `
             <h1
               className=" tracking-widest font-lato font-semibold text-2xl px-5"
             >
-              MiniStore.
+              MiniStore
+              .
             </h1>
           </div>
         </a>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { BiCollapseAlt, BiUser } from "react-icons/bi";
+import { useTranslations } from "next-intl";
 
 import Searchbar from "../search/Searchbar";
 
@@ -9,6 +10,8 @@ export default function MobileSidebar({
     toggleMobileMenu,
     isOpen,
 }) {
+    const t = useTranslations("Index");
+
     async function handleSearch(e) {
         if (e.keyCode === 13) {
             e.preventDefault();
@@ -27,7 +30,7 @@ export default function MobileSidebar({
                 <Link href='/'>
                     <div className='flex flex-shrink-0 items-center'>
                         <h1 className='tracking-widest font-lato font-semibold text-2xl px-5'>
-                            MiniStore.
+                            {t("Title")}
                         </h1>
                     </div>
                 </Link>
@@ -68,7 +71,7 @@ export default function MobileSidebar({
                             className='block h-6 w-6 mr-2'
                             aria-hidden='true'
                         />
-                        <h2>Profile</h2>
+                        <h2>{t("Profile")}</h2>
                     </button>
                 </Link>
                 <div className=' items-center'>

@@ -13,6 +13,7 @@
     --color-secondaryYellow: 255 189 0;
     --color-secondaryBlue: 9 137 255;
     --color-navbar: 39 39 39;
+    --color-title2: 28, 28, 30;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -25,10 +26,12 @@
 
 body {
 }
+.capitalize-words {
+    text-transform: capitalize;
+}
 .icon-link {
     transition: transform 0.3s ease; /* Add a transition for the 'transform' property */
 }
-
 .icon-link:hover .icon {
     transform: scale(
         1.2

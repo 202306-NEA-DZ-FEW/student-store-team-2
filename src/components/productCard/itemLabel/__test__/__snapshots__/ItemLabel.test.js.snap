@@ -3,5 +3,7 @@
 exports[`renders correctly 1`] = `
 <div
   className="flex justify-center text-center items-center font-jost font-bold rounded-full bg-secondaryGreen text-white text-sm w-[105px] h-[26px]"
-/>
+>
+  Index
+</div>
 `;

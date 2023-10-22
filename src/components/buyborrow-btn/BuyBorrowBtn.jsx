@@ -1,6 +1,11 @@
+"use client";
+
 import React from "react";
+import { useTranslations } from "next-intl";
 
 function BuyBorrowBtn({ label, handleClick }) {
+    const t = useTranslations("Index");
+
     const classBuy =
         "bg-[#0989FF] transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-[#026fce] duration-300 text-white text-center font-lato text-base md:w-20 w-14 rounded shadow-md";
 
@@ -15,7 +20,7 @@ function BuyBorrowBtn({ label, handleClick }) {
                     className={label === "Buy" ? classBuy : classBorrow}
                     onClick={handleClick}
                 >
-                    {label}
+                    {t(label)}
                 </button>
             ) : null}
         </div>

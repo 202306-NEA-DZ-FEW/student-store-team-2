@@ -63,8 +63,8 @@ exports[`renders correctly 1`] = `
             <div
               className="font-jost font-extrabold text-sm text-bkg absolute bottom-1 left-2"
             >
-               
-              State: 
+              State
+              : 
               7/10
             </div>
           </div>
@@ -165,7 +165,8 @@ exports[`renders correctly 1`] = `
                   </svg>
                    
                   $20
-                  /Day
+                  /
+                  Day
                 </div>
               </a>
             </div>
