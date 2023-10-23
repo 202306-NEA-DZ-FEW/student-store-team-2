@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { FaShoppingCart } from "react-icons/fa";
 import { SiHandshake } from "react-icons/si";
-import { useTranslations } from "next-intl";
 
 import ItemConditionLabel from "./itemConditionLabel/ItemConditionLabel";
 import ItemLabel from "./itemLabel/ItemLabel";
