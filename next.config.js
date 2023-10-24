@@ -5,6 +5,6 @@ module.exports = {
     },
     reactStrictMode: true,
     images: {
-        domains: ['tailwindui.com'],
+        domains: ['images.unsplash.com'],
       },
 };

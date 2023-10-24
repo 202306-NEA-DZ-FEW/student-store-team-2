@@ -8,8 +8,8 @@ export function generateStaticParams() {
 import "./globals.css";
 import "./carousel.css";
 
-import Footer from "@/components/footer/Footer";
-import Navbar from "@/components/navbar/Navbar";
+import Footer from "../../components/footer/Footer";
+import Navbar from "../../components/navbar/Navbar";
 
 const jua = Jua({ weight: "400", subsets: ["latin"], variable: "--font-jua" });
 const lato = Lato({
