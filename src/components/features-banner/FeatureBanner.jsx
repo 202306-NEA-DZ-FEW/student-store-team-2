@@ -1,7 +1,10 @@
 function FeatureBanner() {
     return (
-        <div className='flex flex-wrap md:flex-no-wrap space-y-5 justify-center md:space-y-0 md:space-x-6 py-14'>
-            <div className='flex flex-row space-x-2' style={{ width: "283px" }}>
+        <div className='flex flex-wrap md:flex-no-wrap  justify-center  md:space-x-6  py-14'>
+            <div
+                className='flex flex-row space-x-2 py-6 '
+                style={{ width: "283px" }}
+            >
                 <svg
                     width='25'
                     height='27'
@@ -45,11 +48,14 @@ function FeatureBanner() {
                     <p className='text-12 md:text-16 text-content '>
                         {" "}
                         You can receive your order without incurring any
-                        additional shipping costs.
+                        additional shipping costs
                     </p>
                 </div>
             </div>
-            <div className='flex flex-row space-x-2' style={{ width: "283px" }}>
+            <div
+                className='flex flex-row space-x-2  py-6'
+                style={{ width: "283px" }}
+            >
                 <svg
                     width='28'
                     height='28'
@@ -90,7 +96,10 @@ function FeatureBanner() {
                     </p>
                 </div>
             </div>
-            <div className='flex flex-row space-x-2' style={{ width: "283px" }}>
+            <div
+                className='flex flex-row space-x-2  py-6'
+                style={{ width: "283px" }}
+            >
                 <svg
                     width='29'
                     height='27'
@@ -119,11 +128,14 @@ function FeatureBanner() {
                     </p>
                     <p className='text-12 md:text-16 text-content '>
                         {" "}
-                        Exclusive discounts and promotions on a daily basis.
+                        Exclusive discounts and promotions on a daily basis
                     </p>
                 </div>
             </div>
-            <div className='flex flex-row space-x-2' style={{ width: "283px" }}>
+            <div
+                className='flex flex-row space-x-2  py-6'
+                style={{ width: "283px" }}
+            >
                 <svg
                     width='28'
                     height='27'
@@ -153,7 +165,7 @@ function FeatureBanner() {
                     <p className='text-12 md:text-16 text-content '>
                         {" "}
                         Your financial information is protected and your
-                        transactions are safe from unauthorized access.
+                        transactions are safe from unauthorized access
                     </p>
                 </div>
             </div>
