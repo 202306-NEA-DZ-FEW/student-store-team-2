@@ -2,6 +2,7 @@ import Image from "next/image";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import Link from "next/link";
+import CustomForm from "@/components/form/Form";
 const page = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -48,104 +49,7 @@ const page = () => {
                         </button>
                     </div>
 
-                    <form className='mx-auto flex flex-col space-y-4 text-sm font-lato font-semibold justify-start items-center sm:items-center mt-2'>
-                        {/* Full Name and Email */}
-                        <div className='sm:flex space-x-4 space-y-2 sm:justify-start'>
-                            <div className='flex flex-col md:flex-row items-center'>
-                                <label htmlFor='fullName' className='md:w-28'>
-                                    Full Name:
-                                </label>
-                                <input
-                                    type='text'
-                                    id='fullName'
-                                    name='fullName'
-                                    className='shadow-md border rounded-md sm:w-64 w-96'
-                                />
-                            </div>
-                            <div className='flex flex-col md:flex-row items-center'>
-                                <label htmlFor='email' className='md:w-28'>
-                                    Email:
-                                </label>
-                                <input
-                                    type='email'
-                                    id='email'
-                                    name='email'
-                                    className='shadow-md border rounded-md sm:w-64 w-96'
-                                />
-                            </div>
-                        </div>
-
-                        {/* Phone Number and Password */}
-                        <div className='sm:flex space-x-4 space-y-2 sm:justify-start'>
-                            <div className='flex flex-col md:flex-row items-center'>
-                                <label
-                                    htmlFor='phoneNumber'
-                                    className='md:w-28'
-                                >
-                                    Phone Number:
-                                </label>
-                                <input
-                                    type='text'
-                                    id='phoneNumber'
-                                    name='phoneNumber'
-                                    className='shadow-md border rounded-md sm:w-64 w-96'
-                                />
-                            </div>
-                            <div className='flex flex-col md:flex-row items-center'>
-                                <label htmlFor='password' className='md:w-28'>
-                                    Password:
-                                </label>
-                                <input
-                                    type='password'
-                                    id='password'
-                                    name='password'
-                                    className='shadow-md border rounded-md sm:w-64 w-96'
-                                />
-                            </div>
-                        </div>
-
-                        {/* Address */}
-                        <div className='flex md:flex-row flex-col items-center'>
-                            <label htmlFor='address' className='md:w-28'>
-                                Address:
-                            </label>
-                            <textarea
-                                id='address'
-                                name='address'
-                                className='shadow-md border rounded-md w-96'
-                            />
-                        </div>
-
-                        {/* Terms & Conditions Checkbox */}
-                        <div className='flex items-center space-x-2'>
-                            <input
-                                type='checkbox'
-                                name='agreements'
-                                className='shadow-md border rounded-md'
-                            />
-                            <label
-                                htmlFor='agreements'
-                                className='block font-thin '
-                            >
-                                I have read and agree with all of the Terms
-                                <span className='block sm:hidden'>
-                                    and Privacy Policy
-                                </span>
-                                <span className='hidden sm:block'>
-                                    & Conditions and Privacy Policy of Student
-                                    Store website.
-                                </span>
-                            </label>
-                        </div>
-
-                        {/* Submit Button */}
-                        <button
-                            type='submit'
-                            className='bg-accent hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg'
-                        >
-                            Submit
-                        </button>
-                    </form>
+                    <CustomForm formType='registration' />
                     <div className='text-center m-2 text-sm text-content font-thin font-lato'>
                         Already a member ?{" "}
                         <Link className='text-accent' href='/sign-in'>
