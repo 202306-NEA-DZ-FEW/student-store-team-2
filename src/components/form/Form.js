@@ -1,10 +1,11 @@
 "use client";
-import { useForm, Controller } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { Controller, useForm } from "react-hook-form";
+
 import {
     loginWithEmailAndPassword,
     registerUserWithEmailAndPassword,
 } from "@/lib/authentication";
-import { useRouter } from "next/navigation";
 const CustomForm = ({ formType }) => {
     const { handleSubmit, control, formState, setError, reset } = useForm();
     const Router = useRouter();

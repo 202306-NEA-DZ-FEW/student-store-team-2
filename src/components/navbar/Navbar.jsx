@@ -1,15 +1,18 @@
 "use client";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
 import { BiMenu, BiMenuAltRight, BiUser } from "react-icons/bi";
+
+import { getCurrentUser, signOutUser } from "@/lib/authentication";
+import { getDocumentByIdFromFirestore } from "@/lib/firestore";
+
 import MobileSidebar from "../mobileSidebar/MobileSidebar";
 import Portal from "../portal/Portal";
 import Searchbar from "../search/Searchbar";
-import { useState } from "react";
-import { useTranslations } from "next-intl";
 
 export default function Navbar() {
     const t = useTranslations("Index");
-
     const [isOpen, setIsOpen] = useState(false);
     const toggleMobileMenu = () => {
         setIsOpen(!isOpen);
@@ -20,8 +23,24 @@ export default function Navbar() {
         { name: t("Orders"), href: "/order" },
     ];
 
+    const [user, setUser] = useState(null);
+    const [userName, setUserName] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        getCurrentUser()?.then((user) => {
+            setUser(user);
+
+            setLoading(false);
+        });
+
+        getDocumentByIdFromFirestore(user)?.then((username) => {
+            username != null ? setUserName(username) : "loading";
+        });
+    }, [user]);
+
     return (
-        <nav className=' text-navbar absolute z-20 w-full text-white'>
+        <nav className=' text-navbar absolute z-20 w-full text-white bg-gray-500'>
             {
                 <>
                     <div className='mx-auto px-2 sm:px-6 lg:px-8 '>
@@ -78,6 +97,23 @@ export default function Navbar() {
                                                 aria-hidden='true'
                                             />
                                         </Link>
+                                        {loading ? (
+                                            <div>
+                                                <p>...</p>
+                                            </div>
+                                        ) : user ? (
+                                            <div>
+                                                hello {userName}!{" "}
+                                                <button
+                                                    className='text-red-500'
+                                                    onClick={signOutUser}
+                                                >
+                                                    Sign out?
+                                                </button>
+                                            </div>
+                                        ) : (
+                                            <Link href='/sign-in'>Sign In</Link>
+                                        )}
 
                                         <Searchbar
                                             toggleMobileMenu={() => {}}

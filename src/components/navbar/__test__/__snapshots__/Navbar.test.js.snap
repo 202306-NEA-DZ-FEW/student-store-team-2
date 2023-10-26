@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <nav
-  className=" text-navbar absolute z-20 w-full text-white"
+  className=" text-navbar absolute z-20 w-full text-white bg-gray-500"
 >
   <div
     className="mx-auto px-2 sm:px-6 lg:px-8 "
@@ -136,6 +136,11 @@ exports[`renders correctly 1`] = `
                 />
               </svg>
             </a>
+            <div>
+              <p>
+                ...
+              </p>
+            </div>
             <div
               className="mx-auto max-w-md cursor-pointer "
               onKeyDown={[Function]}
