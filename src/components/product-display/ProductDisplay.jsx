@@ -106,42 +106,32 @@ function ProductDisplay() {
     // };
 
     return (
-        <div className='w-full h-full shadow-xl flex flex-col justify-center'>
-            <div
-                onTouchStart={onTouchStart}
-                onTouchMove={onTouchMove}
-                onTouchEnd={onTouchEnd}
-                className='carousel w-1/2 h-screen '
-            >
-                <div className='w-full h-[800px] flex flex-col justify-center items-center'>
-                    {/* <div className="w-full h-full flex flex-col justify-center items-center bg-green-300"> */}
-                    <div className=' grid grid-cols-8 gap-4 h-2/3 bg-purple-400'>
-                        <div className='col-span-2 h-full overflow-scroll scrollbar-thin scrollbar-thumb-[#bfdbfe] bg-[#ecfeff] border border-gray-300 rounded'>
-                            {data.map((item) => (
-                                <div
-                                    key={item.id}
-                                    className='bg-green-400 mb-1 flex flex-col items-center justify-center'
-                                    style={{
-                                        backgroundImage: `url(${item.image})`,
-                                        backgroundSize: "cover",
-                                        backgroundPosition: "center center",
-                                        width: "150px", // Adjust the width as needed
-                                        height: "180px", // Adjust the height as needed
-                                    }}
-                                ></div>
-                            ))}
-                        </div>
-
-                        <div className='col-span-6 h-full'>
+        <div className=''>
+            <div className=' flex gap-4 h-[800px] bg-purple-400'>
+                <div className='h-full p-1 flex flex-col gap-4 overflow-scroll scrollbar-thin scrollbar-thumb-[#bfdbfe] bg-[#ecfeff] border border-gray-300 rounded'>
+                    {data.map((item) => (
+                        <div
+                            key={item.id}
+                            className='bg-green-400 flex flex-col items-center justify-center'
+                        >
                             <Image
-                                src='/img/product1.jpg'
-                                width={500}
-                                height={800}
-                                alt='Skin Care Products'
+                                src={item.image}
+                                alt='Product'
+                                width={150}
+                                height={180}
                             />
                         </div>
-                    </div>
-                    {/* </div> */}
+                    ))}
+                </div>
+
+                <div className='h-full'>
+                    <Image
+                        src='/img/product1.jpg'
+                        width={500}
+                        height={800}
+                        alt='Skin Care Products'
+                        className='object-cover'
+                    />
                 </div>
             </div>
         </div>
