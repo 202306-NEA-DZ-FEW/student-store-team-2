@@ -6,19 +6,23 @@ import {
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 
-import app from "./firebase";
+import { app } from "./firebase";
+import Cookies from "js-cookie";
 
 const auth = getAuth(app); // app is your Firebase app instance
 const db = getFirestore(app); // Use your Firestore instance
+
+// Function to remove old cookies
+const removeCookies = () => {
+    Cookies.remove("authToken");
+};
 
 export const registerUserWithEmailAndPassword = async (
     email,
     password,
     userData
 ) => {
-    // eslint-disable-next-line no-useless-catch
     try {
-        // Create the user in Firebase Authentication
         const userCredential = await createUserWithEmailAndPassword(
             auth,
             email,
@@ -26,55 +30,67 @@ export const registerUserWithEmailAndPassword = async (
         );
         const user = userCredential.user;
 
-        // Write user data to Firestore
         const userDocRef = doc(db, "users", user.uid);
         await setDoc(userDocRef, userData);
 
+        Cookies.set("authToken", user.uid, {
+            expires: 7,
+            httpOnly: true,
+            secure: true,
+        });
+
+        console.log("User registered successfully:", user.uid);
         return user;
     } catch (error) {
+        console.error("Error registering user:", error);
         throw error;
     }
 };
 
 export const loginWithEmailAndPassword = async (email, password) => {
-    // eslint-disable-next-line no-useless-catch
     try {
-        // Sign in the user using email and password
         const userCredential = await signInWithEmailAndPassword(
             auth,
             email,
             password
         );
 
-        // Return the user
+        console.log("User logged in successfully:", userCredential.user.uid);
         return userCredential.user;
     } catch (error) {
+        console.error("Error logging in:", error);
         throw error;
     }
 };
 
 export const getCurrentUser = async () => {
-    const promisifiedOnAuthStateChanged = (auth) => {
-        return new Promise((resolve, reject) => {
-            auth.onAuthStateChanged((user) => {
+    try {
+        const user = await new Promise((resolve, reject) => {
+            const unsubscribe = auth.onAuthStateChanged((user) => {
                 if (user) {
-                    resolve(user.uid);
+                    resolve(user);
                 } else {
                     resolve(null);
                 }
+                unsubscribe(); // Don't forget to unsubscribe
             });
         });
-    };
 
-    const uid = await promisifiedOnAuthStateChanged(auth);
-    console.log("i am from auth", uid);
-    return uid;
+        const uid = user ? user.uid : null;
+        console.log("Current user:", uid);
+        return uid;
+    } catch (error) {
+        console.error("Error getting current user:", error);
+        throw error;
+    }
 };
 
 export const signOutUser = async () => {
     try {
         await signOut(auth);
+        Cookies.remove("authToken");
+        console.log("User signed out successfully");
     } catch (error) {
-        console.log(error);
+        console.error("Error signing out:", error);
     }
 };

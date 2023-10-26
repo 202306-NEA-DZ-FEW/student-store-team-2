@@ -4,12 +4,12 @@ import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { BiMenu, BiMenuAltRight, BiUser } from "react-icons/bi";
 
-import { getCurrentUser, signOutUser } from "@/lib/authentication";
-import { getDocumentByIdFromFirestore } from "@/lib/firestore";
+import { signOutUser } from "@/lib/authDetails";
 
 import MobileSidebar from "../mobileSidebar/MobileSidebar";
 import Portal from "../portal/Portal";
 import Searchbar from "../search/Searchbar";
+import Cookies from "js-cookie";
 
 export default function Navbar() {
     const t = useTranslations("Index");
@@ -26,17 +26,56 @@ export default function Navbar() {
     const [user, setUser] = useState(null);
     const [userName, setUserName] = useState(null);
     const [loading, setLoading] = useState(true);
+    const authToken = Cookies.get("authToken"); // Retrieve the token from the cookie
 
     useEffect(() => {
-        getCurrentUser()?.then((user) => {
-            setUser(user);
+        // Function to fetch user data and username
+        const fetchUserData = async () => {
+            try {
+                console.log("Sending GET request to /api/userData"); // Log the start of the request
+                console.log(authToken);
+                const userDataResponse = await fetch("/api/userData", {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${authToken}`, // Add the token to the request headers
+                    },
+                });
 
-            setLoading(false);
-        });
+                console.log("Response received from /api/userData"); // Log when the response is received
 
-        getDocumentByIdFromFirestore(user)?.then((username) => {
-            username != null ? setUserName(username) : "loading";
-        });
+                if (userDataResponse.ok) {
+                    // Parse the response as JSON
+                    const userData = await userDataResponse.json();
+
+                    // Access user and username properties
+                    const user = userData.data.user;
+                    const username = userData.data.username;
+
+                    // Now you can use the user and username as needed
+                    console.log("User:", user);
+                    console.log("Username:", username);
+
+                    // Update your component state with the user and username data
+                    setUser(user);
+                    if (username) {
+                        setUserName(username);
+                    } else {
+                        setUserName("loading");
+                    }
+                } else {
+                    console.log(
+                        "Response status is not OK. Status:",
+                        userDataResponse.status
+                    );
+                }
+            } catch (error) {
+                console.error("Error fetching user data:", error); // Log any errors that occur
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchUserData();
     }, [user]);
 
     return (
@@ -109,7 +148,7 @@ export default function Navbar() {
                                                     onClick={signOutUser}
                                                 >
                                                     Sign out?
-                                                </button>
+                                                </button>{" "}
                                             </div>
                                         ) : (
                                             <Link href='/sign-in'>Sign In</Link>
