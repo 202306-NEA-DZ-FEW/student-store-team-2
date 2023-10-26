@@ -47,90 +47,66 @@ const data = [
         link: "products?category=electronics",
     },
 ];
+/*
+{
+    id: 2,
+    title: "shoes",
+    images: [""]
+}
+*/
+const imagesArray = [
+    "/img/product4.jpg",
+    "/img/product3.jpg",
+    "/img/product2.jpg",
+    "/img/product1.jpg",
+];
 function ProductDisplay() {
-    //   const [CarouselItems, setCarouselItems] = useState(data);
-    //     const ref = useRef(true);
-    //     const carouselRef = useRef();
-    const [touchStart, setTouchStart] = useState(null);
-    const [touchEnd, setTouchEnd] = useState(null);
+    const [currentImage, setCurrentImage] = useState(imagesArray[0]);
+    const indexRef = useRef(1);
+    const scrollRef = useRef(null);
 
-    // interval id
-    // const intervalIdRef = useRef(null);
-
-    // the required distance between touchStart and touchEnd to be detected as a swipe
-    const minSwipeDistance = 50;
-
-    const onTouchStart = (e) => {
-        setTouchEnd(null); // otherwise the swipe is fired even with usual touch events
-        setTouchStart(e.targetTouches[0].clientX);
-    };
-
-    const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
-
-    const onTouchEnd = () => {
-        if (!touchStart || !touchEnd) return;
-        const distance = touchStart - touchEnd;
-        const isLeftSwipe = distance > minSwipeDistance;
-        const isRightSwipe = distance < -minSwipeDistance;
-        //     if (isLeftSwipe) {
-        //         nextClick();
-        //     }
-        //     if (isRightSwipe) {
-        //         prevClick();
-        //     }
-    };
-
-    // useEffect(() => {
-    //     if (ref.current) {
-    //         intervalIdRef.current = setInterval(() => {
-    //             CarouselItems.push(CarouselItems.shift());
-    //             setCarouselItems([...CarouselItems]);
-    //         }, 3500);
-    //     }
-
-    //     return () => {
-    //         ref.current = false;
-    //     };
-    // }, []);
-
-    // const nextClick = () => {
-    //     clearInterval(intervalIdRef.current);
-    //     const list = document.querySelectorAll(".carousel__item");
-    //     carouselRef.current.append(list[0]);
-    // };
-
-    // const prevClick = () => {
-    //     clearInterval(intervalIdRef.current);
-    //     const list = document.querySelectorAll(".carousel__item");
-    //     carouselRef.current.prepend(list[list.length - 1]);
-    // };
+    useEffect(() => {
+        setInterval(() => {
+            setCurrentImage(imagesArray[indexRef.current]);
+            scrollRef.current.scrollTo(0, indexRef.current * 249);
+            indexRef.current = indexRef.current + 1;
+            if (indexRef.current === 4) {
+                indexRef.current = 0;
+            }
+        }, 4000);
+    }, []);
 
     return (
-        <div className=''>
-            <div className=' flex gap-4 h-[800px] bg-purple-400'>
-                <div className='h-full p-1 flex flex-col gap-4 overflow-scroll scrollbar-thin scrollbar-thumb-[#bfdbfe] bg-[#ecfeff] border border-gray-300 rounded'>
-                    {data.map((item) => (
-                        <div
-                            key={item.id}
+        <div className='ml-20'>
+            <div className=' flex gap-4'>
+                <div
+                    ref={scrollRef}
+                    className=' h-[600px] scroll-smooth flex flex-col gap-4 overflow-hidden   '
+                >
+                    {imagesArray.map((item, index) => (
+                        <button
+                            key={index}
                             className='bg-green-400 flex flex-col items-center justify-center'
+                            onClick={() => setCurrentImage(item)}
                         >
                             <Image
-                                src={item.image}
+                                src={item}
                                 alt='Product'
-                                width={150}
-                                height={180}
+                                width={166}
+                                height={249}
+                                className='h-[249px] object-cover'
                             />
-                        </div>
+                        </button>
                     ))}
                 </div>
 
-                <div className='h-full'>
+                <div className=''>
                     <Image
-                        src='/img/product1.jpg'
-                        width={500}
-                        height={800}
+                        src={currentImage}
+                        width={450}
+                        height={819}
                         alt='Skin Care Products'
-                        className='object-cover'
+                        className='object-cover h-[600px] '
                     />
                 </div>
             </div>
