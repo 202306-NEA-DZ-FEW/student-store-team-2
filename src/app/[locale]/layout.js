@@ -8,6 +8,8 @@ export function generateStaticParams() {
 import "./globals.css";
 import "./carousel.css";
 
+import { UserProvider } from "@/components/userProvider/UserProvider";
+
 import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
 
@@ -42,9 +44,11 @@ export default async function RootLayout({ children, params: { locale } }) {
                 className={`relative ${jua.variable} font-jua ${lato.variable} font-lato ${jost.variable} font-jost ${poppins.variable} font-poppins`}
             >
                 <NextIntlClientProvider locale={locale} messages={messages}>
-                    <Navbar />
-                    {children}
-                    <Footer />
+                    <UserProvider>
+                        <Navbar />
+                        {children}
+                        <Footer />
+                    </UserProvider>
                 </NextIntlClientProvider>
             </body>
         </html>

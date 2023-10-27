@@ -1,6 +1,9 @@
-import renderer from "react-test-renderer";
-import Navbar from "../Navbar";
 import { NextIntlClientProvider } from "next-intl";
+import renderer from "react-test-renderer";
+
+import { UserProvider } from "@/components/userProvider/UserProvider";
+
+import Navbar from "../Navbar";
 import messages from "../../../../messages/en.json";
 
 // Mock the "next/navigation" module
@@ -48,7 +51,9 @@ it("renders correctly", async () => {
     const tree = renderer
         .create(
             <NextIntlClientProvider locale='en' messages={messages}>
-                <Navbar />
+                <UserProvider>
+                    <Navbar />
+                </UserProvider>
             </NextIntlClientProvider>
         )
         .toJSON();

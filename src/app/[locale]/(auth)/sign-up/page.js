@@ -1,12 +1,10 @@
 import Image from "next/image";
-import { FcGoogle } from "react-icons/fc";
-import { FaFacebook } from "react-icons/fa";
 import Link from "next/link";
+import { FaFacebook } from "react-icons/fa";
+
 import CustomForm from "@/components/form/Form";
+import GoogleLoginButton from "@/components/googleLoginButton/GoogleButton";
 const page = () => {
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    };
     return (
         <div className=' flex flex-wrap justify-center items-center'>
             <div className='mt-20 flex flex-col'>
@@ -42,7 +40,7 @@ const page = () => {
                             </span>
                         </button>
                         <button className='flex text-sm m-1 px-3 border border-accent2/80 shadow-md p-1 rounded-xl bg-white '>
-                            <FcGoogle className='mr-1 w-5 h-5' />
+                            <GoogleLoginButton />
                             <span className='hidden sm:block'>
                                 Continue with Google
                             </span>

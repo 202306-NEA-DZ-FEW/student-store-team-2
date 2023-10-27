@@ -14,7 +14,6 @@ export const getDocumentByIdFromFirestore = async (documentId) => {
         const documentSnapshot = await getDoc(documentRef);
 
         if (!documentSnapshot.exists()) {
-            console.log("No document found in Firestore with this ID.");
             return null;
         }
 
