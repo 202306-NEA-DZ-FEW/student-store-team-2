@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaFacebook } from "react-icons/fa";
 
 import CustomForm from "@/components/form/Form";
 import GoogleLoginButton from "@/components/googleLoginButton/GoogleButton";
@@ -33,23 +32,15 @@ const page = () => {
 
                     {/*Buttons*/}
                     <div className='flex justify-center items-center  m-2 text-content font-lato'>
-                        <button className='flex text-sm m-1 px-3 border border-accent2/80 shadow-md p-1 rounded-xl bg-white'>
-                            <FaFacebook className='w-5 h-5 mr-1 text-blue-600' />
-                            <span className='hidden sm:block'>
-                                Continue with Facebook
-                            </span>
-                        </button>
-                        <button className='flex text-sm m-1 px-3 border border-accent2/80 shadow-md p-1 rounded-xl bg-white '>
-                            <GoogleLoginButton />
-                            <span className='hidden sm:block'>
-                                Continue with Google
-                            </span>
-                        </button>
+                        <GoogleLoginButton
+                            text='Sign Up With Google'
+                            styling='flex text-sm m-1 px-3 border border-accent2/80 shadow-md p-1 rounded-xl bg-white'
+                        />
                     </div>
 
                     <CustomForm formType='registration' />
-                    <div className='text-center m-2 text-sm text-content font-thin font-lato'>
-                        Already a member ?{" "}
+                    <div className='text-center m-2 text-sm text-title font-light font-lato'>
+                        Already a member ?
                         <Link className='text-accent' href='/sign-in'>
                             {" "}
                             Login{" "}

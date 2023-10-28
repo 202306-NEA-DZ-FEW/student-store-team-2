@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <nav
-  className=" text-navbar absolute z-20 w-full text-white bg-gray-500"
+  className="text-navbar absolute z-20 w-full text-black"
 >
   <div
     className="mx-auto px-2 sm:px-6 lg:px-8 "

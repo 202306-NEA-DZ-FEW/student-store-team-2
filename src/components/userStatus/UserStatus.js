@@ -2,11 +2,13 @@
 
 import Cookies from "js-cookie";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import React from "react";
 
 import { useUser } from "../userProvider/UserProvider";
 
 function UserStatus() {
+    const t = useTranslations("Index");
     const { user, userName, loading } = useUser();
     const handleSignOutUser = async () => {
         try {
@@ -46,14 +48,16 @@ function UserStatus() {
     } else if (user) {
         return (
             <div>
-                <p>Hello {userName}!</p>
+                <p>
+                    {t("Hello")} {userName}!
+                </p>
                 <button className='text-red-500' onClick={handleSignOutUser}>
-                    Sign out
+                    {t("Sign out")}
                 </button>
             </div>
         );
     } else {
-        return <Link href='/sign-in'>Sign In</Link>;
+        return <Link href='/sign-in'> {t("Sign In")}</Link>;
     }
 }
 

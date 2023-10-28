@@ -16,7 +16,7 @@ import { app } from "./firebase";
 const auth = getAuth(app); // app is your Firebase app instance
 const db = getFirestore(app); // Use your Firestore instance
 
-const provider = new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider();
 
 export const registerUserWithEmailAndPassword = async (
     email,
@@ -90,7 +90,7 @@ export const signOutUser = async () => {
 export const handleGoogleLogin = async () => {
     try {
         // Sign in with Google popup
-        const result = await signInWithPopup(auth, provider);
+        const result = await signInWithPopup(auth, googleProvider);
 
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -116,7 +116,6 @@ export const handleGoogleLogin = async () => {
 
         // Send user data and authToken in a POST request
         const authToken = Cookies.get("authToken");
-        console.log("this is token", token);
 
         const response = await fetch("/api/auth", {
             method: "POST",
@@ -133,9 +132,7 @@ export const handleGoogleLogin = async () => {
         if (response.ok) {
             const data = await response.json();
             Cookies.set("authToken", data.user.uid, { expires: 7 });
-
-            // Redirect to the home page after a successful login
-            // window.location.href = "/";
+            window.location.href = "/";
         } else {
             const errorData = await response.json();
             console.error("Google login error:", errorData.error);

@@ -93,6 +93,15 @@ exports[`renders correctly 1`] = `
       </button>
     </a>
     <div
+      className="  hover:bg-accent hover:text-white rounded-md px-3 py-2 text-xl font-medium "
+    >
+      <div>
+        <p>
+          ...
+        </p>
+      </div>
+    </div>
+    <div
       className=" items-center"
     >
       <div

@@ -1,6 +1,9 @@
-import renderer from "react-test-renderer";
-import MobileSidebar from "../MobileSidebar";
 import { NextIntlClientProvider } from "next-intl";
+import renderer from "react-test-renderer";
+
+import { UserProvider } from "@/components/userProvider/UserProvider";
+
+import MobileSidebar from "../MobileSidebar";
 import messages from "../../../../messages/en.json";
 
 jest.mock("next/navigation");
@@ -13,7 +16,9 @@ it("renders correctly", () => {
     const tree = renderer
         .create(
             <NextIntlClientProvider locale='en' messages={messages}>
-                <MobileSidebar navigation={navigationMock} />
+                <UserProvider>
+                    <MobileSidebar navigation={navigationMock} />
+                </UserProvider>
             </NextIntlClientProvider>
         )
         .toJSON();

@@ -1,13 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaFacebook } from "react-icons/fa";
 
 import CustomForm from "@/components/form/Form";
 import GoogleLoginButton from "@/components/googleLoginButton/GoogleButton";
 const page = () => {
     return (
-        <div className=' flex flex-wrap justify-center items-center'>
-            <div className='mt-20 flex flex-col'>
+        <div className=' flex flex-wrap justify-center items-center '>
+            <div className='mt-20 flex flex-col '>
                 <div className='relative flex justify-center items-center'>
                     <Image
                         width={1185 / 1.5}
@@ -23,7 +22,7 @@ const page = () => {
                     {/* title */}
                     <div className='flex flex-col text-center font-lato text-content'>
                         <h1 className='text-2xl '>
-                            Create Your{" "}
+                            Create Your
                             <span className='text-accent'>Store</span>
                         </h1>
                         <p className='text-sm'>
@@ -32,21 +31,23 @@ const page = () => {
                     </div>
 
                     <CustomForm formType='login' />
-                    <div className='text-center m-2 text-sm text-content font-thin font-lato'>
+                    <div className='text-center m-2 text-sm   text-content'>
+                        {" "}
                         Not a member ?{" "}
                         <Link className='text-accent' href='/sign-up'>
-                            {" "}
                             Sign Up
                         </Link>
                     </div>
 
                     {/*Buttons*/}
                     <div className='flex justify-center items-center text-sm  m-2 text-content font-lato'>
-                        Or Login Using:
+                        Or:
                     </div>
-                    <div className='flex justify-center items-center  m-2 space-x-5 '>
-                        <FaFacebook className='w-6 h-6 mr-1 text-blue-600' />
-                        <GoogleLoginButton />
+                    <div className='flex justify-center items-center mb-2 '>
+                        <GoogleLoginButton
+                            googleText='Login with Google'
+                            styling='flex text-sm m-1 px-3 border border-accent2/80 shadow-md p-1 rounded-xl bg-white'
+                        />
                     </div>
                 </div>
             </div>

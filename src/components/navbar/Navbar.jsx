@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { BiMenu, BiMenuAltRight, BiUser } from "react-icons/bi";
@@ -21,8 +22,15 @@ export default function Navbar() {
         { name: t("Orders"), href: "/order" },
     ];
 
+    const pathname = usePathname();
     return (
-        <nav className=' text-navbar absolute z-20 w-full text-white bg-gray-500'>
+        <nav
+            className={`text-navbar absolute z-20 w-full ${
+                pathname === "/" || pathname === "/en"
+                    ? "text-white"
+                    : "text-black"
+            }`}
+        >
             {
                 <>
                     <div className='mx-auto px-2 sm:px-6 lg:px-8 '>

@@ -62,29 +62,26 @@ function CustomForm({ formType }) {
                 className='mx-auto flex flex-col space-y-4 text-sm font-lato font-semibold justify-start items-center sm:items-center mt-2'
             >
                 {formType === "login" && (
-                    <div className='flex flex-col md:flex-row items-center'>
-                        <label htmlFor='email' className='md-w-28'>
-                            Email:
-                        </label>
-                        <div className='flex flex-col'>
-                            <input
-                                type='email'
-                                id='email'
-                                className='shadow-md border rounded-md sm:w-64 w-72'
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                        </div>
-                    </div>
-                )}
-
-                {formType === "login" && (
-                    <div className='flex flex-col items-end'>
-                        <div className='flex flex-col md:flex-row items-center justify-end'>
-                            <label htmlFor='password' className='md-w-28'>
-                                Password:
-                            </label>
+                    <div className='flex flex-col items-start justify-start space-y-4 '>
+                        <div className='flex flex-col md:flex-row items-start justify-between'>
                             <div className='flex flex-col'>
+                                <label htmlFor='email' className='md-w-28'>
+                                    Email:
+                                </label>
+                                <input
+                                    type='email'
+                                    id='email'
+                                    className='shadow-md border rounded-md sm:w-64 w-72'
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                            </div>
+                        </div>
+                        <div className='flex flex-col md:flex-row items-start justify-between'>
+                            <div className='flex flex-col'>
+                                <label htmlFor='password' className='md-w-28'>
+                                    Password:
+                                </label>
                                 <input
                                     type='password'
                                     id='password'
@@ -94,13 +91,11 @@ function CustomForm({ formType }) {
                                         setPassword(e.target.value)
                                     }
                                 />
+                                {/* <p className='text-xs font-light'>
+                                    Forgot your password?
+                                </p> */}
                             </div>
                         </div>
-                        {formType === "login" && (
-                            <p className='text-xs font-thin'>
-                                Forgot your password?
-                            </p>
-                        )}
                     </div>
                 )}
 
@@ -199,13 +194,10 @@ function CustomForm({ formType }) {
                 {formType === "registration" && (
                     <div className='flex items-center space-x-2'>
                         <div className='flex flex-col'>
-                            <input
-                                type='checkbox'
-                                className='shadow-md border rounded-md'
-                            />
+                            <input type='checkbox' />
                             <label
                                 htmlFor='agreements'
-                                className='block font-thin'
+                                className='block font-light text-center'
                             >
                                 I have read and agree with all of the Terms
                                 <span className='block sm:hidden'>
