@@ -33,7 +33,7 @@ const page = () => {
                     {/*Buttons*/}
                     <div className='flex justify-center items-center  m-2 text-content font-lato'>
                         <GoogleLoginButton
-                            text='Sign Up With Google'
+                            googleText='Sign Up With Google'
                             styling='flex text-sm m-1 px-3 border border-accent2/80 shadow-md p-1 rounded-xl bg-white'
                         />
                     </div>
