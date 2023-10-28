@@ -1,52 +1,9 @@
 "use client";
-import Link from "next/link";
 import React from "react";
 import { useRef } from "react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-const data = [
-    {
-        id: 1,
-        title: "Books",
-        description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas molestiae repellendus mollitia nobis.",
-        image: "/img/product1.jpg",
-        link: "products?category=books",
-    },
-    {
-        id: 2,
-        title: "Sports Equipements",
-        description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas molestiae repellendus mollitia nobis.",
-        image: "/img/product2.jpg",
-        link: "products?category=sports",
-    },
-    {
-        id: 3,
-        title: "Clothing",
-        description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas molestiae repellendus mollitia nobis.",
-        image: "/img/product3.jpg",
-        link: "products?category=clothing",
-    },
-    {
-        id: 4,
-        title: "Games",
-        description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas molestiae repellendus mollitia nobis.",
-        image: "/img/product3.jpg",
-        link: "products?category=games",
-    },
-    {
-        id: 5,
-        title: "Electronics",
-        description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas molestiae repellendus mollitia nobis.",
-        image: "/img/product4.jpg",
-        link: "products?category=electronics",
-    },
-];
 /*
 {
     id: 2,
@@ -54,6 +11,7 @@ const data = [
     images: [""]
 }
 */
+// Placeholder object to be replaced with data from Firestore
 const imagesArray = [
     "/img/product4.jpg",
     "/img/product3.jpg",
@@ -77,11 +35,11 @@ function ProductDisplay() {
     }, []);
 
     return (
-        <div className='ml-20'>
-            <div className=' flex gap-4'>
+        <>
+            <div className=' flex gap-2 w-full'>
                 <div
                     ref={scrollRef}
-                    className=' h-[600px] scroll-smooth flex flex-col gap-4 overflow-hidden   '
+                    className=' h-[700px] scroll-smooth flex flex-col gap-4 overflow-hidden   '
                 >
                     {imagesArray.map((item, index) => (
                         <button
@@ -103,14 +61,14 @@ function ProductDisplay() {
                 <div className=''>
                     <Image
                         src={currentImage}
-                        width={450}
-                        height={819}
+                        width={500}
+                        height={860}
                         alt='Skin Care Products'
-                        className='object-cover h-[600px] '
+                        className='object-cover h-[700px] '
                     />
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 

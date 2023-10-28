@@ -2,142 +2,125 @@
 
 exports[`renders correctly 1`] = `
 <div
-  className=""
+  className=" flex gap-2 w-full"
 >
   <div
-    className=" flex gap-4 h-[800px] bg-purple-400"
+    className=" h-[700px] scroll-smooth flex flex-col gap-4 overflow-hidden   "
   >
-    <div
-      className="h-full p-1 flex flex-col gap-4 overflow-scroll scrollbar-thin scrollbar-thumb-[#bfdbfe] bg-[#ecfeff] border border-gray-300 rounded"
-    >
-      <div
-        className="bg-green-400 flex flex-col items-center justify-center"
-      >
-        <img
-          alt="Product"
-          data-nimg="1"
-          decoding="async"
-          height={180}
-          loading="lazy"
-          onError={[Function]}
-          onLoad={[Function]}
-          src="/_next/image?url=%2Fimg%2Fproduct1.jpg&w=384&q=75"
-          srcSet="/_next/image?url=%2Fimg%2Fproduct1.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg%2Fproduct1.jpg&w=384&q=75 2x"
-          style={
-            Object {
-              "color": "transparent",
-            }
-          }
-          width={150}
-        />
-      </div>
-      <div
-        className="bg-green-400 flex flex-col items-center justify-center"
-      >
-        <img
-          alt="Product"
-          data-nimg="1"
-          decoding="async"
-          height={180}
-          loading="lazy"
-          onError={[Function]}
-          onLoad={[Function]}
-          src="/_next/image?url=%2Fimg%2Fproduct2.jpg&w=384&q=75"
-          srcSet="/_next/image?url=%2Fimg%2Fproduct2.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg%2Fproduct2.jpg&w=384&q=75 2x"
-          style={
-            Object {
-              "color": "transparent",
-            }
-          }
-          width={150}
-        />
-      </div>
-      <div
-        className="bg-green-400 flex flex-col items-center justify-center"
-      >
-        <img
-          alt="Product"
-          data-nimg="1"
-          decoding="async"
-          height={180}
-          loading="lazy"
-          onError={[Function]}
-          onLoad={[Function]}
-          src="/_next/image?url=%2Fimg%2Fproduct3.jpg&w=384&q=75"
-          srcSet="/_next/image?url=%2Fimg%2Fproduct3.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg%2Fproduct3.jpg&w=384&q=75 2x"
-          style={
-            Object {
-              "color": "transparent",
-            }
-          }
-          width={150}
-        />
-      </div>
-      <div
-        className="bg-green-400 flex flex-col items-center justify-center"
-      >
-        <img
-          alt="Product"
-          data-nimg="1"
-          decoding="async"
-          height={180}
-          loading="lazy"
-          onError={[Function]}
-          onLoad={[Function]}
-          src="/_next/image?url=%2Fimg%2Fproduct3.jpg&w=384&q=75"
-          srcSet="/_next/image?url=%2Fimg%2Fproduct3.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg%2Fproduct3.jpg&w=384&q=75 2x"
-          style={
-            Object {
-              "color": "transparent",
-            }
-          }
-          width={150}
-        />
-      </div>
-      <div
-        className="bg-green-400 flex flex-col items-center justify-center"
-      >
-        <img
-          alt="Product"
-          data-nimg="1"
-          decoding="async"
-          height={180}
-          loading="lazy"
-          onError={[Function]}
-          onLoad={[Function]}
-          src="/_next/image?url=%2Fimg%2Fproduct4.jpg&w=384&q=75"
-          srcSet="/_next/image?url=%2Fimg%2Fproduct4.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg%2Fproduct4.jpg&w=384&q=75 2x"
-          style={
-            Object {
-              "color": "transparent",
-            }
-          }
-          width={150}
-        />
-      </div>
-    </div>
-    <div
-      className="h-full"
+    <button
+      className="bg-green-400 flex flex-col items-center justify-center"
+      onClick={[Function]}
     >
       <img
-        alt="Skin Care Products"
-        className="object-cover"
+        alt="Product"
+        className="h-[249px] object-cover"
         data-nimg="1"
         decoding="async"
-        height={800}
+        height={249}
         loading="lazy"
         onError={[Function]}
         onLoad={[Function]}
-        src="/_next/image?url=%2Fimg%2Fproduct1.jpg&w=1080&q=75"
-        srcSet="/_next/image?url=%2Fimg%2Fproduct1.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg%2Fproduct1.jpg&w=1080&q=75 2x"
+        src="/_next/image?url=%2Fimg%2Fproduct4.jpg&w=384&q=75"
+        srcSet="/_next/image?url=%2Fimg%2Fproduct4.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg%2Fproduct4.jpg&w=384&q=75 2x"
         style={
           Object {
             "color": "transparent",
           }
         }
-        width={500}
+        width={166}
       />
-    </div>
+    </button>
+    <button
+      className="bg-green-400 flex flex-col items-center justify-center"
+      onClick={[Function]}
+    >
+      <img
+        alt="Product"
+        className="h-[249px] object-cover"
+        data-nimg="1"
+        decoding="async"
+        height={249}
+        loading="lazy"
+        onError={[Function]}
+        onLoad={[Function]}
+        src="/_next/image?url=%2Fimg%2Fproduct3.jpg&w=384&q=75"
+        srcSet="/_next/image?url=%2Fimg%2Fproduct3.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg%2Fproduct3.jpg&w=384&q=75 2x"
+        style={
+          Object {
+            "color": "transparent",
+          }
+        }
+        width={166}
+      />
+    </button>
+    <button
+      className="bg-green-400 flex flex-col items-center justify-center"
+      onClick={[Function]}
+    >
+      <img
+        alt="Product"
+        className="h-[249px] object-cover"
+        data-nimg="1"
+        decoding="async"
+        height={249}
+        loading="lazy"
+        onError={[Function]}
+        onLoad={[Function]}
+        src="/_next/image?url=%2Fimg%2Fproduct2.jpg&w=384&q=75"
+        srcSet="/_next/image?url=%2Fimg%2Fproduct2.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg%2Fproduct2.jpg&w=384&q=75 2x"
+        style={
+          Object {
+            "color": "transparent",
+          }
+        }
+        width={166}
+      />
+    </button>
+    <button
+      className="bg-green-400 flex flex-col items-center justify-center"
+      onClick={[Function]}
+    >
+      <img
+        alt="Product"
+        className="h-[249px] object-cover"
+        data-nimg="1"
+        decoding="async"
+        height={249}
+        loading="lazy"
+        onError={[Function]}
+        onLoad={[Function]}
+        src="/_next/image?url=%2Fimg%2Fproduct1.jpg&w=384&q=75"
+        srcSet="/_next/image?url=%2Fimg%2Fproduct1.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg%2Fproduct1.jpg&w=384&q=75 2x"
+        style={
+          Object {
+            "color": "transparent",
+          }
+        }
+        width={166}
+      />
+    </button>
+  </div>
+  <div
+    className=""
+  >
+    <img
+      alt="Skin Care Products"
+      className="object-cover h-[700px] "
+      data-nimg="1"
+      decoding="async"
+      height={860}
+      loading="lazy"
+      onError={[Function]}
+      onLoad={[Function]}
+      src="/_next/image?url=%2Fimg%2Fproduct4.jpg&w=1080&q=75"
+      srcSet="/_next/image?url=%2Fimg%2Fproduct4.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg%2Fproduct4.jpg&w=1080&q=75 2x"
+      style={
+        Object {
+          "color": "transparent",
+        }
+      }
+      width={500}
+    />
   </div>
 </div>
 `;
