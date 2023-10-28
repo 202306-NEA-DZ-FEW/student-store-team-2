@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <nav
-  className=" text-navbar absolute z-20 w-full text-white"
+  className="text-navbar absolute z-20 w-full text-black"
 >
   <div
     className="mx-auto px-2 sm:px-6 lg:px-8 "
@@ -136,23 +136,27 @@ exports[`renders correctly 1`] = `
                 />
               </svg>
             </a>
+            <div>
+              <p>
+                ...
+              </p>
+            </div>
             <div
-              className="mx-auto max-w-md cursor-pointer "
-              onKeyDown={[Function]}
+              className="mx-auto max-w-md cursor-pointer"
             >
               <form
                 action=""
-                className="fixed left-5 sm:relative  mx-auto"
+                className="fixed left-5 sm:relative mx-auto"
               >
                 <input
-                  className=" cursor-pointer absolute  h-8 w-0  rounded-full  bg-transparent outline-none transition-all duration-300 ease-in-out left-10 pl-1"
+                  className="cursor-pointer absolute h-8 w-0 rounded-full bg-transparent outline-none transition-all duration-300 ease-in-out left-10 pl-1"
                   onChange={[Function]}
                   type="search"
                   value=""
                 />
                 <svg
                   aria-hidden="true"
-                  className="mr-2 z-10 cursor-pointer my-auto h-6 w-6 stroke-gray-500  hover:text-accent rounded-xl font-semibold false"
+                  className="mr-2 z-10 cursor-pointer my-auto h-6 w-6 stroke-gray-500 hover:text-accent rounded-xl font-semibold false"
                   fill="currentColor"
                   height="1em"
                   onClick={[Function]}

@@ -1,26 +1,10 @@
 import { NextIntlClientProvider } from "next-intl";
 import renderer from "react-test-renderer";
 
-import { UserProvider } from "@/components/userProvider/UserProvider";
-
-import Navbar from "../Navbar";
+import GoogleLoginButton from "../GoogleButton";
 import messages from "../../../../messages/en.json";
 
-// Mock the "next/navigation" module
-jest.mock("next/navigation", () => ({
-    useRouter: jest.fn(() => ({
-        push: jest.fn(),
-    })),
-    useSearchParams: jest.fn(() => ({
-        get: jest.fn(),
-    })),
-    usePathname: jest.fn(),
-    useParams: () => ({
-        locale: "en",
-    }),
-}));
-
-// Mock Firebase Methods
+jest.mock("next/navigation");
 jest.mock("firebase/auth", () => {
     const authInstance = {
         // Add mock methods and properties as needed
@@ -31,6 +15,7 @@ jest.mock("firebase/auth", () => {
         createUserWithEmailAndPassword: jest.fn(),
         signInWithEmailAndPassword: jest.fn(),
         // Add other authentication methods used in your code
+        GoogleAuthProvider: jest.fn(),
     };
 });
 jest.mock("firebase/firestore", () => {
@@ -42,18 +27,16 @@ jest.mock("firebase/firestore", () => {
     };
 });
 
-it("renders correctly", async () => {
+it("renders correctly", () => {
     const authInstance = require("firebase/auth").getAuth();
     // Mock methods or properties of authInstance as needed
-
+    const googleAuthInstance = require("firebase/auth").GoogleAuthProvider();
     // Mock Firestore methods
     const firestoreInstance = require("firebase/firestore").getFirestore();
     const tree = renderer
         .create(
             <NextIntlClientProvider locale='en' messages={messages}>
-                <UserProvider>
-                    <Navbar />
-                </UserProvider>
+                <GoogleLoginButton />
             </NextIntlClientProvider>
         )
         .toJSON();
