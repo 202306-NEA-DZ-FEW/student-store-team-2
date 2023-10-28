@@ -1,6 +1,8 @@
+import { NextIntlClientProvider } from "next-intl";
 import renderer from "react-test-renderer";
 
 import GoogleLoginButton from "../GoogleButton";
+import messages from "../../../../messages/en.json";
 
 jest.mock("next/navigation");
 jest.mock("firebase/auth", () => {
@@ -31,6 +33,12 @@ it("renders correctly", () => {
     const googleAuthInstance = require("firebase/auth").GoogleAuthProvider();
     // Mock Firestore methods
     const firestoreInstance = require("firebase/firestore").getFirestore();
-    const tree = renderer.create(<GoogleLoginButton />).toJSON();
+    const tree = renderer
+        .create(
+            <NextIntlClientProvider locale='en' messages={messages}>
+                <GoogleLoginButton />
+            </NextIntlClientProvider>
+        )
+        .toJSON();
     expect(tree).toMatchSnapshot();
 });

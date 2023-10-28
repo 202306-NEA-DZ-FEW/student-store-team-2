@@ -2,7 +2,8 @@
 
 exports[`renders correctly 1`] = `
 <button
-  className="undefined"
+  ame="undefined"
+  classN={true}
   onClick={[Function]}
 >
   <svg
@@ -48,6 +49,8 @@ exports[`renders correctly 1`] = `
   </svg>
   <span
     className="hidden sm:block"
-  />
+  >
+    Index
+  </span>
 </button>
 `;
