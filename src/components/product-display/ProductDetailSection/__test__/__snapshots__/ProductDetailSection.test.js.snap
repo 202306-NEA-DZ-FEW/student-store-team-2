@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<section
+  className=" w-full flex flex-col"
+>
+  <div
+    className="mb-10 ml-4"
+  >
+    <h2
+      className="font-lato text-5xl uppercase"
+    >
+      circle dining table
+    </h2>
+    <span
+      classeName="bg-[#FFBD00] text-white font-jost font-semibold  "
+    >
+      note: 
+      6/10
+    </span>
+  </div>
+  <p
+    className="w-5/6 text-base font-medium mb-2"
+  >
+    Tristique ullamcorper nunc egestas non. Justo, cum feugiat imperdiet nulla molestie ac vulputate scelerisque amet. Bibendum adipiscing platea blandit sit sed quam semper rhoncus. Diam ultrices maecenas consequat eu tortor. Orci, cras lectus mauris, cras egestas quam venenatis neque.
+  </p>
+  <div
+    className="ml-4 w-full flex items-center gap-10 my-1"
+  >
+    <div
+      className="w-2/12 flex flex-row "
+    >
+      <div
+        className=" w-1/2 flex justify-evenly flex-col"
+      >
+        <button
+          className="bg-[#0989FF] transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-[#026fce] duration-300 text-white text-center font-lato text-base md:w-20 w-14 rounded shadow-md"
+        >
+          Buy
+        </button>
+      </div>
+      <p
+        className="font-lato text-lg font-semibold"
+      >
+        $
+        100
+      </p>
+    </div>
+    <div
+      className="w-4/12 flex flex-row "
+    >
+      <div
+        className=" w-1/2 flex justify-evenly flex-col"
+      >
+        <button
+          className="bg-[#FFBD00] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-[#e8ac09] duration-300 text-white text-center hover:transition-all font-lato text-base md:w-20 w-14 rounded shadow-md relative -top-14 sm:-top-0 sm-absolute"
+        >
+          Borrow
+        </button>
+      </div>
+      <p
+        className="font-lato text-lg font-semibold"
+      >
+        $
+        20
+         per day
+      </p>
+    </div>
+  </div>
+</section>
+`;
