@@ -1,15 +1,17 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { useState } from "react";
 import { BiMenu, BiMenuAltRight, BiUser } from "react-icons/bi";
+
 import MobileSidebar from "../mobileSidebar/MobileSidebar";
 import Portal from "../portal/Portal";
 import Searchbar from "../search/Searchbar";
-import { useState } from "react";
-import { useTranslations } from "next-intl";
+import UserStatus from "../userStatus/UserStatus";
 
 export default function Navbar() {
     const t = useTranslations("Index");
-
     const [isOpen, setIsOpen] = useState(false);
     const toggleMobileMenu = () => {
         setIsOpen(!isOpen);
@@ -20,8 +22,15 @@ export default function Navbar() {
         { name: t("Orders"), href: "/order" },
     ];
 
+    const pathname = usePathname();
     return (
-        <nav className=' text-navbar absolute z-20 w-full text-white'>
+        <nav
+            className={`text-navbar absolute z-20 w-full ${
+                pathname === "/" || pathname === "/en"
+                    ? "text-white"
+                    : "text-black"
+            }`}
+        >
             {
                 <>
                     <div className='mx-auto px-2 sm:px-6 lg:px-8 '>
@@ -78,6 +87,7 @@ export default function Navbar() {
                                                 aria-hidden='true'
                                             />
                                         </Link>
+                                        <UserStatus />
 
                                         <Searchbar
                                             toggleMobileMenu={() => {}}

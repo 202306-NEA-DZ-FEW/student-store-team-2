@@ -8,8 +8,10 @@ export function generateStaticParams() {
 import "./globals.css";
 import "./carousel.css";
 
-import Footer from "@/components/footer/Footer";
-import Navbar from "@/components/navbar/Navbar";
+import { UserProvider } from "@/components/userProvider/UserProvider";
+
+import Footer from "../../components/footer/Footer";
+import Navbar from "../../components/navbar/Navbar";
 
 const jua = Jua({ weight: "400", subsets: ["latin"], variable: "--font-jua" });
 const lato = Lato({
@@ -42,9 +44,11 @@ export default async function RootLayout({ children, params: { locale } }) {
                 className={`relative ${jua.variable} font-jua ${lato.variable} font-lato ${jost.variable} font-jost ${poppins.variable} font-poppins`}
             >
                 <NextIntlClientProvider locale={locale} messages={messages}>
-                    <Navbar />
-                    {children}
-                    <Footer />
+                    <UserProvider>
+                        <Navbar />
+                        {children}
+                        <Footer />
+                    </UserProvider>
                 </NextIntlClientProvider>
             </body>
         </html>

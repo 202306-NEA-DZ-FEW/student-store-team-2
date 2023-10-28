@@ -4,7 +4,11 @@ module.exports = {
         dirs: ["src"],
     },
     reactStrictMode: true,
+    
     images: {
-        domains: ['tailwindui.com'],
+        domains: ['images.unsplash.com'],
       },
+       experimental: {
+    serverActions: true,
+  },
 };

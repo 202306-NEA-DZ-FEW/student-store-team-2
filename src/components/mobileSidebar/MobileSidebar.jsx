@@ -1,9 +1,10 @@
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import React from "react";
 import { BiCollapseAlt, BiUser } from "react-icons/bi";
-import { useTranslations } from "next-intl";
 
 import Searchbar from "../search/Searchbar";
+import UserStatus from "../userStatus/UserStatus";
 
 export default function MobileSidebar({
     navigation,
@@ -74,6 +75,11 @@ export default function MobileSidebar({
                         <h2>{t("Profile")}</h2>
                     </button>
                 </Link>
+                <div
+                    className={`  hover:bg-accent hover:text-white rounded-md px-3 py-2 text-xl font-medium `}
+                >
+                    <UserStatus />
+                </div>
                 <div className=' items-center'>
                     <Searchbar toggleMobileMenu={toggleMobileMenu} />
                 </div>
