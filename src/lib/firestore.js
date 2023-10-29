@@ -1,9 +1,4 @@
-import {
-    collection,
-    doc, // Import the 'doc' function
-    getDoc, // Import the 'getDoc' function
-    getFirestore,
-} from "firebase/firestore";
+import { collection, doc, getDoc } from "firebase/firestore";
 
 import { db } from "./firebase";
 
