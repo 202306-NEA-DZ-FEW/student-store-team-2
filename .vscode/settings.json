@@ -3,8 +3,9 @@
     "editor.formatOnSave": true,
     "editor.tabSize": 2,
     "editor.codeActionsOnSave": {
-        "source.fixAll": false
+        "source.fixAll": true
     },
+    "eslint.validate": ["javascript"],
     "headwind.runOnSave": false,
     "typescript.preferences.importModuleSpecifier": "non-relative"
 }
