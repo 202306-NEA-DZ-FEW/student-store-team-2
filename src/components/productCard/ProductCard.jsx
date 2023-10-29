@@ -72,7 +72,7 @@ export default function ProductCard() {
 
     return (
         <div className=' bg-white'>
-            <div className='mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8'>
+            <div className='mx-auto max-w-2xl   lg:max-w-7xl '>
                 {products.map((product) => (
                     <div key={product.id} className='group relative'>
                         <div className='relative w-full overflow-hidden rounded-md bg-gray-200  group-hover:opacity-75 lg:h-80'>
