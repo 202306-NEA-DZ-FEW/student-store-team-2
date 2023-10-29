@@ -8,7 +8,7 @@ exports[`renders correctly 1`] = `
     className="mb-10 ml-4"
   >
     <h2
-      className="font-lato text-5xl uppercase"
+      className="font-lato text-5xl uppercase text-[#55585B]"
     >
       circle dining table
     </h2>
@@ -25,7 +25,7 @@ exports[`renders correctly 1`] = `
     Tristique ullamcorper nunc egestas non. Justo, cum feugiat imperdiet nulla molestie ac vulputate scelerisque amet. Bibendum adipiscing platea blandit sit sed quam semper rhoncus. Diam ultrices maecenas consequat eu tortor. Orci, cras lectus mauris, cras egestas quam venenatis neque.
   </p>
   <div
-    className="ml-4 w-full flex items-center gap-10 my-1"
+    className="ml-8 text-[#3A3A3A] w-full flex items-center gap-10 my-1"
   >
     <div
       className="w-2/12 flex flex-row "
@@ -47,7 +47,7 @@ exports[`renders correctly 1`] = `
       </p>
     </div>
     <div
-      className="w-4/12 flex flex-row "
+      className="w-[188px] flex flex-row"
     >
       <div
         className=" w-1/2 flex justify-evenly flex-col"
@@ -63,7 +63,12 @@ exports[`renders correctly 1`] = `
       >
         $
         20
-         per day
+         
+        <span
+          className="text-[#55585B] text-sm font-thin font-jost"
+        >
+          per day
+        </span>
       </p>
     </div>
   </div>
