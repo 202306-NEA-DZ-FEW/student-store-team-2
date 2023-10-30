@@ -5,12 +5,13 @@ function ProfilePic({ user }) {
         <div
             className='w-16 h-16 bg-sky-200 rounded-full flex items-center justify-center drop-shadow'
             style={{
-                backgroundColor: user ? `url(${user.profile_pic})` : "lavender",
+                background: user ? `url(${user.profile_pic})` : "lavender",
+                backgroundSize: "cover",
             }}
         >
-            <span className='text-white text-2xl'>
-                {user ? user.name[0] : null}
-            </span>
+            {user && !user.profile_pic && user.name ? (
+                <span className='text-white text-2xl'>{user.name[0]}</span>
+            ) : null}
         </div>
     );
 }

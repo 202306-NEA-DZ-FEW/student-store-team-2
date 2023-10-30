@@ -5,12 +5,9 @@ exports[`render correctly 1`] = `
   className="w-16 h-16 bg-sky-200 rounded-full flex items-center justify-center drop-shadow"
   style={
     Object {
-      "backgroundColor": "lavender",
+      "background": "lavender",
+      "backgroundSize": "cover",
     }
   }
->
-  <span
-    className="text-white text-2xl"
-  />
-</div>
+/>
 `;
