@@ -6,7 +6,6 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 export default function ProductDetailSection({ user, productData }) {
-    console.log("productData:", productData);
     const t = useTranslations("Index");
     return (
         <section className=' w-full flex flex-col'>
