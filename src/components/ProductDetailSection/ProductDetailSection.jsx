@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import ProfilePic from "../ProfilePicture/ProfilePic";
+import ProfileUserInfo from "../profileUserInformation/ProfileUserInfo";
 import BuyBorrowBtn from "../buyborrow-btn/BuyBorrowBtn";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -9,8 +10,9 @@ export default function ProductDetailSection({ user, productData }) {
     const t = useTranslations("Index");
     return (
         <section className=' w-full flex flex-col'>
-            <div className='m-4'>
+            <div className='w-1/2 m-4 flex gap-2'>
                 <ProfilePic user={user} />
+                <ProfileUserInfo user={user} />
             </div>
             <div className='border border-0.5 border[#EDF1F3] rounded-md drop-shadow-sm p-4 w-10/12'>
                 <div className='mb-10 ml-4'>
