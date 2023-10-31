@@ -12,7 +12,7 @@ import { BsPerson } from "react-icons/bs";
 
 import { useUser } from "../userProvider/UserProvider";
 
-export const UploadImage = ({ onImageUpload, profile_pic }) => {
+const UploadImage = ({ onImageUpload, profile_pic }) => {
     const t = useTranslations("Index");
     const [imageFile, setImageFile] = useState(null);
     const [downloadURL, setDownloadURL] = useState(profile_pic);
@@ -138,3 +138,5 @@ export const UploadImage = ({ onImageUpload, profile_pic }) => {
         </div>
     );
 };
+
+export default UploadImage;

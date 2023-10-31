@@ -5,6 +5,7 @@ import { UserProvider } from "@/components/userProvider/UserProvider";
 
 import UserProfileForm from "../UserProfileForm";
 import messages from "../../../../messages/en.json";
+jest.mock("next/navigation");
 
 it("renders correctly", () => {
     const tree = renderer

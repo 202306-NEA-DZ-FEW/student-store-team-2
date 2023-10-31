@@ -1,5 +1,6 @@
 "use client";
 import { collection, doc, setDoc } from "firebase/firestore";
+import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import DatePicker from "react-widgets/DatePicker";
@@ -8,8 +9,9 @@ import "react-widgets/styles.css";
 
 import { db } from "@/lib/firebase";
 
-import { UploadImage } from "@/components/uploadImage/UploadImage";
 import { useUser } from "@/components/userProvider/UserProvider";
+
+import UploadImage from "../uploadImage/UploadImage";
 
 const UserProfileForm = ({ userData }) => {
     const t = useTranslations("Index");
@@ -31,6 +33,7 @@ const UserProfileForm = ({ userData }) => {
         profile_pic: "",
     });
     const [loading, setLoading] = useState(true);
+    const router = useRouter();
 
     useEffect(() => {
         const fetcher = async () => {
@@ -92,6 +95,7 @@ const UserProfileForm = ({ userData }) => {
             setDoc(userRef, updatedData)
                 .then(() => {
                     console.log("Document successfully written!");
+                    router.push("/");
                 })
                 .catch((error) => {
                     console.error("Error writing document: ", error);

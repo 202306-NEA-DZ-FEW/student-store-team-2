@@ -1,7 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
 import renderer from "react-test-renderer";
 
-import { UploadImage } from "../UploadImage";
+import UploadImage from "../UploadImage";
 import messages from "../../../../messages/en.json";
 jest.mock("firebase/storage", () => {
     return {
