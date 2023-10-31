@@ -6,7 +6,7 @@ const MyListings = () => {
     const t = useTranslations("Index");
     return (
         <div className='pt-20'>
-            <h1 className='font-jost tracking-wider text-title text-4xl text-center pr-96 mr-80 py-12'>
+            <h1 className='font-jost tracking-wider text-title text-4xl ml-14 pb-20 sm:text-center sm:pr-96 sm:mr-80 sm:py-12'>
                 {t("My Listings")}
             </h1>
         </div>

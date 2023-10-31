@@ -92,6 +92,58 @@ exports[`renders correctly 1`] = `
         </h2>
       </button>
     </a>
+    <a
+      className=" hover:bg-accent hover:text-white font-jost text-accent rounded-md px-3 py-2 text-xl font-medium tracking-widest"
+      href="/dashboard?type=borrowings"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onTouchStart={[Function]}
+    >
+      <button
+        className="w-full flex justify-start "
+      >
+        My Borrowings
+      </button>
+    </a>
+    <a
+      className=" hover:bg-accent hover:text-white font-jost text-accent rounded-md px-3 py-2 text-xl font-medium tracking-widest"
+      href="/dashboard?type=lendings"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onTouchStart={[Function]}
+    >
+      <button
+        className="w-full flex justify-start "
+      >
+        My Lendings
+      </button>
+    </a>
+    <a
+      className=" hover:bg-accent hover:text-white font-jost text-accent rounded-md px-3 py-2 text-xl font-medium tracking-widest"
+      href="/dashboard?type=purchases"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onTouchStart={[Function]}
+    >
+      <button
+        className="w-full flex justify-start "
+      >
+        My Purchases
+      </button>
+    </a>
+    <a
+      className=" hover:bg-accent hover:text-white font-jost text-accent rounded-md px-3 py-2 text-xl font-medium tracking-widest"
+      href="/dashboard?type=sales"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onTouchStart={[Function]}
+    >
+      <button
+        className="w-full flex justify-start "
+      >
+        My Sales
+      </button>
+    </a>
     <div
       className="  hover:bg-accent hover:text-white rounded-md px-3 py-2 text-xl font-medium "
     >

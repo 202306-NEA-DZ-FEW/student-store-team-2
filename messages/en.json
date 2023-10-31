@@ -30,7 +30,11 @@
         "borrowings": "borrowings",
         "lendings": "lendings",
         "purchases": "purchases",
-        "sales": "sales"
+        "sales": "sales",
+        "My Borrowings": "My Borrowings",
+        "My Lendings": "My Lendings",
+        "My Purchases": "My Purchases",
+        "My Sales": "My Sales"
 
     }
 }

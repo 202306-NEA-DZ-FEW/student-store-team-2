@@ -12,6 +12,12 @@ export default function MobileSidebar({
     isOpen,
 }) {
     const t = useTranslations("Index");
+    const links = [
+        { name: t("My Borrowings"), href: "/dashboard?type=borrowings" },
+        { name: t("My Lendings"), href: "/dashboard?type=lendings" },
+        { name: t("My Purchases"), href: "/dashboard?type=purchases" },
+        { name: t("My Sales"), href: "/dashboard?type=sales" },
+    ];
 
     async function handleSearch(e) {
         if (e.keyCode === 13) {
@@ -75,6 +81,20 @@ export default function MobileSidebar({
                         <h2>{t("Profile")}</h2>
                     </button>
                 </Link>
+                {links.map((link) => (
+                    <Link
+                        key={link.name}
+                        className=' hover:bg-accent hover:text-white font-jost text-accent rounded-md px-3 py-2 text-xl font-medium tracking-widest'
+                        href={link.href}
+                    >
+                        <button
+                            onClick={toggleMobileMenu}
+                            className='w-full flex justify-start '
+                        >
+                            {link.name}
+                        </button>
+                    </Link>
+                ))}
                 <div
                     className={`  hover:bg-accent hover:text-white rounded-md px-3 py-2 text-xl font-medium `}
                 >

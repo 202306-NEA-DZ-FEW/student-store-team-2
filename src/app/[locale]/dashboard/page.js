@@ -4,8 +4,8 @@ import React from "react";
 import { db } from "@/lib/firebase";
 
 import DashboardDisplay from "../../../components/dashboardDisplay/DashboardDisplay";
-import { links } from "../../../components/dashnoardNavLinks/NavLinks";
-import NavLinks from "../../../components/dashnoardNavLinks/NavLinks";
+import { links } from "../../../components/dashboardNavLinks/NavLinks";
+import NavLinks from "../../../components/dashboardNavLinks/NavLinks";
 import MyListings from "../../../components/myListings/MyListings";
 import SortingControl from "../../../components/sortingControl/SortingControl";
 

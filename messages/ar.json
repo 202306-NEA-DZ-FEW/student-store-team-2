@@ -30,6 +30,10 @@
         "borrowings": "القروض",
         "lendings": "الإقراضات",
         "purchases": "المشتريات",
-        "sales": "المبيعات"
+        "sales": "المبيعات",
+        "My Borrowings": "قروضي",
+        "My Lendings": "اقراضاتي",
+        "My Purchases": "مشترياتي",
+        "My Sales": "مبيعاتي"
     }
 }

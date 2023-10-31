@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <div
-  className="font-lato font-semibold text-xl text-titleContent flex justify-center w-[940px] h-16 "
+  className="font-lato font-semibold text-xl text-titleContent sm:flex justify-center w-[940px] h-16 hidden sm:block"
 >
   <div
     className="flex justify-between items-center text-center space-x-4 mb-4  w-[630px] "
