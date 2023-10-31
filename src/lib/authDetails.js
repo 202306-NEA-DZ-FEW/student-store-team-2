@@ -96,7 +96,6 @@ export const handleGoogleLogin = async () => {
 
         // The signed-in user info.
         const user = result.user;
-        console.log(user);
         // Check if the user already exists in the database based on their UID
         const userRef = doc(db, "users", user.uid);
         const userDoc = await getDoc(userRef);

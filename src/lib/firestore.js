@@ -4,6 +4,8 @@ import Cookies from "js-cookie";
 import { getCurrentUser } from "./authDetails";
 import { db } from "./firebase";
 
+export const revalidate = 3600;
+
 export const getDocumentByIdFromFirestore = async (documentId) => {
     try {
         const usersCollection = collection(db, "users");
@@ -33,9 +35,9 @@ export const getUserProfile = async (user) => {
 };
 
 export const getCurrentUserData = async () => {
+    "use server";
     const authToken = Cookies.get("authToken");
     const currentUser = await getCurrentUser(authToken);
     const currentUserData = await getUserProfile(currentUser);
-    console.log(currentUserData);
     return currentUserData;
 };
