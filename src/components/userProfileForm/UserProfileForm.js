@@ -8,8 +8,8 @@ import "react-widgets/styles.css";
 
 import { db } from "@/lib/firebase";
 
-import { UploadImage } from "../uploadImage/UploadImage";
-import { useUser } from "../userProvider/UserProvider";
+import { UploadImage } from "@/components/uploadImage/UploadImage";
+import { useUser } from "@/components/userProvider/UserProvider";
 
 const UserProfileForm = ({ userData }) => {
     const t = useTranslations("Index");
