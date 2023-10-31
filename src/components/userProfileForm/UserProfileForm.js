@@ -1,5 +1,6 @@
 "use client";
 import { collection, doc, setDoc } from "firebase/firestore";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
@@ -107,107 +108,103 @@ const UserProfileForm = ({ userData }) => {
     }
 
     return (
-        <form
-            onSubmit={handleSubmit}
-            className='w-full mx-auto p-4  rounded-lg'
-        >
-            <h1 className='font-lato tracking-wider text-title text-4xl text-center pr-96  mr-80'>
-                {t("Profile")}
-            </h1>
+        <div className='flex'>
+            <div className='w-1/4 font-lato font-semibold text-xl  bg-bkg text-titleContent p-4'>
+                <Link
+                    href='/profile?page=form'
+                    className='flex justify-center items-center mb-4  hover:bg-accent hover:text-bkg h-20'
+                >
+                    {t("PROFILE")}
+                </Link>
 
-            <h1 className='font-lato text-title sm:text-xl text-center pr-96  mr-72 mb-12  font-bold'>
-                {t("General details")}
-            </h1>
-            <div className='mb-4 grid gap-4 md:grid-cols-2'>
+                <Link
+                    href='/profile?page=security'
+                    className='flex justify-center items-center mb-4  hover:bg-accent hover:text-bkg h-20 '
+                >
+                    {t("SECURITY")}
+                </Link>
+            </div>
+            <form
+                onSubmit={handleSubmit}
+                className='w-3/4 bg-[rgb(237,241,243)]  mx-auto p-4  rounded-lg font-lato'
+            >
+                <h1 className='font-lato tracking-wider text-title text-2xl text-center pr-96  mr-80 uppercase  text-titleContent'>
+                    {t("Profile")}
+                </h1>
+
+                <h1 className='font-lato  text-titleContent sm:text-l ml-10  font-bold uppercase mb-4 mt-2'>
+                    {t("General details")}
+                </h1>
                 <UploadImage
                     onImageUpload={handleImageUpload}
                     profile_pic={imageURL}
                 />
-                <div className='mb-4'>
-                    <label
-                        htmlFor='first_name'
-                        className='block text-content font-bold mb-2'
-                    >
-                        {t("First Name")}
-                    </label>
-                    <input
-                        type='text'
-                        id='first_name'
-                        name='first_name'
-                        value={formData.first_name}
-                        onChange={handleChange}
-                        className='w-full border border-gray-300 p-2 rounded-md'
-                    />
-                </div>
+                <div className='mb-4 grid gap-4 md:grid-cols-2'>
+                    <div className='mb-4'>
+                        <span className='text-sm text-black '>
+                            <span className='text-red-500'>*</span> Required
+                        </span>
 
-                <div className='mb-4'>
-                    <label
-                        htmlFor='last_name'
-                        className='block text-content font-bold mb-2'
-                    >
-                        {t("Last Name")}
-                    </label>
-                    <input
-                        type='text'
-                        id='last_name'
-                        name='last_name'
-                        value={formData.last_name}
-                        onChange={handleChange}
-                        className='w-full border border-gray-300 p-2 rounded-md'
-                    />
-                </div>
-                <div className='mb-4'>
-                    <label
-                        htmlFor='birth_date'
-                        className='block text-content font-bold mb-2'
-                    >
-                        {t("Birth Date")}
-                    </label>
-                    <DatePicker
-                        defaultValue={
-                            formData.birth_date
-                                ? new Date(formData.birth_date)
-                                : null
-                        }
-                        valueEditFormat={{ dateStyle: "short" }}
-                        valueDisplayFormat={{ dateStyle: "medium" }}
-                        onChange={handleDateChange}
-                        inputProps={{
-                            id: "birth_date",
-                            name: "birth_date",
-                            className:
-                                "w-full border border-gray-300 p-2 rounded-md",
-                        }}
-                    />
-                </div>
+                        <input
+                            type='text'
+                            placeholder={t("First Name")}
+                            id='first_name'
+                            name='first_name'
+                            value={formData.first_name}
+                            onChange={handleChange}
+                            className='w-full border border-gray-300 p-2 rounded-md'
+                        />
+                    </div>
 
-                <div className='mb-4'>
-                    <label
-                        htmlFor='gender'
-                        className='block text-content font-bold mb-2'
-                    >
-                        {t("Gender")}
-                    </label>
-                    <select
-                        id='gender'
-                        name='gender'
-                        value={formData.gender}
-                        onChange={handleChange}
-                        className='w-full border border-gray-300 p-2 rounded-md'
-                    >
-                        <option value='male'>Male</option>
-                        <option value='female'>Female</option>
-                    </select>
+                    <div className='mb-4'>
+                        <span className='text-sm text-black '>
+                            <span className='text-red-500'>*</span> Required
+                        </span>
+                        <input
+                            type='text'
+                            placeholder={t("Last Name")}
+                            id='last_name'
+                            name='last_name'
+                            value={formData.last_name}
+                            onChange={handleChange}
+                            className='w-full border border-gray-300 p-2 rounded-md'
+                        />
+                    </div>
+                    <div className='mb-4'>
+                        <select
+                            placeholder={t("Gender")}
+                            id='gender'
+                            name='gender'
+                            value={formData.gender}
+                            onChange={handleChange}
+                            className='w-full border border-gray-300 p-2 rounded-md'
+                        >
+                            <option value='male'>Male</option>
+                            <option value='female'>Female</option>
+                        </select>
+                    </div>
+                    <div className='mb-4'>
+                        <DatePicker
+                            defaultValue={
+                                formData.birth_date
+                                    ? new Date(formData.birth_date)
+                                    : null
+                            }
+                            valueEditFormat={{ dateStyle: "short" }}
+                            valueDisplayFormat={{ dateStyle: "medium" }}
+                            onChange={handleDateChange}
+                            inputProps={{
+                                id: "birth_date",
+                                name: "birth_date",
+                                className:
+                                    "w-full border border-gray-300 p-2 rounded-md",
+                            }}
+                        />
+                    </div>
                 </div>
-
-                <div className='mb-4'>
-                    <label
-                        htmlFor='institution'
-                        className='block text-content font-bold mb-2'
-                    >
-                        {t("Institution")}
-                    </label>
+                <div className='mb-8'>
                     <input
+                        placeholder={t("Institution")}
                         type='text'
                         id='institution'
                         name='institution'
@@ -216,101 +213,85 @@ const UserProfileForm = ({ userData }) => {
                         className='w-full border border-gray-300 p-2 rounded-md'
                     />
                 </div>
-            </div>
-            <h1 className='font-latotext-title sm:text-xl  text-center pr-96  mr-72 font-bold mb-4 mt-12'>
-                {t("Contact & address Detail")}
-            </h1>
-            <div className='mb-4 grid gap-4 md:grid-cols-2'>
-                <div className='mb-4'>
-                    <label
-                        htmlFor='phone_num'
-                        className='block text-content font-bold mb-2'
-                    >
-                        {t("Phone Number")}
-                    </label>
-                    <input
-                        type='number'
-                        id='phone_num'
-                        name='phone_num'
-                        value={formData.phone_num}
-                        onChange={handleChange}
-                        className='w-full border border-gray-300 p-2 rounded-md'
-                    />
-                </div>
+                <h1 className='font-lato  text-titleContent sm:text-l  font-bold uppercase mb-4 ml-10'>
+                    {t("Contact & address Detail")}
+                </h1>
+                <div className='mb-4 grid gap-4'>
+                    <div className='mb-4'>
+                        <span className='text-sm text-black '>
+                            <span className='text-red-500'>*</span> Required
+                        </span>
+                        <input
+                            placeholder={t("Phone Number")}
+                            type='number'
+                            id='phone_num'
+                            name='phone_num'
+                            value={formData.phone_num}
+                            onChange={handleChange}
+                            className='w-full border border-gray-300 p-2 rounded-md'
+                        />
+                    </div>
 
-                <div className='mb-4'>
-                    <label
-                        htmlFor='building'
-                        className='block text-content font-bold mb-2'
-                    >
-                        {t("Building")}
-                    </label>
-                    <input
-                        type='text'
-                        id='building'
-                        name='address.building'
-                        value={formData.address.building}
-                        onChange={handleChange}
-                        className='w-full border border-gray-300 p-2 rounded-md'
-                    />
-                </div>
-                <div className='mb-4'>
-                    <label
-                        htmlFor='street'
-                        className='block text-content font-bold mb-2'
-                    >
-                        {t("Street")}
-                    </label>
-                    <input
-                        type='text'
-                        id='street'
-                        name='address.street'
-                        value={formData.address.street}
-                        onChange={handleChange}
-                        className='w-full border border-gray-300 p-2 rounded-md'
-                    />
-                </div>
-                <div className='mb-4'>
-                    <label
-                        htmlFor='city'
-                        className='block text-content font-bold mb-2'
-                    >
-                        {t("City")}
-                    </label>
-                    <input
-                        type='text'
-                        id='city'
-                        name='address.city'
-                        value={formData.address.city}
-                        onChange={handleChange}
-                        className='w-full border border-gray-300 p-2 rounded-md'
-                    />
-                </div>
+                    <div className='mb-4'>
+                        <span className='text-sm text-black '>
+                            <span className='text-red-500'>*</span> Required
+                        </span>
+                        <input
+                            placeholder={t("Building")}
+                            type='text'
+                            id='building'
+                            name='address.building'
+                            value={formData.address.building}
+                            onChange={handleChange}
+                            className='w-full border border-gray-300 p-2 rounded-md'
+                        />
+                    </div>
+                    <div className='mb-4'>
+                        <input
+                            placeholder={t("Street")}
+                            type='text'
+                            id='street'
+                            name='address.street'
+                            value={formData.address.street}
+                            onChange={handleChange}
+                            className='w-full border border-gray-300 p-2 rounded-md'
+                        />
+                    </div>
+                    <div className='mb-4'>
+                        <input
+                            placeholder={t("City")}
+                            type='text'
+                            id='city'
+                            name='address.city'
+                            value={formData.address.city}
+                            onChange={handleChange}
+                            className='w-full border border-gray-300 p-2 rounded-md'
+                        />
+                    </div>
 
-                <div className='mb-4'>
-                    <label
-                        htmlFor='state'
-                        className='block text-content font-bold mb-2'
-                    >
-                        {t("State")}
-                    </label>
-                    <input
-                        type='text'
-                        id='state'
-                        name='address.state'
-                        value={formData.address.state}
-                        onChange={handleChange}
-                        className='w-full border border-gray-300 p-2 rounded-md'
-                    />
+                    <div className='mb-4'>
+                        <span className='text-sm text-black '>
+                            <span className='text-red-500'>*</span> Required
+                        </span>
+                        <input
+                            placeholder={t("State")}
+                            type='text'
+                            id='state'
+                            name='address.state'
+                            value={formData.address.state}
+                            onChange={handleChange}
+                            className='w-full border border-gray-300 p-2 rounded-md'
+                        />
+                    </div>
                 </div>
-            </div>
-            <button
-                type='submit'
-                className='bg-accent hover:scale-105 text-white font-bold py-2 px-8 rounded hover:scale-105'
-            >
-                {t("Save Changes")}
-            </button>
-        </form>
+                <button
+                    type='submit'
+                    className='bg-accent  text-white font-bold py-2 px-8 rounded hover:scale-105'
+                >
+                    {t("Save Changes")}
+                </button>
+            </form>
+        </div>
     );
 };
 

@@ -47,7 +47,7 @@ function CustomForm({ formType }) {
             if (response.ok) {
                 const data = await response.json();
                 Cookies.set("authToken", data.user.uid, { expires: 7 });
-                window.location.href = "/profile";
+                window.location.href = "/profile?page=form";
             } else {
                 const errorData = await response.json();
                 setErrorMessage(errorData.error);
