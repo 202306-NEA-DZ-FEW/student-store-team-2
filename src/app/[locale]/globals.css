@@ -14,7 +14,6 @@
     --color-secondaryBlue: 9 137 255;
     --color-navbar: 39 39 39;
     --color-title2: 28, 28, 30;
-    --color-title3: 28, 28, 30;
 }
 
 @media (prefers-color-scheme: dark) {
