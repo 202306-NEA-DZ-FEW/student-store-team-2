@@ -7,7 +7,7 @@ exports[`renders correctly 1`] = `
     onSubmit={[Function]}
   >
     <button
-      className="bg-accent hover-bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg"
+      className="bg-accent hover-bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg hover:scale-105"
       type="submit"
     >
       Login

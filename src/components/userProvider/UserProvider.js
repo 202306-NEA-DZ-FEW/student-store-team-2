@@ -19,7 +19,6 @@ export function UserProvider({ children }) {
                     setLoading(false);
                     return;
                 }
-
                 const userDataResponse = await fetch("/api/userData", {
                     headers: {
                         "Content-Type": "application/json",

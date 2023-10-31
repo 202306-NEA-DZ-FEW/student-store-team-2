@@ -1,11 +1,10 @@
-import {
-    collection,
-    doc, // Import the 'doc' function
-    getDoc, // Import the 'getDoc' function
-    getFirestore,
-} from "firebase/firestore";
+import { collection, doc, getDoc } from "firebase/firestore";
+import Cookies from "js-cookie";
 
+import { getCurrentUser } from "./authDetails";
 import { db } from "./firebase";
+
+export const revalidate = 3600;
 
 export const getDocumentByIdFromFirestore = async (documentId) => {
     try {
@@ -17,11 +16,28 @@ export const getDocumentByIdFromFirestore = async (documentId) => {
             return null;
         }
 
-        const documentName = documentSnapshot.data().fullName;
+        const documentName = documentSnapshot.data().first_name;
 
         return documentName;
     } catch (error) {
         console.error("Error fetching document from Firestore:", error);
         return null;
     }
+};
+
+export const getUserProfile = async (user) => {
+    if (user) {
+        const usersRef = collection(db, "users");
+        const userRef = doc(usersRef, user);
+        const userSnap = await getDoc(userRef);
+        return userSnap.data();
+    }
+};
+
+export const getCurrentUserData = async () => {
+    "use server";
+    const authToken = Cookies.get("authToken");
+    const currentUser = await getCurrentUser(authToken);
+    const currentUserData = await getUserProfile(currentUser);
+    return currentUserData;
 };
