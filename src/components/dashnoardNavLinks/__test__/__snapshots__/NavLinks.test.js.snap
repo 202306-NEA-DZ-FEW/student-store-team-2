@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="font-lato font-semibold text-xl uppercase w-96 h-72 ml-24 mt-36 bg-bkg text-titleContent p-4 hidden sm:block"
+>
+  <a
+    href="/dashboard?type=borrowings"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onTouchStart={[Function]}
+  >
+    <div
+      className="flex justify-center items-center mb-4 hover:bg-accent hover:text-bkg h-20 bg-accent text-bkg"
+      onClick={[Function]}
+    >
+      borrowings
+    </div>
+  </a>
+  <a
+    href="/dashboard?type=lendings"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onTouchStart={[Function]}
+  >
+    <div
+      className="flex justify-center items-center mb-4 hover:bg-accent hover:text-bkg h-20 "
+      onClick={[Function]}
+    >
+      lendings
+    </div>
+  </a>
+  <a
+    href="/dashboard?type=purchases"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onTouchStart={[Function]}
+  >
+    <div
+      className="flex justify-center items-center mb-4 hover:bg-accent hover:text-bkg h-20 "
+      onClick={[Function]}
+    >
+      purchases
+    </div>
+  </a>
+  <a
+    href="/dashboard?type=sales"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onTouchStart={[Function]}
+  >
+    <div
+      className="flex justify-center items-center mb-4 hover:bg-accent hover:text-bkg h-20 "
+      onClick={[Function]}
+    >
+      sales
+    </div>
+  </a>
+</div>
+`;

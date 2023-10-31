@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="pt-20"
+>
+  <h1
+    className="font-jost tracking-wider text-title text-4xl text-center pr-96 mr-80 py-12"
+  >
+    My Listings
+  </h1>
+</div>
+`;
