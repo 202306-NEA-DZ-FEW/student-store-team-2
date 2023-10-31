@@ -1,8 +1,10 @@
 "use client";
 import Cookies from "js-cookie";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 function CustomForm({ formType }) {
+    const t = useTranslations("Index");
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
@@ -15,17 +17,16 @@ function CustomForm({ formType }) {
         setErrorMessage(""); // Clear any previous error message
 
         if (!email || !password) {
-            setErrorMessage("Email and password are required.");
+            setErrorMessage("Email and password are required");
             return;
         }
 
         if (formType === "registration" && password.length < 8) {
-            setErrorMessage("Password should be at least 8 characters long.");
+            setErrorMessage("Password should be at least 8 characters long");
             return;
         }
 
         const authToken = Cookies.get("authToken");
-
         try {
             const response = await fetch("/api/auth", {
                 method: "POST",
@@ -35,9 +36,10 @@ function CustomForm({ formType }) {
                 },
                 body: JSON.stringify({
                     formType: formType,
-                    fullName: fullName,
+                    first_name: fullName.split(" ")[0],
+                    last_name: fullName.split(" ")[1],
                     email: email,
-                    phoneNumber: phoneNumber,
+                    phone_num: phoneNumber,
                     password: password,
                 }),
             });
@@ -45,13 +47,13 @@ function CustomForm({ formType }) {
             if (response.ok) {
                 const data = await response.json();
                 Cookies.set("authToken", data.user.uid, { expires: 7 });
-                window.location.href = "/";
+                window.location.href = "/profile?page=form";
             } else {
                 const errorData = await response.json();
                 setErrorMessage(errorData.error);
             }
         } catch (error) {
-            setErrorMessage("An error occurred.");
+            setErrorMessage("An error occurred");
         }
     };
 
@@ -66,7 +68,7 @@ function CustomForm({ formType }) {
                         <div className='flex flex-col md:flex-row items-start justify-between'>
                             <div className='flex flex-col'>
                                 <label htmlFor='email' className='md-w-28'>
-                                    Email:
+                                    {t("Email")}:
                                 </label>
                                 <input
                                     type='email'
@@ -80,7 +82,7 @@ function CustomForm({ formType }) {
                         <div className='flex flex-col md:flex-row items-start justify-between'>
                             <div className='flex flex-col'>
                                 <label htmlFor='password' className='md-w-28'>
-                                    Password:
+                                    {t("Password")}:
                                 </label>
                                 <input
                                     type='password'
@@ -104,7 +106,7 @@ function CustomForm({ formType }) {
                     <div className='sm:flex space-x-4 space-y-2 sm:justify-start'>
                         <div className='flex flex-col md:flex-row items-center'>
                             <label htmlFor='fullName' className='md-w-28'>
-                                Full Name:
+                                {t("Full Name")}
                             </label>
                             <div className='flex flex-col'>
                                 <input
@@ -120,7 +122,7 @@ function CustomForm({ formType }) {
                         </div>
                         <div className='flex flex-col md:flex-row items-center'>
                             <label htmlFor='email' className='md-w-28'>
-                                Email:
+                                {t("Email")}:
                             </label>
                             <div className='flex flex-col'>
                                 <input
@@ -140,7 +142,7 @@ function CustomForm({ formType }) {
                     <div className='sm:flex space-x-4 space-y-2 sm:justify-start'>
                         <div className='flex flex-col md:flex-row items-center'>
                             <label htmlFor='phoneNumber' className='md-w-28'>
-                                Phone Number:
+                                {t("Phone Number")}:
                             </label>
                             <div className='flex flex-col'>
                                 <input
@@ -156,7 +158,7 @@ function CustomForm({ formType }) {
                         </div>
                         <div className='flex flex-col md:flex-row items-center'>
                             <label htmlFor='password' className='md-w-28'>
-                                Password:
+                                {t("Password")}:
                             </label>
                             <div className='flex flex-col'>
                                 <input
@@ -177,7 +179,7 @@ function CustomForm({ formType }) {
                 {formType === "registration" && (
                     <div className='flex md:flex-row flex-col items-center'>
                         <label htmlFor='address' className='md-w-28'>
-                            Address:
+                            {t("Address")}:
                         </label>
                         <div className='flex flex-col'>
                             <textarea
@@ -199,13 +201,16 @@ function CustomForm({ formType }) {
                                 htmlFor='agreements'
                                 className='block font-light text-center'
                             >
-                                I have read and agree with all of the Terms
+                                {t(
+                                    "I have read and agree with all of the Terms"
+                                )}
                                 <span className='block sm:hidden'>
-                                    and Privacy Policy
+                                    {t("and Privacy Policy")}
                                 </span>
                                 <span className='hidden sm:block'>
-                                    & Conditions and Privacy Policy of Student
-                                    Store website.
+                                    {t(
+                                        "and Conditions and Privacy Policy of The website"
+                                    )}
                                 </span>
                             </label>
                         </div>
@@ -214,15 +219,17 @@ function CustomForm({ formType }) {
 
                 {/* Error message display */}
                 {errorMessage && (
-                    <div className='text-red-500'>{errorMessage}</div>
+                    <div className='text-red-500'>{t(errorMessage)}</div>
                 )}
 
                 {/* Submit Button */}
                 <button
                     type='submit'
-                    className='bg-accent hover-bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg'
+                    className='bg-accent hover-bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg hover:scale-105'
                 >
-                    {formType === "registration" ? "Sign Up" : "Login"}
+                    {formType === "registration"
+                        ? `${t("Sign Up")}`
+                        : `${t("Login")}`}
                 </button>
             </form>
         </div>
