@@ -10,10 +10,8 @@ const page = async ({ searchParams }) => {
         <div className='relative'>
             <div className='flex pt-32 leading-6 tracking-wider'>
                 <div className=' w-full p-4 mr-12 rounded-md '>
-                    {userData && page === "form" && (
-                        <UserProfileForm userData={userData} />
-                    )}
-                    {userData && page === "security" && <SecurityForm />}
+                    {page === "form" && <UserProfileForm userData={userData} />}
+                    {page === "security" && <SecurityForm />}
                 </div>
             </div>
         </div>
