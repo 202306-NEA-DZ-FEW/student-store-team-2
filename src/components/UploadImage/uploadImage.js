@@ -6,12 +6,14 @@ import {
     uploadBytesResumable,
 } from "firebase/storage";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { BsPerson } from "react-icons/bs";
 
 import { useUser } from "../userProvider/UserProvider";
 
 export const UploadImage = ({ onImageUpload, profile_pic }) => {
+    const t = useTranslations("Index");
     const [imageFile, setImageFile] = useState(null);
     const [downloadURL, setDownloadURL] = useState(profile_pic);
     const [isUploading, setIsUploading] = useState(false);
@@ -78,24 +80,24 @@ export const UploadImage = ({ onImageUpload, profile_pic }) => {
     const handleRemoveFile = () => setImageFile(null);
 
     return (
-        <div className='flex justify-start ml-10 mb-2 items-center space-x-5'>
+        <div className='flex sm:justify-start justify-center ml-10 mb-4 items-center space-x-5'>
             {downloadURL ? (
                 <Image
                     width={50}
                     height={50}
                     src={downloadURL}
                     alt='Uploaded'
-                    className='w-24 h-24 border rounded-full border-content text-gray-400 '
+                    className='w-24 h-24 border rounded-full border-content text-accent2 '
                 />
             ) : (
-                <BsPerson className='w-24 h-24 border rounded-full border-content text-gray-400 p-2 bg-white' />
+                <BsPerson className='w-24 h-24 border rounded-full border-content text-accent2 p-2 bg-white' />
             )}
             <div>
                 <label
                     htmlFor='upload-button'
                     className='bg-accent rounded-md text-white px-5 py-2 tracking-tight font-bold shadow-sm cursor-pointer'
                 >
-                    Upload Image
+                    {t("Upload Image")}
                 </label>
                 <input
                     type='file'
@@ -104,8 +106,10 @@ export const UploadImage = ({ onImageUpload, profile_pic }) => {
                     onChange={(e) => handleSelectedFile(e.target.files)}
                 />
                 {isUploading ? (
-                    <div className='spinner-border text-primary' role='status'>
-                        <span className='visually-hidden'>Loading...</span>
+                    <div className=' text-primary' role='status'>
+                        <span className='visually-hidden'>
+                            {t("Loading")}...
+                        </span>
                     </div>
                 ) : (
                     imageFile && (
@@ -119,13 +123,13 @@ export const UploadImage = ({ onImageUpload, profile_pic }) => {
                                 className='bg-red-500 text-white rounded-md px-3 py-1'
                                 onClick={handleRemoveFile}
                             >
-                                Close
+                                {t("Close")}
                             </button>
                             <button
                                 className='border border-accent ml-2 text-accent rounded-md px-3 py-1'
                                 onClick={handleUploadFile}
                             >
-                                Upload
+                                {t("Upload")}
                             </button>
                         </div>
                     )
