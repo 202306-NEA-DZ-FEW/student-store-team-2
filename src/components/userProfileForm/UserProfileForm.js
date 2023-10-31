@@ -8,7 +8,7 @@ import "react-widgets/styles.css";
 
 import { db } from "@/lib/firebase";
 
-import { UploadImage } from "../UploadImage/UploadImage";
+import { UploadImage } from "../uploadImage/UploadImage";
 import { useUser } from "../userProvider/UserProvider";
 
 const UserProfileForm = ({ userData }) => {
