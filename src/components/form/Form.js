@@ -25,7 +25,6 @@ function CustomForm({ formType }) {
         }
 
         const authToken = Cookies.get("authToken");
-
         try {
             const response = await fetch("/api/auth", {
                 method: "POST",
@@ -35,9 +34,10 @@ function CustomForm({ formType }) {
                 },
                 body: JSON.stringify({
                     formType: formType,
-                    fullName: fullName,
+                    first_name: fullName.split(" ")[0],
+                    last_name: fullName.split(" ")[1],
                     email: email,
-                    phoneNumber: phoneNumber,
+                    phone_num: phoneNumber,
                     password: password,
                 }),
             });
@@ -45,7 +45,7 @@ function CustomForm({ formType }) {
             if (response.ok) {
                 const data = await response.json();
                 Cookies.set("authToken", data.user.uid, { expires: 7 });
-                window.location.href = "/";
+                window.location.href = "/profile";
             } else {
                 const errorData = await response.json();
                 setErrorMessage(errorData.error);

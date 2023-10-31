@@ -1,24 +1,24 @@
 "use client";
-
 import {
     getDownloadURL,
     getStorage,
     ref,
     uploadBytesResumable,
 } from "firebase/storage";
+import Image from "next/image";
 import { useState } from "react";
 import { BsPerson } from "react-icons/bs";
 
 import { useUser } from "../userProvider/UserProvider";
 
-export const UploadImage = () => {
+export const UploadImage = ({ onImageUpload, profile_pic }) => {
     const [imageFile, setImageFile] = useState(null);
-    const [downloadURL, setDownloadURL] = useState("");
+    const [downloadURL, setDownloadURL] = useState(profile_pic);
     const [isUploading, setIsUploading] = useState(false);
     const [progressUpload, setProgressUpload] = useState(0);
-    const [displayImage, setDisplayImage] = useState(false);
     const user = useUser();
     const storage = getStorage();
+
     const handleSelectedFile = (files) => {
         if (files && files[0].size < 10000000) {
             setImageFile(files[0]);
@@ -29,7 +29,6 @@ export const UploadImage = () => {
 
     const handleUploadFile = () => {
         if (imageFile) {
-            // const name = imageFile.name;
             const storageRef = ref(storage, `image/${user.user}`);
             const uploadTask = uploadBytesResumable(storageRef, imageFile);
 
@@ -56,15 +55,21 @@ export const UploadImage = () => {
                     setIsUploading(false); // Stop the spinner if an error occurs
                 },
                 () => {
-                    getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-                        setDownloadURL(url);
-                        setIsUploading(false);
-                        setDisplayImage(true); // Stop the spinner after successful upload
-                    });
+                    getDownloadURL(uploadTask.snapshot.ref)
+                        .then((url) => {
+                            setDownloadURL(url);
+                            setIsUploading(false);
+                            onImageUpload(url); // Send the URL to the parent component
+                        })
+                        .catch((error) => {
+                            console.error(
+                                "Error getting download URL: ",
+                                error
+                            );
+                            setIsUploading(false);
+                        });
                 }
             );
-
-            setTimeout(() => {}, 2000);
         } else {
             console.error("File not found");
         }
@@ -73,9 +78,11 @@ export const UploadImage = () => {
     const handleRemoveFile = () => setImageFile(null);
 
     return (
-        <div className='flex justify-start ml-10 mt-5 items-center space-x-5'>
-            {displayImage ? (
-                <img
+        <div className='flex justify-start ml-10 mb-2 items-center space-x-5'>
+            {downloadURL ? (
+                <Image
+                    width={50}
+                    height={50}
                     src={downloadURL}
                     alt='Uploaded'
                     className='w-24 h-24 border rounded-full border-content text-gray-400 '
@@ -102,7 +109,7 @@ export const UploadImage = () => {
                     </div>
                 ) : (
                     imageFile && (
-                        <div>
+                        <div className='m-2'>
                             <p>{imageFile.name}</p>
                             <p>{`Size: ${(
                                 imageFile.size /
@@ -115,7 +122,7 @@ export const UploadImage = () => {
                                 Close
                             </button>
                             <button
-                                className='border border-white ml-1 text-white rounded-md px-3 py-1'
+                                className='border border-accent ml-2 text-accent rounded-md px-3 py-1'
                                 onClick={handleUploadFile}
                             >
                                 Upload

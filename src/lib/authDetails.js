@@ -1,7 +1,6 @@
 import {
     createUserWithEmailAndPassword,
     getAuth,
-    getIdToken,
     GoogleAuthProvider,
     signInWithCredential,
     signInWithPopup,
@@ -81,7 +80,6 @@ export const signOutUser = async () => {
     try {
         await signOut(auth);
         Cookies.remove("authToken");
-        window.location.href = "/";
     } catch (error) {
         console.error("Error signing out:", error);
     }
@@ -98,7 +96,7 @@ export const handleGoogleLogin = async () => {
 
         // The signed-in user info.
         const user = result.user;
-
+        console.log(user);
         // Check if the user already exists in the database based on their UID
         const userRef = doc(db, "users", user.uid);
         const userDoc = await getDoc(userRef);
@@ -107,8 +105,10 @@ export const handleGoogleLogin = async () => {
             // User doesn't exist in the database, so add them
             const userData = {
                 // Define the user data here (e.g., name, email, etc.)
-                fullName: user.displayName,
+                first_name: user.displayName.split(" ")[0],
+                last_name: user.displayName.split(" ")[1],
                 email: user.email,
+                profile_pic: user.photoURL,
             };
 
             await setDoc(userRef, userData);
@@ -132,7 +132,7 @@ export const handleGoogleLogin = async () => {
         if (response.ok) {
             const data = await response.json();
             Cookies.set("authToken", data.user.uid, { expires: 7 });
-            window.location.href = "/";
+            window.location.href = "/profile";
         } else {
             const errorData = await response.json();
             console.error("Google login error:", errorData.error);
@@ -147,13 +147,11 @@ export const handleServerGoogleLogin = async (token) => {
         // Verify and sign in with the Google ID token
         const credential = GoogleAuthProvider.credential(token);
         const authResult = await signInWithCredential(auth, credential);
-
+        // const additionalUserInfo = authResult.additionalUserInfo;
+        // const profilePic = additionalUserInfo?.profile?.picture || null;
         // Get the user and their UID
         const user = authResult.user;
         const uid = user.uid;
-
-        // Refresh the user's ID token
-        const refreshedIdToken = await getIdToken(user, true);
 
         // Check if the user exists in the database based on their UID
         const userRef = doc(db, "users", uid);
@@ -162,8 +160,10 @@ export const handleServerGoogleLogin = async (token) => {
         if (!userDoc.exists()) {
             // User doesn't exist in the database, so add them
             const userData = {
-                fullName: user.displayName,
+                first_name: user.displayName.split(" ")[0],
+                last_name: user.displayName.split(" ")[1],
                 email: user.email,
+                profile_pic: user.photoURL,
             };
 
             await setDoc(userRef, userData);
