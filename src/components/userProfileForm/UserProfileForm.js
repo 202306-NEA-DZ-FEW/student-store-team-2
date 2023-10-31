@@ -9,9 +9,8 @@ import "react-widgets/styles.css";
 
 import { db } from "@/lib/firebase";
 
+import UploadImage from "@/components/imageFolder/UploadImage";
 import { useUser } from "@/components/userProvider/UserProvider";
-
-import UploadImage from "../uploadImage/UploadImage";
 
 const UserProfileForm = ({ userData }) => {
     const t = useTranslations("Index");
