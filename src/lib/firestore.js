@@ -36,5 +36,6 @@ export const getCurrentUserData = async () => {
     const authToken = Cookies.get("authToken");
     const currentUser = await getCurrentUser(authToken);
     const currentUserData = await getUserProfile(currentUser);
+    console.log(currentUserData);
     return currentUserData;
 };
