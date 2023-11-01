@@ -19,13 +19,13 @@ const SortingControl = () => {
                 <select className='font-lato text-secondaryGray text-xl sort-select px-2 h-16 w-44 border-2 rounded-lg'>
                     <option
                         value='newest'
-                        className='text-secondaryGray hover:bg-accent hover:text-white h-16 w-44'
+                        className='text-secondaryGray text-center hover:bg-accent hover:text-white h-16 w-44'
                     >
                         {t("Newest")}
                     </option>
                     <option
                         value='oldest'
-                        className='text-secondaryGray hover:bg-accent hover:text-white h-16 w-44'
+                        className='text-secondaryGray text-center hover:bg-accent hover:text-white h-16 w-44'
                     >
                         {t("Oldest")}
                     </option>

@@ -40,13 +40,13 @@ exports[`renders correctly 1`] = `
       className="font-lato text-secondaryGray text-xl sort-select px-2 h-16 w-44 border-2 rounded-lg"
     >
       <option
-        className="text-secondaryGray hover:bg-accent hover:text-white h-16 w-44"
+        className="text-secondaryGray text-center hover:bg-accent hover:text-white h-16 w-44"
         value="newest"
       >
         Newest
       </option>
       <option
-        className="text-secondaryGray hover:bg-accent hover:text-white h-16 w-44"
+        className="text-secondaryGray text-center hover:bg-accent hover:text-white h-16 w-44"
         value="oldest"
       >
         Oldest
