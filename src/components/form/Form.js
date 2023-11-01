@@ -1,7 +1,11 @@
 "use client";
-import Cookies from "js-cookie";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
+
+import {
+    loginWithEmailAndPassword,
+    registerUserWithEmailAndPassword,
+} from "@/lib/authDetails";
 
 function CustomForm({ formType }) {
     const t = useTranslations("Index");
@@ -12,6 +16,31 @@ function CustomForm({ formType }) {
     const [address, setAddress] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
+    const authenticate = async (userData) => {
+        const { formType, ...data } = userData;
+
+        if (formType === "registration") {
+            const user = await registerUserWithEmailAndPassword(
+                data.email,
+                data.password,
+                {
+                    first_name: data.first_name || "null",
+                    email: data.email || "null",
+                    phone_num: data.phone_num || "null",
+                    last_name: data.last_name || "null",
+                    // Add other user data fields here
+                }
+            );
+
+            return user;
+        } else if (formType === "login") {
+            const user = await loginWithEmailAndPassword(
+                data.email,
+                data.password
+            );
+            return user;
+        }
+    };
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrorMessage(""); // Clear any previous error message
@@ -26,35 +55,15 @@ function CustomForm({ formType }) {
             return;
         }
 
-        const authToken = Cookies.get("authToken");
-        try {
-            const response = await fetch("/api/auth", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${authToken}`,
-                },
-                body: JSON.stringify({
-                    formType: formType,
-                    first_name: fullName.split(" ")[0],
-                    last_name: fullName.split(" ")[1],
-                    email: email,
-                    phone_num: phoneNumber,
-                    password: password,
-                }),
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                Cookies.set("authToken", data.user.uid, { expires: 7 });
-                window.location.href = "/profile?page=form";
-            } else {
-                const errorData = await response.json();
-                setErrorMessage(errorData.error);
-            }
-        } catch (error) {
-            setErrorMessage("An error occurred");
-        }
+        const data = {
+            formType: formType,
+            first_name: fullName.split(" ")[0],
+            last_name: fullName.split(" ")[1],
+            email: email,
+            phone_num: phoneNumber,
+            password: password,
+        };
+        authenticate(data);
     };
 
     return (

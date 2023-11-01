@@ -13,9 +13,9 @@ import { db } from "@/lib/firebase";
 import UploadImage from "@/components/imageFolder/UploadImage";
 import { useUser } from "@/components/userProvider/UserProvider";
 
-const UserProfileForm = ({ userData }) => {
+const UserProfileForm = () => {
     const t = useTranslations("Index");
-    const { user } = useUser();
+    const { user, userData } = useUser();
     const [imageURL, setImageURL] = useState("");
     const [formData, setFormData] = useState({
         address: {
@@ -94,7 +94,6 @@ const UserProfileForm = ({ userData }) => {
 
             setDoc(userRef, updatedData)
                 .then(() => {
-                    console.log("Document successfully written!");
                     router.push("/");
                 })
                 .catch((error) => {
