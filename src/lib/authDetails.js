@@ -106,8 +106,8 @@ export const handleGoogleLogin = async () => {
             };
 
             await setDoc(userRef, userData);
-            window.location.href = "/profile?page=form";
         }
+        window.location.href = "/profile?page=form";
     } catch (error) {
         console.error("Error signing in with google:", error);
     }
