@@ -185,7 +185,7 @@ exports[`renders correctly 1`] = `
         Category :
       </p>
       <a
-        className="font-normal text-[#72AEC8] underline hover:text-[#45adda] transform hover:scale-105 transition-transform duration-300 ease-in-out"
+        className="font-normal text-[#72AEC8] underline hover:text-[#45adda] text-xs transform hover:scale-105 transition-transform duration-300 ease-in-out"
         href="/"
         onClick={[Function]}
         onMouseEnter={[Function]}

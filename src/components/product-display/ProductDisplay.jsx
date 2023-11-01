@@ -39,12 +39,12 @@ function ProductDisplay() {
             <div className=' flex gap-2 w-full'>
                 <div
                     ref={scrollRef}
-                    className=' h-[700px] scroll-smooth flex flex-col gap-4 overflow-hidden   '
+                    className=' h-[560px] scroll-smooth flex flex-col gap-4 overflow-hidden   '
                 >
                     {imagesArray.map((item, index) => (
                         <button
                             key={index}
-                            className='bg-green-400 flex flex-col items-center justify-center'
+                            className='flex flex-col items-center justify-center'
                             onClick={() => setCurrentImage(item)}
                         >
                             <Image
@@ -62,9 +62,9 @@ function ProductDisplay() {
                     <Image
                         src={currentImage}
                         width={500}
-                        height={860}
+                        height={560}
                         alt='Skin Care Products'
-                        className='object-cover h-[700px] '
+                        className='object-cover h-[560px] '
                     />
                 </div>
             </div>

@@ -73,7 +73,7 @@ export default function ProductDetailSection({ user, productData }) {
                     </p>
                     <Link
                         href='/'
-                        className='font-normal text-[#72AEC8] underline hover:text-[#45adda] transform hover:scale-105 transition-transform duration-300 ease-in-out'
+                        className='font-normal text-[#72AEC8] underline hover:text-[#45adda] text-xs transform hover:scale-105 transition-transform duration-300 ease-in-out'
                     >
                         {productData
                             ? productData.category
