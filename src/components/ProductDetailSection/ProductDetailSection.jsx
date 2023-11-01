@@ -6,6 +6,7 @@ import BuyBorrowBtn from "../buyborrow-btn/BuyBorrowBtn";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
+import ContactDetails from "../contactDetails/ContactDetails/ContactDetails";
 
 export default function ProductDetailSection({ user, productData }) {
     const t = useTranslations("Index");
@@ -80,6 +81,7 @@ export default function ProductDetailSection({ user, productData }) {
                             : "Category Not Available"}{" "}
                     </Link>
                 </div>
+                <ContactDetails user={user} />
             </div>
         </section>
     );
