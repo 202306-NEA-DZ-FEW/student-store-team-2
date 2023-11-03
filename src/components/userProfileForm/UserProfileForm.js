@@ -107,11 +107,11 @@ const UserProfileForm = () => {
     }
 
     return (
-        <div className='flex'>
-            <div className='w-1/4 font-lato font-semibold text-xl  bg-bkg text-titleContent p-4'>
+        <div className='flex flex-col sm:flex-row'>
+            <div className='sm:w-1/4 h-1/4 w-full font-lato font-semibold text-xl  bg-bkg text-titleContent p-4 flex justify-evenly sm:flex-col'>
                 <Link
                     href='/profile?page=form'
-                    className='flex justify-center items-center mb-4  hover:bg-accent hover:text-bkg h-20'
+                    className='flex justify-center items-center mb-4  hover:bg-accent hover:text-bkg h-20 border-r p-5 sm:border-none'
                 >
                     {t("PROFILE")}
                 </Link>
@@ -125,7 +125,7 @@ const UserProfileForm = () => {
             </div>
             <form
                 onSubmit={handleSubmit}
-                className='w-3/4 bg-[rgb(237,241,243)]  mx-auto p-4  rounded-lg font-lato'
+                className='sm:w-3/4 h-3/4 w-full bg-[rgb(237,241,243)]  mx-auto p-4  rounded-lg font-lato'
             >
                 <h1 className='font-lato tracking-wider text-title text-2xl text-center pr-96  mr-80 uppercase  text-titleContent'>
                     {t("Profile")}
