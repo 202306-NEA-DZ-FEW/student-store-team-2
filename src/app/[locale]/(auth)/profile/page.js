@@ -7,7 +7,7 @@ const page = async ({ searchParams }) => {
     return (
         <div className='relative'>
             <div className='flex pt-32 leading-6 tracking-wider'>
-                <div className=' w-full p-4 mr-12 rounded-md '>
+                <div className=' w-full p-4  rounded-md '>
                     {page === "form" && <UserProfileForm />}
                     {page === "security" && <SecurityForm />}
                 </div>

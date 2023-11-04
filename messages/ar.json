@@ -56,6 +56,9 @@
         "and Privacy Policy": "وسياسة الخصوصية",
         "I have read and agree with all of the Terms": "لقد قرأت وأوافق على جميع الشروط",
         "SECURITY": "الحماية",
-        "PROFILE": "الحساب"
+        "PROFILE": "الحساب",
+        "Upload ID": "تحميل الهوية ",
+        "Edit ID": "تعديل الهوية ",
+        "Edit Image": "تعديل الصورة"
     }
 }

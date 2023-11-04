@@ -59,7 +59,7 @@ exports[`renders correctly 1`] = `
   >
     <a
       className="  hover:bg-accent hover:text-white rounded-md px-3 py-2 text-xl font-medium "
-      href="/profile"
+      href="/profile?page=form"
       onClick={[Function]}
       onMouseEnter={[Function]}
       onTouchStart={[Function]}

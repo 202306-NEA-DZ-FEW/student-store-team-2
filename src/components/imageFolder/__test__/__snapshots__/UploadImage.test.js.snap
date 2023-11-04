@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <div
-  className="flex sm:justify-start justify-center ml-10 mb-4 items-center space-x-5"
+  className="flex justify-start  ml-10 mb-4 items-center space-x-5"
 >
   <svg
     className="w-24 h-24 border rounded-full border-content text-accent2 p-2 bg-white"
@@ -26,12 +26,12 @@ exports[`renders correctly 1`] = `
   <div>
     <label
       className="bg-accent rounded-md text-white px-5 py-2 tracking-tight font-bold shadow-sm cursor-pointer"
-      htmlFor="upload-button"
+      htmlFor="upload-button-image"
     >
       Upload Image
     </label>
     <input
-      id="upload-button"
+      id="upload-button-image"
       onChange={[Function]}
       style={
         Object {
