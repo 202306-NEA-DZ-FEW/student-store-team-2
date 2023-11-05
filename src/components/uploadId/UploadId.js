@@ -8,14 +8,14 @@ import {
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
-import { BsPerson } from "react-icons/bs";
+import { BsFillPersonVcardFill } from "react-icons/bs";
 
 import { useUser } from "../userProvider/UserProvider";
 
-const UploadImage = ({ onImageUpload, profile_pic }) => {
+const UploadId = ({ onIdUpload, profile_id }) => {
     const t = useTranslations("Index");
-    const [imageFile, setImageFile] = useState(null);
-    const [downloadURL, setDownloadURL] = useState(profile_pic);
+    const [idFile, setIdFile] = useState(null);
+    const [downloadURL, setDownloadURL] = useState(profile_id);
     const [isUploading, setIsUploading] = useState(false);
     const [progressUpload, setProgressUpload] = useState(0);
     const user = useUser();
@@ -23,16 +23,16 @@ const UploadImage = ({ onImageUpload, profile_pic }) => {
 
     const handleSelectedFile = (files) => {
         if (files && files[0].size < 10000000) {
-            setImageFile(files[0]);
+            setIdFile(files[0]);
         } else {
             console.error("The file size is too large or no file selected.");
         }
     };
 
     const handleUploadFile = () => {
-        if (imageFile) {
-            const storageRef = ref(storage, `image/${user.user}`);
-            const uploadTask = uploadBytesResumable(storageRef, imageFile);
+        if (idFile) {
+            const storageRef = ref(storage, `ID/${user.user}`);
+            const uploadTask = uploadBytesResumable(storageRef, idFile);
 
             setIsUploading(true); // Start the spinner
 
@@ -61,7 +61,7 @@ const UploadImage = ({ onImageUpload, profile_pic }) => {
                         .then((url) => {
                             setDownloadURL(url);
                             setIsUploading(false);
-                            onImageUpload(url); // Send the URL to the parent component
+                            onIdUpload(url); // Send the URL to the parent component
                         })
                         .catch((error) => {
                             console.error(
@@ -77,47 +77,49 @@ const UploadImage = ({ onImageUpload, profile_pic }) => {
         }
     };
 
-    const handleRemoveFile = () => setImageFile(null);
+    const handleRemoveFile = () => setIdFile(null);
 
     return (
-        <div className='flex justify-start  ml-10 mb-4 items-center space-x-5'>
+        <div className='flex justify-start ml-10 mb-4 items-center space-x-5'>
             {downloadURL ? (
                 <Image
                     width={50}
                     height={50}
                     src={downloadURL}
-                    alt='profile picture'
-                    className='w-24 h-24 border rounded-full border-content text-accent2 '
+                    alt='id'
+                    className='w-24 h-24 rounded-md '
                 />
             ) : (
-                <BsPerson className='w-24 h-24 border rounded-full border-content text-accent2 p-2 bg-white' />
+                <>
+                    <BsFillPersonVcardFill className='w-24 h-24  text-red-500 rounded-md' />
+                </>
             )}
             <div>
                 <label
-                    htmlFor='upload-button-image'
-                    className='bg-accent rounded-md text-white px-5 py-2 tracking-tight font-bold shadow-sm cursor-pointer'
+                    htmlFor='upload-button-id'
+                    className='bg-none border border-accent rounded-md text-accent px-5 py-2 tracking-tight font-bold shadow-sm cursor-pointer'
                 >
-                    {downloadURL ? t("Edit Image") : t("Upload Image")}
+                    {downloadURL ? t("Edit ID") : t("Upload ID")}
                 </label>
                 <input
                     type='file'
-                    id='upload-button-image'
+                    id='upload-button-id'
                     style={{ display: "none" }}
                     onChange={(e) => handleSelectedFile(e.target.files)}
                 />
                 {isUploading ? (
-                    <div className=' text-primary' role='status'>
+                    <div className='text-primary' role='status'>
                         <span className='visually-hidden'>
                             {t("Loading")}...
                         </span>
                     </div>
                 ) : (
-                    imageFile && (
+                    idFile && (
                         <div className='m-2'>
-                            <p>{`Size: ${(
-                                imageFile.size /
-                                (1024 * 1024)
-                            ).toFixed(2)} MB`}</p>
+                            <p>{idFile.name}</p>
+                            <p>{`Size: ${(idFile.size / (1024 * 1024)).toFixed(
+                                2
+                            )} MB`}</p>
                             <button
                                 className='bg-red-500 text-white rounded-md px-3 py-1'
                                 onClick={handleRemoveFile}
@@ -125,7 +127,7 @@ const UploadImage = ({ onImageUpload, profile_pic }) => {
                                 {t("Close")}
                             </button>
                             <button
-                                className='border border-accent ml-2 text-accent rounded-md px-3 py-1'
+                                className='border border-blue-500 ml-2 text-blue-500 rounded-md px-3 py-1'
                                 onClick={handleUploadFile}
                             >
                                 {t("Upload")}
@@ -138,4 +140,4 @@ const UploadImage = ({ onImageUpload, profile_pic }) => {
     );
 };
 
-export default UploadImage;
+export default UploadId;

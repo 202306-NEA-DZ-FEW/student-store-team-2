@@ -64,10 +64,13 @@ export default function MobileSidebar({
                     </Link>
                 ))}
                 <Link
-                    href='/profile'
+                    href='/profile?page=form'
                     className={`  hover:bg-accent hover:text-white rounded-md px-3 py-2 text-xl font-medium `}
                 >
-                    <button className='w-full flex justify-start items-center '>
+                    <button
+                        onClick={toggleMobileMenu}
+                        className='w-full flex justify-start items-center '
+                    >
                         <BiUser
                             className='block h-6 w-6 mr-2'
                             aria-hidden='true'
