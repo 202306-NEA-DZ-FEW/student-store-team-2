@@ -2,6 +2,9 @@ import AuthFooter from "@/components/authPage/authFooter/AuthFooter";
 import AuthHeader from "@/components/authPage/authHeader/AuthHeader";
 import CustomForm from "@/components/form/Form";
 import GoogleLoginButton from "@/components/googleLoginButton/GoogleButton";
+
+export const revalidate = 3600;
+
 const page = () => {
     return (
         <div className=' flex flex-wrap justify-center items-center '>

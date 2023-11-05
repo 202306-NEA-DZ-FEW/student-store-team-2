@@ -1,11 +1,16 @@
 import { NextIntlClientProvider } from "next-intl";
 import renderer from "react-test-renderer";
 
-import { UserProvider } from "@/components/userProvider/UserProvider";
-
-import UserProfileForm from "../UserProfileForm";
+import UploadId from "../UploadId";
 import messages from "../../../../messages/en.json";
-jest.mock("next/navigation");
+jest.mock("firebase/storage", () => {
+    return {
+        getDownloadURL: jest.fn(),
+        getStorage: jest.fn(),
+        ref: jest.fn(),
+        uploadBytesResumable: jest.fn(),
+    };
+});
 jest.mock("firebase/auth", () => {
     const authInstance = {
         // Add mock methods and properties as needed
@@ -32,9 +37,7 @@ it("renders correctly", () => {
     const tree = renderer
         .create(
             <NextIntlClientProvider locale='en' messages={messages}>
-                <UserProvider>
-                    <UserProfileForm />
-                </UserProvider>
+                <UploadId />
             </NextIntlClientProvider>
         )
         .toJSON();

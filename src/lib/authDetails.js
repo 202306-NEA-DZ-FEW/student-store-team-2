@@ -2,13 +2,11 @@ import {
     createUserWithEmailAndPassword,
     getAuth,
     GoogleAuthProvider,
-    signInWithCredential,
     signInWithPopup,
     signOut,
 } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
-import Cookies from "js-cookie";
 
 import { app } from "./firebase";
 
@@ -32,7 +30,7 @@ export const registerUserWithEmailAndPassword = async (
 
         const userDocRef = doc(db, "users", user.uid);
         await setDoc(userDocRef, userData);
-
+        window.location.href = "/profile?page=form";
         return user;
     } catch (error) {
         console.error("Error registering user:", error);
@@ -47,6 +45,7 @@ export const loginWithEmailAndPassword = async (email, password) => {
             email,
             password
         );
+        window.location.href = "/profile?page=form";
 
         return userCredential.user;
     } catch (error) {
@@ -78,8 +77,8 @@ export const getCurrentUser = async () => {
 
 export const signOutUser = async () => {
     try {
+        window.location.href = "/";
         await signOut(auth);
-        Cookies.remove("authToken");
     } catch (error) {
         console.error("Error signing out:", error);
     }
@@ -89,10 +88,6 @@ export const handleGoogleLogin = async () => {
     try {
         // Sign in with Google popup
         const result = await signInWithPopup(auth, googleProvider);
-
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential?.idToken;
 
         // The signed-in user info.
         const user = result.user;
@@ -112,65 +107,8 @@ export const handleGoogleLogin = async () => {
 
             await setDoc(userRef, userData);
         }
-
-        // Send user data and authToken in a POST request
-        const authToken = Cookies.get("authToken");
-
-        const response = await fetch("/api/auth", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${authToken}`,
-            },
-            body: JSON.stringify({
-                formType: "google-login",
-                token: token,
-            }),
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            Cookies.set("authToken", data.user.uid, { expires: 7 });
-            window.location.href = "/profile?page=form";
-        } else {
-            const errorData = await response.json();
-            console.error("Google login error:", errorData.error);
-        }
+        window.location.href = "/profile?page=form";
     } catch (error) {
-        console.error("Google login error:", error);
-    }
-};
-
-export const handleServerGoogleLogin = async (token) => {
-    try {
-        // Verify and sign in with the Google ID token
-        const credential = GoogleAuthProvider.credential(token);
-        const authResult = await signInWithCredential(auth, credential);
-        // const additionalUserInfo = authResult.additionalUserInfo;
-        // const profilePic = additionalUserInfo?.profile?.picture || null;
-        // Get the user and their UID
-        const user = authResult.user;
-        const uid = user.uid;
-
-        // Check if the user exists in the database based on their UID
-        const userRef = doc(db, "users", uid);
-        const userDoc = await getDoc(userRef);
-
-        if (!userDoc.exists()) {
-            // User doesn't exist in the database, so add them
-            const userData = {
-                first_name: user.displayName.split(" ")[0],
-                last_name: user.displayName.split(" ")[1],
-                email: user.email,
-                profile_pic: user.photoURL,
-            };
-
-            await setDoc(userRef, userData);
-        }
-
-        return user;
-    } catch (error) {
-        console.error("Server Google login error:", error);
-        throw error;
+        console.error("Error signing in with google:", error);
     }
 };

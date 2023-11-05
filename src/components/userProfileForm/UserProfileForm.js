@@ -10,12 +10,14 @@ import "react-widgets/styles.css";
 
 import { db } from "@/lib/firebase";
 
-import UploadImage from "@/components/imageFolder/UploadImage";
 import { useUser } from "@/components/userProvider/UserProvider";
 
-const UserProfileForm = ({ userData }) => {
+import UploadImage from "../imageFolder/UploadImage";
+import UploadId from "../uploadId/UploadId";
+
+const UserProfileForm = () => {
     const t = useTranslations("Index");
-    const { user } = useUser();
+    const { user, userData } = useUser();
     const [imageURL, setImageURL] = useState("");
     const [formData, setFormData] = useState({
         address: {
@@ -31,10 +33,12 @@ const UserProfileForm = ({ userData }) => {
         last_name: "",
         phone_num: "",
         profile_pic: "",
+        userId: "",
     });
+    const [id, setId] = useState("");
+
     const [loading, setLoading] = useState(true);
     const router = useRouter();
-
     useEffect(() => {
         const fetcher = async () => {
             if (userData) {
@@ -45,6 +49,7 @@ const UserProfileForm = ({ userData }) => {
                     address: { ...userData.address },
                 });
                 setImageURL(userData.profile_pic);
+                setId(userData.userId);
                 setLoading(false);
             }
         };
@@ -54,6 +59,11 @@ const UserProfileForm = ({ userData }) => {
     const handleImageUpload = (url) => {
         setImageURL(url);
         setFormData({ ...formData, profile_pic: url });
+    };
+
+    const handleIdUpload = (url) => {
+        setId(url);
+        setFormData({ ...formData, userId: url });
     };
 
     const handleDateChange = (selectedDay) => {
@@ -94,7 +104,6 @@ const UserProfileForm = ({ userData }) => {
 
             setDoc(userRef, updatedData)
                 .then(() => {
-                    console.log("Document successfully written!");
                     router.push("/");
                 })
                 .catch((error) => {
@@ -108,11 +117,11 @@ const UserProfileForm = ({ userData }) => {
     }
 
     return (
-        <div className='flex'>
-            <div className='w-1/4 font-lato font-semibold text-xl  bg-bkg text-titleContent p-4'>
+        <div className='flex flex-col sm:flex-row'>
+            <div className='sm:w-1/4 h-1/4 w-full font-lato font-semibold text-xl  bg-bkg text-titleContent p-4 flex justify-evenly sm:flex-col'>
                 <Link
                     href='/profile?page=form'
-                    className='flex justify-center items-center mb-4  hover:bg-accent hover:text-bkg h-20'
+                    className='flex justify-center items-center mb-4  hover:bg-accent hover:text-bkg h-20 border-r p-5 sm:border-none '
                 >
                     {t("PROFILE")}
                 </Link>
@@ -126,19 +135,23 @@ const UserProfileForm = ({ userData }) => {
             </div>
             <form
                 onSubmit={handleSubmit}
-                className='w-3/4 bg-[rgb(237,241,243)]  mx-auto p-4  rounded-lg font-lato'
+                className='sm:w-3/4 h-3/4 w-full bg-[rgb(237,241,243)]  mx-auto p-4  rounded-lg font-lato '
             >
-                <h1 className='font-lato tracking-wider text-title text-2xl text-center pr-96  mr-80 uppercase  text-titleContent'>
+                <h1 className='font-lato tracking-wider text-title text-2xl text-center uppercase  text-titleContent'>
                     {t("Profile")}
                 </h1>
 
-                <h1 className='font-lato  text-titleContent sm:text-l ml-10  font-bold uppercase mb-4 mt-2'>
+                <h1 className='font-lato  text-titleContent sm:text-l  text-center font-bold uppercase mb-4 mt-2'>
                     {t("General details")}
                 </h1>
-                <UploadImage
-                    onImageUpload={handleImageUpload}
-                    profile_pic={imageURL}
-                />
+                <div className='flex sm:flex-row flex-col mt-2 justify-center'>
+                    <UploadImage
+                        onImageUpload={handleImageUpload}
+                        profile_pic={imageURL}
+                    />
+                    <UploadId onIdUpload={handleIdUpload} profile_id={id} />
+                </div>
+
                 <div className='mb-4 grid gap-4 md:grid-cols-2'>
                     <div className='mb-4'>
                         <span className='text-sm text-black '>
@@ -213,7 +226,7 @@ const UserProfileForm = ({ userData }) => {
                         className='w-full border border-gray-300 p-2 rounded-md'
                     />
                 </div>
-                <h1 className='font-lato  text-titleContent sm:text-l  font-bold uppercase mb-4 ml-10'>
+                <h1 className='font-lato  text-titleContent sm:text-l text-center font-bold uppercase mb-4 sm:ml-10'>
                     {t("Contact & address Detail")}
                 </h1>
                 <div className='mb-4 grid gap-4'>
