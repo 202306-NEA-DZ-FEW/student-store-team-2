@@ -42,7 +42,7 @@ export default function ProductCard() {
                 {product.is_sold && (
                     <Link href='/dashboard'>
                         <div className='mt-1 font-jost flex justify-between text-base font-small text-titleContent'>
-                            <FaShoppingCart className='text-xl mr-8 text-blue-500' />
+                            <FaShoppingCart className='text-xl mr-8 text-accent' />
                             {product.price.sell_price}
                         </div>
                     </Link>
@@ -50,7 +50,7 @@ export default function ProductCard() {
                 {product.is_borrowed && (
                     <Link href='/dashboard'>
                         <div className='mt-1 font-jost flex justify-between text-base font-small text-titleContent'>
-                            <SiHandshake className='text-lg mr-8 text-blue-500' />{" "}
+                            <SiHandshake className='text-lg mr-8 text-accent' />{" "}
                             {product.price.borrow_price}/{t("Day")}
                         </div>
                     </Link>
@@ -93,18 +93,20 @@ export default function ProductCard() {
                         </div>
                         <div className='mt-3 flex justify-between'>
                             <div>
-                                <h3 className='font-jost text-sm font-semibold text-titleContent'>
-                                    <Link href='/category'>
-                                        <div aria-hidden='true' />
-                                        {product.category}
-                                    </Link>
-                                </h3>
+                                <Link
+                                    href='/category'
+                                    className='font-jost text-sm font-semibold text-titleContent'
+                                >
+                                    <div aria-hidden='true' />
+                                    {product.category}
+                                </Link>
+
                                 <Link href={`/product/${product.id}`}>
                                     <div className='mt-1 text-lg font-jost font-bold text-gray-900'>
                                         {product.name}
                                     </div>
-                                    {itemOffer(product)}
                                 </Link>
+                                {itemOffer(product)}
                             </div>
                             <Link href='/offerType'>
                                 <ItemLabel

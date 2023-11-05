@@ -5,8 +5,10 @@ import { NextIntlClientProvider } from "next-intl";
 export function generateStaticParams() {
     return [{ locale: "en" }, { locale: "ar" }];
 }
+
 import "./globals.css";
 import "./carousel.css";
+import "./loader.css";
 
 import { getUserProfile } from "@/lib/firestore";
 
@@ -53,13 +55,13 @@ export default async function RootLayout({ children, params: { locale } }) {
             <body
                 className={`relative ${jua.variable} font-jua ${lato.variable} font-lato ${jost.variable} font-jost ${poppins.variable} font-poppins`}
             >
-                <NextIntlClientProvider locale={locale} messages={messages}>
-                    <UserProvider fetchUserData={fetchUserData}>
+                <UserProvider fetchUserData={fetchUserData}>
+                    <NextIntlClientProvider locale={locale} messages={messages}>
                         <Navbar />
                         {children}
                         <Footer />
-                    </UserProvider>
-                </NextIntlClientProvider>
+                    </NextIntlClientProvider>
+                </UserProvider>
             </body>
         </html>
     );

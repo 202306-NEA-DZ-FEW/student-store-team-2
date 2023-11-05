@@ -13,15 +13,16 @@ export function UserProvider({ fetchUserData, children }) {
     useEffect(() => {
         const fetchData = async () => {
             const user = await getCurrentUser();
-            const data = await fetchUserData(user);
 
-            setUserData(data);
-            setUser(user);
-            setLoading(false);
+            await setUser(user);
+
+            const data = await fetchUserData(user);
+            await setUserData(data);
+            await setLoading(false);
         };
 
         fetchData();
-    }, [user]);
+    }, [fetchUserData]);
 
     return (
         <UserContext.Provider value={{ user, userData, loading }}>
