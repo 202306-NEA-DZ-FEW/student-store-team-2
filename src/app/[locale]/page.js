@@ -1,6 +1,5 @@
-import HeroCarousel from "@/components/heroCarousel/HeroCarousel";
 import AddedGrid from "@/components/addedGrid/AddedGrid";
-import HowItWorks from "@/components/sections/HowItWorks";
+import HeroCarousel from "@/components/heroCarousel/HeroCarousel";
 export default function Home() {
     return (
         <main className=''>
