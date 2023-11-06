@@ -5,7 +5,7 @@ exports[`renders correctly 1`] = `
   className=" flex gap-2 w-full"
 >
   <div
-    className=" h-[560px] scroll-smooth flex flex-col gap-4 overflow-hidden   "
+    className=" h-[560px] scroll-smooth flex flex-col gap-1 overflow-hidden "
   >
     <button
       className="flex flex-col items-center justify-center"
@@ -13,7 +13,7 @@ exports[`renders correctly 1`] = `
     >
       <img
         alt="Product"
-        className="h-[249px] object-cover"
+        className="h-[249px] object-cover rounded"
         data-nimg="1"
         decoding="async"
         height={249}
@@ -36,7 +36,7 @@ exports[`renders correctly 1`] = `
     >
       <img
         alt="Product"
-        className="h-[249px] object-cover"
+        className="h-[249px] object-cover rounded"
         data-nimg="1"
         decoding="async"
         height={249}
@@ -59,7 +59,7 @@ exports[`renders correctly 1`] = `
     >
       <img
         alt="Product"
-        className="h-[249px] object-cover"
+        className="h-[249px] object-cover rounded"
         data-nimg="1"
         decoding="async"
         height={249}
@@ -82,7 +82,7 @@ exports[`renders correctly 1`] = `
     >
       <img
         alt="Product"
-        className="h-[249px] object-cover"
+        className="h-[249px] object-cover rounded"
         data-nimg="1"
         decoding="async"
         height={249}
@@ -101,11 +101,11 @@ exports[`renders correctly 1`] = `
     </button>
   </div>
   <div
-    className=""
+    className="rounded"
   >
     <img
       alt="Skin Care Products"
-      className="object-cover h-[560px] "
+      className="object-cover h-[560px] rounded"
       data-nimg="1"
       decoding="async"
       height={560}
