@@ -1,17 +1,10 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
-import { BiSearchAlt } from "react-icons/bi";
-import {
-    getFirestore,
-    collection,
-    query,
-    where,
-    getDocs,
-} from "firebase/firestore";
-import { db } from "@/lib/firebase";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { BiSearchAlt } from "react-icons/bi";
+
+import { db } from "@/lib/firebase";
 
 const Searchbar = ({ toggleMobileMenu }) => {
     const router = useRouter();
@@ -25,6 +18,7 @@ const Searchbar = ({ toggleMobileMenu }) => {
         const inputValue = e.target.value;
         setSearchValue(inputValue);
     };
+
     async function handleSearch(e) {
         if (e.keyCode === 13) {
             e.preventDefault();
@@ -67,7 +61,7 @@ const Searchbar = ({ toggleMobileMenu }) => {
 
                     setSuggestions(newSuggestions);
                 } catch (error) {
-                    console.error("Error searching for products:", error);
+                    console.error(error);
                 }
             } else {
                 setSuggestions([]);
@@ -85,35 +79,32 @@ const Searchbar = ({ toggleMobileMenu }) => {
     }, [searchValue]);
 
     return (
-        <div
-            className='mx-auto max-w-md cursor-pointer '
-            onKeyDown={handleSearch}
-        >
-            <form action='' className='fixed left-5 sm:relative  mx-auto'>
+        <div className='mx-auto max-w-md cursor-pointer'>
+            <form action='' className='fixed left-5 sm:relative mx-auto'>
                 <input
                     type='search'
-                    className={` cursor-pointer absolute  h-8 ${
+                    className={`cursor-pointer absolute h-8 ${
                         toggleSearch
-                            ? "w-48  border border-accent/80 cursor-text text-sm "
-                            : "w-0 "
-                    } rounded-full  bg-transparent outline-none transition-all duration-300 ease-in-out left-10 pl-1`}
+                            ? "w-48 border border-accent/80 cursor-text text-sm"
+                            : "w-0"
+                    } rounded-full bg-transparent outline-none transition-all duration-300 ease-in-out left-10 pl-1`}
                     onChange={handleInputChange}
                     value={searchValue}
                 />
                 <BiSearchAlt
                     onClick={handleClick}
-                    className={`mr-2 z-10 cursor-pointer my-auto h-6 w-6 stroke-gray-500  hover:text-accent rounded-xl font-semibold ${
-                        toggleSearch && "text-accent "
+                    className={`mr-2 z-10 cursor-pointer my-auto h-6 w-6 stroke-gray-500 hover:text-accent rounded-xl font-semibold ${
+                        toggleSearch && "text-accent"
                     }`}
                     aria-hidden='true'
                 />
                 {suggestions.length > 0 && !noItemsFound && (
-                    <div className='hidden sm:block absolute w-48  left-10 mx-auto bg-white border border-accent/80  rounded-md'>
+                    <div className='hidden sm:block absolute w-48 left-10 mx-auto bg-white border border-accent/80 rounded-md'>
                         <div className='flex flex-col'>
                             {suggestions.map((suggestion, index) => (
                                 <Link
                                     key={index}
-                                    className=' text-sm  truncate p-2 hover:bg-accent hover:text-white'
+                                    className='text-sm truncate p-2 hover:bg-accent hover:text-white'
                                     href={`products/${suggestion}`}
                                 >
                                     {suggestion}
@@ -124,7 +115,7 @@ const Searchbar = ({ toggleMobileMenu }) => {
                 )}
 
                 {noItemsFound && (
-                    <div className='hidden sm:block absolute w-48 left-10 h-8 mx-auto bg-white border border-accent/80 rounded-3xl  pl-2 pt-2 '>
+                    <div className='hidden sm:block absolute w-48 left-10 h-8 mx-auto bg-white border border-accent/80 rounded-3xl pl-2 pt-2'>
                         <p>No items found</p>
                     </div>
                 )}

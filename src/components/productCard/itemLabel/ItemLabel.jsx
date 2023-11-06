@@ -1,3 +1,4 @@
+"use client";
 import { useTranslations } from "next-intl";
 import React from "react";
 
@@ -17,7 +18,7 @@ const ItemLabel = ({ textContent }) => {
         <div
             className={`flex justify-center text-center items-center font-jost font-bold rounded-full ${style} text-white text-sm w-[105px] h-[26px]`}
         >
-            {t(textContent)}
+            {textContent}
         </div>
     );
 };

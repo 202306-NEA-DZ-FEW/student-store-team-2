@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <div
+    className="relative flex justify-center items-center rounded-xl"
+  >
+    <img
+      alt="pc"
+      data-nimg="1"
+      decoding="async"
+      height={256.6666666666667}
+      onError={[Function]}
+      onLoad={[Function]}
+      src=""
+      style={
+        Object {
+          "color": "transparent",
+        }
+      }
+      width={790}
+    />
+    <div
+      className="absolute flex justify-center items-center w-full h-full  bg-[rgba(114,174,200,0.78)] text-3xl text-white font-regular font-poppins tracking-wider"
+    >
+      Index
+    </div>
+  </div>
+  <div
+    className="flex flex-col "
+  >
+    <div
+      className="flex flex-col text-center font-lato text-content"
+    >
+      <h1
+        className="text-2xl "
+      >
+        Create Your
+         
+        <span
+          className="text-accent"
+        >
+          Store
+        </span>
+      </h1>
+      <p
+        className="text-sm"
+      >
+        and start exchanging with other students
+      </p>
+    </div>
+  </div>
+</div>
+`;
