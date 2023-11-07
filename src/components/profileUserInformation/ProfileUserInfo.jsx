@@ -1,5 +1,5 @@
 import React from "react";
-import { PiMapPinLineDuotone } from "react-icons/Pi";
+import { PiMapPinLineDuotone } from "react-icons/pi";
 import { FaUniversity } from "react-icons/fa";
 
 function ProfileUserInfo({ user }) {

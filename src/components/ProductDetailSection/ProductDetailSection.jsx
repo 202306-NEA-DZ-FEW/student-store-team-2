@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import ProfilePic from "../ProfilePicture/ProfilePic";
+import ProfilePic from "../profilePicture/ProfilePic";
 import ProfileUserInfo from "../profileUserInformation/ProfileUserInfo";
 import BuyBorrowBtn from "../buyborrow-btn/BuyBorrowBtn";
 import { useTranslations } from "next-intl";
