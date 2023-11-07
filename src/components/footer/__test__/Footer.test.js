@@ -1,7 +1,7 @@
+import { NextIntlClientProvider } from "next-intl";
 import renderer from "react-test-renderer";
 
 import Footer from "../Footer";
-import { NextIntlClientProvider } from "next-intl";
 import messages from "../../../../messages/en.json";
 
 it("renders correctly", () => {

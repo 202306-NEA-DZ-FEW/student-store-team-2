@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="flex flex-wrap gap-4 pr-4 w-60 pl-28"
+>
+  <div />
+</div>
+`;
