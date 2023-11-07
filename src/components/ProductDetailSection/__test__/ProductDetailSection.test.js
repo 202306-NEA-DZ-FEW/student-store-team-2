@@ -1,7 +1,7 @@
 import renderer from "react-test-renderer";
 import { NextIntlClientProvider } from "next-intl";
 import messages from "../../../../messages/en.json";
-import ProductDetailSection from "../ProductDetailSection";
+import ProductDetailSection from "../ProductDetailSection"
 
 it("renders correctly", () => {
     const tree = renderer
