@@ -1,4 +1,4 @@
-import ProductDetailSection from "@/components/productDetailSection/ProductDetailSection";
+import ProductDetailSection from "@/components/productDetailsSection/ProductDetailSection";
 import ProductDisplay from "@/components/product-display/ProductDisplay";
 
 // Placeholder object to be replaced with data from Firestore
