@@ -1,14 +1,14 @@
 import { NextIntlClientProvider } from "next-intl";
 import renderer from "react-test-renderer";
 
-import ProductItem from "../ProductItem";
+import NavLinks from "../NavLinks";
 import messages from "../../../../messages/en.json";
 
 it("renders correctly", () => {
     const tree = renderer
         .create(
             <NextIntlClientProvider locale='en' messages={messages}>
-                <ProductItem />
+                <NavLinks />
             </NextIntlClientProvider>
         )
         .toJSON();
