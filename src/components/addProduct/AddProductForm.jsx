@@ -2,8 +2,10 @@
 
 import { addDoc, collection } from "firebase/firestore";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
+import { FaSpinner } from "react-icons/fa";
 import { SiXamarin } from "react-icons/si";
 
 import { getSignature } from "@/lib/_cloudinary";
@@ -12,16 +14,16 @@ import { db } from "@/lib/firebase";
 import { useUser } from "../userProvider/UserProvider";
 
 const AddProductForm = ({ className, categories }) => {
+    const t = useTranslations("Index");
     const [files, setFiles] = useState([]);
     const [productName, setProductName] = useState("");
     const [category, setCategory] = useState("");
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
     const [type, setType] = useState("Sell");
-    const [sellPrice, setSellPrice] = useState("");
-    const [borrowPrice, setBorrowPrice] = useState("");
+    const [price, setPrice] = useState("");
     const [condition, setCondition] = useState(5);
-
+    const [loading, setLoading] = useState(false);
     const onDrop = useCallback((acceptedFiles) => {
         if (acceptedFiles?.length) {
             setFiles((previousFiles) => [
@@ -41,7 +43,7 @@ const AddProductForm = ({ className, categories }) => {
 
     const { user } = useUser();
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
-        accept: "image/*",
+        "image/*": [".jpeg", ".jpg", ".png"],
         maxSize: 1024 * 1000,
         maxFiles: 4,
         onDrop,
@@ -79,8 +81,21 @@ const AddProductForm = ({ className, categories }) => {
         }
     };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault(); // Prevents the default form submission
+
+        setLoading(true);
+        try {
+            await action();
+        } catch (error) {
+            console.log(error);
+        }
+        setLoading(false);
+    };
+
     async function action() {
         const uploadedFiles = [];
+
         for (const file of files) {
             const { signature, timestamp } = await getSignature();
 
@@ -124,9 +139,8 @@ const AddProductForm = ({ className, categories }) => {
             description,
             for_borrow,
             for_sell,
-            sellPrice,
             condition,
-            borrowPrice,
+            price,
             uid: user,
             created_at: formattedDate,
             image: imageLinks,
@@ -139,8 +153,7 @@ const AddProductForm = ({ className, categories }) => {
         setLocation("");
         setDescription("");
         setType("");
-        setSellPrice("");
-        setBorrowPrice("");
+        setPrice("");
         setFiles([]);
     }
 
@@ -168,201 +181,221 @@ const AddProductForm = ({ className, categories }) => {
                 <input
                     type='number'
                     className='w-full border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md'
-                    placeholder='Price'
-                    value={sellPrice}
-                    onChange={(e) => setSellPrice(e.target.value)}
+                    placeholder={t("Price")}
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
                 />
             );
         } else if (type === "Borrow") {
             return (
                 <input
                     type='number'
-                    className='w-full border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md placeholder:text-[12px]'
-                    placeholder='Borrow Per Week'
-                    value={borrowPrice}
-                    onChange={(e) => setBorrowPrice(e.target.value)}
+                    className='w-full border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md placeholder:text-md'
+                    placeholder={t("Price Per Week")}
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
                 />
-            );
-        } else if (type === "Sell & Borrow") {
-            return (
-                <>
-                    <input
-                        type='number'
-                        className='w-1/2 border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md placeholder:text-[12px]'
-                        placeholder='Sell Price'
-                        value={sellPrice}
-                        onChange={(e) => setSellPrice(e.target.value)}
-                    />
-                    <input
-                        type='number'
-                        className='w-1/2 border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md placeholder:text-[12px]'
-                        placeholder='Borrow Per Week'
-                        value={borrowPrice}
-                        onChange={(e) => setBorrowPrice(e.target.value)}
-                    />
-                </>
             );
         }
     };
     return (
-        <form
-            action={action}
-            className='flex flex-row justify-center items-center space-x-8 w-[1300px]'
-        >
-            <div className='w-[620px]'>
-                {files.length === 0 && (
-                    <div
-                        {...getRootProps({ className: className })}
-                        className='border border-dashed border-accent/50 flex flex-col items-center justify-center text-center p-8 text-accent/50 text-[20px]'
-                    >
-                        <input
-                            {...getInputProps({ name: "file", multiple: true })}
-                        />
-                        <p>
-                            Drag and drop some files here, or click to select
-                            files
-                        </p>
+        <>
+            <form
+                onSubmit={handleSubmit}
+                className='flex md:flex-row flex-col justify-center items-center space-x-8'
+            >
+                {loading ? (
+                    <div className='justify-center items-center'>
+                        <FaSpinner className='h-24 w-24 animate-spin duration-150 text-accent' />
                     </div>
-                )}
-
-                {files.length === 4 && (
-                    <div className='flex flex-col gap-4'>
-                        <div className='w-full h-[340px] relative rounded-md shadow-lg'>
-                            <ImageFile file={files[0]} />
-                        </div>
-                        <div className='flex '>
-                            {files.slice(1).map((file) => (
+                ) : (
+                    <>
+                        <div className='md:w-1/2'>
+                            {files.length === 0 && (
                                 <div
-                                    key={file.name}
-                                    className='w-1/3 mx-2 relative rounded-md shadow-lg'
+                                    {...getRootProps({ className: className })}
+                                    className='border border-dashed border-accent/50 hidden sm:flex flex-col items-center justify-center text-center p-8 text-accent/50 text-sm'
                                 >
-                                    <ImageFile file={file} />
+                                    <input
+                                        {...getInputProps({
+                                            name: "file",
+                                            multiple: true,
+                                        })}
+                                    />
+                                    <p>
+                                        {t(
+                                            "Drag and drop some files here or click to select files"
+                                        )}
+                                    </p>
                                 </div>
-                            ))}
-                        </div>
-                    </div>
-                )}
+                            )}
 
-                {files.length === 3 && (
-                    <div className='flex flex-col gap-4'>
-                        <div className='w-full h-[340px]  relative rounded-md shadow-lg'>
-                            <ImageFile file={files[0]} />
+                            {files.length === 4 && (
+                                <div className='hidden sm:flex flex-col gap-4 '>
+                                    <div className='w-full h-1/2 relative rounded-md shadow-lg'>
+                                        <ImageFile file={files[0]} />
+                                    </div>
+                                    <div className='flex '>
+                                        {files.slice(1).map((file) => (
+                                            <div
+                                                key={file.name}
+                                                className='w-1/3 mx-2 relative rounded-md shadow-lg'
+                                            >
+                                                <ImageFile file={file} />
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {files.length === 3 && (
+                                <div className='hidden sm:flex flex-col gap-4 '>
+                                    <div className='w-full relative rounded-md shadow-lg'>
+                                        <ImageFile file={files[0]} />
+                                    </div>
+                                    <div className='flex '>
+                                        {files.slice(1).map((file) => (
+                                            <div
+                                                key={file.name}
+                                                className='w-1/2 mx-2 relative rounded-md shadow-lg'
+                                            >
+                                                <ImageFile file={file} />
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {files.length > 0 && files.length < 3 && (
+                                <div className='hidden sm:flex flex-row gap-4 '>
+                                    {files.map((file) => (
+                                        <div
+                                            key={file.name}
+                                            className='w-1/2 relative rounded-md shadow-lg'
+                                        >
+                                            <ImageFile file={file} />
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
-                        <div className='flex '>
-                            {files.slice(1).map((file) => (
-                                <div
-                                    key={file.name}
-                                    className='w-1/2 mx-2 relative rounded-md shadow-lg'
+
+                        <div className='flex flex-wrap items-center justify-center  p-4 md:w-1/2 space-y-4 text-lg'>
+                            <input
+                                type='text'
+                                placeholder={t("Product Name")}
+                                className='border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md w-full'
+                                value={productName}
+                                onChange={(e) => setProductName(e.target.value)}
+                                required
+                            />
+
+                            <div className='flex justify-center mx-auto space-x-2 text-sm'>
+                                <select
+                                    value={category}
+                                    onChange={(e) =>
+                                        setCategory(e.target.value)
+                                    }
+                                    className='border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2 uppercase'
+                                    required
                                 >
-                                    <ImageFile file={file} />
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                )}
-
-                {files.length > 0 && files.length < 3 && (
-                    <div className='flex flex-row gap-4'>
-                        {files.map((file) => (
-                            <div
-                                key={file.name}
-                                className='w-1/2 relative rounded-md shadow-lg'
-                            >
-                                <ImageFile file={file} />
+                                    <option value=''>{t("Category")}</option>
+                                    {categories[0].map((cat, index) => (
+                                        <option key={index} value={index}>
+                                            {t(cat)}
+                                        </option>
+                                    ))}
+                                </select>
+                                <input
+                                    type='text'
+                                    placeholder={t("Location")}
+                                    className=' border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2'
+                                    value={location}
+                                    onChange={(e) =>
+                                        setLocation(e.target.value)
+                                    }
+                                    required
+                                />
                             </div>
-                        ))}
-                    </div>
+
+                            <textarea
+                                placeholder={t("description")}
+                                className='w-full h-48 border border-accent/50  placeholder:text-accent/50 px-4  rounded-md placeholder:flex placeholder:items-center placeholder:justify-center placeholder:text-center placeholder:text-md'
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                                required
+                            ></textarea>
+
+                            <div className='flex justify-center mx-auto space-x-2 w-full'>
+                                <select
+                                    value={type}
+                                    className='w-1/2 border border-accent/50  placeholder:text-accent/50  py-2 rounded-md text-sm uppercase'
+                                    onChange={(e) => setType(e.target.value)}
+                                    required
+                                >
+                                    <option value='Borrow'>
+                                        {t("Borrow")}
+                                    </option>
+                                    <option value='Sell'>{t("Sell")}</option>
+                                </select>
+                                {renderPriceInput()}
+                            </div>
+                            <div className='flex justify-center mx-auto space-x-2 items-center text-sm'>
+                                <label>{t("Product Condition")}:</label>
+                                <select
+                                    value={condition}
+                                    onChange={(e) =>
+                                        setCondition(e.target.value)
+                                    }
+                                    className='w-1/2 border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md '
+                                    required
+                                >
+                                    {Array.from({ length: 11 }, (_, index) => (
+                                        <option key={index} value={index}>
+                                            {index}/10
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            <div className='flex space-x-2 w-full justify-center'>
+                                <input
+                                    type='file'
+                                    style={{ display: "none" }}
+                                    onChange={handleFileChange}
+                                    multiple
+                                />
+                                <button
+                                    type='button'
+                                    onClick={addMoreImages}
+                                    className='mt-2 rounded-md border border-accent px-4 py-2 text-sm font-bold uppercase tracking-wider text-white transition-colors hover:bg-titleContent/80 hover:text-white bg-titleContent disabled:bg-titleContent/20 disabled:border-none'
+                                    disabled={files.length === 4}
+                                >
+                                    {t("Upload Image(s)")}
+                                </button>
+                                <button
+                                    type='submit'
+                                    className='mt-2 rounded-md  border border-accent px-4 py-2 text-sm font-bold uppercase tracking-wider text-white transition-colors  hover:bg-accent/80  hover:text-white bg-accent disabled:bg-accent/20 disabled:border-none'
+                                    disabled={files.length === 0}
+                                >
+                                    {t("List")}
+                                </button>
+                            </div>
+                            <div className='sm:hidden flex '>
+                                {files.map((file) => (
+                                    <div
+                                        key={file.name}
+                                        className='relative w-[200px] rounded-md shadow-lg'
+                                    >
+                                        <ImageFile file={file} />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </>
                 )}
-            </div>
-            <div className='flex flex-wrap items-center justify-center  p-4 w-[620px] space-y-4 text-lg'>
-                <input
-                    type='text'
-                    placeholder='Product Name'
-                    className='border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md w-[545px]'
-                    value={productName}
-                    onChange={(e) => setProductName(e.target.value)}
-                />
-
-                <div className='flex justify-center mx-auto space-x-2'>
-                    <select
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
-                        className='border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-[267px]'
-                    >
-                        <option value=''>Select Category</option>
-                        {categories[0].map((cat, index) => (
-                            <option key={index} value={index}>
-                                {cat}
-                            </option>
-                        ))}
-                    </select>
-                    <input
-                        type='text'
-                        placeholder='Location'
-                        className=' border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-[267px]'
-                        value={location}
-                        onChange={(e) => setLocation(e.target.value)}
-                    />
-                </div>
-
-                <textarea
-                    placeholder='Description'
-                    className='w-[545px] h-[200px] border border-accent/50  placeholder:text-accent/50 px-4  rounded-md flex items-center justify-center placeholder:text-center'
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                ></textarea>
-
-                <div className='flex justify-center mx-auto space-x-2'>
-                    <select
-                        value={type}
-                        className='w-[267px] border border-accent/50  placeholder:text-accent/50  py-2 rounded-md text-[20px]'
-                        onChange={(e) => setType(e.target.value)}
-                    >
-                        <option value='Borrow'>Borrow</option>
-                        <option value='Sell'>Sell</option>
-                        <option value='Sell & Borrow'>Sell & Borrow</option>
-                    </select>
-                    {renderPriceInput()}
-                </div>
-                <div className='flex justify-center mx-auto space-x-2 items-center'>
-                    <label>Product Condition:</label>
-                    <select
-                        value={condition}
-                        onChange={(e) => setCondition(e.target.value)}
-                        className='w-[267px] border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md'
-                    >
-                        {Array.from({ length: 11 }, (_, index) => (
-                            <option key={index} value={index}>
-                                {index}/10
-                            </option>
-                        ))}
-                    </select>
-                </div>
-
-                <div className='flex space-x-2 w-full justify-center'>
-                    <input
-                        type='file'
-                        style={{ display: "none" }}
-                        onChange={handleFileChange}
-                        multiple
-                    />
-                    <button
-                        type='button'
-                        onClick={addMoreImages}
-                        className='mt-2 rounded-md border border-accent px-4 py-2 text-[20px] font-bold uppercase tracking-wider text-white transition-colors hover:bg-titleContent/80 hover:text-white bg-titleContent'
-                    >
-                        Upload Image(s)
-                    </button>
-                    <button
-                        type='submit'
-                        className='mt-2 rounded-md  border border-accent px-4 py-2 text-[20px] font-bold uppercase tracking-wider text-white transition-colors  hover:bg-accent/80  hover:text-white bg-accent'
-                        disabled={files.length === 0}
-                    >
-                        List
-                    </button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </>
     );
 };
 
