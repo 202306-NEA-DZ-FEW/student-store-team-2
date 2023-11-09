@@ -20,6 +20,7 @@ export default function Navbar() {
         { name: t("Home"), href: "/" },
         { name: t("Products"), href: "/products" },
         { name: t("Orders"), href: "/order" },
+        { name: t("Donate"), href: "/donate" },
     ];
 
     const pathname = usePathname();

@@ -33,6 +33,7 @@ module.exports = {
                 lato: ["var(--font-lato)"],
                 jua: ["var(--font-jua)"],
                 poppins: ["var(--font-poppins)"],
+                roboto: ["var(--font-roboto)"],
             },
             letterSpacing: {
                 title: "tracking-normal",
