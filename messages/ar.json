@@ -83,5 +83,24 @@
         "Small Help": "مساعدة صغيرة",
         "Some Help": "بعض المساعدة",
         "Big Help": "مساعدة كبيرة"
+        "List an Item": "إضافة منتوج",
+        "Drag and drop some files here or click to select files": "قم بسحب ووضع بعض الملفات هنا، أو انقر لتحديد الملفات",
+        "Product Name": "إسم المنتوج",
+        "Location": "الموقع",
+        "Category": "الصنف",
+        "books": "الكتب",
+        "kitchen": "المطبخ",
+        "sports": "الـرياضة",
+        "games": "الألعاب",
+        "clothes": "مـلابس",
+        "electronics": "إلكترونيات",
+        "furniture": "أثاث",
+        "description": "وصف",
+        "Product Condition": "حالة المنتج",
+        "Sell": "بيع",
+        "Price Per Week": "السعر للأسبوع",
+        "Price": "السعر",
+        "Upload Image(s)": "إصافة الصور",
+        "List": "إضافة"
     }
 }

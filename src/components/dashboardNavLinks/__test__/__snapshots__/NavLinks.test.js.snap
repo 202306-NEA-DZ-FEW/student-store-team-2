@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <div
-  className="font-lato font-semibold text-xl uppercase w-96 h-72 ml-24 mt-36 bg-bkg text-titleContent p-4 hidden sm:block"
+  className="font-lato font-semibold text-xl uppercase w-96 h-72 ml-24 bg-bkg text-titleContent p-4 hidden sm:block"
 >
   <a
     href="/dashboard?type=borrowings"
@@ -11,8 +11,7 @@ exports[`renders correctly 1`] = `
     onTouchStart={[Function]}
   >
     <div
-      className="flex justify-center items-center mb-4 hover:bg-accent hover:text-bkg h-20 bg-accent text-bkg"
-      onClick={[Function]}
+      className="flex justify-center items-center mb-4 hover:bg-accent hover:text-bkg h-20 "
     >
       borrowings
     </div>
@@ -25,7 +24,6 @@ exports[`renders correctly 1`] = `
   >
     <div
       className="flex justify-center items-center mb-4 hover:bg-accent hover:text-bkg h-20 "
-      onClick={[Function]}
     >
       lendings
     </div>
@@ -38,7 +36,6 @@ exports[`renders correctly 1`] = `
   >
     <div
       className="flex justify-center items-center mb-4 hover:bg-accent hover:text-bkg h-20 "
-      onClick={[Function]}
     >
       purchases
     </div>
@@ -51,9 +48,20 @@ exports[`renders correctly 1`] = `
   >
     <div
       className="flex justify-center items-center mb-4 hover:bg-accent hover:text-bkg h-20 "
-      onClick={[Function]}
     >
       sales
+    </div>
+  </a>
+  <a
+    href="/dashboard?type=List an Item"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onTouchStart={[Function]}
+  >
+    <div
+      className="flex justify-center items-center mb-4 hover:bg-accent hover:text-bkg h-20 "
+    >
+      List an Item
     </div>
   </a>
 </div>

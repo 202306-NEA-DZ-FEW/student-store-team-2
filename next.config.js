@@ -7,7 +7,7 @@ module.exports = {
     
     images: {
 
-        domains: ['images.unsplash.com','lh3.googleusercontent.com','firebasestorage.googleapis.com','tailwindui.com'],
+        domains: ['images.unsplash.com','lh3.googleusercontent.com','firebasestorage.googleapis.com','tailwindui.com','images.placeholders.dev'],
 
       },
        experimental: {
