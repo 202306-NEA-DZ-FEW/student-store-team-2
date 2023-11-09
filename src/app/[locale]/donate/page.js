@@ -7,7 +7,7 @@ const Page = () => {
     const t = useTranslations("Index");
     return (
         <div className='flex flex-col font-poppins pt-16'>
-            <div className='relative min-h-[277px]'>
+            <div className='relative min-h-[277px] lg:min-h-[549px]'>
                 <Image
                     src='/donation-banner-transformed.jpg'
                     alt='/donation-banner-transformed.jpg'
@@ -17,7 +17,7 @@ const Page = () => {
                 />
             </div>
             <section className='flex flex-col items-center w-auto sm:min-h-[343px]'>
-                <h3 className='text-titleContent text-xl text-center lg:text-4xl md:text-3xl mb-6 sm:mb-14 mt-14 sm:mt-24'>
+                <h3 className='text-titleContent text-xl text-center lg:text-4xl sm:font-bold md:text-3xl mb-6 sm:mb-14 mt-14 sm:mt-24'>
                     {t("WHY DONATE")}
                 </h3>
                 <p className='text-content tracking-widest text-center text-lg md:text-2xl lg:text-3xl sm:w-auto lg:max-w-[1519px] mb-28'>
@@ -25,7 +25,7 @@ const Page = () => {
                 </p>
             </section>
             <div className='flex flex-col items-center w-auto sm:min-h-[670px] bg-accent2'>
-                <h2 className='text-titleContent text-xl text-center lg:text-4xl md:text-3xl mt-28'>
+                <h2 className='text-titleContent text-xl text-center lg:text-4xl sm:font-bold md:text-3xl mt-28'>
                     {t("MAKE A DIFFERENCE BY DONATING")}
                 </h2>
                 <div className='text-content drop-shadow-xl flex flex-col lg:flex-row items-center lg:justify-center lg:items-end w-full min-h-[343px] mt-20 mb-28'>
