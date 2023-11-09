@@ -1,6 +1,7 @@
-import renderer from "react-test-renderer";
-import BuyBorrowBtn from "../BuyBorrowBtn";
 import { NextIntlClientProvider } from "next-intl";
+import renderer from "react-test-renderer";
+
+import BuyBorrowBtn from "../BuyBorrowBtn";
 import messages from "../../../../messages/en.json";
 
 it("renders correctly", () => {
