@@ -1,0 +1,245 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+Array [
+  <form
+    className="flex md:flex-row flex-col justify-center items-center space-x-8"
+    onSubmit={[Function]}
+  >
+    <div
+      className="md:w-1/2"
+    >
+      <div
+        className="border border-dashed border-accent/50 hidden sm:flex flex-col items-center justify-center text-center p-8 text-accent/50 text-sm"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragEnter={[Function]}
+        onDragLeave={[Function]}
+        onDragOver={[Function]}
+        onDrop={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        role="presentation"
+        tabIndex={0}
+      >
+        <input
+          multiple={true}
+          name="file"
+          onChange={[Function]}
+          onClick={[Function]}
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+          tabIndex={-1}
+          type="file"
+        />
+        <p>
+          Drag and drop some files here or click to select files
+        </p>
+      </div>
+    </div>
+    <div
+      className="flex flex-wrap items-center justify-center  p-4 md:w-1/2 space-y-4 text-lg"
+    >
+      <input
+        className="border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md w-full"
+        onChange={[Function]}
+        placeholder="Product Name"
+        required={true}
+        type="text"
+        value=""
+      />
+      <div
+        className="flex justify-center mx-auto space-x-2 text-sm"
+      >
+        <select
+          className="border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2 uppercase"
+          onChange={[Function]}
+          required={true}
+          value=""
+        >
+          <option
+            value=""
+          >
+            Category
+          </option>
+          <option
+            value={0}
+          >
+            Index.Electronics
+          </option>
+          <option
+            value={1}
+          >
+            Index.Books
+          </option>
+          <option
+            value={2}
+          >
+            Index.Clothing
+          </option>
+        </select>
+        <input
+          className=" border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2"
+          onChange={[Function]}
+          placeholder="Location"
+          required={true}
+          type="text"
+          value=""
+        />
+      </div>
+      <textarea
+        className="w-full h-48 border border-accent/50  placeholder:text-accent/50 px-4  rounded-md placeholder:flex placeholder:items-center placeholder:justify-center placeholder:text-center placeholder:text-md"
+        onChange={[Function]}
+        placeholder="Description"
+        required={true}
+        value=""
+      />
+      <div
+        className="flex justify-center mx-auto space-x-2 w-full"
+      >
+        <select
+          className="w-1/2 border border-accent/50  placeholder:text-accent/50  py-2 rounded-md text-sm uppercase"
+          onChange={[Function]}
+          required={true}
+          value="Sell"
+        >
+          <option
+            value="Borrow"
+          >
+            Borrow
+          </option>
+          <option
+            value="Sell"
+          >
+            Sell
+          </option>
+        </select>
+        <input
+          className="w-full border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md"
+          onChange={[Function]}
+          placeholder="Price"
+          type="number"
+          value=""
+        />
+      </div>
+      <div
+        className="flex justify-center mx-auto space-x-2 items-center text-sm"
+      >
+        <label>
+          Product Condition
+          :
+        </label>
+        <select
+          className="w-1/2 border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md "
+          onChange={[Function]}
+          required={true}
+          value={5}
+        >
+          <option
+            value={0}
+          >
+            0
+            /10
+          </option>
+          <option
+            value={1}
+          >
+            1
+            /10
+          </option>
+          <option
+            value={2}
+          >
+            2
+            /10
+          </option>
+          <option
+            value={3}
+          >
+            3
+            /10
+          </option>
+          <option
+            value={4}
+          >
+            4
+            /10
+          </option>
+          <option
+            value={5}
+          >
+            5
+            /10
+          </option>
+          <option
+            value={6}
+          >
+            6
+            /10
+          </option>
+          <option
+            value={7}
+          >
+            7
+            /10
+          </option>
+          <option
+            value={8}
+          >
+            8
+            /10
+          </option>
+          <option
+            value={9}
+          >
+            9
+            /10
+          </option>
+          <option
+            value={10}
+          >
+            10
+            /10
+          </option>
+        </select>
+      </div>
+      <div
+        className="flex space-x-2 w-full justify-center"
+      >
+        <input
+          multiple={true}
+          onChange={[Function]}
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+          type="file"
+        />
+        <button
+          className="mt-2 rounded-md border border-accent px-4 py-2 text-sm font-bold uppercase tracking-wider text-white transition-colors hover:bg-titleContent/80 hover:text-white bg-titleContent disabled:bg-titleContent/20 disabled:border-none"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Upload Image(s)
+        </button>
+        <button
+          className="mt-2 rounded-md  border border-accent px-4 py-2 text-sm font-bold uppercase tracking-wider text-white transition-colors  hover:bg-accent/80  hover:text-white bg-accent disabled:bg-accent/20 disabled:border-none"
+          disabled={true}
+          type="submit"
+        >
+          List
+        </button>
+      </div>
+      <div
+        className="sm:hidden flex "
+      />
+    </div>
+  </form>,
+  " ",
+]
+`;

@@ -75,6 +75,25 @@
         "SECURITY": "SECURITY",
         "Upload ID": "Upload ID",
         "Edit ID": "Edit ID",
-        "Edit Image": "Edit Image"
+        "Edit Image": "Edit Image",
+        "List an Item": "List an Item",
+        "Drag and drop some files here or click to select files": "Drag and drop some files here or click to select files",
+        "Location": "Location",
+        "Category": "Category",
+        "books": "books",
+        "kitchen": "kitchen",
+        "sports": "sports",
+        "games": "games",
+        "clothes": "clothes",
+        "electronics": "electronics",
+        "furniture": "furniture",
+        "description": "Description",
+        "Product Condition": "Product Condition",
+        "Sell": "Sell",
+        "Price Per Week": "Price Per Week",
+        "Price": "Price",
+        "Upload Image(s)": "Upload Image(s)",
+        "List": "List",
+        "Product Name": "Product Name"
     }
 }

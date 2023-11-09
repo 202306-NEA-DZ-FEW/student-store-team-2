@@ -4,6 +4,18 @@ import renderer from "react-test-renderer";
 import MyListings from "@/components/myListings/MyListings";
 
 import messages from "../../../../messages/en.json";
+jest.mock("next/navigation", () => ({
+    useRouter: jest.fn(() => ({
+        push: jest.fn(),
+    })),
+    useSearchParams: jest.fn(() => ({
+        get: jest.fn(),
+    })),
+    usePathname: jest.fn(),
+    useParams: () => ({
+        locale: "en",
+    }),
+}));
 
 it("renders correctly", () => {
     const tree = renderer
