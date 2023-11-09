@@ -29,7 +29,7 @@ const Page = () => {
                     {t("MAKE A DIFFERENCE BY DONATING")}
                 </h2>
                 <div className='text-content drop-shadow-xl flex flex-col lg:flex-row items-center lg:justify-center lg:items-end w-full min-h-[343px] mt-20 mb-28'>
-                    <div className='flex flex-col items-center justify-center sm:mb-8 w-40 h-32 bg-bkg lg:w-64 lg:h-56 rounded-xl lg:mr-12'>
+                    <div className='flex flex-col items-center justify-center mb-8 w-40 h-32 bg-bkg lg:w-64 lg:h-56 rounded-xl lg:mr-12'>
                         <p className='text-xs lg:text-base '>
                             {t("Small Help")}
                         </p>
