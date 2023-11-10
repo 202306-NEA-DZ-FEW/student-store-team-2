@@ -1,4 +1,4 @@
-import { Jost, Jua, Lato, Poppins } from "next/font/google";
+import { Jost, Jua, Lato, Poppins, Roboto } from "next/font/google";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 
@@ -29,6 +29,11 @@ const poppins = Poppins({
     weight: ["100", "300", "400", "700", "900"],
     variable: "--font-poppins",
 });
+const roboto = Roboto({
+    weight: "700",
+    subsets: ["cyrillic"],
+    variable: "--font-roboto",
+});
 
 export const metadata = {
     title: "Create Next App",
@@ -53,7 +58,7 @@ export default async function RootLayout({ children, params: { locale } }) {
     return (
         <html lang={locale}>
             <body
-                className={`relative ${jua.variable} font-jua ${lato.variable} font-lato ${jost.variable} font-jost ${poppins.variable} font-poppins`}
+                className={`relative ${jua.variable} font-jua ${lato.variable} font-lato ${jost.variable} font-jost ${poppins.variable} font-poppins ${roboto.variable} font-roboto`}
             >
                 <UserProvider fetchUserData={fetchUserData}>
                     <NextIntlClientProvider locale={locale} messages={messages}>
