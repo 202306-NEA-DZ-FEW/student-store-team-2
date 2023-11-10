@@ -1,8 +1,8 @@
 function FeatureBanner() {
     return (
-        <div className='flex flex-wrap md:flex-no-wrap  justify-center  md:space-x-6  py-14'>
+        <div className='flex flex-wrap md:flex-no-wrap  justify-center  md:space-x-6 mt-20 pt-14'>
             <div
-                className='flex flex-row space-x-2 py-6 '
+                className='flex flex-row space-x-2  '
                 style={{ width: "283px" }}
             >
                 <svg
@@ -53,7 +53,7 @@ function FeatureBanner() {
                 </div>
             </div>
             <div
-                className='flex flex-row space-x-2  py-6'
+                className='flex flex-row space-x-2  '
                 style={{ width: "283px" }}
             >
                 <svg
@@ -97,7 +97,7 @@ function FeatureBanner() {
                 </div>
             </div>
             <div
-                className='flex flex-row space-x-2  py-6'
+                className='flex flex-row space-x-2  '
                 style={{ width: "283px" }}
             >
                 <svg
@@ -133,7 +133,7 @@ function FeatureBanner() {
                 </div>
             </div>
             <div
-                className='flex flex-row space-x-2  py-6'
+                className='flex flex-row space-x-2  '
                 style={{ width: "283px" }}
             >
                 <svg
