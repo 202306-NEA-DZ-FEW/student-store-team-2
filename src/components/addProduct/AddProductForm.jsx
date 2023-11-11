@@ -10,6 +10,7 @@ import { SiXamarin } from "react-icons/si";
 
 import { getSignature } from "@/lib/_cloudinary";
 import { db } from "@/lib/firebase";
+import { getLatestIndex } from "@/lib/firestore";
 
 import { useUser } from "../userProvider/UserProvider";
 
@@ -95,7 +96,7 @@ const AddProductForm = ({ className, categories }) => {
 
     async function action() {
         const uploadedFiles = [];
-
+        const lastIndex = (await getLatestIndex("products")) + 1;
         for (const file of files) {
             const { signature, timestamp } = await getSignature();
 
@@ -141,6 +142,7 @@ const AddProductForm = ({ className, categories }) => {
             for_sell,
             condition,
             price,
+            index: lastIndex,
             uid: user,
             created_at: formattedDate,
             image: imageLinks,

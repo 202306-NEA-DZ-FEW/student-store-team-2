@@ -1,4 +1,10 @@
-import { collection, doc, getDoc } from "firebase/firestore";
+"use server";
+import {
+    collection,
+    doc,
+    getCountFromServer,
+    getDoc,
+} from "firebase/firestore";
 
 import { db } from "./firebase";
 
@@ -28,4 +34,11 @@ export const getUserProfile = async (user) => {
         const userSnap = await getDoc(userRef);
         return userSnap.data();
     }
+};
+
+export const getLatestIndex = async (collectionName) => {
+    const collectionRef = collection(db, collectionName);
+    const snapshot = await getCountFromServer(collectionRef);
+    const latestIndex = snapshot.data().count - 1;
+    return latestIndex;
 };
