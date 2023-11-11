@@ -96,7 +96,7 @@ const AddProductForm = ({ className, categories }) => {
 
     async function action() {
         const uploadedFiles = [];
-        const lastIndex = await getLatestIndex("products");
+        const lastIndex = (await getLatestIndex("products")) + 1;
         for (const file of files) {
             const { signature, timestamp } = await getSignature();
 
