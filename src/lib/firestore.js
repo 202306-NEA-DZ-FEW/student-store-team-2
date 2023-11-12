@@ -147,4 +147,9 @@ export const getProductsLength = async () => {
     } catch (error) {
         return error.message;
     }
+export const getLatestIndex = async (collectionName) => {
+    const collectionRef = collection(db, collectionName);
+    const snapshot = await getCountFromServer(collectionRef);
+    const latestIndex = snapshot.data().count - 1;
+    return latestIndex;
 };
