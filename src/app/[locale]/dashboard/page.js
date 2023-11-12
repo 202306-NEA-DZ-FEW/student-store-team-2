@@ -13,7 +13,6 @@ import SortingControl from "../../../components/sortingControl/SortingControl";
 const Page = async ({ searchParams }) => {
     const colType = searchParams?.type ? searchParams.type : "borrowings";
     const categories = [];
-
     const querySnapshot = await getDocs(collection(db, colType));
     const data = querySnapshot.docs.map((doc) => {
         return { id: doc.id, ...doc.data() };

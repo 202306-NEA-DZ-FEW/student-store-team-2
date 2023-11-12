@@ -54,7 +54,7 @@ const UserProfileForm = () => {
             }
         };
         fetcher();
-    }, [user]);
+    }, [userData]);
 
     const handleImageUpload = (url) => {
         setImageURL(url);
