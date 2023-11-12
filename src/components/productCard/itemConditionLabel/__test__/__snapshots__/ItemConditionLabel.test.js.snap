@@ -6,7 +6,7 @@ exports[`renders correctly 1`] = `
 >
   <img
     alt="Item Condition"
-    className="z-0"
+    className="z-0 text-blue-400"
     data-nimg="1"
     decoding="async"
     height={39}

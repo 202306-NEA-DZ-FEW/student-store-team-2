@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className=""
+>
+  <h2
+    className="capitalize text-lg"
+  >
+    product status
+  </h2>
+  <div
+    className="mt-4 border-t border-t-[#EEEEEE] flex flex-col gap-5 py-4 px-3"
+  >
+    <label
+      className="group relative text-[#55585B] text-sm "
+    >
+      For Sale
+      <input
+        className="absolute opacity-0 cursor-pointer peer"
+        name="radio"
+        onChange={[Function]}
+        type="radio"
+        value="sale"
+      />
+      <span
+        className="absolute -top-2 -left-3 rounded-sm h-8 w-28 group-hover:bg-gray-200 -z-10   "
+      />
+    </label>
+    <label
+      className="group relative text-[#55585B] text-sm "
+    >
+      For Barrow
+      <input
+        className="absolute opacity-0 cursor-pointer peer"
+        name="radio"
+        onChange={[Function]}
+        type="radio"
+        value="barrow"
+      />
+      <span
+        className="absolute -top-2 -left-3 rounded-sm h-8 w-28 group-hover:bg-gray-200 -z-10   "
+      />
+    </label>
+  </div>
+</div>
+`;
