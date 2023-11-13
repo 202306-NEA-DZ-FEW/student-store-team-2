@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="pb-10"
+>
+  <h2
+    className="font-jost sm:text-lg"
+  >
+    Price Filter
+  </h2>
+  <div
+    className="mt-4"
+  >
+    <input
+      className="thumb thumb--left pointer-events-none absolute h-0 w-52 outline-none z-30"
+      onChange={[Function]}
+      onMouseUp={[Function]}
+      style={
+        Object {
+          "zIndex": false,
+        }
+      }
+      type="range"
+    />
+    <input
+      className="thumb thumb--right pointer-events-none absolute h-0 w-52 outline-none z-40 "
+      onChange={[Function]}
+      onMouseUp={[Function]}
+      type="range"
+    />
+    <div
+      className="relative w-52"
+    >
+      <div
+        className="slider__track absolute rounded h-1 bg-gray-200 w-full z-10"
+      />
+      <div
+        className="slider__range absolute rounded h-1 z-20 bg-[#821F40]"
+      />
+      <div
+        className="slider__left-value absolute text-[#55585B] text-xs left-2 mt-5"
+      />
+      <div
+        className="slider__right-value absolute text-[#55585B] text-xs mt-5 right-1"
+      />
+    </div>
+  </div>
+</div>
+`;

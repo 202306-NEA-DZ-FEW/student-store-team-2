@@ -1,0 +1,189 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <div
+    className=" mb-6"
+  >
+    <button
+      className="block text-md py-1 px-3 ml-auto mb-4 w-fit bg-gray-200 rounded-sm hover:bg-gray-400 active:bg-gray-200"
+      onClick={[Function]}
+    >
+      Reset
+    </button>
+    <h1
+      className="block uppercase text-lg "
+    >
+      filter by: 
+    </h1>
+  </div>
+  <div
+    className="flex flex-col gap-8"
+  >
+    <div
+      className="pb-10"
+    >
+      <h2
+        className="font-jost sm:text-lg"
+      >
+        Price Filter
+      </h2>
+      <div
+        className="mt-4"
+      >
+        <input
+          className="thumb thumb--left pointer-events-none absolute h-0 w-52 outline-none z-30"
+          max={1000}
+          min={0}
+          onChange={[Function]}
+          onMouseUp={[Function]}
+          style={
+            Object {
+              "zIndex": false,
+            }
+          }
+          type="range"
+          value={0}
+        />
+        <input
+          className="thumb thumb--right pointer-events-none absolute h-0 w-52 outline-none z-40 "
+          max={1000}
+          min={0}
+          onChange={[Function]}
+          onMouseUp={[Function]}
+          type="range"
+          value={1000}
+        />
+        <div
+          className="relative w-52"
+        >
+          <div
+            className="slider__track absolute rounded h-1 bg-gray-200 w-full z-10"
+          />
+          <div
+            className="slider__range absolute rounded h-1 z-20 bg-[#821F40]"
+          />
+          <div
+            className="slider__left-value absolute text-[#55585B] text-xs left-2 mt-5"
+          >
+            0
+          </div>
+          <div
+            className="slider__right-value absolute text-[#55585B] text-xs mt-5 right-1"
+          >
+            1000
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className=""
+    >
+      <h2
+        className="capitalize text-lg"
+      >
+        product status
+      </h2>
+      <div
+        className="mt-4 border-t border-t-[#EEEEEE] flex flex-col gap-5 py-4 px-3"
+      >
+        <label
+          className="group relative text-[#55585B] text-sm "
+        >
+          For Sale
+          <input
+            className="absolute opacity-0 cursor-pointer peer"
+            name="radio"
+            onChange={[Function]}
+            type="radio"
+            value="sale"
+          />
+          <span
+            className="absolute -top-2 -left-3 rounded-sm h-8 w-28 group-hover:bg-gray-200 -z-10   "
+          />
+        </label>
+        <label
+          className="group relative text-[#55585B] text-sm "
+        >
+          For Barrow
+          <input
+            className="absolute opacity-0 cursor-pointer peer"
+            name="radio"
+            onChange={[Function]}
+            type="radio"
+            value="barrow"
+          />
+          <span
+            className="absolute -top-2 -left-3 rounded-sm h-8 w-28 group-hover:bg-gray-200 -z-10   "
+          />
+        </label>
+      </div>
+    </div>
+    <div>
+      <h2
+        className="capitalize text-lg"
+      >
+        product note
+      </h2>
+      <div
+        className="flex gap-2 mt-4 border-t border-t-[#EEEEEE] py-4"
+      >
+        <button
+          className=" rounded-xl w-8 h-9   bg-white border border-gray-200"
+          onClick={[Function]}
+          value={5}
+        >
+          5
+        </button>
+        <button
+          className=" rounded-xl w-8 h-9   bg-white border border-gray-200"
+          onClick={[Function]}
+          value={6}
+        >
+          6
+        </button>
+        <button
+          className=" rounded-xl w-8 h-9   bg-white border border-gray-200"
+          onClick={[Function]}
+          value={7}
+        >
+          7
+        </button>
+        <button
+          className=" rounded-xl w-8 h-9   bg-white border border-gray-200"
+          onClick={[Function]}
+          value={8}
+        >
+          8
+        </button>
+        <button
+          className=" rounded-xl w-8 h-9   bg-white border border-gray-200"
+          onClick={[Function]}
+          value={9}
+        >
+          9
+        </button>
+        <button
+          className=" rounded-xl w-8 h-9   bg-white border border-gray-200"
+          onClick={[Function]}
+          value={10}
+        >
+          10
+        </button>
+      </div>
+    </div>
+    <div
+      className=""
+    >
+      <h2
+        className="capitalize text-lg"
+      >
+        categories
+      </h2>
+      <div
+        className="mt-4 border-t border-t-[#EEEEEE] flex flex-col items-start gap-5 py-4 px-3"
+      />
+    </div>
+  </div>
+</div>
+`;
