@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="flex justify-center items-center py-8"
+>
+  <div
+    className="w-3/4 flex flex-col justify-start gap-y-6 "
+  >
+    <div
+      className="flex items-center font-medium text-gray-700 text-sm border-b border-gray-200"
+    />
+    <div
+      className="bg-[#EDF1F3] p-1 m-2 rounded flex items-start text-sm font-base text-gray-700 "
+    />
+  </div>
+</div>
+`;
