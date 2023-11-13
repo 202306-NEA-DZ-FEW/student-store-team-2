@@ -15,7 +15,7 @@ const MyDashboard = () => {
                     {t(type)}{" "}
                 </span>
             </h2>
-            <span className='font-jost tracking-wider text-title text-center text-4xl md:pr-96 sm:mr-80 sm:py-6  md:hidden block'>
+            <span className='uppercase font-jost tracking-wider text-title text-center text-4xl md:pr-96 sm:mr-80 sm:py-6 my-10 md:hidden block'>
                 {t(type)}{" "}
             </span>
         </div>
