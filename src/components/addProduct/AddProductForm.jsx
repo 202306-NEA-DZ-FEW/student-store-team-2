@@ -1,6 +1,5 @@
 "use client";
 
-import imageCompression from "browser-image-compression";
 import { addDoc, collection } from "firebase/firestore";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
@@ -14,13 +13,6 @@ import { db } from "@/lib/firebase";
 import { getLatestIndex } from "@/lib/firestore";
 
 import { useUser } from "../userProvider/UserProvider";
-const defaultOptions = {
-    maxSizeMB: 0.5,
-};
-
-export function compressFile(imageFile, options = defaultOptions) {
-    return imageCompression(imageFile, options);
-}
 
 const AddProductForm = ({ className, categories }) => {
     const t = useTranslations("Index");
@@ -108,13 +100,13 @@ const AddProductForm = ({ className, categories }) => {
         console.log(process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL);
         for (const file of files) {
             const { signature, timestamp } = await getSignature();
-            const compressedFile = await compressFile(file);
             const formData = new FormData();
-            formData.append("file", compressedFile);
+            formData.append("file", file);
             formData.append(
                 "api_key",
                 process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY
             );
+            formData.append("quality", "auto:best");
             formData.append("signature", signature);
             formData.append("timestamp", timestamp);
             formData.append("folder", "next");
