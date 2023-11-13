@@ -17,7 +17,7 @@ const NavLinks = () => {
     const params = useSearchParams();
     const type = params.get("type");
     return (
-        <div className='font-lato font-semibold text-lg uppercase w-72 h-64 md:ml-5 xl:ml-32 mt-10 bg-bkg text-titleContent p-4 pl-0 hidden sm:block'>
+        <div className='font-lato font-semibold text-lg uppercase w-72 h-64 md:ml-5 lg:ml-20 xl:ml-44 mt-10 bg-bkg text-titleContent p-4 pl-0 hidden md:block'>
             {links.map((link) => (
                 <Link href={`/dashboard?type=${link.name}`} key={link.name}>
                     <div
