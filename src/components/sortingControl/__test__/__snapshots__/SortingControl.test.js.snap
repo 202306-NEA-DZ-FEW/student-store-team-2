@@ -2,42 +2,79 @@
 
 exports[`renders correctly 1`] = `
 <div
-  className="font-lato font-semibold text-lg text-titleContent sm:flex justify-center w-5/6 h-16 hidden"
+  className="font-lato font-semibold text-lg text-titleContent flex justify-center w-fit sm:w-full lg:w-3/4 sm:h-16"
 >
   <div
-    className="flex justify-between items-center text-center mb-4 w-1/2 "
+    className="md:flex justify-center items-center text-center sm:px-4  mr-2 mb-4 w-1/2 hidden"
   >
     <div
-      className=" hover:underline"
+      className=" hover:underline mx-2"
     >
       All
     </div>
     <div
-      className=" hover:underline"
+      className=" hover:underline mx-2"
     >
-      Awaiting Pickup
+      Index.Pending
     </div>
     <div
-      className=" hover:underline"
+      className=" hover:underline mx-2"
     >
       Active
     </div>
     <div
-      className=" hover:underline"
+      className=" hover:underline mx-2"
     >
       Completed
     </div>
   </div>
   <div
-    className="ml-28 mb-4 sort-list flex items-center "
+    className="ml-1/10 mr-2 mb-4 sort-list md:hidden flex justify-between px-4 items-center"
   >
     <label
-      className="sort-label pr-2  hover:underline"
+      className="sort-label pr-2  hover:underline hidden"
+    >
+      Index.Filter
+    </label>
+    <select
+      className="font-lato text-secondaryGray text-lg sort-select h-14 w-32 border-2 rounded-lg"
+    >
+      <option
+        className="text-secondaryGray text-center hover:bg-accent hover:text-white h-16 w-44"
+        value="All"
+      >
+        All
+      </option>
+      <option
+        className="text-secondaryGray text-center hover:bg-accent hover:text-white h-16 w-44"
+        value="Pending"
+      >
+        Index.Pending
+      </option>
+      <option
+        className="text-secondaryGray text-center hover:bg-accent hover:text-white h-16 w-44"
+        value="Active"
+      >
+        Active
+      </option>
+      <option
+        className="text-secondaryGray text-center hover:bg-accent hover:text-white h-16 w-44"
+        value="Completed"
+      >
+        Completed
+      </option>
+    </select>
+  </div>
+  <div
+    className="ml-1/10 mb-4 sort-list flex px-4 items-center"
+  >
+    <label
+      className="sort-label pr-2 hidden hover:underline"
     >
       Sort:
     </label>
     <select
-      className="font-lato text-secondaryGray text-lg sort-select px-2 h-14 w-36 border-2 rounded-lg"
+      className="font-lato text-secondaryGray text-lg sort-select h-14 w-36 border-2 rounded-lg"
     >
       <option
         className="text-secondaryGray text-center hover:bg-accent hover:text-white h-16 w-44"

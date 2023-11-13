@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <div
-  className="font-lato font-semibold text-lg uppercase w-72 h-64 md:ml-5 xl:ml-32 mt-10 bg-bkg text-titleContent p-4 pl-0 hidden sm:block"
+  className="font-lato font-semibold text-lg uppercase w-72 h-64 md:ml-5 lg:ml-20 xl:ml-44 mt-10 bg-bkg text-titleContent p-4 pl-0 hidden md:block"
 >
   <a
     href="/dashboard?type=borrowings"
