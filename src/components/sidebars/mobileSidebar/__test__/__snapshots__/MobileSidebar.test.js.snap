@@ -1,0 +1,259 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="lg:hidden"
+>
+  <div
+    className="modal fixed z-20 lg:hidden bg-[rgba(0,0,0,0.33)] z-10  top-0 left-0 w-screen h-screen scale-0"
+    onClick={[Function]}
+  >
+    <button
+      className="bg-gray-100 rounded-md float-right mr-4 mt-4"
+    >
+      <svg
+        className="w-7 h-7 text-gray-400"
+        fill="currentColor"
+        fillRule="evenodd"
+        height="1em"
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 1024 1024"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M799.855 166.312c.023.007.043.018.084.059l57.69 57.69c.041.041.052.06.059.084a.118.118 0 0 1 0 .069c-.007.023-.018.042-.059.083L569.926 512l287.703 287.703c.041.04.052.06.059.083a.118.118 0 0 1 0 .07c-.007.022-.018.042-.059.083l-57.69 57.69c-.041.041-.06.052-.084.059a.118.118 0 0 1-.069 0c-.023-.007-.042-.018-.083-.059L512 569.926 224.297 857.629c-.04.041-.06.052-.083.059a.118.118 0 0 1-.07 0c-.022-.007-.042-.018-.083-.059l-57.69-57.69c-.041-.041-.052-.06-.059-.084a.118.118 0 0 1 0-.069c.007-.023.018-.042.059-.083L454.073 512 166.371 224.297c-.041-.04-.052-.06-.059-.083a.118.118 0 0 1 0-.07c.007-.022.018-.042.059-.083l57.69-57.69c.041-.041.06-.052.084-.059a.118.118 0 0 1 .069 0c.023.007.042.018.083.059L512 454.073l287.703-287.702c.04-.041.06-.052.083-.059a.118.118 0 0 1 .07 0Z"
+        />
+      </svg>
+    </button>
+  </div>
+  <div
+    className="p-10  bg-white z-20 fixed overflow-auto -translate-x-full h-screen w-3/4 top-0 left-0 transition-all ease-in  lg:translate-x-0 "
+  >
+    <div>
+      <div
+        className=" mb-6"
+      >
+        <button
+          className="block text-md py-1 px-3 ml-auto mb-4 w-fit bg-gray-200 rounded-sm hover:bg-gray-400 active:bg-gray-200"
+          onClick={[Function]}
+        >
+          Reset
+        </button>
+        <h1
+          className="block uppercase text-lg "
+        >
+          filter by: 
+        </h1>
+      </div>
+      <div
+        className="flex flex-col gap-8"
+      >
+        <div
+          className="pb-10"
+        >
+          <h2
+            className="font-jost sm:text-lg"
+          >
+            Price Filter
+          </h2>
+          <div
+            className="mt-4"
+          >
+            <input
+              className="thumb thumb--left pointer-events-none absolute h-0 w-52 outline-none z-30"
+              max={1000}
+              min={0}
+              onChange={[Function]}
+              onMouseUp={[Function]}
+              style={
+                Object {
+                  "zIndex": false,
+                }
+              }
+              type="range"
+              value={0}
+            />
+            <input
+              className="thumb thumb--right pointer-events-none absolute h-0 w-52 outline-none z-40 "
+              max={1000}
+              min={0}
+              onChange={[Function]}
+              onMouseUp={[Function]}
+              type="range"
+              value={1000}
+            />
+            <div
+              className="relative w-52"
+            >
+              <div
+                className="slider__track absolute rounded h-1 bg-gray-200 w-full z-10"
+              />
+              <div
+                className="slider__range absolute rounded h-1 z-20 bg-[#821F40]"
+              />
+              <div
+                className="slider__left-value absolute text-[#55585B] text-xs left-2 mt-5"
+              >
+                0
+              </div>
+              <div
+                className="slider__right-value absolute text-[#55585B] text-xs mt-5 right-1"
+              >
+                1000
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className=""
+        >
+          <h2
+            className="capitalize text-lg"
+          >
+            product status
+          </h2>
+          <div
+            className="mt-4 border-t border-t-[#EEEEEE] flex flex-col gap-5 py-4 px-3"
+          >
+            <label
+              className="group relative text-[#55585B] text-sm "
+            >
+              For Sale
+              <input
+                className="absolute opacity-0 cursor-pointer peer"
+                name="radio"
+                onChange={[Function]}
+                type="radio"
+                value="sale"
+              />
+              <span
+                className="absolute -top-2 -left-3 rounded-sm h-8 w-28 group-hover:bg-gray-200 -z-10   "
+              />
+            </label>
+            <label
+              className="group relative text-[#55585B] text-sm "
+            >
+              For Barrow
+              <input
+                className="absolute opacity-0 cursor-pointer peer"
+                name="radio"
+                onChange={[Function]}
+                type="radio"
+                value="barrow"
+              />
+              <span
+                className="absolute -top-2 -left-3 rounded-sm h-8 w-28 group-hover:bg-gray-200 -z-10   "
+              />
+            </label>
+          </div>
+        </div>
+        <div>
+          <h2
+            className="capitalize text-lg"
+          >
+            product note
+          </h2>
+          <div
+            className="flex gap-2 mt-4 border-t border-t-[#EEEEEE] py-4"
+          >
+            <button
+              className=" rounded-xl w-8 h-9   bg-white border border-gray-200"
+              onClick={[Function]}
+              value={5}
+            >
+              5
+            </button>
+            <button
+              className=" rounded-xl w-8 h-9   bg-white border border-gray-200"
+              onClick={[Function]}
+              value={6}
+            >
+              6
+            </button>
+            <button
+              className=" rounded-xl w-8 h-9   bg-white border border-gray-200"
+              onClick={[Function]}
+              value={7}
+            >
+              7
+            </button>
+            <button
+              className=" rounded-xl w-8 h-9   bg-white border border-gray-200"
+              onClick={[Function]}
+              value={8}
+            >
+              8
+            </button>
+            <button
+              className=" rounded-xl w-8 h-9   bg-white border border-gray-200"
+              onClick={[Function]}
+              value={9}
+            >
+              9
+            </button>
+            <button
+              className=" rounded-xl w-8 h-9   bg-white border border-gray-200"
+              onClick={[Function]}
+              value={10}
+            >
+              10
+            </button>
+          </div>
+        </div>
+        <div
+          className=""
+        >
+          <h2
+            className="capitalize text-lg"
+          >
+            categories
+          </h2>
+          <div
+            className="mt-4 border-t border-t-[#EEEEEE] flex flex-col items-start gap-5 py-4 px-3"
+          />
+        </div>
+      </div>
+      <button
+        className="bg-accent  mt-4 float-right bottom-2 px-3 py-1 text-white active:bg-slate-600"
+        onClick={[Function]}
+      >
+        Filter
+      </button>
+    </div>
+  </div>
+  <button
+    className="bg-accent w-16 h-16 text-white fixed right-3 top-[80%] transition-all ease-in flex flex-col items-center justify-center rounded-full scale-0"
+    onClick={[Function]}
+  >
+    <svg
+      className="w-7 h-7"
+      fill="currentColor"
+      height="1em"
+      stroke="currentColor"
+      strokeWidth="0"
+      style={
+        Object {
+          "color": undefined,
+        }
+      }
+      viewBox="0 0 512 512"
+      width="1em"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M381.25 112a48 48 0 00-90.5 0H48v32h242.75a48 48 0 0090.5 0H464v-32zM176 208a48.09 48.09 0 00-45.25 32H48v32h82.75a48 48 0 0090.5 0H464v-32H221.25A48.09 48.09 0 00176 208zm160 128a48.09 48.09 0 00-45.25 32H48v32h242.75a48 48 0 0090.5 0H464v-32h-82.75A48.09 48.09 0 00336 336z"
+      />
+    </svg>
+    <span>
+       Filter
+    </span>
+  </button>
+</div>
+`;

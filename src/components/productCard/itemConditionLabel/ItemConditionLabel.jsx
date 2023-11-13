@@ -8,7 +8,7 @@ const ItemConditionLabel = ({ itemCondition }) => {
     return (
         <div className='relative'>
             <Image
-                className='z-0'
+                className='z-0 text-blue-400'
                 src='/conditionLabelVector.svg'
                 alt='Item Condition'
                 width={139}
