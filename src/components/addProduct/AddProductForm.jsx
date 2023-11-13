@@ -15,7 +15,7 @@ import { getLatestIndex } from "@/lib/firestore";
 
 import { useUser } from "../userProvider/UserProvider";
 const defaultOptions = {
-    maxSizeMB: 1,
+    maxSizeMB: 0.5,
 };
 
 export function compressFile(imageFile, options = defaultOptions) {
@@ -108,7 +108,7 @@ const AddProductForm = ({ className, categories }) => {
         console.log(process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL);
         for (const file of files) {
             const { signature, timestamp } = await getSignature();
-            const compressedFile = compressFile(file);
+            const compressedFile = await compressFile(file);
             const formData = new FormData();
             formData.append("file", compressedFile);
             formData.append(
