@@ -21,6 +21,7 @@
     "dependencies": {
         "@formatjs/intl-localematcher": "^0.4.2",
         "@headlessui/react": "^1.7.17",
+        "@supabase/supabase-js": "^2.38.4",
         "@tailwindcss/aspect-ratio": "^0.4.2",
         "autoprefixer": "^10.4.16",
         "cloudinary": "^1.41.0",
