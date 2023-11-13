@@ -15,8 +15,10 @@ export const getProducts = async (searchParams) => {
         // query = query.select(`name, borrow_offer ( * )`);
         query = query.gt("borrow_offer.price", 50);
         query = query.gt("sale_offer.price", 50);
-        query = query.filter("NOT (borrow_offer = null OR sale_offer = null)");
-
+        query = query.or([
+            "borrow_offer.not.is.null",
+            "sale_offer.not.is.null",
+        ]);
         // .and(not("borrow_offer.price", "is", null));
         // query = query.order("id", {
         //     foreignTable: "borrow_offer",
