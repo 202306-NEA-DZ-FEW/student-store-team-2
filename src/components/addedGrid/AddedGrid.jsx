@@ -1,8 +1,6 @@
 "use client";
 import { useTranslations } from "next-intl";
 
-import ProductCard from "../productCard/ProductCard";
-
 export default function AddedGrid() {
     const t = useTranslations("Index");
     return (
@@ -38,7 +36,7 @@ export default function AddedGrid() {
                 <div style={{ width: "306px" }}>
                     <ProductCard />
                 </div> */}
-            <ProductCard />
+
             {/* </div> */}
         </div>
     );

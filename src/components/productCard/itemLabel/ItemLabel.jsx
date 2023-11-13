@@ -9,7 +9,7 @@ const ItemLabel = ({ textContent }) => {
     if (textContent === t("For Sale")) {
         style = `bg-secondaryBlue`;
     } else if (textContent === t("For Borrow")) {
-        style = `bg-secondaryYellow`;
+        style = `bg-secondaryGreen`;
     } else {
         style = `bg-secondaryGreen`;
     }

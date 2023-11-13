@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className=""
+>
+  <h2
+    className="capitalize text-lg"
+  >
+    categories
+  </h2>
+  <div
+    className="mt-4 border-t border-t-[#EEEEEE] flex flex-col items-start gap-5 py-4 px-3"
+  />
+</div>
+`;
