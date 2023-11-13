@@ -25,7 +25,7 @@ const Page = () => {
                 </p>
             </section>
             <div className='flex flex-col items-center w-auto sm:min-h-[600px] bg-accent2'>
-                <h2 className='text-titleContent font-semibold text-base w-3/4 text-center lg:text-xl sm:font-bold md:text-lg mt-16'>
+                <h2 className='text-titleContent font-semibold text-base w-3/4 mb-5 text-center lg:text-xl sm:font-bold md:text-lg mt-16'>
                     {t("MAKE A DIFFERENCE BY DONATING")}
                 </h2>
                 <div className='text-content drop-shadow-xl flex flex-col lg:flex-row items-center lg:justify-center lg:items-end w-full lg:h-96'>
