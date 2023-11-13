@@ -23,6 +23,7 @@
         "@headlessui/react": "^1.7.17",
         "@tailwindcss/aspect-ratio": "^0.4.2",
         "autoprefixer": "^10.4.16",
+        "browser-image-compression": "^2.0.2",
         "cloudinary": "^1.41.0",
         "clsx": "^1.2.1",
         "date-fns": "^2.29.1",

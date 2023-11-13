@@ -1,5 +1,6 @@
 "use client";
 
+import imageCompression from "browser-image-compression";
 import { addDoc, collection } from "firebase/firestore";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
@@ -8,11 +9,18 @@ import { useDropzone } from "react-dropzone";
 import { FaSpinner } from "react-icons/fa";
 import { SiXamarin } from "react-icons/si";
 
-import { getSignature } from "@/lib/_cloudinary";
+import { getSignature, saveToDatabase } from "@/lib/_cloudinary";
 import { db } from "@/lib/firebase";
 import { getLatestIndex } from "@/lib/firestore";
 
 import { useUser } from "../userProvider/UserProvider";
+const defaultOptions = {
+    maxSizeMB: 1,
+};
+
+export function compressFile(imageFile, options = defaultOptions) {
+    return imageCompression(imageFile, options);
+}
 
 const AddProductForm = ({ className, categories }) => {
     const t = useTranslations("Index");
@@ -95,13 +103,14 @@ const AddProductForm = ({ className, categories }) => {
     };
 
     async function action() {
-        const uploadedFiles = [];
         const lastIndex = (await getLatestIndex("products")) + 1;
+        const uploadedFiles = [];
+        console.log(process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL);
         for (const file of files) {
             const { signature, timestamp } = await getSignature();
-
+            const compressedFile = compressFile(file);
             const formData = new FormData();
-            formData.append("file", file);
+            formData.append("file", compressedFile);
             formData.append(
                 "api_key",
                 process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY
@@ -111,28 +120,35 @@ const AddProductForm = ({ className, categories }) => {
             formData.append("folder", "next");
 
             const endpoint = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL;
-            const response = await fetch(endpoint, {
+            const data = await fetch(endpoint, {
                 method: "POST",
                 body: formData,
             }).then((res) => res.json());
 
+            await saveToDatabase({
+                version: data?.version,
+                signature: data?.signature,
+                public_id: data?.public_id,
+            });
             uploadedFiles.push({
                 name: file.name,
                 preview: URL.createObjectURL(file),
-                cloudinaryUrl: response.secure_url,
+                cloudinaryUrl: data.secure_url,
             });
         }
+
+        setFiles(uploadedFiles);
+
+        const imageLinks = uploadedFiles.map((file) => file.cloudinaryUrl);
 
         const for_borrow = type === "Borrow" || type === "Sell & Borrow";
         const for_sell = type === "Sell" || type === "Sell & Borrow";
 
-        setFiles(uploadedFiles);
         const today = new Date();
         const year = today.getFullYear();
         const month = String(today.getMonth() + 1).padStart(2, "0");
         const day = String(today.getDate()).padStart(2, "0");
         const formattedDate = `${year}-${month}-${day}`;
-        const imageLinks = uploadedFiles.map((file) => file.cloudinaryUrl);
         const productData = {
             productName,
             category,
