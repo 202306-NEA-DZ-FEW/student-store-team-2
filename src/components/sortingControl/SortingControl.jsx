@@ -5,18 +5,18 @@ import React from "react";
 const SortingControl = () => {
     const t = useTranslations("Index");
     return (
-        <div className='font-lato font-semibold text-xl text-titleContent sm:flex justify-center w-[940px] h-16 hidden sm:block'>
-            <div className='flex justify-between items-center text-center space-x-4 mb-4  w-[630px] '>
+        <div className='font-lato font-semibold text-lg text-titleContent sm:flex justify-center w-5/6 h-16 hidden'>
+            <div className='flex justify-between items-center text-center mb-4 w-1/2 '>
                 <div className=' hover:underline'>{t("All")}</div>
                 <div className=' hover:underline'>{t("Awaiting Pickup")}</div>
                 <div className=' hover:underline'>{t("Active")}</div>
                 <div className=' hover:underline'>{t("Completed")}</div>
             </div>
-            <div className='ml-48 mb-4 sort-list flex items-center '>
+            <div className='ml-28 mb-4 sort-list flex items-center '>
                 <label className='sort-label pr-2  hover:underline'>
                     {t("Sort")}
                 </label>
-                <select className='font-lato text-secondaryGray text-xl sort-select px-2 h-16 w-44 border-2 rounded-lg'>
+                <select className='font-lato text-secondaryGray text-lg sort-select px-2 h-14 w-36 border-2 rounded-lg'>
                     <option
                         value='newest'
                         className='text-secondaryGray text-center hover:bg-accent hover:text-white h-16 w-44'

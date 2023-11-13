@@ -7,7 +7,7 @@ import AddProductForm from "@/components/addProduct/AddProductForm";
 
 import DashboardDisplay from "../../../components/dashboardDisplay/DashboardDisplay";
 import NavLinks from "../../../components/dashboardNavLinks/NavLinks";
-import MyListings from "../../../components/myListings/MyListings";
+import MyDashboard from "../../../components/myListings/MyDashboard";
 import SortingControl from "../../../components/sortingControl/SortingControl";
 
 const Page = async ({ searchParams }) => {
@@ -27,7 +27,7 @@ const Page = async ({ searchParams }) => {
 
     return (
         <div className='pb-40'>
-            <MyListings />
+            <MyDashboard />
             <div className='flex leading-6  tracking-wider mb-20'>
                 <NavLinks />
                 {searchParams.type === "List an Item" ? (

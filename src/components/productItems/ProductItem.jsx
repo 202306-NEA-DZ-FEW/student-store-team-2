@@ -2,7 +2,7 @@ import Image from "next/image";
 import { AiOutlineMessage } from "react-icons/ai";
 import { BsPersonCircle } from "react-icons/bs";
 import { FaPhoneAlt } from "react-icons/fa";
-const ProductItem = ({ text, name, order_num, phone }) => {
+const ProductItem = ({ text, name, order_num, phone, image }) => {
     text = "requested";
     let textColorClass = "text-black"; // Default text color class
     if (text === "requested") {
@@ -13,19 +13,14 @@ const ProductItem = ({ text, name, order_num, phone }) => {
         textColorClass = "text-yellow-500"; // Change to yellow for 'awaiting pickup'
     }
     return (
-        <div className='sm:w-[935px] sm:h-[255px]'>
+        <div className='h1/5 w-3/4 sm:w-[935px] sm:h-[255px]'>
             <h5
                 className={`flex items-center justify-center py-6 uppercase text-xs ${textColorClass}`}
             >
                 {text}
             </h5>
             <div className='flex justify-start items-start'>
-                <Image
-                    src='https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg'
-                    alt='Product dress'
-                    width={130}
-                    height={235}
-                />
+                <Image src={image} alt={name} width={130} height={235} />
                 <div className='space-y-4 ml-7 font-lato'>
                     <h1 className='w-[215px] h-[46px] capitalize-words font-semibold font- tracking-wider text-titleContent sm:w-[681.39px] sm:h-[45.83px] '>
                         {name}

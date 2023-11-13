@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <div
-  className="sm:w-[935px] sm:h-[255px]"
+  className="h1/5 w-3/4 sm:w-[935px] sm:h-[255px]"
 >
   <h5
     className="flex items-center justify-center py-6 uppercase text-xs text-blue-500"
@@ -13,15 +13,12 @@ exports[`renders correctly 1`] = `
     className="flex justify-start items-start"
   >
     <img
-      alt="Product dress"
       data-nimg="1"
       decoding="async"
       height={235}
-      loading="lazy"
       onError={[Function]}
       onLoad={[Function]}
-      src="/_next/image?url=https%3A%2F%2Ftailwindui.com%2Fimg%2Fecommerce-images%2Fproduct-page-01-related-product-01.jpg&w=384&q=75"
-      srcSet="/_next/image?url=https%3A%2F%2Ftailwindui.com%2Fimg%2Fecommerce-images%2Fproduct-page-01-related-product-01.jpg&w=256&q=75 1x, /_next/image?url=https%3A%2F%2Ftailwindui.com%2Fimg%2Fecommerce-images%2Fproduct-page-01-related-product-01.jpg&w=384&q=75 2x"
+      src=""
       style={
         Object {
           "color": "transparent",

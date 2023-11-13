@@ -216,7 +216,7 @@ const AddProductForm = ({ className, categories }) => {
                             {files.length === 0 && (
                                 <div
                                     {...getRootProps({ className: className })}
-                                    className='border border-dashed border-accent/50 hidden sm:flex flex-col items-center justify-center text-center p-8 text-accent/50 text-sm'
+                                    className='border border-dashed border-accent/50 hidden md:flex flex-col items-center justify-center text-center p-8 text-accent/50 text-sm'
                                 >
                                     <input
                                         {...getInputProps({
