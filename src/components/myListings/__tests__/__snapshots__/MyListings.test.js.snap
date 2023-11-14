@@ -5,17 +5,23 @@ exports[`renders correctly 1`] = `
   className="pt-20"
 >
   <h2
-    className="font-jost tracking-wider text-title text-4xl ml-14 pb-20  sm:pr-96 sm:mr-80 sm:py-12 "
+    className="font-jost tracking-wider text-title text-center hidden md:inline-block text-3xl ml-32 pb-20 sm:py-12 "
   >
-    My Listings
+    My Dashboard
      |
      
     <span
-      className="uppercase text-2xl hidden sm:inline-block"
+      className="uppercase text-2xl sm:inline-block"
     >
       Index
        
     </span>
   </h2>
+  <span
+    className="uppercase font-jost tracking-wider text-title text-center text-4xl md:pr-96 sm:mr-80 sm:py-6 my-10 md:hidden block"
+  >
+    Index
+     
+  </span>
 </div>
 `;

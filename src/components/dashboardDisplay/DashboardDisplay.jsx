@@ -4,7 +4,7 @@ import ProductItem from "@/components/productItems/ProductItem";
 
 const DashboardDisplay = ({ data }) => {
     return (
-        <div className='flex flex-wrap gap-4 pr-4 w-60 pl-28'>
+        <div className='flex flex-wrap gap-4 w-fit'>
             <div>
                 {data &&
                     data.map((item) => {
