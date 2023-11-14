@@ -1,7 +1,4 @@
-import { collection, getDocs } from "firebase/firestore";
-import React from "react";
-
-import { db } from "@/lib/firebase";
+import { getItems } from "@/lib/supabase";
 
 import AddProductForm from "@/components/addProduct/AddProductForm";
 
@@ -11,19 +8,35 @@ import MyDashboard from "../../../components/myListings/MyDashboard";
 import SortingControl from "../../../components/sortingControl/SortingControl";
 
 const Page = async ({ searchParams }) => {
-    const colType = searchParams?.type ? searchParams.type : "borrowings";
     const categories = [];
 
-    const querySnapshot = await getDocs(collection(db, colType));
-    const data = querySnapshot.docs.map((doc) => {
-        return { id: doc.id, ...doc.data() };
-    });
+    const fetchPurchases = async (table, filterField, filterValue) => {
+        "use server";
+        // Use Supabase function to fetch data with filter
+        const { data: items, error } = await getItems(
+            table,
+            filterField,
+            filterValue
+        );
+        console.log("items are", items);
+        if (error) {
+            console.error("Error fetching items:", error.message);
+            // Handle the error accordingly
+            return <div>Error fetching data</div>;
+        }
+        return items;
+    };
 
-    const categoriesSnapshot = await getDocs(collection(db, "categories"));
-    categoriesSnapshot.forEach((doc) => {
-        const categoryData = doc.data().categories; // Assuming 'categories' is the field
-        categories.push(categoryData);
-    });
+    // // Fetch categories
+    // const { data: categoriesData, error: categoriesError } = await getItems(
+    //     "categories"
+    // );
+
+    // if (categoriesError) {
+    //     console.error("Error fetching categories:", categoriesError.message);
+    //     // Handle the error accordingly
+    //     return <div>Error fetching categories</div>;
+    // }
 
     return (
         <div className='pb-40'>
@@ -37,7 +50,10 @@ const Page = async ({ searchParams }) => {
                 ) : (
                     <div className='flex-1 flex-col justify-center p-4 w-2/3 lg:pl-48 xl:pl-48'>
                         <SortingControl />
-                        <DashboardDisplay data={data} />
+                        <DashboardDisplay
+                            fetchPurchases={fetchPurchases}
+                            type={searchParams.type}
+                        />
                     </div>
                 )}
 

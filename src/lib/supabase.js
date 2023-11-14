@@ -89,3 +89,11 @@ export const getProducts = async (searchParams) => {
         return error;
     }
 };
+
+export const getItems = async (table, filterField, filterValue) => {
+    const items = await supabase
+        .from(table)
+        .select("")
+        .eq(filterField, filterValue);
+    return items;
+};

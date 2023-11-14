@@ -101,6 +101,8 @@
         "Price": "Price",
         "Upload Image(s)": "Upload Image(s)",
         "List": "List",
-        "Product Name": "Product Name"
+        "Product Name": "Product Name",
+        "Filter": "Filter",
+        "Pending": "Pending"
     }
 }
