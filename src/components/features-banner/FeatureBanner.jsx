@@ -1,4 +1,7 @@
+"use client";
+import { useTranslations } from "next-intl";
 function FeatureBanner() {
+    const t = useTranslations("Index");
     return (
         <div className='flex flex-wrap md:flex-no-wrap  justify-center  md:space-x-6 mt-20 pt-14'>
             <div
@@ -43,12 +46,11 @@ function FeatureBanner() {
                 </svg>
                 <div className=' '>
                     <p className='uppercase text-12 md:text-25 '>
-                        Free delivery{" "}
+                        {t("Free delivery")}{" "}
                     </p>
                     <p className='text-12 md:text-16 text-content '>
                         {" "}
-                        You can receive your order without incurring any
-                        additional shipping costs
+                        {t("feature descriprion 1")}
                     </p>
                 </div>
             </div>
@@ -87,12 +89,11 @@ function FeatureBanner() {
                 </svg>
                 <div className=' '>
                     <p className='uppercase text-12 md:text-25 '>
-                        qualite guarantee
+                        {t("qualite guarantee")}
                     </p>
                     <p className='text-12 md:text-16 text-content '>
                         {" "}
-                        Our products or services meet high standards and perform
-                        as promised.
+                        {t("feature descriprion 2")}
                     </p>
                 </div>
             </div>
@@ -124,11 +125,11 @@ function FeatureBanner() {
                 </svg>
                 <div className=' '>
                     <p className='uppercase text-12 md:text-25 '>
-                        daily offers{" "}
+                        {t("daily offers")}{" "}
                     </p>
                     <p className='text-12 md:text-16 text-content '>
                         {" "}
-                        Exclusive discounts and promotions on a daily basis
+                        {t("feature descriprion 3")}
                     </p>
                 </div>
             </div>
@@ -160,12 +161,11 @@ function FeatureBanner() {
                 </svg>
                 <div className=' '>
                     <p className='uppercase text-12 md:text-25 '>
-                        100% secure payement{" "}
+                        {t("100% secure payement")}{" "}
                     </p>
                     <p className='text-12 md:text-16 text-content '>
                         {" "}
-                        Your financial information is protected and your
-                        transactions are safe from unauthorized access
+                        {t("feature descriprion 4")}
                     </p>
                 </div>
             </div>

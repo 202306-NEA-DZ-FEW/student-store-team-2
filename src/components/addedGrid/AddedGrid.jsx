@@ -35,12 +35,6 @@ export default function AddedGrid() {
                 <div>
                     <ProductCard />
                 </div>
-                <div>
-                    <ProductCard />
-                </div>
-                <div>
-                    <ProductCard />
-                </div>
             </div>
         </div>
     );
