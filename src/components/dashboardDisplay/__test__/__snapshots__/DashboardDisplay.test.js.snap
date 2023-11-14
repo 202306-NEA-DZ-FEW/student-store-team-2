@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <div
-  className="flex flex-wrap gap-4 pr-4 w-60 pl-28"
+  className="flex flex-wrap gap-4 w-fit"
 >
   <div />
 </div>
