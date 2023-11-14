@@ -220,11 +220,13 @@ const AddProductForm = ({ className, categories }) => {
                     </div>
                 ) : (
                     <>
-                        <div className='md:w-1/2 '>
-                            {files.length === 0 && (
+                        <div className='md:w-1/2'>
+                            {files.length < 4 && (
                                 <div
                                     {...getRootProps({ className: className })}
-                                    className='border border-dashed border-accent/50 hidden md:flex flex-col items-center justify-center text-center p-8 text-accent/50 text-sm'
+                                    className={`border border-dashed border-accent/50 md:flex ${
+                                        files.length === 0 ? "flex" : "hidden"
+                                    } flex-col items-center justify-center text-center p-8 text-accent/50 text-sm`}
                                 >
                                     <input
                                         {...getInputProps({
@@ -240,57 +242,28 @@ const AddProductForm = ({ className, categories }) => {
                                 </div>
                             )}
 
-                            {files.length === 4 && (
-                                <div className='hidden sm:flex flex-col gap-4 '>
-                                    <div className='w-full h-1/2 relative rounded-md shadow-lg'>
-                                        <ImageFile file={files[0]} />
-                                    </div>
-                                    <div className='flex '>
-                                        {files.slice(1).map((file) => (
+                            {files.length >= 1 && (
+                                <div className='sm:flex flex-col gap-4 space-x-4'>
+                                    <div className='flex flex-wrap justify-center '>
+                                        {files.map((file, index) => (
                                             <div
                                                 key={file.name}
-                                                className='w-1/3 mx-2 relative rounded-md shadow-lg'
+                                                className={`${
+                                                    files.length === 4 &&
+                                                    index === 0
+                                                        ? "w-full"
+                                                        : "w-1/4"
+                                                } mx-2 relative rounded-md shadow-lg mt-5`}
                                             >
                                                 <ImageFile file={file} />
                                             </div>
                                         ))}
                                     </div>
-                                </div>
-                            )}
-
-                            {files.length === 3 && (
-                                <div className='hidden sm:flex flex-col gap-4 '>
-                                    <div className='w-full relative rounded-md shadow-lg'>
-                                        <ImageFile file={files[0]} />
-                                    </div>
-                                    <div className='flex '>
-                                        {files.slice(1).map((file) => (
-                                            <div
-                                                key={file.name}
-                                                className='w-1/2 mx-2 relative rounded-md shadow-lg'
-                                            >
-                                                <ImageFile file={file} />
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
-
-                            {files.length > 0 && files.length < 3 && (
-                                <div className='hidden sm:flex flex-row gap-4 '>
-                                    {files.map((file) => (
-                                        <div
-                                            key={file.name}
-                                            className='w-1/2 relative rounded-md shadow-lg'
-                                        >
-                                            <ImageFile file={file} />
-                                        </div>
-                                    ))}
                                 </div>
                             )}
                         </div>
 
-                        <div className='flex flex-wrap items-center justify-center  p-4 md:w-1/2 space-y-4 text-lg max-w-full'>
+                        <div className='flex flex-wrap items-center justify-center  p-4 md:w-1/2 space-y-4 text-lg '>
                             <input
                                 type='text'
                                 placeholder={t("Product Name")}
