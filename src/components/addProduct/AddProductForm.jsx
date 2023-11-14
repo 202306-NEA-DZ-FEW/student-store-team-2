@@ -212,7 +212,7 @@ const AddProductForm = ({ className, categories }) => {
         <>
             <form
                 onSubmit={handleSubmit}
-                className='flex md:flex-row flex-col justify-center items-center space-x-8'
+                className='flex md:flex-row flex-col justify-center items-center space-x-8 '
             >
                 {loading ? (
                     <div className='justify-center items-center'>
@@ -220,7 +220,7 @@ const AddProductForm = ({ className, categories }) => {
                     </div>
                 ) : (
                     <>
-                        <div className='md:w-1/2'>
+                        <div className='md:w-1/2 '>
                             {files.length === 0 && (
                                 <div
                                     {...getRootProps({ className: className })}
@@ -290,7 +290,7 @@ const AddProductForm = ({ className, categories }) => {
                             )}
                         </div>
 
-                        <div className='flex flex-wrap items-center justify-center  p-4 md:w-1/2 space-y-4 text-lg'>
+                        <div className='flex flex-wrap items-center justify-center  p-4 md:w-1/2 space-y-4 text-lg max-w-full'>
                             <input
                                 type='text'
                                 placeholder={t("Product Name")}
@@ -357,7 +357,7 @@ const AddProductForm = ({ className, categories }) => {
                                     onChange={(e) =>
                                         setCondition(e.target.value)
                                     }
-                                    className='w-1/2 border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md '
+                                    className='w-1/2 border border-accent/50 placeholder:text-accent/50 md:px-4 py-2 rounded-md '
                                     required
                                 >
                                     {Array.from({ length: 11 }, (_, index) => (
@@ -391,16 +391,16 @@ const AddProductForm = ({ className, categories }) => {
                                     {t("List")}
                                 </button>
                             </div>
-                            <div className='sm:hidden flex '>
-                                {files.map((file) => (
-                                    <div
-                                        key={file.name}
-                                        className='relative w-[200px] rounded-md shadow-lg'
-                                    >
-                                        <ImageFile file={file} />
-                                    </div>
-                                ))}
-                            </div>
+                        </div>
+                        <div className='sm:hidden flex flex-wrap w-full justify-center '>
+                            {files.map((file) => (
+                                <div
+                                    key={file.name}
+                                    className='relative w-1/4 rounded-md shadow-md m-5 '
+                                >
+                                    <ImageFile file={file} />
+                                </div>
+                            ))}
                         </div>
                     </>
                 )}
