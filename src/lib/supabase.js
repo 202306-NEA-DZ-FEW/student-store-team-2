@@ -8,31 +8,83 @@ const supabase = createClient(
 
 export const getProducts = async (searchParams) => {
     try {
+        let countQuery = null;
         let query = supabase.from("products");
         query = query.select(
-            `name,pid,condition,image, borrow_offer ( * ), sale_offer( * )`
+            "pid,image,name,condition,offer_type, categories!inner(*),sale_offer(price),borrow_offer(price)",
+            { count: "planned" }
         );
-        // query = query.select(`name, borrow_offer ( * )`);
-        query = query.gt("borrow_offer.price", 50);
-        query = query.gt("sale_offer.price", 50);
+
         query = query.or([
             "borrow_offer.not.is.null",
             "sale_offer.not.is.null",
         ]);
-        // .and(not("borrow_offer.price", "is", null));
-        // query = query.order("id", {
-        //     foreignTable: "borrow_offer",
-        //     ascending: true,
-        // });
-        query = query.limit(10);
-        const { data, error } = await query;
 
-        // const { data, error } = await supabase
-        //     .from("products")
-        //     .select("name,pid , sale_offer ( * )");
+        for (let key in searchParams) {
+            switch (key) {
+                case "minPrice":
+                    query = query.gte(
+                        "borrow_offer.price",
+                        parseInt(searchParams[key])
+                    );
+                    query = query.gte(
+                        "sale_offer.price",
+                        parseInt(searchParams[key])
+                    );
 
-        console.log("error ", error);
-        return data;
+                    break;
+                case "maxPrice":
+                    query = query.lte(
+                        "borrow_offer.price",
+                        parseInt(searchParams[key])
+                    );
+                    query = query.lte(
+                        "sale_offer.price",
+                        parseInt(searchParams[key])
+                    );
+
+                    break;
+                case "status":
+                    switch (searchParams[key]) {
+                        case "sale":
+                            query = query.eq("offer_type", "for_sale");
+                            break;
+
+                        default:
+                            query = query.eq("offer_type", "for_borrow");
+                            break;
+                    }
+                    break;
+                case "category":
+                    query = query.eq(
+                        "categories.category_name",
+                        searchParams[key]
+                    );
+                    break;
+                case "note":
+                    query = query.eq("condition", parseInt(searchParams[key]));
+                    break;
+
+                case "page":
+                    {
+                        const productPerPage = 12;
+                        const start =
+                            (parseInt(searchParams[key]) - 1) * productPerPage;
+                        const end =
+                            parseInt(searchParams[key]) * productPerPage - 1;
+
+                        query = query.range(start, end);
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        const { data, count, error } = await query;
+
+        return { data, count };
     } catch (error) {
         return error;
     }
