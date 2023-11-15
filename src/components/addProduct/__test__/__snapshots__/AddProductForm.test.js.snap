@@ -104,26 +104,19 @@ Array [
           className="w-1/2 border border-accent/50  placeholder:text-accent/50  py-2 rounded-md text-sm uppercase"
           onChange={[Function]}
           required={true}
-          value="Sell"
+          value="for_sale"
         >
           <option
-            value="Borrow"
+            value="for_borrow"
           >
             Borrow
           </option>
           <option
-            value="Sell"
+            value="for_sell"
           >
             Sell
           </option>
         </select>
-        <input
-          className="w-full border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md"
-          onChange={[Function]}
-          placeholder="Price"
-          type="number"
-          value=""
-        />
       </div>
       <div
         className="flex justify-center mx-auto space-x-2 items-center text-sm"
