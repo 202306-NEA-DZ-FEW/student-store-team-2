@@ -1,5 +1,6 @@
 import AuthFooter from "@/components/authPage/authFooter/AuthFooter";
 import AuthHeader from "@/components/authPage/authHeader/AuthHeader";
+import FacebookLoginButton from "@/components/facebookLoginButton/FacebookLoginButton";
 import CustomForm from "@/components/form/Form";
 import GoogleLoginButton from "@/components/googleLoginButton/GoogleButton";
 
@@ -16,11 +17,9 @@ const page = () => {
 
                 <CustomForm formType='login' />
                 <AuthFooter type='LOGIN' />
-                <div className='flex justify-center items-center mb-2 '>
-                    <GoogleLoginButton
-                        googleText='Login with Google'
-                        styling='flex text-sm m-1 px-3 border border-accent2/80 shadow-md p-1 rounded-xl bg-white hover:scale-105'
-                    />
+                <div className='flex justify-center items-center mb-8 '>
+                    <FacebookLoginButton styling='mx-2 hover:scale-105' />
+                    <GoogleLoginButton styling='mx-2 hover:scale-105' />
                 </div>
             </div>
         </div>
