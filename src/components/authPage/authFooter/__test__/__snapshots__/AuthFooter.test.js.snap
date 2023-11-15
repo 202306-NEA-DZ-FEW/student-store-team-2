@@ -4,7 +4,7 @@ exports[`renders correctly 1`] = `
 <div>
    
   <div
-    className="text-center m-2 text-sm   text-content"
+    className="text-center m-2 text-sm   text-titleContent"
   >
      
     Already a member ?
@@ -21,9 +21,9 @@ exports[`renders correctly 1`] = `
     </a>
   </div>
   <div
-    className="flex justify-center items-center text-sm  m-2 text-content font-lato"
+    className="flex justify-center items-center text-titleContent text-sm  m-2 font-lato"
   >
-    Or:
+    Or Login Using:
   </div>
 </div>
 `;

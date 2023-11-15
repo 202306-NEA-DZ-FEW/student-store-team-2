@@ -30,7 +30,7 @@ exports[`renders correctly 1`] = `
     className="flex flex-col "
   >
     <div
-      className="flex flex-col text-center font-lato text-content"
+      className="flex flex-col mt-5 text-center font-lato text-content"
     >
       <h1
         className="text-2xl "
@@ -43,11 +43,6 @@ exports[`renders correctly 1`] = `
           Store
         </span>
       </h1>
-      <p
-        className="text-sm"
-      >
-        and start exchanging with other students
-      </p>
     </div>
   </div>
 </div>

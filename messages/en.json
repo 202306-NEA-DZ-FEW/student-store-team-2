@@ -68,7 +68,7 @@
         "Store": "Store",
         "Create Your": "Create Your",
         "and start exchanging with other students": "and start exchanging with other students",
-        "Or:": "Or:",
+        "Or Login Using:": "Or Login Using:",
         "Login": "Login",
         "LOGIN": "LOGIN ",
         "Already a member ?": "Already a member ?",
@@ -110,7 +110,9 @@
         "Price": "Price",
         "Upload Image(s)": "Upload Image(s)",
         "List": "List",
-        "Product Name": "Product Name"
+        "Product Name": "Product Name",
+        "Filter": "Filter",
+        "Pending": "Pending"
     }
 }
 
