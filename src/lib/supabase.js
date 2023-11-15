@@ -91,11 +91,16 @@ export const getProducts = async (searchParams) => {
 };
 
 export const getItems = async (table, filterField, filterValue) => {
-    const items = await supabase
-        .from(table)
-        .select("")
-        .eq(filterField, filterValue);
-    return items;
+    try {
+        const { data, error } = await supabase
+            .from(table)
+            .select("")
+            .eq(filterField, filterValue);
+        return data;
+    } catch (error) {
+        console.error("Error adding item:", error);
+        throw error;
+    }
 };
 
 export const addItem = async (table, item) => {
@@ -146,6 +151,25 @@ export const getUserProfile = async (user) => {
         return data;
     } catch (error) {
         console.error("Error getting user:", error);
+        throw error;
+    }
+};
+
+export const getProduct = async (productId) => {
+    try {
+        const { data, error } = await supabase
+            .from("products")
+            .select("")
+            .eq("pid", productId)
+            .single();
+        if (error) {
+            throw error;
+        }
+        // Log the user profile data
+        console.log("Product data from Supabase:", data);
+        return data;
+    } catch (error) {
+        console.error("Error getting product:", error);
         throw error;
     }
 };

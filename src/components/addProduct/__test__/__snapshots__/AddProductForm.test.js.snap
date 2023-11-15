@@ -68,17 +68,7 @@ Array [
           <option
             value={0}
           >
-            Index.Electronics
-          </option>
-          <option
-            value={1}
-          >
-            Index.Books
-          </option>
-          <option
-            value={2}
-          >
-            Index.Clothing
+            Index.Electronics,Books,Clothing
           </option>
         </select>
         <input
