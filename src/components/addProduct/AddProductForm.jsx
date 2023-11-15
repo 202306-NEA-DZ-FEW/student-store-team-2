@@ -8,7 +8,6 @@ import { FaSpinner } from "react-icons/fa";
 import { SiXamarin } from "react-icons/si";
 
 import { getSignature, saveToDatabase } from "@/lib/_cloudinary";
-import { getLatestIndex } from "@/lib/firestore";
 import { addProduct } from "@/lib/supabase";
 
 import { useUser } from "../userProvider/UserProvider";
@@ -94,7 +93,6 @@ const AddProductForm = ({ className, categories }) => {
     };
 
     async function action() {
-        const lastIndex = (await getLatestIndex("products")) + 1;
         const uploadedFiles = [];
         console.log(process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL);
         for (const file of files) {
@@ -145,7 +143,6 @@ const AddProductForm = ({ className, categories }) => {
             offer_type: type,
             condition,
             price,
-            index: lastIndex,
             uid: user,
             created_at: formattedDate,
             image: imageLinks,
