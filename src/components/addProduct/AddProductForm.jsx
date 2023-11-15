@@ -1,6 +1,5 @@
 "use client";
 
-import { addDoc, collection } from "firebase/firestore";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
@@ -9,8 +8,8 @@ import { FaSpinner } from "react-icons/fa";
 import { SiXamarin } from "react-icons/si";
 
 import { getSignature, saveToDatabase } from "@/lib/_cloudinary";
-import { db } from "@/lib/firebase";
 import { getLatestIndex } from "@/lib/firestore";
+import { addProduct } from "@/lib/supabase";
 
 import { useUser } from "../userProvider/UserProvider";
 
@@ -151,8 +150,7 @@ const AddProductForm = ({ className, categories }) => {
             created_at: formattedDate,
             image: imageLinks,
         };
-        const productsDataCollection = collection(db, "products");
-        await addDoc(productsDataCollection, productData);
+        await addProduct(productData);
 
         setName("");
         setCategory("");

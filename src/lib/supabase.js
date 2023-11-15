@@ -173,3 +173,18 @@ export const getProduct = async (productId) => {
         throw error;
     }
 };
+
+export const addProduct = async (productData) => {
+    const { data, error } = await supabase
+        .from("products")
+        .upsert([productData]);
+
+    // Handle any potential errors
+    if (error) {
+        console.error("Error inserting data:", error);
+    } else {
+        console.log("Data inserted successfully:", data);
+    }
+
+    return data;
+};
