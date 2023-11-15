@@ -1,3 +1,46 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `" "`;
+exports[`renders correctly 1`] = `
+<div>
+  <div
+    className="w-full border border-title/20 p-2 rounded-md my-2 animate-pulse"
+  >
+    <h1
+      className="ml-48 w-4/6 h-[32px] text-gray-400 bg-gray-400 sm:w-4/6 sm:h-[32px] "
+    >
+      ...
+    </h1>
+    <div
+      className="flex justify-start items-start"
+    >
+      <img
+        alt="placeholder"
+        data-nimg="1"
+        decoding="async"
+        height={235}
+        loading="lazy"
+        onError={[Function]}
+        onLoad={[Function]}
+        src="/_next/image?url=https%3A%2F%2Fvia.placeholder.com%2F300x300&w=384&q=75"
+        srcSet="/_next/image?url=https%3A%2F%2Fvia.placeholder.com%2F300x300&w=256&q=75 1x, /_next/image?url=https%3A%2F%2Fvia.placeholder.com%2F300x300&w=384&q=75 2x"
+        style={
+          Object {
+            "color": "transparent",
+          }
+        }
+        width={130}
+      />
+      <div
+        className="space-y-4 ml-7 font-lato flex justify-center"
+      >
+        <h1
+          className="w-4/6 h-[32px]  bg-gray-400 sm:w-4/6 animate-pulse rounded"
+        />
+        <div
+          className="hidden sm:inline-block"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

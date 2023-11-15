@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { v4 as uuidv4 } from "uuid";
 
 // Create a single supabase client for interacting with your database
 const supabase = createClient(
@@ -110,7 +111,6 @@ export const addItem = async (table, item) => {
         if (error) {
             throw error;
         }
-        console.log("added data", item);
 
         return data;
     } catch (error) {
@@ -129,7 +129,6 @@ export const updateItem = async (table, item, user) => {
     if (error) {
         throw error;
     }
-    console.log("added data", data);
 
     return data;
 };
@@ -146,8 +145,6 @@ export const getUserProfile = async (user) => {
         if (error) {
             throw error;
         }
-        // Log the user profile data
-        console.log("User profile data from Supabase:", data);
         return data;
     } catch (error) {
         console.error("Error getting user:", error);
@@ -165,8 +162,6 @@ export const getProduct = async (productId) => {
         if (error) {
             throw error;
         }
-        // Log the user profile data
-        console.log("Product data from Supabase:", data);
         return data;
     } catch (error) {
         console.error("Error getting product:", error);
@@ -175,13 +170,14 @@ export const getProduct = async (productId) => {
 };
 
 export const addProduct = async (productData) => {
+    const newUuid = uuidv4();
+
     try {
         const { offer_type, price, ...rest } = productData;
         rest.offer_type = offer_type;
-
-        // Add the remaining fields to the products table
+        rest.pid = newUuid;
         const { data: productDataResult, error: productDataError } =
-            await supabase.from("products").upsert([rest]);
+            await supabase.from("products").upsert(rest).select("*");
 
         if (productDataError) {
             console.error(
@@ -189,14 +185,9 @@ export const addProduct = async (productData) => {
                 productDataError
             );
             throw productDataError;
-        } else {
-            console.log(
-                "Data inserted into products table successfully:",
-                productDataResult
-            );
         }
 
-        const productId = productData?.pid;
+        const productId = productDataResult[0].pid;
 
         const item = {
             productId,
@@ -206,7 +197,7 @@ export const addProduct = async (productData) => {
         const tableName =
             offer_type === "for_sale" ? "sale_offer" : "borrow_offer";
 
-        const { data, error } = await supabase.from(tableName).insert([item]);
+        const { data, error } = await supabase.from(tableName).upsert(item);
 
         if (error) {
             console.error(
@@ -216,13 +207,6 @@ export const addProduct = async (productData) => {
                 error
             );
             throw error; // Rethrow the error to handle it in the calling code
-        } else {
-            console.log(
-                "Data inserted into",
-                tableName,
-                "table successfully:",
-                data
-            );
         }
 
         return { productData: productDataResult, offerData: data };

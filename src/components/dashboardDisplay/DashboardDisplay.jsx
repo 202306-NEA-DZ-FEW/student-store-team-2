@@ -50,12 +50,7 @@ const DashboardDisplay = ({ type, fetchPurchases }) => {
                 user
             );
             setOrders(ordersData);
-            console.log(
-                "purchasedData",
-                purchasedData,
-                "ordersData",
-                ordersData
-            );
+
             // Combine and process data to determine the status
             const processedData = purchasedData.map((item) => {
                 const foundInOrders = (ordersData || []).some(
@@ -71,14 +66,12 @@ const DashboardDisplay = ({ type, fetchPurchases }) => {
                             (purchase) => purchase.productId === item.productId
                         )
                     ) {
-                        console.log("found a pending Item", item.productId);
                         return {
                             ...item,
                             status: "pending",
                             second_user: secondUser,
                         };
                     } else {
-                        console.log("found a requested Item", item.productId);
                         return {
                             ...item,
                             status: "requested",
@@ -86,7 +79,6 @@ const DashboardDisplay = ({ type, fetchPurchases }) => {
                         };
                     }
                 } else {
-                    console.log("found a completed Item", item.productId);
                     return {
                         ...item,
                         status: "completed",

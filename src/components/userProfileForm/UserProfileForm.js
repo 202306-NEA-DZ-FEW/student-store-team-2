@@ -17,7 +17,6 @@ import UploadId from "../uploadId/UploadId";
 const UserProfileForm = () => {
     const t = useTranslations("Index");
     const { user, userData } = useUser();
-    console.log("current userData ", userData);
     const [imageURL, setImageURL] = useState("");
     const [formData, setFormData] = useState({
         birth_date: "",

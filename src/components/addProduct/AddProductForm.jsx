@@ -94,7 +94,6 @@ const AddProductForm = ({ className, categories }) => {
 
     async function action() {
         const uploadedFiles = [];
-        console.log(process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL);
         for (const file of files) {
             const { signature, timestamp } = await getSignature();
             const formData = new FormData();
@@ -129,7 +128,6 @@ const AddProductForm = ({ className, categories }) => {
         setFiles(uploadedFiles);
 
         const imageLinks = uploadedFiles.map((file) => file.cloudinaryUrl);
-
         const today = new Date();
         const year = today.getFullYear();
         const month = String(today.getMonth() + 1).padStart(2, "0");
