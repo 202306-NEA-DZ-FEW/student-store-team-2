@@ -20,6 +20,7 @@ export default function Navbar() {
         { name: t("Home"), href: "/" },
         { name: t("Products"), href: "/products" },
         { name: t("Orders"), href: "/order" },
+        { name: t("Donate"), href: "/donate" },
     ];
 
     const pathname = usePathname();
@@ -39,7 +40,7 @@ export default function Navbar() {
                                 {/* Mobile menu button */}
                                 <button
                                     onClick={toggleMobileMenu}
-                                    className='text-titleContent inline-flex items-center justify-center rounded-md p-2  hover:bg-accent2 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white transition-all duration-300 ease-in-out'
+                                    className=' inline-flex items-center justify-center rounded-md p-2  hover:bg-accent2 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white transition-all duration-300 ease-in-out'
                                 >
                                     {isOpen ? (
                                         <BiMenu
@@ -81,7 +82,7 @@ export default function Navbar() {
                                 </div>
                                 <div className='hidden sm:block mr-48'>
                                     <div className='flex space-x-4 items-center'>
-                                        <Link href='/profile'>
+                                        <Link href='/profile?page=form'>
                                             <BiUser
                                                 className='block h-6 w-6 antialiased  hover:text-accent rounded-xl font-semibold '
                                                 aria-hidden='true'

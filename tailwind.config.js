@@ -16,8 +16,10 @@ module.exports = {
                 content: "rgb(var(--color-content) / <alpha-value>)",
                 accent: "rgb(var(--color-accent) / <alpha-value>)",
                 accent2: "rgb(var(--color-accent2) / <alpha-value>)",
+                accent3: "rgb(var(--color-accent3) / <alpha-value>)",
                 border: "rgb(var( --color-border) / <alpha-value>)",
                 titleContent: "rgb(var( --color-titleContent) / <alpha-value>)",
+                title2: "rgb(var( --color-title2) / <alpha-value>)",
                 secondaryGreen:
                     "rgb(var( --color-secondaryGreen) / <alpha-value>)",
                 secondaryYellow:
@@ -31,6 +33,7 @@ module.exports = {
                 lato: ["var(--font-lato)"],
                 jua: ["var(--font-jua)"],
                 poppins: ["var(--font-poppins)"],
+                roboto: ["var(--font-roboto)"],
             },
             letterSpacing: {
                 title: "tracking-normal",
@@ -47,5 +50,8 @@ module.exports = {
             },
         },
     },
-    plugins: [require("@tailwindcss/aspect-ratio")],
+    plugins: [
+        require("@tailwindcss/aspect-ratio"),
+        
+    ],
 };

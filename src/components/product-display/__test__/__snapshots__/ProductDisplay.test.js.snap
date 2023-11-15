@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className=" flex gap-2 w-full"
+>
+  <div
+    className=" h-[560px] scroll-smooth flex flex-col gap-1 overflow-hidden "
+  >
+    <button
+      className="flex flex-col items-center justify-center"
+      onClick={[Function]}
+    >
+      <img
+        alt="Product"
+        className="h-[249px] object-cover rounded"
+        data-nimg="1"
+        decoding="async"
+        height={249}
+        loading="lazy"
+        onError={[Function]}
+        onLoad={[Function]}
+        src="/_next/image?url=%2Fimg%2Fproduct4.jpg&w=384&q=75"
+        srcSet="/_next/image?url=%2Fimg%2Fproduct4.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg%2Fproduct4.jpg&w=384&q=75 2x"
+        style={
+          Object {
+            "color": "transparent",
+          }
+        }
+        width={166}
+      />
+    </button>
+    <button
+      className="flex flex-col items-center justify-center"
+      onClick={[Function]}
+    >
+      <img
+        alt="Product"
+        className="h-[249px] object-cover rounded"
+        data-nimg="1"
+        decoding="async"
+        height={249}
+        loading="lazy"
+        onError={[Function]}
+        onLoad={[Function]}
+        src="/_next/image?url=%2Fimg%2Fproduct3.jpg&w=384&q=75"
+        srcSet="/_next/image?url=%2Fimg%2Fproduct3.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg%2Fproduct3.jpg&w=384&q=75 2x"
+        style={
+          Object {
+            "color": "transparent",
+          }
+        }
+        width={166}
+      />
+    </button>
+    <button
+      className="flex flex-col items-center justify-center"
+      onClick={[Function]}
+    >
+      <img
+        alt="Product"
+        className="h-[249px] object-cover rounded"
+        data-nimg="1"
+        decoding="async"
+        height={249}
+        loading="lazy"
+        onError={[Function]}
+        onLoad={[Function]}
+        src="/_next/image?url=%2Fimg%2Fproduct2.jpg&w=384&q=75"
+        srcSet="/_next/image?url=%2Fimg%2Fproduct2.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg%2Fproduct2.jpg&w=384&q=75 2x"
+        style={
+          Object {
+            "color": "transparent",
+          }
+        }
+        width={166}
+      />
+    </button>
+    <button
+      className="flex flex-col items-center justify-center"
+      onClick={[Function]}
+    >
+      <img
+        alt="Product"
+        className="h-[249px] object-cover rounded"
+        data-nimg="1"
+        decoding="async"
+        height={249}
+        loading="lazy"
+        onError={[Function]}
+        onLoad={[Function]}
+        src="/_next/image?url=%2Fimg%2Fproduct1.jpg&w=384&q=75"
+        srcSet="/_next/image?url=%2Fimg%2Fproduct1.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg%2Fproduct1.jpg&w=384&q=75 2x"
+        style={
+          Object {
+            "color": "transparent",
+          }
+        }
+        width={166}
+      />
+    </button>
+  </div>
+  <div
+    className="rounded"
+  >
+    <img
+      alt="Skin Care Products"
+      className="object-cover h-[560px] rounded"
+      data-nimg="1"
+      decoding="async"
+      height={560}
+      loading="lazy"
+      onError={[Function]}
+      onLoad={[Function]}
+      src="/_next/image?url=%2Fimg%2Fproduct4.jpg&w=1080&q=75"
+      srcSet="/_next/image?url=%2Fimg%2Fproduct4.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg%2Fproduct4.jpg&w=1080&q=75 2x"
+      style={
+        Object {
+          "color": "transparent",
+        }
+      }
+      width={500}
+    />
+  </div>
+</div>
+`;

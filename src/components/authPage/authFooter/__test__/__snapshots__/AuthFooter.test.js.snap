@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+   
+  <div
+    className="text-center m-2 text-sm   text-content"
+  >
+     
+    Already a member ?
+    <a
+      className="text-accent"
+      href="/sign-in"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onTouchStart={[Function]}
+    >
+       
+      Login
+       
+    </a>
+  </div>
+  <div
+    className="flex justify-center items-center text-sm  m-2 text-content font-lato"
+  >
+    Or:
+  </div>
+</div>
+`;
