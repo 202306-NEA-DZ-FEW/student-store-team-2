@@ -20,14 +20,14 @@ const AuthHeader = ({ title, imageSrc }) => {
             </div>
             <div className='flex flex-col '>
                 {/* title */}
-                <div className='flex flex-col text-center font-lato text-content'>
+                <div className='flex flex-col mt-5 text-center font-lato text-content'>
                     <h1 className='text-2xl '>
                         {t("Create Your")}{" "}
                         <span className='text-accent'>{t("Store")}</span>
                     </h1>
-                    <p className='text-sm'>
+                    {/* <p className='text-sm'>
                         {t("and start exchanging with other students")}
-                    </p>
+                    </p> */}
                 </div>
             </div>
         </div>
