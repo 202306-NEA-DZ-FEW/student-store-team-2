@@ -7,7 +7,7 @@ Array [
     onSubmit={[Function]}
   >
     <div
-      className="md:w-1/2 "
+      className="md:w-1/2"
     >
       <div
         className="border border-dashed border-accent/50 md:flex flex flex-col items-center justify-center text-center p-8 text-accent/50 text-sm"
