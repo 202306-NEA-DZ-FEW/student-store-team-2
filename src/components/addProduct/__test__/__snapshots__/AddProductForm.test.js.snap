@@ -7,10 +7,10 @@ Array [
     onSubmit={[Function]}
   >
     <div
-      className="md:w-1/2 "
+      className="md:w-1/2"
     >
       <div
-        className="border border-dashed border-accent/50 hidden md:flex flex-col items-center justify-center text-center p-8 text-accent/50 text-sm"
+        className="border border-dashed border-accent/50 md:flex flex flex-col items-center justify-center text-center p-8 text-accent/50 text-sm"
         onBlur={[Function]}
         onClick={[Function]}
         onDragEnter={[Function]}
@@ -68,17 +68,7 @@ Array [
           <option
             value={0}
           >
-            Index.Electronics
-          </option>
-          <option
-            value={1}
-          >
-            Index.Books
-          </option>
-          <option
-            value={2}
-          >
-            Index.Clothing
+            Index.Electronics,Books,Clothing
           </option>
         </select>
         <input
@@ -112,11 +102,18 @@ Array [
             Borrow
           </option>
           <option
-            value="for_sell"
+            value="for_sale"
           >
             Sell
           </option>
         </select>
+        <input
+          className="w-full border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md"
+          onChange={[Function]}
+          placeholder="Price"
+          type="number"
+          value=""
+        />
       </div>
       <div
         className="flex justify-center mx-auto space-x-2 items-center text-sm"

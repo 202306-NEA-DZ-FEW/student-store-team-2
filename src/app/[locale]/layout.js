@@ -10,7 +10,7 @@ import "./globals.css";
 import "./carousel.css";
 import "./loader.css";
 
-import { getUserProfile } from "@/lib/firestore";
+import { getUserProfile } from "@/lib/supabase";
 
 import { UserProvider } from "@/components/userProvider/UserProvider";
 
@@ -44,6 +44,7 @@ const fetchUserData = async (user) => {
     "use server";
     if (user) {
         const userData = await getUserProfile(user);
+
         return userData;
     }
 };
