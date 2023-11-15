@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 
@@ -15,6 +16,20 @@ function CustomForm({ formType }) {
     const [password, setPassword] = useState("");
     const [address, setAddress] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const [terms, setTerms] = useState(false);
+
+    const isFormFilled = () => {
+        return (
+            (formType === "login" && email && password) ||
+            (formType === "registration" &&
+                email &&
+                password &&
+                fullName &&
+                phoneNumber &&
+                address &&
+                terms)
+        );
+    };
 
     const authenticate = async (userData) => {
         const { formType, ...data } = userData;
@@ -70,41 +85,76 @@ function CustomForm({ formType }) {
         <div>
             <form
                 onSubmit={handleSubmit}
-                className='mx-auto flex flex-col space-y-4 text-sm font-lato font-semibold justify-start items-center sm:items-center mt-2'
+                className='mx-auto flex flex-col space-y-4 text-sm font-lato font-semibold justify-start items-center sm:items-center mt-6'
             >
                 {formType === "login" && (
-                    <div className='flex flex-col items-start justify-start space-y-4 '>
-                        <div className='flex flex-col md:flex-row items-start justify-between'>
-                            <div className='flex flex-col'>
-                                <label htmlFor='email' className='md-w-28'>
-                                    {t("Email")}:
-                                </label>
-                                <input
-                                    type='email'
-                                    id='email'
-                                    className='shadow-md border rounded-md sm:w-64 w-72'
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                />
-                            </div>
+                    <div className='flex flex-col gap-4 p-6'>
+                        <div className='relative h-11 w-full'>
+                            <input
+                                type='email'
+                                id='email'
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                className='peer h-full w-full rounded-md border border-gray-500 border-t-transparent  px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-accent focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50'
+                                placeholder=' '
+                            />
+                            <label className='before:content[" "] after:content[" "] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-accent peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-accent peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-accent peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500'>
+                                Email
+                            </label>
                         </div>
-                        <div className='flex flex-col md:flex-row items-start justify-between'>
-                            <div className='flex flex-col'>
-                                <label htmlFor='password' className='md-w-28'>
-                                    {t("Password")}:
-                                </label>
-                                <input
-                                    type='password'
-                                    id='password'
-                                    className='shadow-md border rounded-md sm:w-64 w-72'
-                                    value={password}
-                                    onChange={(e) =>
-                                        setPassword(e.target.value)
-                                    }
-                                />
-                                {/* <p className='text-xs font-light'>
+                        <div className='relative h-11 w-full min-w-[200px]'>
+                            <input
+                                type='password'
+                                id='password'
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                className='peer h-full w-full rounded-md border border-gray-500 border-t-transparent  px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-accent focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50'
+                                placeholder=' '
+                            />
+                            <label className='before:content[" "] after:content[" "] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-accent peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-accent peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-accent peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500'>
+                                Password
+                            </label>
+                            <Link href='/resetPassword'>
+                                <p className='flex justify-end text-xs font-light hover:text-accent mt-2'>
                                     Forgot your password?
-                                </p> */}
+                                </p>
+                            </Link>
+                        </div>
+                        <div className='-ml-2.5'>
+                            <div className='inline-flex mt-4 items-center'>
+                                <label
+                                    className='relative flex cursor-pointer items-center rounded-full p-3'
+                                    htmlFor='checkbox'
+                                    data-ripple-dark='true'
+                                >
+                                    <input
+                                        type='checkbox'
+                                        className='before:content[""] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-bkg before:opacity-0 before:transition-opacity checked:border-accent checked:bg-accent checked:before:bg-accent hover:before:opacity-10'
+                                        id='checkbox'
+                                    />
+                                    <span className='pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100'>
+                                        <svg
+                                            xmlns='http://www.w3.org/2000/svg'
+                                            className='h-3.5 w-3.5'
+                                            viewBox='0 0 20 20'
+                                            fill='currentColor'
+                                            stroke='currentColor'
+                                            strokeWidth='1'
+                                        >
+                                            <path
+                                                fillRule='evenodd'
+                                                d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'
+                                                clipRule='evenodd'
+                                            ></path>
+                                        </svg>
+                                    </span>
+                                </label>
+                                <label
+                                    className='mt-px cursor-pointer select-none font-light text-titleContent'
+                                    htmlFor='checkbox'
+                                >
+                                    Remember Me
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -112,103 +162,108 @@ function CustomForm({ formType }) {
 
                 {/* Full Name and Email */}
                 {formType === "registration" && (
-                    <div className='sm:flex space-x-4 space-y-2 sm:justify-start'>
-                        <div className='flex flex-col md:flex-row items-center'>
-                            <label htmlFor='fullName' className='md-w-28'>
+                    <div className='flex items-center flex-col space-y-4  sm:flex sm:items-end sm:justify-start'>
+                        <div className='relative h-11 w-full'>
+                            <input
+                                type='name'
+                                id='fullName'
+                                value={fullName}
+                                onChange={(e) => setFullName(e.target.value)}
+                                className='peer h-full w-full min-w-[232px] rounded-md border border-gray-500 border-t-transparent  px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-accent focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50'
+                                placeholder=' '
+                            />
+                            <label
+                                htmlFor='fullName'
+                                className='before:content[" "] after:content[" "] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-accent peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-accent peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-accent peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500'
+                            >
                                 {t("Full Name")}
                             </label>
-                            <div className='flex flex-col'>
-                                <input
-                                    type='text'
-                                    id='fullName'
-                                    className='shadow-md border rounded-md sm:w-64 w-96'
-                                    value={fullName}
-                                    onChange={(e) =>
-                                        setFullName(e.target.value)
-                                    }
-                                />
-                            </div>
                         </div>
-                        <div className='flex flex-col md:flex-row items-center'>
-                            <label htmlFor='email' className='md-w-28'>
-                                {t("Email")}:
+
+                        <div className='relative h-11 w-full'>
+                            <input
+                                type='email'
+                                id='email'
+                                onChange={(e) => setEmail(e.target.value)}
+                                className='peer h-full w-full min-w-[232px] rounded-md border border-gray-500 border-t-transparent  px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-accent focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50'
+                                placeholder=' '
+                            />
+                            <label
+                                htmlFor='email'
+                                className='before:content[" "] after:content[" "] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-accent peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-accent peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-accent peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500'
+                            >
+                                {t("Email")}
                             </label>
-                            <div className='flex flex-col'>
-                                <input
-                                    type='email'
-                                    id='email'
-                                    className='shadow-md border rounded-md sm:w-64 w-96'
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                />
-                            </div>
                         </div>
                     </div>
                 )}
 
                 {/* Phone Number and Password */}
                 {formType === "registration" && (
-                    <div className='sm:flex space-x-4 space-y-2 sm:justify-start'>
-                        <div className='flex flex-col md:flex-row items-center'>
-                            <label htmlFor='phoneNumber' className='md-w-28'>
-                                {t("Phone Number")}:
+                    <div className='flex items-center flex-col space-y-4 justify-center sm:flex sm:justify-start'>
+                        <div className='relative h-11 w-full min-w-[232px]'>
+                            <input
+                                type='tel'
+                                id='phoneNumber'
+                                onChange={(e) => setPhoneNumber(e.target.value)}
+                                className='peer h-full w-full min-w-[232px] rounded-md border border-gray-500 border-t-transparent  px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-accent focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50'
+                                placeholder=' '
+                            />
+                            <label
+                                htmlFor='phoneNumber'
+                                className='before:content[" "] after:content[" "] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-accent peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-accent peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-accent peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500'
+                            >
+                                {t("Phone Number")}
                             </label>
-                            <div className='flex flex-col'>
-                                <input
-                                    type='text'
-                                    id='phoneNumber'
-                                    className='shadow-md border rounded-md sm:w-64 w-96'
-                                    value={phoneNumber}
-                                    onChange={(e) =>
-                                        setPhoneNumber(e.target.value)
-                                    }
-                                />
-                            </div>
                         </div>
-                        <div className='flex flex-col md:flex-row items-center'>
-                            <label htmlFor='password' className='md-w-28'>
-                                {t("Password")}:
+                        <div className='relative h-11 w-full min-w-[200px]'>
+                            <input
+                                type='password'
+                                id='password'
+                                onChange={(e) => setPassword(e.target.value)}
+                                className='peer h-full w-full rounded-md border border-gray-500 border-t-transparent  px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-accent focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50'
+                                placeholder=' '
+                            />
+                            <label
+                                htmlFor='password'
+                                className='before:content[" "] after:content[" "] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-accent peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-accent peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-accent peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500'
+                            >
+                                {t("Password")}
                             </label>
-                            <div className='flex flex-col'>
-                                <input
-                                    type='password'
-                                    id='password'
-                                    className='shadow-md border rounded-md sm:w-64 w-96'
-                                    value={password}
-                                    onChange={(e) =>
-                                        setPassword(e.target.value)
-                                    }
-                                />
-                            </div>
                         </div>
                     </div>
                 )}
 
                 {/* Additional Fields for Registration */}
                 {formType === "registration" && (
-                    <div className='flex md:flex-row flex-col items-center'>
-                        <label htmlFor='address' className='md-w-28'>
-                            {t("Address")}:
+                    <div className='relative flex md:flex-row flex-col items-center h-11 w-6/12 min-w-[232px]'>
+                        <textarea
+                            id='address'
+                            onChange={(e) => setAddress(e.target.value)}
+                            className='peer h-full w-full min-w-[200px] rounded-md border border-gray-500 border-t-transparent  px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-accent focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50'
+                            placeholder=' '
+                        />
+                        <label
+                            htmlFor='address'
+                            value={address}
+                            className='before:content[" "] after:content[" "] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full min-w-[200px] select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-accent peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-accent peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-accent peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500'
+                        >
+                            {t("Address")}
                         </label>
-                        <div className='flex flex-col'>
-                            <textarea
-                                id='address'
-                                className='shadow-md border rounded-md w-96'
-                                value={address}
-                                onChange={(e) => setAddress(e.target.value)}
-                            />
-                        </div>
                     </div>
                 )}
 
                 {/* Terms & Conditions Checkbox */}
                 {formType === "registration" && (
-                    <div className='flex items-center space-x-2'>
+                    <div className='flex items-center my-4 space-x-2'>
                         <div className='flex flex-col'>
-                            <input type='checkbox' />
+                            <input
+                                type='checkbox'
+                                onChange={(e) => setTerms(e.target.checked)}
+                            />
                             <label
                                 htmlFor='agreements'
-                                className='block font-light text-center'
+                                className='block mt-2 font-light text-center'
                             >
                                 {t(
                                     "I have read and agree with all of the Terms"
@@ -234,7 +289,8 @@ function CustomForm({ formType }) {
                 {/* Submit Button */}
                 <button
                     type='submit'
-                    className='bg-accent hover-bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg hover:scale-105'
+                    disabled={!isFormFilled()}
+                    className='bg-accent hover-bg-blue-700 text-white disabled:bg-gray-400 font-semibold py-2 px-8 drop-shadow-xl rounded-full hover:scale-105'
                 >
                     {formType === "registration"
                         ? `${t("Sign Up")}`

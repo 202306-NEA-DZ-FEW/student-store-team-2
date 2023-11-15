@@ -17,11 +17,11 @@ import { useUser } from "../userProvider/UserProvider";
 const AddProductForm = ({ className, categories }) => {
     const t = useTranslations("Index");
     const [files, setFiles] = useState([]);
-    const [productName, setProductName] = useState("");
+    const [name, setName] = useState("");
     const [category, setCategory] = useState("");
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
-    const [type, setType] = useState("Sell");
+    const [type, setType] = useState("for_sale");
     const [price, setPrice] = useState("");
     const [condition, setCondition] = useState(5);
     const [loading, setLoading] = useState(false);
@@ -133,21 +133,17 @@ const AddProductForm = ({ className, categories }) => {
 
         const imageLinks = uploadedFiles.map((file) => file.cloudinaryUrl);
 
-        const for_borrow = type === "Borrow" || type === "Sell & Borrow";
-        const for_sell = type === "Sell" || type === "Sell & Borrow";
-
         const today = new Date();
         const year = today.getFullYear();
         const month = String(today.getMonth() + 1).padStart(2, "0");
         const day = String(today.getDate()).padStart(2, "0");
         const formattedDate = `${year}-${month}-${day}`;
         const productData = {
-            productName,
+            name,
             category,
             location,
             description,
-            for_borrow,
-            for_sell,
+            offer_type: type,
             condition,
             price,
             index: lastIndex,
@@ -158,7 +154,7 @@ const AddProductForm = ({ className, categories }) => {
         const productsDataCollection = collection(db, "products");
         await addDoc(productsDataCollection, productData);
 
-        setProductName("");
+        setName("");
         setCategory("");
         setLocation("");
         setDescription("");
@@ -186,7 +182,7 @@ const AddProductForm = ({ className, categories }) => {
         </>
     );
     const renderPriceInput = () => {
-        if (type === "Sell") {
+        if (type === "for_sa;e") {
             return (
                 <input
                     type='number'
@@ -196,7 +192,7 @@ const AddProductForm = ({ className, categories }) => {
                     onChange={(e) => setPrice(e.target.value)}
                 />
             );
-        } else if (type === "Borrow") {
+        } else if (type === "for_borrow") {
             return (
                 <input
                     type='number'
@@ -268,8 +264,8 @@ const AddProductForm = ({ className, categories }) => {
                                 type='text'
                                 placeholder={t("Product Name")}
                                 className='border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md w-full'
-                                value={productName}
-                                onChange={(e) => setProductName(e.target.value)}
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
                                 required
                             />
 
@@ -316,10 +312,12 @@ const AddProductForm = ({ className, categories }) => {
                                     onChange={(e) => setType(e.target.value)}
                                     required
                                 >
-                                    <option value='Borrow'>
+                                    <option value='for_borrow'>
                                         {t("Borrow")}
                                     </option>
-                                    <option value='Sell'>{t("Sell")}</option>
+                                    <option value='for_sell'>
+                                        {t("Sell")}
+                                    </option>
                                 </select>
                                 {renderPriceInput()}
                             </div>
