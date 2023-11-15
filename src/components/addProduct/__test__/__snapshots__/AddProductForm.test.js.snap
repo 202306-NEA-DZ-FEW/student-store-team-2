@@ -41,7 +41,7 @@ Array [
       </div>
     </div>
     <div
-      className="flex flex-wrap items-center justify-center  p-4 md:w-1/2 space-y-4 text-lg "
+      className="flex flex-wrap items-center justify-center  p-4 md:w-1/2 space-y-4 text-lg max-w-full"
     >
       <input
         className="border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md w-full"
