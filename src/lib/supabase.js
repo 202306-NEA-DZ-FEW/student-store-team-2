@@ -175,9 +175,10 @@ export const getProduct = async (productId) => {
 };
 
 export const addProduct = async (productData) => {
-    const { offer_type, price, ...rest } = productData;
-
     try {
+        const { offer_type, price, ...rest } = productData;
+        rest.offer_type = offer_type;
+
         // Add the remaining fields to the products table
         const { data: productDataResult, error: productDataError } =
             await supabase.from("products").upsert([rest]);
@@ -187,7 +188,7 @@ export const addProduct = async (productData) => {
                 "Error inserting data into products table:",
                 productDataError
             );
-            throw productDataError; // Rethrow the error to handle it in the calling code
+            throw productDataError;
         } else {
             console.log(
                 "Data inserted into products table successfully:",
@@ -195,23 +196,18 @@ export const addProduct = async (productData) => {
             );
         }
 
-        // Get the product ID (pid) from the inserted data
         const productId = productDataResult?.pid;
 
-        // Create an item object for buy_offer or borrow_offer table
         const item = {
-            pid: productId,
+            productId,
             price,
         };
 
-        // Determine the table based on the offer_type
         const tableName =
-            offer_type === "for_sale" ? "buy_offer" : "borrow_offer";
+            offer_type === "for_sale" ? "sale_offer" : "borrow_offer";
 
-        // Add the item to the buy_offer or borrow_offer table
         const { data, error } = await supabase.from(tableName).upsert([item]);
 
-        // Handle any potential errors
         if (error) {
             console.error(
                 "Error inserting data into",
