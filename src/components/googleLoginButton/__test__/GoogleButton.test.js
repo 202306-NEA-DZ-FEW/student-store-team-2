@@ -18,12 +18,20 @@ jest.mock("firebase/auth", () => {
         GoogleAuthProvider: jest.fn(),
     };
 });
-jest.mock("firebase/firestore", () => {
+jest.mock("@supabase/supabase-js", () => {
     return {
-        getFirestore: jest.fn(),
-        doc: jest.fn(),
-        setDoc: jest.fn(),
-        // Add other Firestore methods used in your code
+        ...jest.requireActual("@supabase/supabase-js"), // Use the actual module for non-mocked parts
+        createClient: jest.fn(() => ({
+            from: jest.fn(() => ({
+                select: jest.fn(() => ({
+                    eq: jest.fn(() => ({
+                        // Customize the behavior of your Supabase queries as needed
+                        data: { id: 123, name: "John Doe" },
+                        error: null,
+                    })),
+                })),
+            })),
+        })),
     };
 });
 

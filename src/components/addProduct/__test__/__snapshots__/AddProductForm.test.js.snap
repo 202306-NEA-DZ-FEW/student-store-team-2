@@ -41,7 +41,7 @@ Array [
       </div>
     </div>
     <div
-      className="flex flex-wrap items-center justify-center  p-4 md:w-1/2 space-y-4 text-lg "
+      className="flex flex-wrap items-center justify-center  p-4 md:w-1/2 space-y-4 text-lg max-w-full"
     >
       <input
         className="border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md w-full"
@@ -68,17 +68,7 @@ Array [
           <option
             value={0}
           >
-            Index.Electronics
-          </option>
-          <option
-            value={1}
-          >
-            Index.Books
-          </option>
-          <option
-            value={2}
-          >
-            Index.Clothing
+            Index.Electronics,Books,Clothing
           </option>
         </select>
         <input
@@ -112,11 +102,18 @@ Array [
             Borrow
           </option>
           <option
-            value="for_sell"
+            value="for_sale"
           >
             Sell
           </option>
         </select>
+        <input
+          className="w-full border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md"
+          onChange={[Function]}
+          placeholder="Price"
+          type="number"
+          value=""
+        />
       </div>
       <div
         className="flex justify-center mx-auto space-x-2 items-center text-sm"

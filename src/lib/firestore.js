@@ -31,14 +31,14 @@ export const getDocumentByIdFromFirestore = async (documentId) => {
     }
 };
 
-export const getUserProfile = async (user) => {
-    if (user) {
-        const usersRef = collection(db, "users");
-        const userRef = doc(usersRef, user);
-        const userSnap = await getDoc(userRef);
-        return userSnap.data();
-    }
-};
+// export const getUserProfile = async (user) => {
+//     if (user) {
+//         const usersRef = collection(db, "users");
+//         const userRef = doc(usersRef, user);
+//         const userSnap = await getDoc(userRef);
+//         return userSnap.data();
+//     }
+// };
 
 // get products from firebase
 
