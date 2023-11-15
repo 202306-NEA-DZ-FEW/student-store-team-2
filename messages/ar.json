@@ -21,16 +21,14 @@
         "Sign In": "تسجيل الدخول",
         "Login with Google": "سحل الدخول بحسابك",
         "Sign Up With Google": "سحل الدخول بحسابك",
-
-        "Free delivery":"توصيل مجاني",
-        "feature descriprion 1":"يمكنك استلام طلبك دون تحمل أي تكاليف شحن إضافية",
-        "qualite guarantee":"جودة مضمونة",
-        "feature descriprion 2":"منتجاتنا أو خدماتنا ذات معايير عالية وتعمل كما وعدنا بها",
-        "daily offers":"عروض يومية",
-        "feature descriprion 3":"خصومات وعروض ترويجية حصرية يوميا",
-        "100% secure payement":"دفع آمن %100",
-        "feature descriprion 4":"معلوماتك المالية محمية ومعاملاتك آمنة من الوصول غير المصرح به",
-
+        "Free delivery": "توصيل مجاني",
+        "feature descriprion 1": "يمكنك استلام طلبك دون تحمل أي تكاليف شحن إضافية",
+        "qualite guarantee": "جودة مضمونة",
+        "feature descriprion 2": "منتجاتنا أو خدماتنا ذات معايير عالية وتعمل كما وعدنا بها",
+        "daily offers": "عروض يومية",
+        "feature descriprion 3": "خصومات وعروض ترويجية حصرية يوميا",
+        "100% secure payement": "دفع آمن %100",
+        "feature descriprion 4": "معلوماتك المالية محمية ومعاملاتك آمنة من الوصول غير المصرح به",
         "My Dashboard": "لوحة المعلومات",
         "Awaiting Pickup": "في انتظار الاستلام",
         "All": "الكل",
@@ -112,6 +110,5 @@
         "Price": "السعر",
         "Upload Image(s)": "إصافة الصور",
         "List": "إضافة"
-
     }
 }

@@ -10,7 +10,6 @@ export default function AddedGrid() {
             <p className='text-titleContent text-3xl capitalize-words text-center font-jost tracking-wide py-14'>
                 {t("recently added")}
             </p>
-
         </div>
     );
 }
