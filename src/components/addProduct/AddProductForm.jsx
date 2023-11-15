@@ -128,6 +128,7 @@ const AddProductForm = ({ className, categories }) => {
         setFiles(uploadedFiles);
 
         const imageLinks = uploadedFiles.map((file) => file.cloudinaryUrl);
+
         const today = new Date();
         const year = today.getFullYear();
         const month = String(today.getMonth() + 1).padStart(2, "0");
@@ -176,6 +177,7 @@ const AddProductForm = ({ className, categories }) => {
     );
     const renderPriceInput = () => {
         if (type === "for_sale") {
+
             return (
                 <input
                     type='number'
@@ -211,6 +213,7 @@ const AddProductForm = ({ className, categories }) => {
                     <>
                         <div className='md:w-1/2'>
                             {files.length < 4 && (
+
                                 <div
                                     {...getRootProps({ className: className })}
                                     className={`border border-dashed border-accent/50 md:flex ${
@@ -253,6 +256,7 @@ const AddProductForm = ({ className, categories }) => {
                         </div>
 
                         <div className='flex flex-wrap items-center justify-center  p-4 md:w-1/2 space-y-4 text-lg '>
+                        <div className='flex flex-wrap items-center justify-center  p-4 md:w-1/2 space-y-4 text-lg max-w-full'>
                             <input
                                 type='text'
                                 placeholder={t("Product Name")}
@@ -309,6 +313,7 @@ const AddProductForm = ({ className, categories }) => {
                                         {t("Borrow")}
                                     </option>
                                     <option value='for_sale'>
+
                                         {t("Sell")}
                                     </option>
                                 </select>
