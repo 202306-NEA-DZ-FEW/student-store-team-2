@@ -6,12 +6,12 @@ import {
     signOut,
 } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 
+// Import your Firebase app instance
 import { app } from "./firebase";
+import { addItem } from "./supabase";
 
-const auth = getAuth(app); // app is your Firebase app instance
-const db = getFirestore(app); // Use your Firestore instance
+const auth = getAuth(app);
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -27,9 +27,11 @@ export const registerUserWithEmailAndPassword = async (
             password
         );
         const user = userCredential.user;
-
-        const userDocRef = doc(db, "users", user.uid);
-        await setDoc(userDocRef, userData);
+        await addItem("users", {
+            id: user.uid,
+            email: user.email,
+            ...userData,
+        });
         window.location.href = "/profile?page=form";
         return user;
     } catch (error) {
@@ -46,7 +48,6 @@ export const loginWithEmailAndPassword = async (email, password) => {
             password
         );
         window.location.href = "/profile?page=form";
-
         return userCredential.user;
     } catch (error) {
         console.error("Error logging in:", error);
@@ -63,7 +64,7 @@ export const getCurrentUser = async () => {
                 } else {
                     resolve(null);
                 }
-                unsubscribe(); // Don't forget to unsubscribe
+                unsubscribe();
             });
         });
 
@@ -86,28 +87,16 @@ export const signOutUser = async () => {
 
 export const handleGoogleLogin = async () => {
     try {
-        // Sign in with Google popup
         const result = await signInWithPopup(auth, googleProvider);
-
-        // The signed-in user info.
         const user = result.user;
-        // Check if the user already exists in the database based on their UID
-        const userRef = doc(db, "users", user.uid);
-        const userDoc = await getDoc(userRef);
 
-        if (!userDoc.exists()) {
-            // User doesn't exist in the database, so add them
-            const userData = {
-                // Define the user data here (e.g., name, email, etc.)
-                first_name: user.displayName.split(" ")[0],
-                last_name: user.displayName.split(" ")[1],
-                email: user.email,
-                profile_pic: user.photoURL,
-            };
-
-            await setDoc(userRef, userData);
-        }
-        window.location.href = "/profile?page=form";
+        const userData = {
+            first_name: user.displayName.split(" ")[0],
+            last_name: user.displayName.split(" ")[1],
+            email: user.email,
+            profile_pic: user.photoURL,
+        };
+        await addItem("users", { id: user.uid, ...userData });
     } catch (error) {
         console.error("Error signing in with google:", error);
     }

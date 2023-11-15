@@ -97,3 +97,55 @@ export const getItems = async (table, filterField, filterValue) => {
         .eq(filterField, filterValue);
     return items;
 };
+
+export const addItem = async (table, item) => {
+    try {
+        const { data, error } = await supabase.from(table).upsert([item]);
+
+        if (error) {
+            throw error;
+        }
+        console.log("added data", item);
+
+        return data;
+    } catch (error) {
+        console.error("Error adding item:", error);
+        throw error;
+    }
+};
+
+export const updateItem = async (table, item, user) => {
+    const { data, error } = await supabase
+        .from(table)
+        .update({ ...item })
+        .eq("id", user)
+        .select("*");
+
+    if (error) {
+        throw error;
+    }
+    console.log("added data", data);
+
+    return data;
+};
+
+export const getUserProfile = async (user) => {
+    try {
+        const { data, error } = await supabase
+            .from("users")
+            .select(
+                "id, birth_date, first_name, last_name, phone_num, profile_pic, institution, gender,location, userId"
+            )
+            .eq("id", user)
+            .single();
+        if (error) {
+            throw error;
+        }
+        // Log the user profile data
+        console.log("User profile data from Supabase:", data);
+        return data;
+    } catch (error) {
+        console.error("Error getting user:", error);
+        throw error;
+    }
+};
