@@ -3,11 +3,11 @@
 exports[`renders correctly 1`] = `
 Array [
   <form
-    className="flex md:flex-row flex-col justify-center items-center space-x-8"
+    className="flex md:flex-row flex-col justify-center items-center space-x-8 "
     onSubmit={[Function]}
   >
     <div
-      className="md:w-1/2"
+      className="md:w-1/2 "
     >
       <div
         className="border border-dashed border-accent/50 hidden md:flex flex-col items-center justify-center text-center p-8 text-accent/50 text-sm"
@@ -41,7 +41,7 @@ Array [
       </div>
     </div>
     <div
-      className="flex flex-wrap items-center justify-center  p-4 md:w-1/2 space-y-4 text-lg"
+      className="flex flex-wrap items-center justify-center  p-4 md:w-1/2 space-y-4 text-lg max-w-full"
     >
       <input
         className="border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md w-full"
@@ -104,26 +104,19 @@ Array [
           className="w-1/2 border border-accent/50  placeholder:text-accent/50  py-2 rounded-md text-sm uppercase"
           onChange={[Function]}
           required={true}
-          value="Sell"
+          value="for_sale"
         >
           <option
-            value="Borrow"
+            value="for_borrow"
           >
             Borrow
           </option>
           <option
-            value="Sell"
+            value="for_sell"
           >
             Sell
           </option>
         </select>
-        <input
-          className="w-full border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md"
-          onChange={[Function]}
-          placeholder="Price"
-          type="number"
-          value=""
-        />
       </div>
       <div
         className="flex justify-center mx-auto space-x-2 items-center text-sm"
@@ -133,7 +126,7 @@ Array [
           :
         </label>
         <select
-          className="w-1/2 border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md "
+          className="w-1/2 border border-accent/50 placeholder:text-accent/50 md:px-4 py-2 rounded-md "
           onChange={[Function]}
           required={true}
           value={5}
@@ -235,10 +228,10 @@ Array [
           List
         </button>
       </div>
-      <div
-        className="sm:hidden flex "
-      />
     </div>
+    <div
+      className="sm:hidden flex flex-wrap w-full justify-center "
+    />
   </form>,
   " ",
 ]
