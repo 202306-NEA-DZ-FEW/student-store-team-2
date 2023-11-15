@@ -1,4 +1,5 @@
-import { getCategories, getProducts, getProductsLength } from "@/lib/firestore";
+import { getCategories, getProductsLength } from "@/lib/firestore";
+import { getProducts } from "@/lib/supabase";
 
 import Pagination from "@/components/pagination/Pagination";
 import ProductCard from "@/components/productCard/ProductCard";
@@ -8,11 +9,9 @@ import ProductsFilterWrapper from "@/components/wrappers/productsFilterWrapper/P
 const Page = async ({ searchParams }) => {
     // console.log("params", searchParams);
 
-    const data = await getProducts(searchParams);
+    const { data, count } = await getProducts(searchParams);
     const dataLength = await getProductsLength();
     const categories = await getCategories();
-    console.log("------------------------------------------------");
-    console.log("length", data);
 
     return (
         <div className=' pt-1 pb-24'>
@@ -29,12 +28,11 @@ const Page = async ({ searchParams }) => {
                                     <ProductCard
                                         key={product.pid}
                                         product={product}
-                                        categories={categories}
                                     />
                                 ))}
                         </div>
 
-                        <Pagination length={dataLength} />
+                        <Pagination length={count} />
                     </div>
                 </div>
             </div>
