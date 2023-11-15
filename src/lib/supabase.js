@@ -196,7 +196,7 @@ export const addProduct = async (productData) => {
         }
 
         // Get the product ID (pid) from the inserted data
-        const productId = productDataResult[0]?.pid;
+        const productId = productDataResult?.pid;
 
         // Create an item object for buy_offer or borrow_offer table
         const item = {
