@@ -196,7 +196,7 @@ export const addProduct = async (productData) => {
             );
         }
 
-        const productId = productDataResult?.pid;
+        const productId = productData?.pid;
 
         const item = {
             productId,

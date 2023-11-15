@@ -310,7 +310,7 @@ const AddProductForm = ({ className, categories }) => {
                                     <option value='for_borrow'>
                                         {t("Borrow")}
                                     </option>
-                                    <option value='for_sell'>
+                                    <option value='for_sale'>
                                         {t("Sell")}
                                     </option>
                                 </select>
