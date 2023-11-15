@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <div
-  className="w-1/2 flex flex-col items-center font-lato tracking-wide"
+  className="w-1/2 flex flex-col items-center font-lato tracking-wide pt-10"
 >
   <div
     className="w-full flex items-center"
