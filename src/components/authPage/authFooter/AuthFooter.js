@@ -11,7 +11,7 @@ const AuthFooter = ({ type }) => {
     return (
         <div>
             {" "}
-            <div className='text-center m-2 text-sm   text-content'>
+            <div className='text-center m-2 text-sm   text-titleContent'>
                 {" "}
                 {t(text)}
                 <Link className='text-accent' href={link}>
@@ -20,8 +20,8 @@ const AuthFooter = ({ type }) => {
                 </Link>
             </div>
             {/*Buttons*/}
-            <div className='flex justify-center items-center text-sm  m-2 text-content font-lato'>
-                {t("Or:")}
+            <div className='flex justify-center items-center text-titleContent text-sm  m-2 font-lato'>
+                {t("Or Login Using:")}
             </div>
         </div>
     );

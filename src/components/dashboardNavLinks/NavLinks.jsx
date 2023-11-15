@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import React from "react";
 
-const NavLinks = () => {
+const NavLinks = ({ fetchPurchases }) => {
     const t = useTranslations("Index");
     const links = [
         { name: "borrowings" },
@@ -16,6 +16,7 @@ const NavLinks = () => {
 
     const params = useSearchParams();
     const type = params.get("type");
+
     return (
         <div className='font-lato font-semibold text-lg uppercase w-72 h-64 md:ml-5 lg:ml-20 xl:ml-44 mt-10 bg-bkg text-titleContent p-4 pl-0 hidden md:block'>
             {links.map((link) => (

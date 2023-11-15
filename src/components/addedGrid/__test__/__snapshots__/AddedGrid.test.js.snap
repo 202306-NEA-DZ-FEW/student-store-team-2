@@ -3,6 +3,11 @@
 exports[`renders correctly 1`] = `
 <div
   className="py-20   content-evenly"
+  style={
+    Object {
+      "width": "1000px",
+    }
+  }
 >
   <p
     className="text-titleContent text-3xl capitalize-words text-center font-jost tracking-wide py-14"
