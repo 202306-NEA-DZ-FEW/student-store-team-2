@@ -107,6 +107,13 @@ Array [
             Sell
           </option>
         </select>
+        <input
+          className="w-full border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md"
+          onChange={[Function]}
+          placeholder="Price"
+          type="number"
+          value=""
+        />
       </div>
       <div
         className="flex justify-center mx-auto space-x-2 items-center text-sm"

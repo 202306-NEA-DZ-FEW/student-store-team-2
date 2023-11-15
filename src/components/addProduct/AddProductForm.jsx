@@ -177,7 +177,7 @@ const AddProductForm = ({ className, categories }) => {
         </>
     );
     const renderPriceInput = () => {
-        if (type === "for_sa;e") {
+        if (type === "for_sale") {
             return (
                 <input
                     type='number'

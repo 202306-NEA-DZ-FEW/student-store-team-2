@@ -206,7 +206,7 @@ export const addProduct = async (productData) => {
         const tableName =
             offer_type === "for_sale" ? "sale_offer" : "borrow_offer";
 
-        const { data, error } = await supabase.from(tableName).upsert([item]);
+        const { data, error } = await supabase.from(tableName).insert([item]);
 
         if (error) {
             console.error(
