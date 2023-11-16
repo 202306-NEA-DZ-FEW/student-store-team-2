@@ -52,7 +52,7 @@ const sections = [
 const page = () => {
     return (
         <div>
-            <div className='p-1 bg-green-200 flex flex-col sm:flex-row justify-evenly '>
+            <div className='p-1 flex flex-col sm:flex-row justify-evenly '>
                 <div className='container mt-20 sm:w-1/2 sm:p-3 '>
                     <ProductDisplay />
                 </div>

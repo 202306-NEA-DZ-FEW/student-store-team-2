@@ -11,7 +11,7 @@ import ContactDetails from "../contactDetails/ContactDetails/ContactDetails";
 export default function ProductDetailSection({ user, productData }) {
     const t = useTranslations("Index");
     return (
-        <section className='w-full sm:w-full flex flex-col bg-pink-200'>
+        <section className='w-full sm:w-full flex flex-col'>
             <div className='w-full m-4 flex gap-2'>
                 <ProfilePic user={user} />
                 <ProfileUserInfo user={user} />

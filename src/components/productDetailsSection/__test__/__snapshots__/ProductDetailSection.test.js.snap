@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <section
-  className="w-full sm:w-full flex flex-col bg-pink-200"
+  className="w-full sm:w-full flex flex-col"
 >
   <div
     className="w-full m-4 flex gap-2"
