@@ -16,8 +16,8 @@ function TabsComponent({ tabs }) {
     };
 
     return (
-        <div className='w-3/4 flex flex-col justify-center items-center py-8'>
-            <div className='flex items-center font-medium text-gray-700 text-sm border-b border-gray-200'>
+        <div className=' w-3/4 flex flex-col justify-center items-center py-8'>
+            <div className='w-full font-medium text-gray-700 text-sm border-b border-gray-200'>
                 {tabs
                     ? tabs.map((tab, index) => (
                           <button
@@ -30,6 +30,7 @@ function TabsComponent({ tabs }) {
                       ))
                     : null}
             </div>
+
             <div className='w-full'>{components[selectedTabIndex]}</div>
         </div>
     );

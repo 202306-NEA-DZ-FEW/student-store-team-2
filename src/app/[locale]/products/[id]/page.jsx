@@ -52,11 +52,11 @@ const sections = [
 const page = () => {
     return (
         <div>
-            <div className='p-1 flex w-full justify-evenly '>
-                <div className='container mt-20 w-2/3 ml-40 '>
+            <div className='p-1 bg-green-200 flex flex-col sm:flex-row justify-evenly '>
+                <div className='container mt-20 sm:w-1/2 sm:p-3 '>
                     <ProductDisplay />
                 </div>
-                <div className='w-full container mt-20 '>
+                <div className='container mt-20 sm:w-1/2 sm:p-3 '>
                     <ProductDetailSection
                         productData={product}
                         user={userData}
