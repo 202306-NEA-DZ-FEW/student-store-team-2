@@ -4,13 +4,6 @@ import { useRef } from "react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-/*
-{
-    id: 2,
-    title: "shoes",
-    images: [""]
-}
-*/
 // Placeholder object to be replaced with data from Firestore
 const imagesArray = [
     "/img/product4.jpg",
