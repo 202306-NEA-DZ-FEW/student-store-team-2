@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
 import { getCurrentUser } from "@/lib/authDetails";
+import { getUserProfile } from "@/lib/supabase";
 
 const UserContext = createContext();
 
@@ -16,14 +17,13 @@ export function UserProvider({ fetchUserData, children }) {
 
             await setUser(user);
 
-            const data = await fetchUserData(user);
+            const data = await getUserProfile(user);
             await setUserData(data);
             await setLoading(false);
         };
 
         fetchData();
     }, [fetchUserData]);
-
     return (
         <UserContext.Provider value={{ user, userData, loading }}>
             {children}

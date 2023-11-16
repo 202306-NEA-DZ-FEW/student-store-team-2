@@ -17,6 +17,7 @@ export default function MobileSidebar({
         { name: t("My Lendings"), href: "/dashboard?type=lendings" },
         { name: t("My Purchases"), href: "/dashboard?type=purchases" },
         { name: t("My Sales"), href: "/dashboard?type=sales" },
+        { name: t("List an Item"), href: "/dashboard?type=List+an+Item" },
     ];
 
     async function handleSearch(e) {

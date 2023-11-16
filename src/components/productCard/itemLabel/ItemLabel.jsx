@@ -6,19 +6,19 @@ const ItemLabel = ({ textContent }) => {
     const t = useTranslations("Index");
 
     let style = "";
-    if (textContent === t("For Sale")) {
+    if (textContent === t("for_sale")) {
         style = `bg-secondaryBlue`;
-    } else if (textContent === t("For Borrow")) {
-        style = `bg-secondaryYellow`;
+    } else if (textContent === t("for_borrow")) {
+        style = `bg-secondaryGreen`;
     } else {
         style = `bg-secondaryGreen`;
     }
 
     return (
         <div
-            className={`flex justify-center text-center items-center font-jost font-bold rounded-full ${style} text-white text-sm w-[105px] h-[26px]`}
+            className={`capitalize flex justify-center text-center items-center font-jost font-bold rounded-full ${style} text-white text-sm w-[105px] h-[26px]`}
         >
-            {textContent}
+            {textContent?.split("_")?.join(" ")}
         </div>
     );
 };

@@ -6,7 +6,7 @@ exports[`renders correctly 1`] = `
   onClick={[Function]}
 >
   <svg
-    className="mr-1 w-6 h-6"
+    className=" w-6 h-6"
     enableBackground="new 0 0 48 48"
     fill="currentColor"
     height="1em"
@@ -46,10 +46,5 @@ exports[`renders correctly 1`] = `
       fill="#1976D2"
     />
   </svg>
-  <span
-    className="hidden sm:block"
-  >
-    Index.undefined
-  </span>
 </button>
 `;

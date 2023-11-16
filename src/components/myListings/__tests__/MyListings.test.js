@@ -1,7 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
 import renderer from "react-test-renderer";
 
-import MyListings from "@/components/myListings/MyListings";
+import MyListings from "@/components/myListings/MyDashboard";
 
 import messages from "../../../../messages/en.json";
 jest.mock("next/navigation", () => ({

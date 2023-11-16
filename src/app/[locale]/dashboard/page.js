@@ -1,47 +1,44 @@
-import { collection, getDocs } from "firebase/firestore";
-import React from "react";
-
-import { db } from "@/lib/firebase";
+import { getCategories } from "@/lib/firestore";
+import { getItems } from "@/lib/supabase";
 
 import AddProductForm from "@/components/addProduct/AddProductForm";
 
 import DashboardDisplay from "../../../components/dashboardDisplay/DashboardDisplay";
 import NavLinks from "../../../components/dashboardNavLinks/NavLinks";
-import MyListings from "../../../components/myListings/MyListings";
+import MyDashboard from "../../../components/myListings/MyDashboard";
 import SortingControl from "../../../components/sortingControl/SortingControl";
 
 const Page = async ({ searchParams }) => {
-    const colType = searchParams?.type ? searchParams.type : "borrowings";
-    const categories = [];
+    const fetchPurchases = async (table, filterField, filterValue) => {
+        "use server";
+        // Use Supabase function to fetch data with filter
+        const items = await getItems(table, filterField, filterValue);
 
-    const querySnapshot = await getDocs(collection(db, colType));
-    const data = querySnapshot.docs.map((doc) => {
-        return { id: doc.id, ...doc.data() };
-    });
+        return items;
+    };
 
-    const categoriesSnapshot = await getDocs(collection(db, "categories"));
-    categoriesSnapshot.forEach((doc) => {
-        const categoryData = doc.data().categories; // Assuming 'categories' is the field
-        categories.push(categoryData);
-    });
-
+    // Fetch categories
+    const categories = await getCategories();
     return (
         <div className='pb-40'>
-            <MyListings />
-            <div className='flex leading-6  tracking-wider mb-20'>
+            <MyDashboard />
+            <div className='flex leading-6 tracking-wider mb-20'>
                 <NavLinks />
                 {searchParams.type === "List an Item" ? (
                     <div className='flex-1 p-4'>
                         <AddProductForm categories={categories} />
                     </div>
                 ) : (
-                    <div className='flex-1 p-4'>
+                    <div className='flex-1 flex-col justify-center p-4   xl:pl-48'>
                         <SortingControl />
-                        <DashboardDisplay data={data} />
+                        <DashboardDisplay
+                            fetchPurchases={fetchPurchases}
+                            type={searchParams.type}
+                        />
                     </div>
                 )}
 
-                <div className='px-25'></div>
+                <div className=''></div>
             </div>
         </div>
     );

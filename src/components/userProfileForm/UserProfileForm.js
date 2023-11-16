@@ -1,5 +1,4 @@
 "use client";
-import { collection, doc, setDoc } from "firebase/firestore";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -8,7 +7,7 @@ import DatePicker from "react-widgets/DatePicker";
 
 import "react-widgets/styles.css";
 
-import { db } from "@/lib/firebase";
+import { updateItem } from "@/lib/supabase";
 
 import { useUser } from "@/components/userProvider/UserProvider";
 
@@ -20,12 +19,6 @@ const UserProfileForm = () => {
     const { user, userData } = useUser();
     const [imageURL, setImageURL] = useState("");
     const [formData, setFormData] = useState({
-        address: {
-            building: "",
-            city: "",
-            state: "",
-            street: "",
-        },
         birth_date: "",
         first_name: "",
         gender: "",
@@ -45,17 +38,15 @@ const UserProfileForm = () => {
                 setFormData({
                     ...userData,
                     profile_pic: userData.profile_pic || "",
-
-                    address: { ...userData.address },
                 });
+                console.log("formData", formData);
                 setImageURL(userData.profile_pic);
                 setId(userData.userId);
                 setLoading(false);
             }
         };
         fetcher();
-    }, [user]);
-
+    }, [loading, userData]);
     const handleImageUpload = (url) => {
         setImageURL(url);
         setFormData({ ...formData, profile_pic: url });
@@ -72,43 +63,37 @@ const UserProfileForm = () => {
     };
 
     const handleChange = (e) => {
-        if (e.target.name.startsWith("address.")) {
-            const addressField = e.target.name.split(".")[1];
+        // if (e.target.name.startsWith("address.")) {
+        //     const addressField = e.target.name.split(".")[1];
+        //     setFormData({
+        //         ...formData,
+        //         address: {
+        //             ...formData.address,
+        //             [addressField]: e.target.value,
+        //         },
+        //     });
+        // } else {
+        if (e.target.name === "birth_date") {
             setFormData({
                 ...formData,
-                address: {
-                    ...formData.address,
-                    [addressField]: e.target.value,
-                },
+                [e.target.name]: e.target.value,
             });
         } else {
-            if (e.target.name === "birth_date") {
-                setFormData({
-                    ...formData,
-                    [e.target.name]: e.target.value,
-                });
-            } else {
-                setFormData({
-                    ...formData,
-                    [e.target.name]: e.target.value,
-                });
-            }
+            setFormData({
+                ...formData,
+                [e.target.name]: e.target.value,
+            });
         }
     };
     const handleSubmit = (e) => {
         e.preventDefault();
         if (user) {
-            const usersRef = collection(db, "users");
-            const userRef = doc(usersRef, user);
-            const updatedData = { ...formData, profile_pic: imageURL };
+            // const usersRef = collection(db, "users");
+            // const userRef = doc(usersRef, user);
 
-            setDoc(userRef, updatedData)
-                .then(() => {
-                    router.push("/");
-                })
-                .catch((error) => {
-                    console.error("Error writing document: ", error);
-                });
+            const updatedData = { ...formData, profile_pic: imageURL };
+            updateItem("users", { ...updatedData }, user);
+            // addItem("users", { id: user, ...updatedData });
         }
     };
 
@@ -245,7 +230,7 @@ const UserProfileForm = () => {
                         />
                     </div>
 
-                    <div className='mb-4'>
+                    {/* <div className='mb-4'>
                         <span className='text-sm text-black '>
                             <span className='text-red-500'>*</span> Required
                         </span>
@@ -295,7 +280,7 @@ const UserProfileForm = () => {
                             onChange={handleChange}
                             className='w-full border border-gray-300 p-2 rounded-md'
                         />
-                    </div>
+                    </div> */}
                 </div>
                 <button
                     type='submit'

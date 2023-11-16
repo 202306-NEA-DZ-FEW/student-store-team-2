@@ -3,7 +3,7 @@
 import { v2 as cloudinary } from "cloudinary";
 
 const cloudinaryConfig = cloudinary.config({
-    cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUDNAME,
+    cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
     api_key: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET,
     secure: true,
@@ -29,6 +29,5 @@ export async function saveToDatabase({ public_id, version, signature }) {
 
     if (expectedSignature === signature) {
         // safe to write to database
-        console.log({ public_id });
     }
 }

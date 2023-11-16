@@ -144,6 +144,19 @@ exports[`renders correctly 1`] = `
         My Sales
       </button>
     </a>
+    <a
+      className=" hover:bg-accent hover:text-white font-jost text-accent rounded-md px-3 py-2 text-xl font-medium tracking-widest"
+      href="/dashboard?type=List+an+Item"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onTouchStart={[Function]}
+    >
+      <button
+        className="w-full flex justify-start "
+      >
+        List an Item
+      </button>
+    </a>
     <div
       className="  hover:bg-accent hover:text-white rounded-md px-3 py-2 text-xl font-medium "
     >
