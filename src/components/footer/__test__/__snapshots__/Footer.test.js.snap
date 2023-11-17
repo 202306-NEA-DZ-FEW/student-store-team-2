@@ -2,48 +2,46 @@
 
 exports[`renders correctly 1`] = `
 <footer
-  className="h-1/5 w-full mx-auto"
+  className="text-sm w-full mx-auto"
 >
   <div
-    className="flex lg:flex-col flex-row lg:justify-between justify-center"
+    className="flex md:flex-col flex-row md:justify-between justify-center"
   >
     <div
-      className="sb_footer section_padding p-10"
+      className="flex justify-around items-start flex-col md:flex-row md:flex-wrap w-full text-left"
     >
       <div
-        className="flex justify-around items-start flex-col md:flex-row md:flex-wrap w-full text-left mb-8"
+        className="flex justify-start flex-col ml-4"
       >
-        <div
-          className="w-40 m-4 flex justify-start flex-col"
+        <a
+          href="/"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onTouchStart={[Function]}
         >
-          <a
-            href="/"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onTouchStart={[Function]}
+          <button
+            className="font-bold text-3xl sm:text-base tracking-wide md:hover:tracking-widest transform-all ease-in-out duration-500 font-mono text-black "
           >
-            <button
-              className="font-bold text-3xl sm:text-base tracking-wide md:hover:tracking-widest transform-all ease-in-out duration-500 font-mono text-black z-50 "
-            >
-              MiniStore
-            </button>
-          </a>
-          <p
-            className="mt-10 text-content sm:text-base"
-          >
-            This platform is a win-win for everyone involved lenders earn extra income, borrowers cut costs.
-          </p>
-        </div>
-        <div
-          className="w-30  flex justify-start flex-col"
+            MiniStore
+          </button>
+        </a>
+        <p
+          className="mt-10 text-content sm:text-base"
         >
-          <p
-            className="font-semibold tracking-wider py-1 my-1"
-          >
-            CONTACT US
-          </p>
+          This platform is a win-win for everyone involved lenders earn extra income, borrowers cut costs.
+        </p>
+      </div>
+      <div
+        className=" flex justify-start flex-col"
+      >
+        <p
+          className=" tracking-wider py-1 my-1"
+        >
+          CONTACT US
+        </p>
+        <div>
           <a
-            className="flex flex-row items-center mt-3   hover:text-accent dark:hover:text-white"
+            className="flex flex-row items-center hover:text-accent dark:hover:text-white"
             href="https://github.com/0m3ga13"
             onClick={[Function]}
             onMouseEnter={[Function]}
@@ -62,11 +60,6 @@ exports[`renders correctly 1`] = `
                 fillRule="evenodd"
               />
             </svg>
-            <span
-              className="sr-only"
-            >
-              GitHub account
-            </span>
             <p
               className="py-1"
             >
@@ -74,7 +67,7 @@ exports[`renders correctly 1`] = `
             </p>
           </a>
           <a
-            className="flex flex-row items-center   hover:text-accent dark:hover:text-white"
+            className="flex flex-row items-center hover:text-accent dark:hover:text-white"
             href="https://github.com/Emybel"
             onClick={[Function]}
             onMouseEnter={[Function]}
@@ -93,17 +86,14 @@ exports[`renders correctly 1`] = `
                 fillRule="evenodd"
               />
             </svg>
-            <span
-              className="sr-only"
+            <p
+              className="py-1"
             >
-              GitHub account
-            </span>
-            <p>
               Imane BELAID
             </p>
           </a>
           <a
-            className="flex flex-row items-center  hover:text-accent dark:hover:text-white"
+            className="flex flex-row items-center hover:text-accent dark:hover:text-white"
             href="https://github.com/medshk"
             onClick={[Function]}
             onMouseEnter={[Function]}
@@ -122,11 +112,6 @@ exports[`renders correctly 1`] = `
                 fillRule="evenodd"
               />
             </svg>
-            <span
-              className="sr-only"
-            >
-              GitHub account
-            </span>
             <p
               className="py-1"
             >
@@ -134,7 +119,7 @@ exports[`renders correctly 1`] = `
             </p>
           </a>
           <a
-            className="flex flex-row items-center  hover:text-accent dark:hover:text-white"
+            className="flex flex-row items-center hover:text-accent dark:hover:text-white"
             href="https://github.com/Bolphunga"
             onClick={[Function]}
             onMouseEnter={[Function]}
@@ -153,11 +138,6 @@ exports[`renders correctly 1`] = `
                 fillRule="evenodd"
               />
             </svg>
-            <span
-              className="sr-only"
-            >
-              GitHub account
-            </span>
             <p
               className="py-1"
             >
@@ -165,7 +145,7 @@ exports[`renders correctly 1`] = `
             </p>
           </a>
           <a
-            className="flex flex-row items-center  hover:text-accent dark:hover:text-white"
+            className="flex flex-row items-center hover:text-accent dark:hover:text-white"
             href="https://github.com/samiraTbl"
             onClick={[Function]}
             onMouseEnter={[Function]}
@@ -184,261 +164,130 @@ exports[`renders correctly 1`] = `
                 fillRule="evenodd"
               />
             </svg>
-            <span
-              className="sr-only"
+            <p
+              className="py-1"
             >
-              GitHub account
-            </span>
-            <p>
               Samira TOUBAL SEGHIR
             </p>
           </a>
         </div>
-        <div
-          className="w-40 flex justify-start flex-col uppercase tracking-wide "
-        >
-          <p
-            className="font-semibold tracking-wider py-1"
-          >
-            Quick links
-          </p>
-          <a
-            className="py-2 mt-3  no-underline hover:text-accent"
-            href="#"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onTouchStart={[Function]}
-          >
-            <p>
-              Home
-            </p>
-          </a>
-          <a
-            className="py-2  no-underline hover:text-accent"
-            href="#"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onTouchStart={[Function]}
-          >
-            <p>
-              Furniture
-            </p>
-          </a>
-          <a
-            className="py-2  no-underline hover:text-accent"
-            href="#"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onTouchStart={[Function]}
-          >
-            <p>
-              Clothes
-            </p>
-          </a>
-          <a
-            className="py-2  no-underline hover:text-accent"
-            href="#"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onTouchStart={[Function]}
-          >
-            <p>
-              Electronics
-            </p>
-          </a>
-          <a
-            className="py-2  no-underline hover:text-accent"
-            href="#"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onTouchStart={[Function]}
-          >
-            <p>
-              gaming
-            </p>
-          </a>
-        </div>
-        <div
-          className="w-40  flex justify-start flex-col"
-        >
-          <p
-            className="font-semibold tracking-wide"
-          >
-            HELP AND INFO
-          </p>
-          <a
-            className="py-2  no-underline hover:text-accent"
-            href="#"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onTouchStart={[Function]}
-          >
-            <p>
-              TRACK YOUR ORDER
-            </p>
-          </a>
-          <a
-            className="py-2  no-underline hover:text-accent"
-            href="#"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onTouchStart={[Function]}
-          >
-            <p>
-              RETURNS POLICIES
-            </p>
-          </a>
-          <a
-            className="py-2  no-underline hover:text-accent"
-            href="#"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onTouchStart={[Function]}
-          >
-            <p>
-              SHIPPING + DELIVERY
-            </p>
-          </a>
-          <a
-            className="py-2  no-underline hover:text-accent"
-            href="#"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onTouchStart={[Function]}
-          >
-            <p>
-              FAQS
-            </p>
-          </a>
-        </div>
-        <div
-          className="w-40  flex justify-start flex-col uppercase"
-        >
-          <p
-            className="font-semibold tracking-wide py-1"
-          >
-            ABOUT STUDENT STORE
-          </p>
-          <a
-            className="py-2 no-underline hover:text-accent"
-            href="#"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onTouchStart={[Function]}
-          >
-            <p>
-              ABOUT US
-            </p>
-          </a>
-          <a
-            className="py-2 no-underline hover:text-accent"
-            href="#"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onTouchStart={[Function]}
-          >
-            <p>
-              HOW IT WORKS!
-            </p>
-          </a>
-          <a
-            className="py-2 no-underline hover:text-accent"
-            href="#"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onTouchStart={[Function]}
-          >
-            <p>
-              Terms of Use
-            </p>
-          </a>
-          <a
-            className="py-2  no-underline hover:text-accent"
-            href="#"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onTouchStart={[Function]}
-          >
-            <p>
-              Privacy Policy
-            </p>
-          </a>
-        </div>
       </div>
-      <hr
-        className=" w-full py-2"
-      />
       <div
-        className="text-sm text-content sm:text-base sm:text-center  flex justify-around items-start flex-col  md:flex-row"
+        className="flex justify-start flex-col uppercase tracking-wide "
       >
-        <div
-          className="sb_footer-copyright text-lg tracking-wider font- text-[13px] leading-[15px]  "
+        <p
+          className="font-semibold tracking-wider py-1"
+        >
+          Quick links
+        </p>
+        <a
+          className="py-2 mt-3  no-underline hover:text-accent"
+          href="#"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onTouchStart={[Function]}
         >
           <p>
-            We ship with:
-            <a
-              className="icon-link"
-              href="https://www.dhl.com/dz-fr/home.html"
-            >
-              <img
-                alt="dhl icon"
-                className="icon"
-                data-nimg="1"
-                decoding="async"
-                height={8.49}
-                loading="lazy"
-                onError={[Function]}
-                onLoad={[Function]}
-                src="/_next/image?url=%2Fimg%2Fdhl.png&w=128&q=75"
-                srcSet="/_next/image?url=%2Fimg%2Fdhl.png&w=64&q=75 1x, /_next/image?url=%2Fimg%2Fdhl.png&w=128&q=75 2x"
-                style={
-                  Object {
-                    "color": "transparent",
-                    "display": "inline",
-                  }
-                }
-                width={60}
-              />
-            </a>
-            <a
-              className="icon-link"
-              href="https://yalidine.com/"
-            >
-              <img
-                alt="yalidine icon"
-                className="icon"
-                data-nimg="1"
-                decoding="async"
-                height={8.49}
-                loading="lazy"
-                onError={[Function]}
-                onLoad={[Function]}
-                src="/_next/image?url=%2Fimg%2Fyalidine.png&w=96&q=75"
-                srcSet="/_next/image?url=%2Fimg%2Fyalidine.png&w=48&q=75 1x, /_next/image?url=%2Fimg%2Fyalidine.png&w=96&q=75 2x"
-                style={
-                  Object {
-                    "color": "transparent",
-                    "display": "inline",
-                  }
-                }
-                width={40}
-              />
-            </a>
+            Home
           </p>
-        </div>
-        <div
-          className="sb_footer-copyright text-lg tracking-wider font- text-[13px] leading-[15px] pt-7  "
+        </a>
+        <a
+          className="py-2  no-underline hover:text-accent"
+          href="#"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onTouchStart={[Function]}
         >
           <p>
-            @ Copyright 
-            2023
-             
-            StudentStore.
+            Furniture
           </p>
-        </div>
-        <div
-          className="sb_footer-below-links flex flex-row justify-between mx-4 text-[13px] leading-[15px] ml-8  font-semibold"
-        />
+        </a>
+        <a
+          className="py-2  no-underline hover:text-accent"
+          href="#"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onTouchStart={[Function]}
+        >
+          <p>
+            Clothes
+          </p>
+        </a>
+        <a
+          className="py-2  no-underline hover:text-accent"
+          href="#"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onTouchStart={[Function]}
+        >
+          <p>
+            Electronics
+          </p>
+        </a>
+        <a
+          className="py-2  no-underline hover:text-accent"
+          href="#"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onTouchStart={[Function]}
+        >
+          <p>
+            gaming
+          </p>
+        </a>
+      </div>
+      <div
+        className=" flex justify-start flex-col uppercase"
+      >
+        <p
+          className="font-semibold tracking-wide py-1"
+        >
+          ABOUT STUDENT STORE
+        </p>
+        <a
+          className="py-2 no-underline hover:text-accent"
+          href="#"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onTouchStart={[Function]}
+        >
+          <p>
+            ABOUT US
+          </p>
+        </a>
+        <a
+          className="py-2 no-underline hover:text-accent"
+          href="#"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onTouchStart={[Function]}
+        >
+          <p>
+            HOW IT WORKS!
+          </p>
+        </a>
+        <a
+          className="py-2 no-underline hover:text-accent"
+          href="#"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onTouchStart={[Function]}
+        >
+          <p>
+            Terms of Use
+          </p>
+        </a>
+        <a
+          className="py-2  no-underline hover:text-accent"
+          href="#"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onTouchStart={[Function]}
+        >
+          <p>
+            Privacy Policy
+          </p>
+        </a>
       </div>
     </div>
   </div>
