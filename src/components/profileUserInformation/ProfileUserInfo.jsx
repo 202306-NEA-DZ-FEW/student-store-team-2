@@ -18,8 +18,8 @@ function ProfileUserInfo({ user }) {
             <div className='text-[#72ADC7] flex gap-1'>
                 <PiMapPinLineDuotone />
                 <p className='font-normal text-xs '>
-                    {user ? user.address.city : null},{" "}
-                    {user ? user.address.state : null}
+                    {/* {user ? user.address.city : null},{" "}
+                    {user ? user.address.state : null} */}
                 </p>
             </div>
         </div>
