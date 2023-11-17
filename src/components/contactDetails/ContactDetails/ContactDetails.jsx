@@ -12,7 +12,7 @@ function ContactDetails({ user }) {
                 <p className='text-sm font-medium'>
                     {" "}
                     {user
-                        ? "+213 (0)" + user.phoneNumber
+                        ? "+213 (0)" + user.phone_num
                         : "Phone Number Not Available"}
                 </p>
             </div>
