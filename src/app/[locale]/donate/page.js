@@ -5,6 +5,7 @@ import React from "react";
 
 const Page = () => {
     const t = useTranslations("Index");
+
     return (
         <div className='flex flex-col font-poppins pt-16'>
             <div className='relative min-h-[200px] lg:h-96'>
