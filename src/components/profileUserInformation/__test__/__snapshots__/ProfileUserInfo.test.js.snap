@@ -61,10 +61,7 @@ exports[`renders correctly 1`] = `
     </svg>
     <p
       className="font-normal text-xs "
-    >
-      ,
-       
-    </p>
+    />
   </div>
 </div>
 `;
