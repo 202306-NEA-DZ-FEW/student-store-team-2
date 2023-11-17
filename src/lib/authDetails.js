@@ -47,7 +47,7 @@ export const loginWithEmailAndPassword = async (email, password) => {
             email,
             password
         );
-        window.location.href = "/profile?page=form";
+        window.location.href = "/dashboard";
         return userCredential.user;
     } catch (error) {
         console.error("Error logging in:", error);
@@ -97,6 +97,7 @@ export const handleGoogleLogin = async () => {
             profile_pic: user.photoURL,
         };
         await addItem("users", { id: user.uid, ...userData });
+        window.location.href = "/dashboard";
     } catch (error) {
         console.error("Error signing in with google:", error);
     }

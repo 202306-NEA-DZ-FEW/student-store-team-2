@@ -99,17 +99,20 @@ const DashboardDisplay = ({ type, fetchPurchases }) => {
     }, [type, user]);
 
     return (
-        <div className='flex flex-wrap gap-4 w-fit'>
-            <div>
-                {data &&
-                    data.map((item) => (
-                        <ProductItem
-                            key={item.productId}
-                            fetchPurchases={fetchPurchases}
-                            product={item}
-                        />
-                    ))}
-            </div>
+        <div className='flex flex-wrap gap-4'>
+            {data?.length > 0 ? (
+                data.map((item) => (
+                    <ProductItem
+                        key={item.productId}
+                        fetchPurchases={fetchPurchases}
+                        product={item}
+                    />
+                ))
+            ) : (
+                <div className='text-titleContent uppercase font-jost mt-24'>
+                    no current items
+                </div>
+            )}
         </div>
     );
 };
