@@ -4,35 +4,32 @@ import { useRef } from "react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-/*
-{
-    id: 2,
-    title: "shoes",
-    images: [""]
-}
-*/
 // Placeholder object to be replaced with data from Firestore
-const imagesArray = [
-    "/img/product4.jpg",
-    "/img/product3.jpg",
-    "/img/product2.jpg",
-    "/img/product1.jpg",
-];
-function ProductDisplay() {
-    const [currentImage, setCurrentImage] = useState(imagesArray[0]);
+// const imagesArray = [
+//     "/img/product4.jpg",
+//     "/img/product3.jpg",
+//     "/img/product2.jpg",
+//     "/img/product1.jpg",
+// ];
+function ProductDisplay({ product }) {
+    console.log("product", product);
+    const images = product.image;
+    console.log("imagesArray", images);
+
+    const [currentImage, setCurrentImage] = useState(images[0]);
     const indexRef = useRef(1);
     const scrollRef = useRef(null);
 
     useEffect(() => {
         setInterval(() => {
-            setCurrentImage(imagesArray[indexRef.current]);
+            setCurrentImage(images[indexRef.current]);
             scrollRef.current.scrollTo(0, indexRef.current * 249);
             indexRef.current = indexRef.current + 1;
             if (indexRef.current === 4) {
                 indexRef.current = 0;
             }
         }, 4000);
-    }, []);
+    }, [images]);
 
     return (
         <>
@@ -41,7 +38,7 @@ function ProductDisplay() {
                     ref={scrollRef}
                     className=' h-[560px] scroll-smooth flex flex-col gap-1 overflow-hidden '
                 >
-                    {imagesArray.map((item, index) => (
+                    {images.map((item, index) => (
                         <button
                             key={index}
                             className='flex flex-col items-center justify-center'
