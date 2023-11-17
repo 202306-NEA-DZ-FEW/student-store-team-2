@@ -76,10 +76,7 @@ exports[`renders correctly 1`] = `
         </svg>
         <p
           className="font-normal text-xs "
-        >
-          ,
-           
-        </p>
+        />
       </div>
     </div>
   </div>
@@ -91,9 +88,7 @@ exports[`renders correctly 1`] = `
     >
       <h2
         className="font-lato text-lg sm:3xl uppercase text-[#55585B]"
-      >
-        Product Name Not Available
-      </h2>
+      />
       <div
         className="relative mt-2"
       >
@@ -120,15 +115,12 @@ exports[`renders correctly 1`] = `
           State
           :
            
-          Condition Not Available
         </div>
       </div>
     </div>
     <p
       className="w-full sm:w-5/6 text-sm sm:text-base font-medium mb-2 leading-5 tracking-wide"
-    >
-      Description Not Available
-    </p>
+    />
     <div
       className=" mt-8 text-[#3A3A3A] w-full flex flex-col items-start sm:flex-row sm:items-center my-1"
     >
@@ -148,7 +140,6 @@ exports[`renders correctly 1`] = `
           className="font-lato text-lg font-semibold"
         >
           $
-           Sell Price Not Available
         </p>
       </div>
       <div
@@ -167,7 +158,6 @@ exports[`renders correctly 1`] = `
           className="font-lato text-lg font-semibold "
         >
           $
-          Borrow Price Not Available
           <span
             className="text-[#55585B] text-sm font-thin font-jost pl-2"
           >
@@ -190,10 +180,7 @@ exports[`renders correctly 1`] = `
         onClick={[Function]}
         onMouseEnter={[Function]}
         onTouchStart={[Function]}
-      >
-        Category Not Available
-         
-      </a>
+      />
     </div>
     <div
       className="mt-8"
