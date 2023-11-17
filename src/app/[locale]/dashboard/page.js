@@ -29,7 +29,7 @@ const Page = async ({ searchParams }) => {
                         <AddProductForm categories={categories} />
                     </div>
                 ) : (
-                    <div className='flex-1 flex-col justify-center p-4   xl:pl-48'>
+                    <div className='flex-1 flex-col justify-center p-4 items-center   xl:pl-48'>
                         <SortingControl />
                         <DashboardDisplay
                             fetchPurchases={fetchPurchases}

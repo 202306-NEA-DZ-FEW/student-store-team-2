@@ -2,8 +2,12 @@
 
 exports[`renders correctly 1`] = `
 <div
-  className="flex flex-wrap gap-4 w-fit"
+  className="flex flex-wrap gap-4"
 >
-  <div />
+  <div
+    className="text-titleContent uppercase font-jost mt-24"
+  >
+    no current items
+  </div>
 </div>
 `;
