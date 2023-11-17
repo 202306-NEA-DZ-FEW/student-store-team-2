@@ -1,14 +1,15 @@
 "use client";
-import React from "react";
-import ProfilePic from "../profilePicture/ProfilePic";
-import ProfileUserInfo from "../profileUserInformation/ProfileUserInfo";
-import BuyBorrowBtn from "../buyborrow-btn/BuyBorrowBtn";
-import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
-import ContactDetails from "../contactDetails/ContactDetails/ContactDetails";
+import { useTranslations } from "next-intl";
+import React from "react";
 
-export default function ProductDetailSection({ user, product, categories }) {
+import BuyBorrowBtn from "../buyborrow-btn/BuyBorrowBtn";
+import ContactDetails from "../contactDetails/ContactDetails/ContactDetails";
+import ProfilePic from "../profilePicture/ProfilePic";
+import ProfileUserInfo from "../profileUserInformation/ProfileUserInfo";
+
+export default function ProductDetailSection({ user, product }) {
     const t = useTranslations("Index");
 
     console.log("product", product);
@@ -41,21 +42,24 @@ export default function ProductDetailSection({ user, product, categories }) {
                     {product && product.description}
                 </p>
                 <div className=' mt-8 text-[#3A3A3A] w-full flex flex-col items-start sm:flex-row sm:items-center my-1'>
-                    <div className=' flex flex-row gap-2 w-full sm:w-2/3 '>
-                        <BuyBorrowBtn label='Buy' />
-                        <p className='font-lato text-lg font-semibold'>
-                            ${/* {product && product.price.sell_price} */}
-                        </p>
-                    </div>
-                    <div className='flex flex-row gap-2 sm:gap-0 w-full sm:w-2/3 mt-2'>
-                        <BuyBorrowBtn label='Borrow' />
-                        <p className='font-lato text-lg font-semibold '>
-                            ${/* {product && product.price.borrow_price} */}
-                            <span className='text-[#55585B] text-sm font-thin font-jost pl-2'>
-                                per day
-                            </span>
-                        </p>
-                    </div>
+                    {product?.offer_type === "for_sale" ? (
+                        <div className=' flex flex-row gap-2 w-full sm:w-2/3 '>
+                            <BuyBorrowBtn label='Buy' />
+                            <p className='font-lato text-lg font-semibold'>
+                                ${product?.sale_offer?.price}
+                            </p>
+                        </div>
+                    ) : (
+                        <div className='flex flex-row gap-2 sm:gap-0 w-full sm:w-2/3 mt-2'>
+                            <BuyBorrowBtn label='Borrow' />
+                            <p className='font-lato text-lg font-semibold '>
+                                ${product?.borrow_offer?.price}
+                                <span className='text-[#55585B] text-sm font-thin font-jost pl-2'>
+                                    per day
+                                </span>
+                            </p>
+                        </div>
+                    )}
                 </div>
                 <div className=' w-full flex mt-8 gap-2'>
                     <p className=' text-sm sm:text-base text-[#3A3A3A] font-semibold '>
@@ -65,7 +69,7 @@ export default function ProductDetailSection({ user, product, categories }) {
                         href='/'
                         className='font-normal text-[#72AEC8] underline hover:text-[#45adda] text-sm sm:text-base transform hover:scale-105 transition-transform duration-300 ease-in-out'
                     >
-                        {categories && categories.category_name}
+                        {product?.categories?.category_name}
                     </Link>
                 </div>
                 <ContactDetails user={user} />

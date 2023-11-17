@@ -1,7 +1,8 @@
-import ProductDetailSection from "@/components/productDetailsSection/ProductDetailSection";
+import { getProductWithPrice, getUserProfile } from "@/lib/supabase";
+
 import ProductDisplay from "@/components/product-display/ProductDisplay";
+import ProductDetailSection from "@/components/productDetailsSection/ProductDetailSection";
 import TabsComponent from "@/components/tabs/TabsComponent";
-import { getProduct, getUserProfile, getCategories } from "@/lib/supabase";
 
 // // Placeholder object to be replaced with data from Firestore
 // const userData = {
@@ -53,10 +54,10 @@ const sections = [
 const SingleProductPage = async ({ params }) => {
     console.log(params);
 
-    const categories = await getCategories(params.category);
-    console.log("categories", categories);
+    // const categories = await getCategories(params.category);
+    // console.log("categories", categories);
 
-    const productData = await getProduct(params.id);
+    const productData = await getProductWithPrice(params.id);
     console.log("productData", productData);
 
     const userData = await getUserProfile("dywOnEzn9iX3CAfNosJa95P4LYA2");
@@ -74,7 +75,6 @@ const SingleProductPage = async ({ params }) => {
                     <ProductDetailSection
                         product={productData}
                         user={userData}
-                        categories={categories}
                     />
                 </div>
             </div>

@@ -1,7 +1,8 @@
-import renderer from "react-test-renderer";
 import { NextIntlClientProvider } from "next-intl";
-import messages from "../../../../messages/en.json";
+import renderer from "react-test-renderer";
+
 import ProductDisplay from "../ProductDisplay";
+import messages from "../../../../messages/en.json";
 
 it("renders correctly", () => {
     const product = {
@@ -21,9 +22,7 @@ it("renders correctly", () => {
             "https://images.placeholders.dev/?width=100&height=100",
             "https://images.placeholders.dev/?width=100&height=100",
         ],
-        is_borrowed: false,
-        is_borrowed_period: 0,
-        is_sold: false,
+        offer_type: "for_sale",
         name: "Classic literature set",
         price: 99.95,
         uid: "user123",
