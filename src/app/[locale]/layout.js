@@ -2,10 +2,10 @@ import {
     Jost,
     Jua,
     Lato,
+    Noto_Kufi_Arabic,
     Noto_Sans_Arabic,
     Poppins,
     Roboto,
-    Noto_Kufi_Arabic,
 } from "next/font/google";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";

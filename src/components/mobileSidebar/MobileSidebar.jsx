@@ -54,8 +54,10 @@ export default function MobileSidebar({
                     </button>
                 </div>
             </div>
-
-            <div className='space-y-1 px-2 pt-2 pb-3 flex flex-col justify-start '>
+            <div className=' items-center'>
+                <Searchbar toggleMobileMenu={toggleMobileMenu} />
+            </div>
+            <div className='space-y-1 mt-5 px-2 pt-2 pb-3 flex flex-col justify-start '>
                 {navigation.map((item) => (
                     <Link
                         key={item.name}
@@ -85,6 +87,7 @@ export default function MobileSidebar({
                         <h2>{t("Profile")}</h2>
                     </button>
                 </Link>
+
                 {links.map((link) => (
                     <Link
                         key={link.name}
@@ -103,9 +106,6 @@ export default function MobileSidebar({
                     className={`  hover:bg-accent hover:text-white rounded-md px-3 py-2 text-xl font-medium `}
                 >
                     <UserStatus />
-                </div>
-                <div className=' items-center'>
-                    <Searchbar toggleMobileMenu={toggleMobileMenu} />
                 </div>
             </div>
         </div>

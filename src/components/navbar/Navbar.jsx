@@ -36,7 +36,7 @@ export default function Navbar() {
                 <>
                     <div className='mx-auto px-2 sm:px-6 lg:px-8 '>
                         <div className='relative flex h-16 items-center justify-between'>
-                            <div className='absolute inset-y-0 right-0 flex items-center sm:hidden '>
+                            <div className='absolute inset-y-0 right-0 flex items-center md:hidden '>
                                 {/* Mobile menu button */}
                                 <button
                                     onClick={toggleMobileMenu}
@@ -64,7 +64,7 @@ export default function Navbar() {
                                     </div>
                                 </Link>
 
-                                <div className='hidden sm:block'>
+                                <div className='hidden md:block'>
                                     <div className=' flex-1  flex space-x-4 items-center '>
                                         {navigation.map((item) => (
                                             <Link
@@ -72,7 +72,7 @@ export default function Navbar() {
                                                 href={item.href}
                                             >
                                                 <div
-                                                    className={` hover:bg-accent hover:text-white  block rounded-md px-3 py-2 text-base font-semibold font-lato antialiased tracking-widest`}
+                                                    className={` hover:bg-accent hover:text-white block rounded-md px-3 py-2 text-sm lg:text-base font-semibold font-lato antialiased tracking-widest`}
                                                 >
                                                     {item.name}
                                                 </div>
@@ -80,8 +80,11 @@ export default function Navbar() {
                                         ))}
                                     </div>
                                 </div>
-                                <div className='hidden sm:block mr-48'>
+                                <div className='hidden md:block'>
                                     <div className='flex space-x-4 items-center'>
+                                        <Searchbar
+                                            toggleMobileMenu={() => {}}
+                                        />
                                         <Link href='/profile?page=form'>
                                             <BiUser
                                                 className='block h-6 w-6 antialiased  hover:text-accent rounded-xl font-semibold '
@@ -89,10 +92,6 @@ export default function Navbar() {
                                             />
                                         </Link>
                                         <UserStatus />
-
-                                        <Searchbar
-                                            toggleMobileMenu={() => {}}
-                                        />
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +99,7 @@ export default function Navbar() {
                     </div>
                     {isOpen && (
                         <Portal>
-                            <div className='sm:hidden fixed bg-accent2 z-50 w-screen h-screen top-0'>
+                            <div className='md:hidden fixed bg-accent2 z-50 w-screen h-screen top-0'>
                                 <MobileSidebar
                                     navigation={navigation}
                                     toggleMobileMenu={toggleMobileMenu}

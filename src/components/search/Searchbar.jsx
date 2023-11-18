@@ -80,9 +80,9 @@ const Searchbar = ({ toggleMobileMenu }) => {
                     type='search'
                     className={`cursor-pointer absolute h-8 ${
                         toggleSearch
-                            ? "w-48 border border-accent/80 cursor-text text-sm"
+                            ? "w-48 sm:w-96 border border-accent/80 cursor-text text-sm"
                             : "w-0"
-                    } rounded-full bg-transparent outline-none transition-all duration-300 ease-in-out left-10 pl-1`}
+                    } rounded-full  outline-none transition-all duration-300 ease-in-out -right-52 sm:right-10 pl-1 z-50`}
                     onChange={handleInputChange}
                     value={searchValue}
                 />
@@ -94,7 +94,7 @@ const Searchbar = ({ toggleMobileMenu }) => {
                     aria-hidden='true'
                 />
                 {suggestions.length > 0 && !noItemsFound && (
-                    <div className='hidden sm:block absolute w-48 left-10 mx-auto bg-white border border-accent/80 rounded-md'>
+                    <div className='hidden sm:block absolute w-48 sm:w-96 -right-52 sm:right-10  mx-auto bg-white border border-accent/80 rounded-md'>
                         <div className='flex flex-col'>
                             {suggestions.map((suggestion, index) => (
                                 <Link
