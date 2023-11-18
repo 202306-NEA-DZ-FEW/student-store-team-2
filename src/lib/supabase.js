@@ -2,7 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import { v4 as uuidv4 } from "uuid";
 
 // Create a single supabase client for interacting with your database
-const supabase = createClient(
+export const supabase = createClient(
     "https://zvipwzqccgaxkfjxdnue.supabase.co",
     process.env.NEXT_PUBLIC_SUPABASE_API_KEY
 );

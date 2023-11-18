@@ -1,10 +1,9 @@
-import { collection, getDocs, query, where } from "firebase/firestore";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
 
-import { db } from "@/lib/firebase";
+import { supabase } from "@/lib/supabase";
 
 const Searchbar = ({ toggleMobileMenu }) => {
     const router = useRouter();
@@ -40,29 +39,25 @@ const Searchbar = ({ toggleMobileMenu }) => {
 
         const searchProducts = async (value) => {
             if (value.length >= 2) {
-                const q = query(
-                    collection(db, "products"),
-                    where("name", ">=", value.toLowerCase()),
-                    where("name", "<=", value.toLowerCase() + "\uf8ff")
-                );
+                const { data, error } = await supabase
+                    .from("products")
+                    .select("name")
+                    .ilike("name", `%${value}%`);
 
-                try {
-                    const querySnapshot = await getDocs(q);
-                    const newSuggestions = [];
-                    querySnapshot.forEach((doc) => {
-                        newSuggestions.push(doc.data().name);
-                    });
-
-                    if (newSuggestions.length === 0) {
-                        setNoItemsFound(true);
-                    } else {
-                        setNoItemsFound(false);
-                    }
-
-                    setSuggestions(newSuggestions);
-                } catch (error) {
-                    console.error(error);
+                if (error) {
+                    console.log(error);
+                    return;
                 }
+
+                const newSuggestions = data.map((product) => product.name);
+
+                if (newSuggestions.length === 0) {
+                    setNoItemsFound(true);
+                } else {
+                    setNoItemsFound(false);
+                }
+
+                setSuggestions(newSuggestions);
             } else {
                 setSuggestions([]);
                 setNoItemsFound(false);
