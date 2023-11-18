@@ -2,9 +2,8 @@
 
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import React from "react";
 
-import { signOutUser } from "@/lib/authDetails";
+import { signOut } from "@/lib/_supabaseAuth";
 
 import { useUser } from "../userProvider/UserProvider";
 
@@ -12,7 +11,7 @@ function UserStatus() {
     const t = useTranslations("Index");
     const { user, userData, loading } = useUser();
     const handleSignOutUser = async () => {
-        await signOutUser();
+        await signOut();
     };
 
     if (loading) {

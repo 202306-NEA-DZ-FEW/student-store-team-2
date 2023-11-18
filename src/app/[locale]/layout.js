@@ -73,6 +73,7 @@ export default async function RootLayout({ children, params: { locale } }) {
     } catch (error) {
         notFound();
     }
+
     return (
         <html lang={locale}>
             <body
