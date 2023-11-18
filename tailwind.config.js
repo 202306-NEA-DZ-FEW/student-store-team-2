@@ -34,6 +34,8 @@ module.exports = {
                 jua: ["var(--font-jua)"],
                 poppins: ["var(--font-poppins)"],
                 roboto: ["var(--font-roboto)"],
+                notoAr: ["var(--font-notoAr)"],
+                notoKufi: ["var(--font-notoKufi)"]
             },
             letterSpacing: {
                 title: "tracking-normal",

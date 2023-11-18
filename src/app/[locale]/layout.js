@@ -84,7 +84,9 @@ export default async function RootLayout({ children, params: { locale } }) {
                     locale === "en" ? jost.variable : ""
                 } font-jost ${
                     locale === "en" ? poppins.variable : ""
-                } font-poppins ${roboto.variable} font-roboto`}
+                } font-poppins ${
+                    locale === "en" ? roboto.variable : ""
+                } font-roboto`}
             >
                 <UserProvider fetchUserData={fetchUserData}>
                     <NextIntlClientProvider locale={locale} messages={messages}>
