@@ -6,25 +6,36 @@ import { getCurrentUser } from "@/lib/_supabaseAuth";
 
 const UserContext = createContext();
 
-export function UserProvider({ fetchUserData, children }) {
+export function UserProvider({ children }) {
     const [user, setUser] = useState(null);
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         const fetchData = async () => {
-            getCurrentUser().then((data) => {
-                setUser(data?.user?.id);
-            });
-            // await setUser(currentUser.data.user.id);
-            // console.log("currenUser ID", currentUser.data.user.id);
-            const data = await fetchUserData(user);
-
-            await setUserData(data);
-            await setLoading(false);
+            try {
+                const data = await getCurrentUser();
+                setUser(data?.user);
+            } catch (error) {
+                // Handle errors
+            }
         };
 
         fetchData();
-    }, [fetchUserData, user]);
+    }, []);
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                if (user) {
+                    setUserData(user.user_metadata);
+                    setLoading(false);
+                }
+            } catch (error) {
+                // Handle errors
+            }
+        };
+
+        fetchUserData();
+    }, [user]);
 
     return (
         <UserContext.Provider value={{ user, userData, loading }}>

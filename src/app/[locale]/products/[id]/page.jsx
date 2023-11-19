@@ -58,7 +58,6 @@ const SingleProductPage = async ({ params }) => {
     // console.log("categories", categories);
 
     const productData = await getProductWithPrice(params.id);
-    console.log("productData", productData);
 
     const userData = await getUserProfile("dywOnEzn9iX3CAfNosJa95P4LYA2");
 

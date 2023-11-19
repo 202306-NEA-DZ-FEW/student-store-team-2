@@ -21,9 +21,7 @@ exports[`renders correctly 1`] = `
     >
       <h2
         className="font-semibold text-base text-[#55585B]"
-      >
-         
-      </h2>
+      />
       <div
         className="text-[#55585B] flex gap-1"
       >

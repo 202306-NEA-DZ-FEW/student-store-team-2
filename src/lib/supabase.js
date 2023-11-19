@@ -136,7 +136,7 @@ export const updateItem = async (table, item, user) => {
 export const getUserProfile = async (user) => {
     try {
         const { data, error } = await supabase
-            .from("users")
+            .from("auth.users")
             .select(
                 "id, birth_date, first_name, last_name, phone_num, profile_pic, institution, gender,location, userId"
             )

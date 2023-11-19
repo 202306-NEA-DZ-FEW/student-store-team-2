@@ -24,7 +24,7 @@ function UserStatus() {
         return (
             <div>
                 <p>
-                    {t("Hello")} {userData?.first_name}!
+                    {t("Hello")} {userData?.full_name.split(" ")[0]}!
                 </p>
                 <button className='text-red-500' onClick={handleSignOutUser}>
                     {t("Sign out")}

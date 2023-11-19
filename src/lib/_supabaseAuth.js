@@ -1,9 +1,6 @@
 "use server";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
-
-import { addItem } from "@/lib/supabase";
 
 export default async function createSupabaseServerClient() {
     const cookieStore = cookies();
@@ -31,18 +28,18 @@ export default async function createSupabaseServerClient() {
 
 export async function signUpWithEmailAndPassword(email, password, userData) {
     const supabase = await createSupabaseServerClient();
-    const result = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
         email,
         password,
+        options: {
+            data: { ...userData },
+            redirectTo: "/profile",
+        },
     });
-
-    await addItem("users", {
-        id: result.data.user.id,
-        email: result.data.user.email,
-        ...userData,
-    });
-
-    return JSON.stringify(result);
+    if (error) {
+        throw error;
+    }
+    return JSON.stringify(data);
 }
 
 export async function readUserSession() {
@@ -53,13 +50,19 @@ export async function readUserSession() {
 export async function getCurrentUser() {
     const supabase = await createSupabaseServerClient();
     const { data, error } = await supabase.auth.getUser();
+    if (error) {
+        throw error;
+    }
     return data;
 }
 
 export async function signOut() {
     const supabase = await createSupabaseServerClient();
-    await supabase.auth.signOut();
-    redirect("/");
+    await supabase.auth.signOut({
+        options: {
+            redirectTo: `/`,
+        },
+    });
 }
 
 export async function signInWithEmailAndPassword(email, password) {
@@ -67,7 +70,27 @@ export async function signInWithEmailAndPassword(email, password) {
     const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
+        options: {
+            redirectTo: "/profile",
+        },
     });
-    console.log("succesfully logged in", data);
+    if (error) {
+        throw error;
+    }
     return JSON.stringify(data);
 }
+
+export const updateUserMetadata = async (userId, metadata) => {
+    const supabase = await createSupabaseServerClient();
+
+    const { data, error } = await supabase
+        .from("auth.users")
+        .update({ raw_user_meta_data: metadata })
+        .eq("id", userId);
+
+    if (error) {
+        throw error;
+    }
+
+    return data;
+};

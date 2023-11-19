@@ -91,8 +91,7 @@ const ProductItem = ({ fetchPurchases, product }) => {
                                                 <div className='flex justify-start items-start space-x-2 drop-shadow-xl'>
                                                     <BsPersonCircle className='text-accent w-9 h-9' />
                                                     <h2 className='uppercase text-accent'>
-                                                        {userData?.first_name}{" "}
-                                                        {userData?.last_name}
+                                                        {userData?.full_name}
                                                     </h2>
                                                 </div>
                                             </a>
