@@ -34,31 +34,45 @@ function CustomForm({ formType }) {
     const authenticate = async (userData) => {
         const { formType, ...data } = userData;
 
-        if (formType === "registration") {
-            const user = await registerUserWithEmailAndPassword(
-                data.email,
-                data.password,
-                {
-                    first_name: data.first_name || "null",
-                    email: data.email || "null",
-                    phone_num: data.phone_num || "null",
-                    last_name: data.last_name || "null",
-                    // Add other user data fields here
-                }
-            );
+        try {
+            if (formType === "registration") {
+                const user = await registerUserWithEmailAndPassword(
+                    data.email,
+                    data.password,
+                    {
+                        first_name: data.first_name || "null",
+                        email: data.email || "null",
+                        phone_num: data.phone_num || "null",
+                        last_name: data.last_name || "null",
+                        // Add other user data fields here
+                    }
+                );
 
-            return user;
-        } else if (formType === "login") {
-            const user = await loginWithEmailAndPassword(
-                data.email,
-                data.password
-            );
-            return user;
+                return user;
+            } else if (formType === "login") {
+                const user = await loginWithEmailAndPassword(
+                    data.email,
+                    data.password
+                );
+                return user;
+            }
+        } catch (error) {
+            let errorMessage = "An error occurred during authentication.";
+
+            if (error.code === "auth/invalid-login-credentials") {
+                errorMessage = t("Authentication error");
+            }
+
+            setErrorMessage(errorMessage);
+
+            setTimeout(() => {
+                setErrorMessage("");
+            }, 3000);
         }
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setErrorMessage(""); // Clear any previous error message
+        setErrorMessage("");
 
         if (!email || !password) {
             setErrorMessage("Email and password are required");
