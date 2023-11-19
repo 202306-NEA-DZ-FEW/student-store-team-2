@@ -110,6 +110,13 @@
         "Price": "السعر",
         "Upload Image(s)": "إصافة الصور",
         "List": "إضافة",
-        "Authentication error": "اعتماد تسجيل الدخول غير صالح. يرجى التحقق من البريد الإلكتروني وكلمة المرور الخاصة بك"
+        "Authentication error": "اعتماد تسجيل الدخول غير صالح. يرجى التحقق من البريد الإلكتروني وكلمة المرور الخاصة بك",
+        "We Couldn't Find the page you're looking for": "الصفحة غير موجودة",
+        "Go To Home": "العودة إلى الرئيسية",
+        "We Couldn't Find the requested Product": "المنتج غير موجود",
+        "There was an error": "خطأ موجود",
+        "Try again": "إعادة المحــاولة",
+        "or": "أو",
+        "Check More Products": "تصفح منتجات أخرى"
     }
 }
