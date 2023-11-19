@@ -54,9 +54,6 @@ export default function MobileSidebar({
                     </button>
                 </div>
             </div>
-            <div className=' items-center'>
-                <Searchbar toggleMobileMenu={toggleMobileMenu} />
-            </div>
             <div className='space-y-1 mt-5 px-2 pt-2 pb-3 flex flex-col justify-start '>
                 {navigation.map((item) => (
                     <Link
