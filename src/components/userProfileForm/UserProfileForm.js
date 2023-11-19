@@ -31,7 +31,6 @@ const UserProfileForm = () => {
 
     //
     const [id, setId] = useState("");
-    console.log(user);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         const fetcher = async () => {

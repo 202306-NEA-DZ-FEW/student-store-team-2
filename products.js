@@ -1357,6 +1357,5 @@ export const addProducts = async () => {
     const productsDataCollection = collection(db, "products");
     productsData.forEach(async (product) => {
         addDoc(productsDataCollection, product);
-        console.log("product", product.index, "added");
     });
 };

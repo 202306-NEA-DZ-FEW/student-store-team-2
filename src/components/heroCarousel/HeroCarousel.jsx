@@ -2,15 +2,15 @@
 import Link from "next/link";
 import React from "react";
 import { useRef } from "react";
-import { useState, useEffect } from "react";
-import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
+import { useEffect, useState } from "react";
+import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 
 const data = [
     {
         id: 1,
         title: "Books",
         description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas molestiae repellendus mollitia nobis.",
+            "Explore a vast collection of books covering various genres, from thrilling mysteries to captivating stories that transport you to different worlds. Dive into these literary adventures and let your imagination soar.",
         image: "https://images.unsplash.com/photo-1600431521340-491eca880813?auto=format&fit=crop&q=80&w=2069&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         link: "products?category=books",
     },
@@ -18,23 +18,23 @@ const data = [
         id: 2,
         title: "Sports Equipements",
         description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas molestiae repellendus mollitia nobis.",
+            "Find top-quality sports equipment to elevate your game, whether you're passionate about team sports or prefer individual athletic pursuits. Discover gear designed to enhance your performance and support your active lifestyle.",
         image: "https://images.unsplash.com/photo-1602250515024-54689dcb1590?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         link: "products?category=sports",
     },
     {
         id: 3,
-        title: "Clothing",
+        title: "Clothes",
         description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas molestiae repellendus mollitia nobis.",
+            "Express your style with a diverse range of clothing options, from casual wear to formal attire. Discover fashion that suits your personality, trends that inspire, and comfortable, stylish outfits for any occasion.",
         image: "https://images.unsplash.com/photo-1563074409-5c5d31af4e94?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        link: "products?category=clothing",
+        link: "products?category=clothes",
     },
     {
         id: 4,
         title: "Games",
         description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas molestiae repellendus mollitia nobis.",
+            "Discover a world of entertainment with an array of games that cater to various interests and ages. From stimulating puzzles to thrilling adventures, these games promise endless fun and excitement for everyone.",
         image: "https://images.unsplash.com/flagged/photo-1580234820596-0876d136e6d5?auto=format&fit=crop&q=80&w=2067&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         link: "products?category=games",
     },
@@ -42,7 +42,7 @@ const data = [
         id: 5,
         title: "Electronics",
         description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas molestiae repellendus mollitia nobis.",
+            "Explore cutting-edge electronics that simplify your life and elevate your technological experiences. From innovative gadgets to essential devices, find the latest tech solutions here.",
         image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&q=80&w=1932&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         link: "products?category=electronics",
     },
@@ -50,7 +50,7 @@ const data = [
         id: 6,
         title: "Kitchen Cookwares",
         description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas molestiae repellendus mollitia nobis.",
+            "Enhance your culinary adventures with high-quality kitchen cookware. From utensils to appliances, discover tools that make cooking enjoyable and efficient, allowing you to create delicious meals with ease.",
         image: "https://images.unsplash.com/photo-1590794056470-74f3ade8ddd9?auto=format&fit=crop&q=80&w=2051&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         link: "products?category=kitchen",
     },

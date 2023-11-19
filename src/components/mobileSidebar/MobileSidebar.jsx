@@ -4,6 +4,7 @@ import React from "react";
 import { BiCollapseAlt, BiUser } from "react-icons/bi";
 
 import Searchbar from "../search/Searchbar";
+import { useUser } from "../userProvider/UserProvider";
 import UserStatus from "../userStatus/UserStatus";
 
 export default function MobileSidebar({
@@ -11,14 +12,18 @@ export default function MobileSidebar({
     toggleMobileMenu,
     isOpen,
 }) {
+    const { user } = useUser();
     const t = useTranslations("Index");
-    const links = [
-        { name: t("My Borrowings"), href: "/dashboard?type=borrowings" },
-        { name: t("My Lendings"), href: "/dashboard?type=lendings" },
-        { name: t("My Purchases"), href: "/dashboard?type=purchases" },
-        { name: t("My Sales"), href: "/dashboard?type=sales" },
-        { name: t("List an Item"), href: "/dashboard?type=List+an+Item" },
-    ];
+    let links = [];
+    if (user) {
+        [
+            { name: t("My Borrowings"), href: "/dashboard?type=borrowings" },
+            { name: t("My Lendings"), href: "/dashboard?type=lendings" },
+            { name: t("My Purchases"), href: "/dashboard?type=purchases" },
+            { name: t("My Sales"), href: "/dashboard?type=sales" },
+            { name: t("List an Item"), href: "/dashboard?type=List+an+Item" },
+        ];
+    }
 
     async function handleSearch(e) {
         if (e.keyCode === 13) {
@@ -70,21 +75,23 @@ export default function MobileSidebar({
                         </button>
                     </Link>
                 ))}
-                <Link
-                    href='/profile?page=form'
-                    className={`  hover:bg-accent hover:text-white rounded-md px-3 py-2 text-xl font-medium `}
-                >
-                    <button
-                        onClick={toggleMobileMenu}
-                        className='w-full flex justify-start items-center '
+                {user && (
+                    <Link
+                        href='/profile?page=form'
+                        className={`  hover:bg-accent hover:text-white rounded-md px-3 py-2 text-xl font-medium `}
                     >
-                        <BiUser
-                            className='block h-6 w-6 mr-2'
-                            aria-hidden='true'
-                        />
-                        <h2>{t("Profile")}</h2>
-                    </button>
-                </Link>
+                        <button
+                            onClick={toggleMobileMenu}
+                            className='w-full flex justify-start items-center '
+                        >
+                            <BiUser
+                                className='block h-6 w-6 mr-2'
+                                aria-hidden='true'
+                            />
+                            <h2>{t("Profile")}</h2>
+                        </button>
+                    </Link>
+                )}
                 {links.map((link) => (
                     <Link
                         key={link.name}
