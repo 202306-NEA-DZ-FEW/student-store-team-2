@@ -52,16 +52,15 @@ const sections = [
 ];
 
 const SingleProductPage = async ({ params }) => {
-    console.log(params);
-
     // const categories = await getCategories(params.category);
     // console.log("categories", categories);
 
     const productData = await getProductWithPrice(params.id);
 
-    const userData = await getUserProfile("dywOnEzn9iX3CAfNosJa95P4LYA2");
+    const userData = await getUserProfile(
+        "9bba8715-d89b-4ea5-8942-25cc0aa6d45e"
+    );
 
-    console.log("userData", userData);
     return (
         <div>
             <div className='p-1 flex flex-col sm:flex-row justify-evenly '>
@@ -73,7 +72,7 @@ const SingleProductPage = async ({ params }) => {
                 <div className='container mt-20 sm:w-1/2 sm:p-3 '>
                     <ProductDetailSection
                         product={productData}
-                        user={userData}
+                        user={userData.raw_user_meta_data}
                     />
                 </div>
             </div>

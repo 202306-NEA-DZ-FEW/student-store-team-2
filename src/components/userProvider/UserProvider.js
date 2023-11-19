@@ -16,7 +16,7 @@ export function UserProvider({ children }) {
                 const data = await getCurrentUser();
                 setUser(data?.user);
             } catch (error) {
-                // Handle errors
+                console.error(error);
             }
         };
 
@@ -28,7 +28,7 @@ export function UserProvider({ children }) {
                 if (user) {
                     setUserData(user.user_metadata);
                     setLoading(false);
-                }
+                } else setLoading(false);
             } catch (error) {
                 // Handle errors
             }

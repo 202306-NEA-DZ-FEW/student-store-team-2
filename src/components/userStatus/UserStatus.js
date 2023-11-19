@@ -12,6 +12,7 @@ function UserStatus() {
     const { user, userData, loading } = useUser();
     const handleSignOutUser = async () => {
         await signOut();
+        window.location.href = "/";
     };
 
     if (loading) {

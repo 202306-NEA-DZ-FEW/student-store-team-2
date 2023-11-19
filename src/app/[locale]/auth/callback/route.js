@@ -7,7 +7,7 @@ export async function GET(request) {
     const { searchParams } = nextUrl;
     const code = searchParams.get("code");
     // if "next" is in param, use it as the redirect URL
-    const next = searchParams.get("next") ?? "/";
+    const next = searchParams.get("next");
 
     if (code) {
         const cookieStore = cookies();
@@ -30,11 +30,10 @@ export async function GET(request) {
         );
         const { error } = await supabase.auth.exchangeCodeForSession(code);
         if (!error) {
-            console.log(nextUrl);
             return NextResponse.redirect(nextUrl.origin);
         }
     }
 
     // return the user to an error page with instructions
-    return NextResponse.redirect(`${origin}/auth/auth-code-error`);
+    return NextResponse.redirect(`${nextUrl.origin}/auth/auth-code-error`);
 }

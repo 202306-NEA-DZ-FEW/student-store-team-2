@@ -45,13 +45,15 @@ function CustomForm({ formType }) {
                     last_name: data.last_name || "null",
                 }
             );
-            console.log(user);
+            window.location.href = "/profile?page=form";
             return user;
         } else if (formType === "login") {
             const user = await signInWithEmailAndPassword(
                 data.email,
                 data.password
             );
+            window.location.href = "/dashboard";
+
             return user;
         }
     };

@@ -12,6 +12,10 @@ const GoogleLoginButton = ({ styling }) => {
         supabase.auth.signInWithOAuth({
             provider: "google",
             options: {
+                queryParams: {
+                    access_type: "offline",
+                    prompt: "consent",
+                },
                 redirectTo: `${location.origin}/auth/callback`,
             },
         });

@@ -33,36 +33,41 @@ export async function signUpWithEmailAndPassword(email, password, userData) {
         password,
         options: {
             data: { ...userData },
-            redirectTo: "/profile",
         },
     });
     if (error) {
         throw error;
     }
+    window.location.href = "/profile?page=form";
+
     return JSON.stringify(data);
 }
 
 export async function readUserSession() {
     const supabase = await createSupabaseServerClient();
-    return supabase.auth.getSession();
-}
-
-export async function getCurrentUser() {
-    const supabase = await createSupabaseServerClient();
-    const { data, error } = await supabase.auth.getUser();
+    const { data, error } = await supabase.auth.getSession();
     if (error) {
         throw error;
     }
     return data;
 }
 
+export async function getCurrentUser() {
+    const supabase = await createSupabaseServerClient();
+    const session = await readUserSession();
+
+    if (session) {
+        const { data, error } = await supabase.auth.getUser();
+        if (error) {
+            throw error;
+        }
+        return data;
+    } else return null;
+}
+
 export async function signOut() {
     const supabase = await createSupabaseServerClient();
-    await supabase.auth.signOut({
-        options: {
-            redirectTo: `/`,
-        },
-    });
+    await supabase.auth.signOut();
 }
 
 export async function signInWithEmailAndPassword(email, password) {
@@ -70,13 +75,11 @@ export async function signInWithEmailAndPassword(email, password) {
     const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
-        options: {
-            redirectTo: "/profile",
-        },
     });
     if (error) {
         throw error;
     }
+
     return JSON.stringify(data);
 }
 
