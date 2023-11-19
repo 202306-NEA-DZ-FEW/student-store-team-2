@@ -90,7 +90,7 @@ exports[`renders correctly 1`] = `
               </div>
             </a>
             <a
-              href="/order"
+              href="/dashboard"
               onClick={[Function]}
               onMouseEnter={[Function]}
               onTouchStart={[Function]}

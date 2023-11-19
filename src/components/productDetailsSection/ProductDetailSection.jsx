@@ -12,7 +12,6 @@ import ProfileUserInfo from "../profileUserInformation/ProfileUserInfo";
 export default function ProductDetailSection({ user, product }) {
     const t = useTranslations("Index");
 
-    console.log("product", product);
     return (
         <section className='w-full sm:w-full flex flex-col'>
             <div className='w-full m-4 flex gap-2'>

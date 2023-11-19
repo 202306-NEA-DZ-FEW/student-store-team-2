@@ -10,5 +10,6 @@ module.exports = {
         domains: ['images.unsplash.com','lh3.googleusercontent.com','firebasestorage.googleapis.com','tailwindui.com','images.placeholders.dev',"res.cloudinary.com","via.placeholder.com"],
 
       },
-   
-};
+    
+}
+

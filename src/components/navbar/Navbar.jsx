@@ -19,7 +19,7 @@ export default function Navbar() {
     const navigation = [
         { name: t("Home"), href: "/" },
         { name: t("Products"), href: "/products" },
-        { name: t("Orders"), href: "/order" },
+        { name: t("Orders"), href: "/dashboard" },
         { name: t("Donate"), href: "/donate" },
     ];
 

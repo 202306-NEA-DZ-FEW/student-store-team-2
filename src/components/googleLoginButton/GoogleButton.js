@@ -1,13 +1,28 @@
 "use client";
-import { useTranslations } from "next-intl";
+import { createBrowserClient } from "@supabase/ssr";
 import { FcGoogle } from "react-icons/fc";
 
-import { handleGoogleLogin } from "@/lib/authDetails";
+const GoogleLoginButton = ({ styling }) => {
+    const supabase = createBrowserClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    );
 
-const GoogleLoginButton = ({ googleText, styling }) => {
-    const t = useTranslations("Index");
+    const loginWithGoogle = async () => {
+        supabase.auth.signInWithOAuth({
+            provider: "google",
+            options: {
+                queryParams: {
+                    access_type: "offline",
+                    prompt: "consent",
+                },
+                redirectTo: `${location.origin}/auth/callback`,
+            },
+        });
+    };
+
     return (
-        <button onClick={handleGoogleLogin} className={`${styling}`}>
+        <button onClick={loginWithGoogle} className={`${styling}`}>
             <FcGoogle className=' w-6 h-6' />
             {/* <span className='hidden sm:block'>{t(`${googleText}`)}</span> */}
         </button>

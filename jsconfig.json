@@ -3,7 +3,8 @@
         "baseUrl": ".",
         "paths": {
             "@/*": ["./src/*"],
-            "~/*": ["./public/*"]
+            "~/*": ["./public/*"],
+            "next-intl/*": ["node_modules/next-intl/*"]
         },
         "incremental": true
     }
