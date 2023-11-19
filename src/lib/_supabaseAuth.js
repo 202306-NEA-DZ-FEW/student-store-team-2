@@ -54,7 +54,7 @@ export async function readUserSession() {
 
 export async function getCurrentUser() {
     const supabase = await createSupabaseServerClient();
-    const session = await readUserSession();
+    const { session } = await readUserSession();
 
     if (session) {
         const { data, error } = await supabase.auth.getUser();

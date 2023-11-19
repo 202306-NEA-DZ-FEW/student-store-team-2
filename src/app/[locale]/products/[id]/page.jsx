@@ -1,3 +1,5 @@
+import { notFound } from "next/navigation";
+
 import { getProductWithPrice, getUserProfile } from "@/lib/supabase";
 
 import ProductDisplay from "@/components/product-display/ProductDisplay";
@@ -60,6 +62,10 @@ const SingleProductPage = async ({ params }) => {
     const userData = await getUserProfile(
         "9bba8715-d89b-4ea5-8942-25cc0aa6d45e"
     );
+
+    if (!productData) {
+        notFound();
+    }
 
     return (
         <div>
