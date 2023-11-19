@@ -216,20 +216,15 @@ export const addProduct = async (productData) => {
 };
 
 export const getProductWithPrice = async (pid) => {
-    try {
-        const { data, error } = await supabase
-            .from("products")
-            .select(
-                "pid,image,name,condition,offer_type, categories!inner(*),sale_offer(price),borrow_offer(price)"
-            )
-            .eq("pid", pid)
-            .single();
-        if (error) {
-            throw error;
-        }
-        return data;
-    } catch (error) {
-        console.error("Error getting product:", error);
+    const { data, error } = await supabase
+        .from("products")
+        .select(
+            "pid,image,name,condition,offer_type, categories!inner(*),sale_offer(price),borrow_offer(price)"
+        )
+        .eq("pid", pid)
+        .single();
+    if (error) {
         throw error;
     }
+    return data;
 };
