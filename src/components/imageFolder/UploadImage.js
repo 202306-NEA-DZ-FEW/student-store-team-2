@@ -12,10 +12,10 @@ import { BsPerson } from "react-icons/bs";
 
 import { useUser } from "../userProvider/UserProvider";
 
-const UploadImage = ({ onImageUpload, profile_pic }) => {
+const UploadImage = ({ onImageUpload, avatar_url }) => {
     const t = useTranslations("Index");
     const [imageFile, setImageFile] = useState(null);
-    const [downloadURL, setDownloadURL] = useState(profile_pic);
+    const [downloadURL, setDownloadURL] = useState(avatar_url);
     const [isUploading, setIsUploading] = useState(false);
     const [progressUpload, setProgressUpload] = useState(0);
     const user = useUser();

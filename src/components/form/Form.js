@@ -4,9 +4,9 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 import {
-    loginWithEmailAndPassword,
-    registerUserWithEmailAndPassword,
-} from "@/lib/authDetails";
+    signInWithEmailAndPassword,
+    signUpWithEmailAndPassword,
+} from "@/lib/_supabaseAuth";
 
 function CustomForm({ formType }) {
     const t = useTranslations("Index");
@@ -36,24 +36,25 @@ function CustomForm({ formType }) {
 
         try {
             if (formType === "registration") {
-                const user = await registerUserWithEmailAndPassword(
+                const user = await signUpWithEmailAndPassword(
                     data.email,
                     data.password,
                     {
-                        first_name: data.first_name || "null",
+                        full_name: data.full_name || "null",
                         email: data.email || "null",
                         phone_num: data.phone_num || "null",
                         last_name: data.last_name || "null",
-                        // Add other user data fields here
                     }
                 );
-
+                window.location.href = "/profile?page=form";
                 return user;
             } else if (formType === "login") {
-                const user = await loginWithEmailAndPassword(
+                const user = await signInWithEmailAndPassword(
                     data.email,
                     data.password
                 );
+                window.location.href = "/dashboard";
+
                 return user;
             }
         } catch (error) {
@@ -86,8 +87,7 @@ function CustomForm({ formType }) {
 
         const data = {
             formType: formType,
-            first_name: fullName.split(" ")[0],
-            last_name: fullName.split(" ")[1],
+            full_name: fullName,
             email: email,
             phone_num: phoneNumber,
             password: password,

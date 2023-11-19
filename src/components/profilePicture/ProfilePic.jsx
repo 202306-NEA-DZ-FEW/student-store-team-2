@@ -1,16 +1,17 @@
 function ProfilePic({ user }) {
     // const color = getRandomColor();
-
     return (
         <div
-            className='w-16 h-16 bg-sky-200 rounded-full flex items-center justify-center drop-shadow'
+            className='w-16 h-16 bg-sky-200 border border-gray-500 rounded-full flex items-center justify-center drop-shadow '
             style={{
-                background: user ? `url(${user.profile_pic})` : "lavender",
+                background: user.avatar_url
+                    ? `url(${user.avatar_url})`
+                    : "lavender",
                 backgroundSize: "cover",
             }}
         >
-            {user && !user.profile_pic && user.name ? (
-                <span className='text-white text-2xl'>{user.name[0]}</span>
+            {user && !user.avatar_url && user.full_name ? (
+                <span className='text-2xl'>{user?.full_name[0]}</span>
             ) : null}
         </div>
     );
