@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+import { FaSpinner } from "react-icons/fa";
 import DatePicker from "react-widgets/DatePicker";
 
 import "react-widgets/styles.css";
@@ -17,6 +18,7 @@ const UserProfileForm = () => {
     const t = useTranslations("Index");
     const { user, userData } = useUser();
     const [imageURL, setImageURL] = useState("");
+    const [uploading, setUploading] = useState(false);
     const [formData, setFormData] = useState({
         full_name: "",
         birth_date: "",
@@ -86,6 +88,7 @@ const UserProfileForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        await setUploading(true);
         if (user) {
             const { first_name, last_name, ...otherData } = formData;
             const updatedData = {
@@ -93,15 +96,25 @@ const UserProfileForm = () => {
                 full_name: `${first_name} ${last_name}`,
                 avatar_url: imageURL,
             };
-            // updateItem("auth.users", { ...updatedData }, user);
-            // addItem('users', { id: user, ...updatedData });
             await updateUserMetadata(updatedData);
-        }
+            await setUploading(false);
+        } else setUploading(true);
     };
-    if (loading) {
-        return <span className='visually-hidden'>{t("Loading")}...</span>;
-    }
 
+    if (loading) {
+        return (
+            <div className='flex h-screen justify-center items-center'>
+                <FaSpinner className='h-24 w-24 animate-spin duration-150 text-accent' />
+            </div>
+        );
+    }
+    if (uploading) {
+        return (
+            <div className='flex  h-screen justify-center items-center'>
+                <FaSpinner className='h-24 w-24 animate-spin duration-150 text-accent' />
+            </div>
+        );
+    }
     return (
         <div className='flex flex-col sm:flex-row'>
             <div className='sm:w-1/4 h-1/4 w-full font-lato font-semibold text-xl  bg-bkg text-titleContent p-4 flex justify-evenly sm:flex-col'>
