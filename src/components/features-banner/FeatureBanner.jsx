@@ -3,9 +3,9 @@ import { useTranslations } from "next-intl";
 function FeatureBanner() {
     const t = useTranslations("Index");
     return (
-        <div className='flex flex-wrap md:flex-no-wrap  justify-center  md:space-x-6 mt-20 pt-14'>
+        <div className='flex flex-wrap md:flex-no-wrap  justify-center sm:gap-y-6 sm:gap-x-2 md:gap-x-0 md:space-x-6 mt-20 pt-4'>
             <div
-                className='flex flex-row space-x-2  '
+                className='flex flex-row space-x-2 mb-5 text-base '
                 style={{ width: "283px" }}
             >
                 <svg
@@ -55,7 +55,7 @@ function FeatureBanner() {
                 </div>
             </div>
             <div
-                className='flex flex-row space-x-2  '
+                className='flex flex-row space-x-2 mb-5 '
                 style={{ width: "283px" }}
             >
                 <svg
@@ -98,7 +98,7 @@ function FeatureBanner() {
                 </div>
             </div>
             <div
-                className='flex flex-row space-x-2  '
+                className='flex flex-row space-x-2 mb-5 '
                 style={{ width: "283px" }}
             >
                 <svg
@@ -134,7 +134,7 @@ function FeatureBanner() {
                 </div>
             </div>
             <div
-                className='flex flex-row space-x-2  '
+                className='flex flex-row space-x-2 mb-5 '
                 style={{ width: "283px" }}
             >
                 <svg
