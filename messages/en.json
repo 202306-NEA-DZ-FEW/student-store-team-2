@@ -110,6 +110,7 @@
         "Upload Image(s)": "Upload Image(s)",
         "List": "List",
         "Product Name": "Product Name",
+        "Authentication error": "Invalid login credentials. Please check your email and password.",
         "Filter": "Filter",
         "Pending": "Pending"
     }

@@ -34,32 +34,46 @@ function CustomForm({ formType }) {
     const authenticate = async (userData) => {
         const { formType, ...data } = userData;
 
-        if (formType === "registration") {
-            const user = await signUpWithEmailAndPassword(
-                data.email,
-                data.password,
-                {
-                    full_name: data.full_name || "null",
-                    email: data.email || "null",
-                    phone_num: data.phone_num || "null",
-                    last_name: data.last_name || "null",
-                }
-            );
-            window.location.href = "/profile?page=form";
-            return user;
-        } else if (formType === "login") {
-            const user = await signInWithEmailAndPassword(
-                data.email,
-                data.password
-            );
-            window.location.href = "/dashboard";
+        try {
+            if (formType === "registration") {
+                const user = await signUpWithEmailAndPassword(
+                    data.email,
+                    data.password,
+                    {
+                        full_name: data.full_name || "null",
+                        email: data.email || "null",
+                        phone_num: data.phone_num || "null",
+                        last_name: data.last_name || "null",
+                    }
+                );
+                window.location.href = "/profile?page=form";
+                return user;
+            } else if (formType === "login") {
+                const user = await signInWithEmailAndPassword(
+                    data.email,
+                    data.password
+                );
+                window.location.href = "/dashboard";
 
-            return user;
+                return user;
+            }
+        } catch (error) {
+            let errorMessage = "An error occurred during authentication.";
+
+            if (error.code === "auth/invalid-login-credentials") {
+                errorMessage = t("Authentication error");
+            }
+
+            setErrorMessage(errorMessage);
+
+            setTimeout(() => {
+                setErrorMessage("");
+            }, 3000);
         }
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setErrorMessage(""); // Clear any previous error message
+        setErrorMessage("");
 
         if (!email || !password) {
             setErrorMessage("Email and password are required");
