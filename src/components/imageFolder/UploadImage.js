@@ -9,6 +9,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { BsPerson } from "react-icons/bs";
+import { FaSpinner } from "react-icons/fa";
 
 import { useUser } from "../userProvider/UserProvider";
 
@@ -80,61 +81,63 @@ const UploadImage = ({ onImageUpload, avatar_url }) => {
     const handleRemoveFile = () => setImageFile(null);
 
     return (
-        <div className='flex justify-start  ml-10 mb-4 items-center space-x-5'>
-            {downloadURL ? (
-                <Image
-                    width={50}
-                    height={50}
-                    src={downloadURL}
-                    alt='profile picture'
-                    className='w-24 h-24 border rounded-full border-content text-accent2 '
-                />
+        <>
+            {isUploading ? (
+                <div className='flex justify-center items-center'>
+                    <FaSpinner className='h-16 w-16 animate-spin duration-150 text-accent' />
+                </div>
             ) : (
-                <BsPerson className='w-24 h-24 border rounded-full border-content text-accent2 p-2 bg-white' />
-            )}
-            <div>
-                <label
-                    htmlFor='upload-button-image'
-                    className='bg-accent rounded-md text-white px-5 py-2 tracking-tight font-bold shadow-sm cursor-pointer'
-                >
-                    {downloadURL ? t("Edit Image") : t("Upload Image")}
-                </label>
-                <input
-                    type='file'
-                    id='upload-button-image'
-                    style={{ display: "none" }}
-                    onChange={(e) => handleSelectedFile(e.target.files)}
-                />
-                {isUploading ? (
-                    <div className=' text-primary' role='status'>
-                        <span className='visually-hidden'>
-                            {t("Loading")}...
-                        </span>
+                <div className='flex justify-start  ml-10 mb-4 items-center space-x-5'>
+                    {downloadURL ? (
+                        <Image
+                            width={50}
+                            height={50}
+                            src={downloadURL}
+                            alt='profile picture'
+                            className='w-24 h-24 border rounded-full border-content text-accent2 '
+                        />
+                    ) : (
+                        <BsPerson className='w-24 h-24 border rounded-full border-content text-accent2 p-2 bg-white' />
+                    )}
+                    <div className='flex flex-col justify-center items-center'>
+                        <label
+                            htmlFor='upload-button-image'
+                            className='w-full text-center bg-accent rounded-md text-white px-5 py-2 tracking-tight font-bold shadow-sm cursor-pointer'
+                        >
+                            {downloadURL ? t("Edit Image") : t("Upload Image")}
+                        </label>
+                        <input
+                            type='file'
+                            id='upload-button-image'
+                            style={{ display: "none" }}
+                            onChange={(e) => handleSelectedFile(e.target.files)}
+                        />
+                        {imageFile && (
+                            <div className='flex flex-col justify-center items-center text-sm'>
+                                <p>{`Size: ${(
+                                    imageFile.size /
+                                    (1024 * 1024)
+                                ).toFixed(2)} MB`}</p>
+                                <div>
+                                    <button
+                                        className='bg-red-500 text-white rounded-md px-3 py-1'
+                                        onClick={handleRemoveFile}
+                                    >
+                                        {t("Close")}
+                                    </button>
+                                    <button
+                                        className='border border-accent ml-2 text-accent rounded-md px-3 py-1'
+                                        onClick={handleUploadFile}
+                                    >
+                                        {t("Upload")}
+                                    </button>
+                                </div>{" "}
+                            </div>
+                        )}
                     </div>
-                ) : (
-                    imageFile && (
-                        <div className='m-2'>
-                            <p>{`Size: ${(
-                                imageFile.size /
-                                (1024 * 1024)
-                            ).toFixed(2)} MB`}</p>
-                            <button
-                                className='bg-red-500 text-white rounded-md px-3 py-1'
-                                onClick={handleRemoveFile}
-                            >
-                                {t("Close")}
-                            </button>
-                            <button
-                                className='border border-accent ml-2 text-accent rounded-md px-3 py-1'
-                                onClick={handleUploadFile}
-                            >
-                                {t("Upload")}
-                            </button>
-                        </div>
-                    )
-                )}
-            </div>
-        </div>
+                </div>
+            )}
+        </>
     );
 };
 

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { FaSpinner } from "react-icons/fa";
 
 import { signOut } from "@/lib/_supabaseAuth";
 
@@ -18,7 +19,9 @@ function UserStatus() {
     if (loading) {
         return (
             <div>
-                <p>...</p>
+                <div className='flex justify-center items-center'>
+                    <FaSpinner className='h-8 w-8 animate-spin duration-150 text-accent2' />
+                </div>
             </div>
         );
     } else if (user) {
