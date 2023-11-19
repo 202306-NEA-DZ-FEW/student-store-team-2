@@ -26,7 +26,7 @@ export default function Navbar() {
     const pathname = usePathname();
     return (
         <nav
-            className={`text-navbar absolute z-20 w-full ${
+            className={`text-navbar fixed z-20 w-full ${
                 pathname === "/" || pathname === "/en"
                     ? "text-white"
                     : "text-black"

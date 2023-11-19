@@ -2,8 +2,43 @@
 
 exports[`renders correctly 1`] = `
 <div
-  className="font-lato font-semibold text-lg uppercase w-72 h-64 md:ml-5 lg:ml-20 xl:ml-44 mt-10 bg-bkg text-titleContent p-4 pl-0 hidden md:block"
+  className="font-lato fixed top-6 pt-12   px-8  border-r border-r-gray-200 font-semibold text-lg capitalize h-screen    mt-10 bg-bkg text-titleContent  hidden md:block"
 >
+  <a
+    href="/dashboard?type=my stuff"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onTouchStart={[Function]}
+  >
+    <div
+      className="flex justify-start items-center mb-4 rounded-lg px transition-all ease-in hover:bg-gray-300 hover:text-bkg pl-4 pr-12 py-2 bg-accent text-bkg"
+    >
+      <svg
+        className="w-6 h-6"
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 448 512"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M352 160v-32C352 57.42 294.579 0 224 0 153.42 0 96 57.42 96 128v32H0v272c0 44.183 35.817 80 80 80h288c44.183 0 80-35.817 80-80V160h-96zm-192-32c0-35.29 28.71-64 64-64s64 28.71 64 64v32H160v-32zm160 120c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24zm-192 0c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24z"
+        />
+      </svg>
+      <span
+        className="ml-4"
+      >
+        my stuff
+      </span>
+    </div>
+  </a>
   <a
     href="/dashboard?type=borrowings"
     onClick={[Function]}
@@ -11,9 +46,32 @@ exports[`renders correctly 1`] = `
     onTouchStart={[Function]}
   >
     <div
-      className="flex justify-start items-center mb-4 pl-7 hover:bg-accent hover:text-bkg h-16 "
+      className="flex justify-start items-center mb-4 rounded-lg px transition-all ease-in hover:bg-gray-300 hover:text-bkg pl-4 pr-12 py-2 "
     >
-      borrowings
+      <svg
+        className="w-6 h-6"
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 256 256"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M212,88v88a12,12,0,0,1-24,0V88a44,44,0,0,0-88,0V195l27.51-27.52a12,12,0,0,1,17,17l-48,48a12,12,0,0,1-17,0l-48-48a12,12,0,1,1,17-17L76,195V88a68,68,0,0,1,136,0Z"
+        />
+      </svg>
+      <span
+        className="ml-4"
+      >
+        borrowings
+      </span>
     </div>
   </a>
   <a
@@ -23,9 +81,32 @@ exports[`renders correctly 1`] = `
     onTouchStart={[Function]}
   >
     <div
-      className="flex justify-start items-center mb-4 pl-7 hover:bg-accent hover:text-bkg h-16 "
+      className="flex justify-start items-center mb-4 rounded-lg px transition-all ease-in hover:bg-gray-300 hover:text-bkg pl-4 pr-12 py-2 "
     >
-      lendings
+      <svg
+        className="w-6 h-6"
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 24 24"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19.2914 5.99994H20.0002C20.5525 5.99994 21.0002 6.44766 21.0002 6.99994V13.9999C21.0002 14.5522 20.5525 14.9999 20.0002 14.9999H18.0002L13.8319 9.16427C13.3345 8.46797 12.4493 8.16522 11.6297 8.41109L9.14444 9.15668C8.43971 9.3681 7.6758 9.17551 7.15553 8.65524L6.86277 8.36247C6.41655 7.91626 6.49011 7.17336 7.01517 6.82332L12.4162 3.22262C13.0752 2.78333 13.9312 2.77422 14.5994 3.1994L18.7546 5.8436C18.915 5.94571 19.1013 5.99994 19.2914 5.99994ZM5.02708 14.2947L3.41132 15.7085C2.93991 16.1209 2.95945 16.8603 3.45201 17.2474L8.59277 21.2865C9.07284 21.6637 9.77592 21.5264 10.0788 20.9963L10.7827 19.7645C11.2127 19.012 11.1091 18.0682 10.5261 17.4269L7.82397 14.4545C7.09091 13.6481 5.84722 13.5771 5.02708 14.2947ZM7.04557 5H3C2.44772 5 2 5.44772 2 6V13.5158C2 13.9242 2.12475 14.3173 2.35019 14.6464C2.3741 14.6238 2.39856 14.6015 2.42357 14.5796L4.03933 13.1658C5.47457 11.91 7.65103 12.0343 8.93388 13.4455L11.6361 16.4179C12.6563 17.5401 12.8376 19.1918 12.0851 20.5087L11.4308 21.6538C11.9937 21.8671 12.635 21.819 13.169 21.4986L17.5782 18.8531C18.0786 18.5528 18.2166 17.8896 17.8776 17.4146L12.6109 10.0361C12.4865 9.86205 12.2652 9.78636 12.0603 9.84783L9.57505 10.5934C8.34176 10.9634 7.00492 10.6264 6.09446 9.7159L5.80169 9.42313C4.68615 8.30759 4.87005 6.45035 6.18271 5.57524L7.04557 5Z"
+        />
+      </svg>
+      <span
+        className="ml-4"
+      >
+        lendings
+      </span>
     </div>
   </a>
   <a
@@ -35,9 +116,32 @@ exports[`renders correctly 1`] = `
     onTouchStart={[Function]}
   >
     <div
-      className="flex justify-start items-center mb-4 pl-7 hover:bg-accent hover:text-bkg h-16 "
+      className="flex justify-start items-center mb-4 rounded-lg px transition-all ease-in hover:bg-gray-300 hover:text-bkg pl-4 pr-12 py-2 "
     >
-      purchases
+      <svg
+        className="w-6 h-6"
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 24 24"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M6.50488 2H17.5049C17.8196 2 18.116 2.14819 18.3049 2.4L21.0049 6V21C21.0049 21.5523 20.5572 22 20.0049 22H4.00488C3.4526 22 3.00488 21.5523 3.00488 21V6L5.70488 2.4C5.89374 2.14819 6.19013 2 6.50488 2ZM18.5049 6L17.0049 4H7.00488L5.50488 6H18.5049ZM9.00488 10H7.00488V12C7.00488 14.7614 9.24346 17 12.0049 17C14.7663 17 17.0049 14.7614 17.0049 12V10H15.0049V12C15.0049 13.6569 13.6617 15 12.0049 15C10.348 15 9.00488 13.6569 9.00488 12V10Z"
+        />
+      </svg>
+      <span
+        className="ml-4"
+      >
+        purchases
+      </span>
     </div>
   </a>
   <a
@@ -47,21 +151,32 @@ exports[`renders correctly 1`] = `
     onTouchStart={[Function]}
   >
     <div
-      className="flex justify-start items-center mb-4 pl-7 hover:bg-accent hover:text-bkg h-16 "
+      className="flex justify-start items-center mb-4 rounded-lg px transition-all ease-in hover:bg-gray-300 hover:text-bkg pl-4 pr-12 py-2 "
     >
-      sales
-    </div>
-  </a>
-  <a
-    href="/dashboard?type=List an Item"
-    onClick={[Function]}
-    onMouseEnter={[Function]}
-    onTouchStart={[Function]}
-  >
-    <div
-      className="flex justify-start items-center mb-4 pl-7 hover:bg-accent hover:text-bkg h-16 "
-    >
-      List an Item
+      <svg
+        className="w-6 h-6"
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 512 512"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0 405.3V448c0 35.3 86 64 192 64s192-28.7 192-64v-42.7C342.7 434.4 267.2 448 192 448S41.3 434.4 0 405.3zM320 128c106 0 192-28.7 192-64S426 0 320 0 128 28.7 128 64s86 64 192 64zM0 300.4V352c0 35.3 86 64 192 64s192-28.7 192-64v-51.6c-41.3 34-116.9 51.6-192 51.6S41.3 334.4 0 300.4zm416 11c57.3-11.1 96-31.7 96-55.4v-42.7c-23.2 16.4-57.3 27.6-96 34.5v63.6zM192 160C86 160 0 195.8 0 240s86 80 192 80 192-35.8 192-80-86-80-192-80zm219.3 56.3c60-10.8 100.7-32 100.7-56.3v-42.7c-35.5 25.1-96.5 38.6-160.7 41.8 29.5 14.3 51.2 33.5 60 57.2z"
+        />
+      </svg>
+      <span
+        className="ml-4"
+      >
+        sales
+      </span>
     </div>
   </a>
 </div>

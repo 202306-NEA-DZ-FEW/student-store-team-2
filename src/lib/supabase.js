@@ -93,10 +93,19 @@ export const getProducts = async (searchParams) => {
 
 export const getItems = async (table, filterField, filterValue) => {
     try {
-        const { data, error } = await supabase
-            .from(table)
-            .select("")
-            .eq(filterField, filterValue);
+        const { data, error } = await supabase.rpc("get_purchases_by_user");
+
+        return data;
+    } catch (error) {
+        console.error("Error adding item:", error);
+        throw error;
+    }
+};
+
+export const getUsers = async (table, filterField, filterValue) => {
+    try {
+        const { data, error } = await supabase.from("products").select("");
+        console.log("error", error);
         return data;
     } catch (error) {
         console.error("Error adding item:", error);
