@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render correnctly 1`] = `
+<div
+  className="container mx-auto my-10 ml-40 mr-40 mt-10 pt-10"
+>
+  <h1
+    className="text-2xl my-5"
+  >
+    Comments
+  </h1>
+  <div
+    className="rounded-md shadow-md mr-40"
+  >
+    <div
+      className="flex flex-row items-center"
+    >
+      <div
+        className="w-16 h-16 bg-sky-200 rounded-full flex items-center justify-center drop-shadow"
+        style={
+          Object {
+            "background": "lavender",
+            "backgroundSize": "cover",
+          }
+        }
+      />
+      <textarea
+        className="rounded-md shadow-md bg-accent2 w-full py-2 pl-3 ml-3 rounded-tr-none rounded-br-none items-center"
+        onKeyDown={[Function]}
+        placeholder="Type your comment..."
+      />
+      <button
+        className="bg-accent mr-3 text-black rounded-md py-5 px-5 rounded-tl-none rounded-bl-none"
+        type="button"
+      >
+        Send
+      </button>
+    </div>
+  </div>
+</div>
+`;
