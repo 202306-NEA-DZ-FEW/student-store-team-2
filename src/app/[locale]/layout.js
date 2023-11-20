@@ -10,6 +10,8 @@ import {
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 
+import { getCurrentUser } from "@/lib/_supabaseAuth";
+
 export function generateStaticParams() {
     return [{ locale: "en" }, { locale: "ar" }];
 }
@@ -89,7 +91,7 @@ export default async function RootLayout({ children, params: { locale } }) {
                     locale === "en" ? roboto.variable : ""
                 } font-roboto`}
             >
-                <UserProvider fetchUserData={fetchUserData}>
+                <UserProvider getCurrentUser={getCurrentUser}>
                     <NextIntlClientProvider locale={locale} messages={messages}>
                         <Navbar />
                         {children}

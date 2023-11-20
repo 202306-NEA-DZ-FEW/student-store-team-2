@@ -57,7 +57,7 @@ const AddProductForm = ({ className, categories }) => {
         if (files.length < 4) {
             document.querySelector('input[type="file"]').click();
         } else {
-            console.log("You can't add more than 4 images");
+            console.error("You can't add more than 4 images");
         }
     };
 
@@ -65,7 +65,7 @@ const AddProductForm = ({ className, categories }) => {
         const fileList = e.target.files;
         const newFiles = Array.from(fileList);
         if (files.length + newFiles.length > 4) {
-            console.log("You can't add more than 4 images");
+            console.error("You can't add more than 4 images");
             return;
         }
         if (newFiles.length > 0) {
