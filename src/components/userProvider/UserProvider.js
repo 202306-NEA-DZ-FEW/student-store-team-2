@@ -2,11 +2,9 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { getCurrentUser } from "@/lib/_supabaseAuth";
-
 const UserContext = createContext();
 
-export function UserProvider({ children }) {
+export function UserProvider({ children, getCurrentUser }) {
     const [user, setUser] = useState(null);
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
