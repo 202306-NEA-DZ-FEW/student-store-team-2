@@ -1,8 +1,8 @@
 "use client";
+import Image from "next/image";
 import React from "react";
 import { useRef } from "react";
-import { useState, useEffect } from "react";
-import Image from "next/image";
+import { useEffect, useState } from "react";
 
 // Placeholder object to be replaced with data from Firestore
 // const imagesArray = [
@@ -12,9 +12,7 @@ import Image from "next/image";
 //     "/img/product1.jpg",
 // ];
 function ProductDisplay({ product }) {
-    console.log("product", product);
     const images = product.image;
-    console.log("imagesArray", images);
 
     const [currentImage, setCurrentImage] = useState(images[0]);
     const indexRef = useRef(1);

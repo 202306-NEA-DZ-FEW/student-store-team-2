@@ -1,8 +1,17 @@
+import { redirect } from "next/navigation";
+
+import { readUserSession } from "@/lib/_supabaseAuth";
+
 import SecurityForm from "@/components/securityForm/SecurityForm";
 import UserProfileForm from "@/components/userProfileForm/UserProfileForm";
 
 const page = async ({ searchParams }) => {
     const page = searchParams?.page;
+    const { session } = await readUserSession();
+
+    if (!session) {
+        redirect("sign-in");
+    }
 
     return (
         <div className='relative'>

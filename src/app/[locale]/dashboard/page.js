@@ -12,9 +12,9 @@ import MyDashboard from "../../../components/myListings/MyDashboard";
 import SortingControl from "../../../components/sortingControl/SortingControl";
 
 const Page = async ({ searchParams }) => {
-    const { data } = await readUserSession();
+    const { session } = await readUserSession();
 
-    if (!data.session) {
+    if (!session) {
         redirect("sign-in");
     }
 

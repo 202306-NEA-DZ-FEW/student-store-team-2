@@ -7,8 +7,6 @@ import MobileSideBar from "@/components/sidebars/mobileSidebar/MobileSideBar";
 import ProductsFilterWrapper from "@/components/wrappers/productsFilterWrapper/ProductsFilterWrapper";
 
 const Page = async ({ searchParams }) => {
-    // console.log("params", searchParams);
-
     const { data, count } = await getProducts(searchParams);
     const dataLength = await getProductsLength();
     const categories = await getCategories();

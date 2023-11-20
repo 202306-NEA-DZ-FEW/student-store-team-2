@@ -29,7 +29,7 @@ exports[`renders correctly 1`] = `
         <p
           className="des mt-4 w-96 sm:w-[600px]"
         >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas molestiae repellendus mollitia nobis.
+          Explore a vast collection of books covering various genres, from thrilling mysteries to captivating stories that transport you to different worlds. Dive into these literary adventures and let your imagination soar.
         </p>
         <a
           className="bg-white py-2 px-4 text-gray-700 hover:bg-gray-300 focus:bg-gray-300"
@@ -61,7 +61,7 @@ exports[`renders correctly 1`] = `
         <p
           className="des mt-4 w-96 sm:w-[600px]"
         >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas molestiae repellendus mollitia nobis.
+          Find top-quality sports equipment to elevate your game, whether you're passionate about team sports or prefer individual athletic pursuits. Discover gear designed to enhance your performance and support your active lifestyle.
         </p>
         <a
           className="bg-white py-2 px-4 text-gray-700 hover:bg-gray-300 focus:bg-gray-300"
@@ -88,16 +88,16 @@ exports[`renders correctly 1`] = `
         <h1
           className="title text-6xl sm:text-8xl w-96 bold font-sans  uppercase"
         >
-          Clothing
+          Clothes
         </h1>
         <p
           className="des mt-4 w-96 sm:w-[600px]"
         >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas molestiae repellendus mollitia nobis.
+          Express your style with a diverse range of clothing options, from casual wear to formal attire. Discover fashion that suits your personality, trends that inspire, and comfortable, stylish outfits for any occasion.
         </p>
         <a
           className="bg-white py-2 px-4 text-gray-700 hover:bg-gray-300 focus:bg-gray-300"
-          href="products?category=clothing"
+          href="products?category=clothes"
           onClick={[Function]}
           onMouseEnter={[Function]}
           onTouchStart={[Function]}
@@ -125,7 +125,7 @@ exports[`renders correctly 1`] = `
         <p
           className="des mt-4 w-96 sm:w-[600px]"
         >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas molestiae repellendus mollitia nobis.
+          Discover a world of entertainment with an array of games that cater to various interests and ages. From stimulating puzzles to thrilling adventures, these games promise endless fun and excitement for everyone.
         </p>
         <a
           className="bg-white py-2 px-4 text-gray-700 hover:bg-gray-300 focus:bg-gray-300"
@@ -157,7 +157,7 @@ exports[`renders correctly 1`] = `
         <p
           className="des mt-4 w-96 sm:w-[600px]"
         >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas molestiae repellendus mollitia nobis.
+          Explore cutting-edge electronics that simplify your life and elevate your technological experiences. From innovative gadgets to essential devices, find the latest tech solutions here.
         </p>
         <a
           className="bg-white py-2 px-4 text-gray-700 hover:bg-gray-300 focus:bg-gray-300"
@@ -189,7 +189,7 @@ exports[`renders correctly 1`] = `
         <p
           className="des mt-4 w-96 sm:w-[600px]"
         >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas molestiae repellendus mollitia nobis.
+          Enhance your culinary adventures with high-quality kitchen cookware. From utensils to appliances, discover tools that make cooking enjoyable and efficient, allowing you to create delicious meals with ease.
         </p>
         <a
           className="bg-white py-2 px-4 text-gray-700 hover:bg-gray-300 focus:bg-gray-300"
