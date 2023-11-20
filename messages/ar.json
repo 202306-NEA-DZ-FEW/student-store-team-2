@@ -101,6 +101,12 @@
         "Price Per Week": "السعر للأسبوع",
         "Price": "السعر",
         "Upload Image(s)": "إصافة الصور",
-        "List": "إضافة"
+        "List": "إضافة",
+        "Comments":"التعليقات",
+        "Type your comment":"أكتب تعليقك",
+        "Type your reply":"أكتب ردك",
+        "Respond":"رد",
+        "Like":"إعجاب",
+        "Send":"إرسال"
     }
 }

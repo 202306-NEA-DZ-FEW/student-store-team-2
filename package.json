@@ -34,6 +34,7 @@
         "js-cookie": "^3.0.5",
         "next": "^13.5.4",
         "next-intl": "^2.21.0",
+        "pagination-react": "^1.1.6",
         "pagination-react-js": "^1.2.0",
         "postcss": "^8.4.31",
         "react": "^18.2.0",

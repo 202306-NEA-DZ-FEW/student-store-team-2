@@ -101,6 +101,12 @@
         "Price": "Price",
         "Upload Image(s)": "Upload Image(s)",
         "List": "List",
-        "Product Name": "Product Name"
+        "Product Name": "Product Name",
+        "Comments":"Comments",
+        "Type your comment":"Type your comment",
+        "Type your reply":"Type your reply",
+        "Respond":"Respond",
+        "Like":"Like",
+        "Send":"Send"
     }
 }
