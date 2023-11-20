@@ -1,10 +1,9 @@
-import { collection, getDocs, query, where } from "firebase/firestore";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
 
-import { db } from "@/lib/firebase";
+import { supabase } from "@/lib/supabase";
 
 const Searchbar = ({ toggleMobileMenu }) => {
     const router = useRouter();
@@ -19,15 +18,17 @@ const Searchbar = ({ toggleMobileMenu }) => {
         setSearchValue(inputValue);
     };
 
-    async function handleSearch(e) {
-        if (e.keyCode === 13) {
-            e.preventDefault();
+    const handleSearch = async (e) => {
+        e.preventDefault();
 
-            router.push(`/products?search=${e.target.value}`);
-            toggleMobileMenu();
-            setSearchValue("");
+        if (searchValue.trim() === "") {
+            return;
         }
-    }
+
+        router.push("/products/" + searchValue);
+        toggleMobileMenu();
+        setSearchValue("");
+    };
 
     const handleClick = () => {
         setToggleSearch(!toggleSearch);
@@ -40,29 +41,29 @@ const Searchbar = ({ toggleMobileMenu }) => {
 
         const searchProducts = async (value) => {
             if (value.length >= 2) {
-                const q = query(
-                    collection(db, "products"),
-                    where("name", ">=", value.toLowerCase()),
-                    where("name", "<=", value.toLowerCase() + "\uf8ff")
-                );
+                const { data, error } = await supabase
+                    .from("products")
+                    .select("name, pid")
+                    .ilike("name", `%${value}%`);
 
-                try {
-                    const querySnapshot = await getDocs(q);
-                    const newSuggestions = [];
-                    querySnapshot.forEach((doc) => {
-                        newSuggestions.push(doc.data().name);
-                    });
-
-                    if (newSuggestions.length === 0) {
-                        setNoItemsFound(true);
-                    } else {
-                        setNoItemsFound(false);
-                    }
-
-                    setSuggestions(newSuggestions);
-                } catch (error) {
-                    console.error(error);
+                if (error) {
+                    console.log(error);
+                    return;
                 }
+
+                const newSuggestions = data.map((product) => ({
+                    name: product.name,
+                    pid: product.pid,
+                }));
+                console.log("suggestions:", suggestions);
+                console.log("newSuggestions:", newSuggestions);
+                if (newSuggestions.length === 0) {
+                    setNoItemsFound(true);
+                } else {
+                    setNoItemsFound(false);
+                }
+
+                setSuggestions(newSuggestions);
             } else {
                 setSuggestions([]);
                 setNoItemsFound(false);
@@ -79,15 +80,15 @@ const Searchbar = ({ toggleMobileMenu }) => {
     }, [searchValue]);
 
     return (
-        <div className='mx-auto max-w-md cursor-pointer'>
+        <div className='mx-auto text-titleContent max-w-md cursor-pointer'>
             <form action='' className='fixed left-5 sm:relative mx-auto'>
                 <input
                     type='search'
                     className={`cursor-pointer absolute h-8 ${
                         toggleSearch
-                            ? "w-48 border border-accent/80 cursor-text text-sm"
+                            ? "w-48 sm:w-96 border border-accent/80 cursor-text text-sm"
                             : "w-0"
-                    } rounded-full bg-transparent outline-none transition-all duration-300 ease-in-out left-10 pl-1`}
+                    } rounded-full  outline-none transition-all duration-300 ease-in-out -right-52 sm:right-10 z-50`}
                     onChange={handleInputChange}
                     value={searchValue}
                 />
@@ -99,15 +100,15 @@ const Searchbar = ({ toggleMobileMenu }) => {
                     aria-hidden='true'
                 />
                 {suggestions.length > 0 && !noItemsFound && (
-                    <div className='hidden sm:block absolute w-48 left-10 mx-auto bg-white border border-accent/80 rounded-md'>
+                    <div className='hidden sm:block absolute w-48 sm:w-96 -right-52 sm:right-10  mx-auto bg-white border border-accent/80 rounded-md'>
                         <div className='flex flex-col'>
                             {suggestions.map((suggestion, index) => (
                                 <Link
                                     key={index}
                                     className='text-sm truncate p-2 hover:bg-accent hover:text-white'
-                                    href={`products/${suggestion}`}
+                                    href={"/products/" + suggestion.pid}
                                 >
-                                    {suggestion}
+                                    {suggestion.name}
                                 </Link>
                             ))}
                         </div>
@@ -115,7 +116,7 @@ const Searchbar = ({ toggleMobileMenu }) => {
                 )}
 
                 {noItemsFound && (
-                    <div className='hidden sm:block absolute w-48 left-10 h-8 mx-auto bg-white border border-accent/80 rounded-3xl pl-2 pt-2'>
+                    <div className='hidden sm:block absolute w-48 sm:w-96 -right-52 sm:right-10 h-8 mx-auto bg-white border border-accent/80 rounded-3xl pl-2 pt-2'>
                         <p>No items found</p>
                     </div>
                 )}
