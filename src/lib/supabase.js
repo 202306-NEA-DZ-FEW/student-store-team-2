@@ -1,14 +1,40 @@
 "use server";
-import { createClient } from "@supabase/supabase-js";
+import { createServerClient } from "@supabase/ssr";
+import { cookies } from "next/headers";
 import { v4 as uuidv4 } from "uuid";
 
-// Create a single supabase client for interacting with your database
-export const supabase = createClient(
-    "https://zvipwzqccgaxkfjxdnue.supabase.co",
-    process.env.NEXT_PUBLIC_SUPABASE_API_KEY
-);
+export default async function createSupabaseServerClient() {
+    const cookieStore = cookies();
+
+    return createServerClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL,
+
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+
+        {
+            cookies: {
+                get(name) {
+                    return cookieStore.get(name)?.value;
+                },
+                set(name, value, options) {
+                    cookieStore.set({ name, value, ...options });
+                },
+                remove(name, options) {
+                    cookieStore.set({ name, value: "", ...options });
+                },
+            },
+        }
+    );
+}
+
+// const supabase = createClient(
+//     "https://zvipwzqccgaxkfjxdnue.supabase.co",
+//     process.env.NEXT_PUBLIC_SUPABASE_API_KEY
+// );
 
 export const getProducts = async (searchParams) => {
+    const supabase = await createSupabaseServerClient();
+
     try {
         let countQuery = null;
         let query = supabase.from("products");
@@ -93,6 +119,8 @@ export const getProducts = async (searchParams) => {
 };
 
 export const getItems = async (table, filterField, filterValue) => {
+    const supabase = await createSupabaseServerClient();
+
     try {
         const { data, error } = await supabase
             .from(table)
@@ -106,6 +134,8 @@ export const getItems = async (table, filterField, filterValue) => {
 };
 
 export const addItem = async (table, item) => {
+    const supabase = await createSupabaseServerClient();
+
     try {
         const { data, error } = await supabase.from(table).upsert([item]);
 
@@ -121,6 +151,8 @@ export const addItem = async (table, item) => {
 };
 
 export const updateItem = async (table, item, user) => {
+    const supabase = await createSupabaseServerClient();
+
     const { data, error } = await supabase
         .from(table)
         .update({ ...item })
@@ -135,6 +167,8 @@ export const updateItem = async (table, item, user) => {
 };
 
 export const getUserProfile = async (user) => {
+    const supabase = await createSupabaseServerClient();
+
     try {
         const { data, error } = await supabase
             .from("users_view")
@@ -153,6 +187,8 @@ export const getUserProfile = async (user) => {
 };
 
 export const getProduct = async (productId) => {
+    const supabase = await createSupabaseServerClient();
+
     try {
         const { data, error } = await supabase
             .from("products")
@@ -170,6 +206,8 @@ export const getProduct = async (productId) => {
 };
 
 export const addProduct = async (productData) => {
+    const supabase = await createSupabaseServerClient();
+
     const newUuid = uuidv4();
 
     try {
@@ -217,6 +255,8 @@ export const addProduct = async (productData) => {
 };
 
 export const getProductWithPrice = async (pid) => {
+    const supabase = await createSupabaseServerClient();
+
     const { data, error } = await supabase
         .from("products")
         .select(
