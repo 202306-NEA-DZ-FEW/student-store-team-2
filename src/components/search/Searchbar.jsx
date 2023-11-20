@@ -18,15 +18,17 @@ const Searchbar = ({ toggleMobileMenu }) => {
         setSearchValue(inputValue);
     };
 
-    async function handleSearch(e) {
-        if (e.keyCode === 13) {
-            e.preventDefault();
+    const handleSearch = async (e) => {
+        e.preventDefault();
 
-            router.push(`/products?search=${e.target.value}`);
-            toggleMobileMenu();
-            setSearchValue("");
+        if (searchValue.trim() === "") {
+            return;
         }
-    }
+
+        router.push("/products/" + searchValue);
+        toggleMobileMenu();
+        setSearchValue("");
+    };
 
     const handleClick = () => {
         setToggleSearch(!toggleSearch);
@@ -41,7 +43,7 @@ const Searchbar = ({ toggleMobileMenu }) => {
             if (value.length >= 2) {
                 const { data, error } = await supabase
                     .from("products")
-                    .select("name")
+                    .select("name, pid")
                     .ilike("name", `%${value}%`);
 
                 if (error) {
@@ -49,8 +51,12 @@ const Searchbar = ({ toggleMobileMenu }) => {
                     return;
                 }
 
-                const newSuggestions = data.map((product) => product.name);
-
+                const newSuggestions = data.map((product) => ({
+                    name: product.name,
+                    pid: product.pid,
+                }));
+                console.log("suggestions:", suggestions);
+                console.log("newSuggestions:", newSuggestions);
                 if (newSuggestions.length === 0) {
                     setNoItemsFound(true);
                 } else {
@@ -74,7 +80,7 @@ const Searchbar = ({ toggleMobileMenu }) => {
     }, [searchValue]);
 
     return (
-        <div className='mx-auto max-w-md cursor-pointer'>
+        <div className='mx-auto text-titleContent max-w-md cursor-pointer'>
             <form action='' className='fixed left-5 sm:relative mx-auto'>
                 <input
                     type='search'
@@ -82,7 +88,7 @@ const Searchbar = ({ toggleMobileMenu }) => {
                         toggleSearch
                             ? "w-48 sm:w-96 border border-accent/80 cursor-text text-sm"
                             : "w-0"
-                    } rounded-full  outline-none transition-all duration-300 ease-in-out -right-52 sm:right-10 pl-1 z-50`}
+                    } rounded-full  outline-none transition-all duration-300 ease-in-out -right-52 sm:right-10 z-50`}
                     onChange={handleInputChange}
                     value={searchValue}
                 />
@@ -100,9 +106,9 @@ const Searchbar = ({ toggleMobileMenu }) => {
                                 <Link
                                     key={index}
                                     className='text-sm truncate p-2 hover:bg-accent hover:text-white'
-                                    href={`products/${suggestion}`}
+                                    href={"/products/" + suggestion.pid}
                                 >
-                                    {suggestion}
+                                    {suggestion.name}
                                 </Link>
                             ))}
                         </div>
@@ -110,7 +116,7 @@ const Searchbar = ({ toggleMobileMenu }) => {
                 )}
 
                 {noItemsFound && (
-                    <div className='hidden sm:block absolute w-48 left-10 h-8 mx-auto bg-white border border-accent/80 rounded-3xl pl-2 pt-2'>
+                    <div className='hidden sm:block absolute w-48 sm:w-96 -right-52 sm:right-10 h-8 mx-auto bg-white border border-accent/80 rounded-3xl pl-2 pt-2'>
                         <p>No items found</p>
                     </div>
                 )}
