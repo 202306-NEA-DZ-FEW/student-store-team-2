@@ -7,9 +7,9 @@ const radios = [
         value: "sale",
     },
     {
-        id: "for barrow",
-        title: "For Barrow",
-        value: "barrow",
+        id: "for borrow",
+        title: "For Borrow",
+        value: "borrow",
     },
 ];
 function StatusFilter({ handleStatusChange, currentStatus }) {
