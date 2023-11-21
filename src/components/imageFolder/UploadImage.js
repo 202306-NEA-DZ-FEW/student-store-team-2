@@ -39,12 +39,15 @@ const UploadImage = ({ onImageUpload, avatar_url }) => {
                 formData.append("signature", signature);
                 formData.append("timestamp", timestamp);
                 formData.append("folder", "profile_pics");
+                console.log("formData", formData);
+                console.log("endpoint", endpoint);
 
                 const endpoint = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL;
                 const data = await fetch(endpoint, {
                     method: "POST",
                     body: formData,
                 }).then((res) => res.json());
+
                 await saveToDatabase({
                     version: data?.version,
                     signature: data?.signature,
@@ -54,6 +57,10 @@ const UploadImage = ({ onImageUpload, avatar_url }) => {
                 setDownloadURL(data.secure_url);
                 setIsUploading(false);
                 onImageUpload(data.secure_url);
+                console.log(" url", data.secure_url);
+                console.log(" downloadUrl", downloadURL);
+                console.log(" url", data.secure_url);
+                console.log(" image Upload", onImageUpload);
             } catch (error) {
                 console.error("Error uploading to Cloudinary: ", error);
                 setIsUploading(false);
@@ -64,6 +71,7 @@ const UploadImage = ({ onImageUpload, avatar_url }) => {
     };
     const handleRemoveFile = () => setImageFile(null);
     console.log(downloadURL);
+
     return (
         <>
             {isUploading ? (
