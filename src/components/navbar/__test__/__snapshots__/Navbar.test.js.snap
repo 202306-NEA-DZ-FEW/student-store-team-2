@@ -10,35 +10,31 @@ exports[`renders correctly 1`] = `
     <div
       className="relative flex h-16 items-center justify-between"
     >
-      <div
-        className="absolute inset-y-0 right-0 flex items-center sm:hidden "
+      <button
+        className=" sm:hidden inline-flex items-center justify-center rounded-md p-2  hover:bg-accent2 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white transition-all duration-300 ease-in-out"
+        onClick={[Function]}
       >
-        <button
-          className=" inline-flex items-center justify-center rounded-md p-2  hover:bg-accent2 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white transition-all duration-300 ease-in-out"
-          onClick={[Function]}
-        >
-          <svg
-            aria-hidden="true"
-            className="block h-8 w-8"
-            fill="currentColor"
-            height="1em"
-            stroke="currentColor"
-            strokeWidth="0"
-            style={
-              Object {
-                "color": undefined,
-              }
+        <svg
+          aria-hidden="true"
+          className="block h-8 w-8"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          strokeWidth="0"
+          style={
+            Object {
+              "color": undefined,
             }
-            viewBox="0 0 24 24"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M4 6h16v2H4zm4 5h12v2H8zm5 5h7v2h-7z"
-            />
-          </svg>
-        </button>
-      </div>
+          }
+          viewBox="0 0 24 24"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4 6h16v2H4zm4 5h12v2H8zm5 5h7v2h-7z"
+          />
+        </svg>
+      </button>
       <div
         className="flex flex-1 items-center justify-between"
       >
@@ -60,7 +56,7 @@ exports[`renders correctly 1`] = `
           </div>
         </a>
         <div
-          className="hidden sm:block"
+          className="hidden md:block"
         >
           <div
             className=" flex-1  flex space-x-4 items-center "
@@ -72,7 +68,7 @@ exports[`renders correctly 1`] = `
               onTouchStart={[Function]}
             >
               <div
-                className=" hover:bg-accent hover:text-white  block rounded-md px-3 py-2 text-base font-semibold font-lato antialiased tracking-widest"
+                className=" hover:bg-accent hover:text-white block rounded-md px-3 py-2 text-sm lg:text-base font-semibold font-lato antialiased tracking-widest"
               >
                 Home
               </div>
@@ -84,21 +80,9 @@ exports[`renders correctly 1`] = `
               onTouchStart={[Function]}
             >
               <div
-                className=" hover:bg-accent hover:text-white  block rounded-md px-3 py-2 text-base font-semibold font-lato antialiased tracking-widest"
+                className=" hover:bg-accent hover:text-white block rounded-md px-3 py-2 text-sm lg:text-base font-semibold font-lato antialiased tracking-widest"
               >
                 Products
-              </div>
-            </a>
-            <a
-              href="/order"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-              onTouchStart={[Function]}
-            >
-              <div
-                className=" hover:bg-accent hover:text-white  block rounded-md px-3 py-2 text-base font-semibold font-lato antialiased tracking-widest"
-              >
-                Orders
               </div>
             </a>
             <a
@@ -108,7 +92,7 @@ exports[`renders correctly 1`] = `
               onTouchStart={[Function]}
             >
               <div
-                className=" hover:bg-accent hover:text-white  block rounded-md px-3 py-2 text-base font-semibold font-lato antialiased tracking-widest"
+                className=" hover:bg-accent hover:text-white block rounded-md px-3 py-2 text-sm lg:text-base font-semibold font-lato antialiased tracking-widest"
               >
                 Donate
               </div>
@@ -116,20 +100,14 @@ exports[`renders correctly 1`] = `
           </div>
         </div>
         <div
-          className="hidden sm:block mr-48"
+          className="flex spacing-x-5 items-center md:hidden "
         >
-          <div
-            className="flex space-x-4 items-center"
-          >
-            <a
-              href="/profile?page=form"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-              onTouchStart={[Function]}
+          <div>
+            <div
+              className="flex justify-center items-center"
             >
               <svg
-                aria-hidden="true"
-                className="block h-6 w-6 antialiased  hover:text-accent rounded-xl font-semibold "
+                className="h-6 w-6 animate-spin duration-150 text-accent2"
                 fill="currentColor"
                 height="1em"
                 stroke="currentColor"
@@ -139,36 +117,61 @@ exports[`renders correctly 1`] = `
                     "color": undefined,
                   }
                 }
-                viewBox="0 0 24 24"
+                viewBox="0 0 512 512"
                 width="1em"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"
+                  d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
                 />
               </svg>
-            </a>
-            <div>
-              <p>
-                ...
-              </p>
             </div>
+          </div>
+          <div
+            className="mx-auto cursor-pointer"
+          >
+            <form
+              action=""
+              className="flex sm:relative mx-auto"
+            >
+              <svg
+                className="sm:mr-4 z-10 cursor-pointer my-auto h-6 w-6 hover:text-accent false text-black"
+                fill="currentColor"
+                height="1em"
+                onClick={[Function]}
+                stroke="currentColor"
+                strokeWidth="0"
+                style={
+                  Object {
+                    "color": undefined,
+                  }
+                }
+                viewBox="0 0 16 16"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+                />
+              </svg>
+            </form>
+          </div>
+        </div>
+        <div
+          className="hidden md:block"
+        >
+          <div
+            className="flex space-x-4 items-center"
+          >
             <div
-              className="mx-auto max-w-md cursor-pointer"
+              className="mx-auto cursor-pointer"
             >
               <form
                 action=""
-                className="fixed left-5 sm:relative mx-auto"
+                className="flex sm:relative mx-auto"
               >
-                <input
-                  className="cursor-pointer absolute h-8 w-0 rounded-full bg-transparent outline-none transition-all duration-300 ease-in-out left-10 pl-1"
-                  onChange={[Function]}
-                  type="search"
-                  value=""
-                />
                 <svg
-                  aria-hidden="true"
-                  className="mr-2 z-10 cursor-pointer my-auto h-6 w-6 stroke-gray-500 hover:text-accent rounded-xl font-semibold false"
+                  className="sm:mr-4 z-10 cursor-pointer my-auto h-6 w-6 hover:text-accent false text-black"
                   fill="currentColor"
                   height="1em"
                   onClick={[Function]}
@@ -179,18 +182,40 @@ exports[`renders correctly 1`] = `
                       "color": undefined,
                     }
                   }
-                  viewBox="0 0 24 24"
+                  viewBox="0 0 16 16"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"
-                  />
-                  <path
-                    d="M11.412 8.586c.379.38.588.882.588 1.414h2a3.977 3.977 0 0 0-1.174-2.828c-1.514-1.512-4.139-1.512-5.652 0l1.412 1.416c.76-.758 2.07-.756 2.826-.002z"
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
                   />
                 </svg>
               </form>
+            </div>
+            <div>
+              <div
+                className="flex justify-center items-center"
+              >
+                <svg
+                  className="h-6 w-6 animate-spin duration-150 text-accent2"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  strokeWidth="0"
+                  style={
+                    Object {
+                      "color": undefined,
+                    }
+                  }
+                  viewBox="0 0 512 512"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                  />
+                </svg>
+              </div>
             </div>
           </div>
         </div>

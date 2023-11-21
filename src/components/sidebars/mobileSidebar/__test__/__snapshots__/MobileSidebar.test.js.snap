@@ -140,13 +140,13 @@ exports[`renders correctly 1`] = `
             <label
               className="group relative text-[#55585B] text-sm "
             >
-              For Barrow
+              For Borrow
               <input
                 className="absolute opacity-0 cursor-pointer peer"
                 name="radio"
                 onChange={[Function]}
                 type="radio"
-                value="barrow"
+                value="borrow"
               />
               <span
                 className="absolute -top-2 -left-3 rounded-sm h-8 w-28 group-hover:bg-gray-200 -z-10   "

@@ -2,27 +2,38 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { getCurrentUser } from "@/lib/authDetails";
-
 const UserContext = createContext();
 
-export function UserProvider({ fetchUserData, children }) {
+export function UserProvider({ children, getCurrentUser }) {
     const [user, setUser] = useState(null);
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         const fetchData = async () => {
-            const user = await getCurrentUser();
-
-            await setUser(user);
-
-            const data = await fetchUserData(user);
-            await setUserData(data);
-            await setLoading(false);
+            try {
+                const data = await getCurrentUser();
+                setUser(data?.user);
+            } catch (error) {
+                console.error(error);
+            }
         };
 
         fetchData();
-    }, [fetchUserData]);
+    }, []);
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                if (user) {
+                    setUserData(user.user_metadata);
+                    setLoading(false);
+                } else setLoading(false);
+            } catch (error) {
+                // Handle errors
+            }
+        };
+
+        fetchUserData();
+    }, [user]);
 
     return (
         <UserContext.Provider value={{ user, userData, loading }}>
