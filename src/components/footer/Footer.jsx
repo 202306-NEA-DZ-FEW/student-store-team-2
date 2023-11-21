@@ -2,6 +2,8 @@
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 
+import LanguageChanger from "../languageChanger/LanguageChanger";
+
 function Footer() {
     const t = useTranslations("Index");
     const contributors = [
@@ -29,7 +31,7 @@ function Footer() {
     ];
 
     return (
-        <footer className=' w-full flex flex-col items-center text-base sm:flex-row sm:justify-evenly sm:text-sm sm:m-7 sm:flex-wrap sm:p-4 sm:text-left'>
+        <footer className='relative w-full flex flex-col items-center text-base sm:flex-row sm:justify-evenly sm:text-sm sm:m-7 sm:flex-wrap sm:p-4 sm:text-left'>
             <div className='flex justify-start flex-col w-3/4 my-3 sm:w-1/2 sm:py-4 md:ml-2 md:w-1/5 '>
                 <Link href='/'>
                     <button className='font-bold text-3xl sm:text-base tracking-wide sm:hover:tracking-widest transform-all ease-in-out duration-500 font-mono text-black '>
@@ -133,6 +135,9 @@ function Footer() {
                         >
                             <p>Privacy Policy</p>
                         </Link> */}
+            </div>
+            <div>
+                <LanguageChanger />{" "}
             </div>
         </footer>
     );
