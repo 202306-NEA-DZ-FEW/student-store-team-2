@@ -40,7 +40,6 @@ const UploadImage = ({ onImageUpload, avatar_url }) => {
                 formData.append("timestamp", timestamp);
                 formData.append("folder", "next");
                 console.log("formData", formData);
-                console.log("endpoint", endpoint);
 
                 const endpoint = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL;
                 const data = await fetch(endpoint, {
