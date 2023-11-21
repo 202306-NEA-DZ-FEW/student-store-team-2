@@ -1,10 +1,7 @@
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import React from "react";
-import { BiCollapseAlt, BiUser } from "react-icons/bi";
-
-import Searchbar from "../search/Searchbar";
-import UserStatus from "../userStatus/UserStatus";
+import { BiCollapseAlt } from "react-icons/bi";
 
 export default function MobileSidebar({
     navigation,
@@ -12,13 +9,6 @@ export default function MobileSidebar({
     isOpen,
 }) {
     const t = useTranslations("Index");
-    const links = [
-        { name: t("My Borrowings"), href: "/dashboard?type=borrowings" },
-        { name: t("My Lendings"), href: "/dashboard?type=lendings" },
-        { name: t("My Purchases"), href: "/dashboard?type=purchases" },
-        { name: t("My Sales"), href: "/dashboard?type=sales" },
-        { name: t("List an Item"), href: "/dashboard?type=List+an+Item" },
-    ];
 
     async function handleSearch(e) {
         if (e.keyCode === 13) {
@@ -69,41 +59,6 @@ export default function MobileSidebar({
                         </button>
                     </Link>
                 ))}
-                <Link
-                    href='/profile?page=form'
-                    className={`  hover:bg-accent hover:text-white rounded-md px-3 py-2 text-xl font-medium `}
-                >
-                    <button
-                        onClick={toggleMobileMenu}
-                        className='w-full flex justify-start items-center '
-                    >
-                        <BiUser
-                            className='block h-6 w-6 mr-2'
-                            aria-hidden='true'
-                        />
-                        <h2>{t("Profile")}</h2>
-                    </button>
-                </Link>
-
-                {links.map((link) => (
-                    <Link
-                        key={link.name}
-                        className=' hover:bg-accent hover:text-white font-jost text-accent rounded-md px-3 py-2 text-xl font-medium tracking-widest'
-                        href={link.href}
-                    >
-                        <button
-                            onClick={toggleMobileMenu}
-                            className='w-full flex justify-start '
-                        >
-                            {link.name}
-                        </button>
-                    </Link>
-                ))}
-                <div
-                    className={`  hover:bg-accent hover:text-white rounded-md px-3 py-2 text-xl font-medium `}
-                >
-                    <UserStatus />
-                </div>
             </div>
         </div>
     );
