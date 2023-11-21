@@ -1,17 +1,11 @@
 "use client";
-import {
-    getDownloadURL,
-    getStorage,
-    ref,
-    uploadBytesResumable,
-} from "firebase/storage";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { BsFillPersonVcardFill } from "react-icons/bs";
 import { FaSpinner } from "react-icons/fa";
 
-import { useUser } from "../userProvider/UserProvider";
+import { getSignature, saveToDatabase } from "@/lib/_cloudinary";
 
 const UploadId = ({ onIdUpload, profile_id }) => {
     const t = useTranslations("Index");
@@ -19,8 +13,6 @@ const UploadId = ({ onIdUpload, profile_id }) => {
     const [downloadURL, setDownloadURL] = useState(profile_id);
     const [isUploading, setIsUploading] = useState(false);
     const [progressUpload, setProgressUpload] = useState(0);
-    const user = useUser();
-    const storage = getStorage();
 
     const handleSelectedFile = (files) => {
         if (files && files[0].size < 10000000) {
@@ -30,49 +22,42 @@ const UploadId = ({ onIdUpload, profile_id }) => {
         }
     };
 
-    const handleUploadFile = () => {
+    const handleUploadFile = async () => {
         if (idFile) {
-            const storageRef = ref(storage, `ID/${user.user}`);
-            const uploadTask = uploadBytesResumable(storageRef, idFile);
+            setIsUploading(true);
 
-            setIsUploading(true); // Start the spinner
+            try {
+                const { signature, timestamp } = await getSignature(); // Get Cloudinary signature
 
-            uploadTask.on(
-                "state_changed",
-                (snapshot) => {
-                    const progress =
-                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    setProgressUpload(progress);
+                const formData = new FormData();
+                formData.append("file", idFile);
+                formData.append(
+                    "api_key",
+                    process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY
+                );
+                formData.append("quality", "auto:best");
+                formData.append("signature", signature);
+                formData.append("timestamp", timestamp);
+                formData.append("folder", "ID");
 
-                    switch (snapshot.state) {
-                        case "paused":
-                            console.log("Upload is paused");
-                            break;
-                        case "running":
-                            console.log("Upload is running");
-                            break;
-                    }
-                },
-                (error) => {
-                    console.error(error.message);
-                    setIsUploading(false); // Stop the spinner if an error occurs
-                },
-                () => {
-                    getDownloadURL(uploadTask.snapshot.ref)
-                        .then((url) => {
-                            setDownloadURL(url);
-                            setIsUploading(false);
-                            onIdUpload(url); // Send the URL to the parent component
-                        })
-                        .catch((error) => {
-                            console.error(
-                                "Error getting download URL: ",
-                                error
-                            );
-                            setIsUploading(false);
-                        });
-                }
-            );
+                const endpoint = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL;
+                const data = await fetch(endpoint, {
+                    method: "POST",
+                    body: formData,
+                }).then((res) => res.json());
+                await saveToDatabase({
+                    version: data?.version,
+                    signature: data?.signature,
+                    public_id: data?.public_id,
+                });
+
+                setDownloadURL(data.secure_url);
+                setIsUploading(false);
+                onIdUpload(data.secure_url);
+            } catch (error) {
+                console.error("Error uploading to Cloudinary: ", error);
+                setIsUploading(false);
+            }
         } else {
             console.error("File not found");
         }

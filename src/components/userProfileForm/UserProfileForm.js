@@ -12,7 +12,9 @@ import { reverseGeocode } from "@/lib/openWeatherAPI";
 
 import { useUser } from "@/components/userProvider/UserProvider";
 
+import UploadImage from "../imageFolder/UploadImage";
 import LocationInput from "../locationInput/LocationInput";
+import UploadId from "../uploadId/UploadId";
 
 const UserProfileForm = () => {
     const t = useTranslations("Index");
@@ -184,13 +186,13 @@ const UserProfileForm = () => {
                 <h1 className='font-lato  text-titleContent sm:text-l  text-center font-bold uppercase mb-4 mt-2'>
                     {t("General details")}
                 </h1>
-                {/* <div className='flex sm:flex-row flex-col mt-2 justify-center'>
+                <div className='flex sm:flex-row flex-col mt-2 justify-center'>
                     <UploadImage
                         onImageUpload={handleImageUpload}
                         avatar_url={imageURL}
                     />
                     <UploadId onIdUpload={handleIdUpload} profile_id={id} />
-                </div> */}
+                </div>
 
                 <div className='mb-4 grid gap-4 md:grid-cols-2'>
                     <div className='mb-4'>
