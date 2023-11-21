@@ -6,9 +6,7 @@ exports[`renders correctly 1`] = `
 >
   <h2
     className="font-semibold text-base text-[#55585B]"
-  >
-     
-  </h2>
+  />
   <div
     className="text-[#55585B] flex gap-1"
   >
@@ -61,10 +59,7 @@ exports[`renders correctly 1`] = `
     </svg>
     <p
       className="font-normal text-xs "
-    >
-      ,
-       
-    </p>
+    />
   </div>
 </div>
 `;

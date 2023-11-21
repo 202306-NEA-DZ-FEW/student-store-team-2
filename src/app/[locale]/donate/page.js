@@ -5,6 +5,7 @@ import React from "react";
 
 const Page = () => {
     const t = useTranslations("Index");
+
     return (
         <div className='flex flex-col font-poppins pt-16'>
             <div className='relative min-h-[200px] lg:h-96'>
@@ -29,10 +30,10 @@ const Page = () => {
                     {t("MAKE A DIFFERENCE BY DONATING")}
                 </h2>
                 <div className='text-content drop-shadow-xl flex flex-col lg:flex-row items-center lg:justify-center lg:items-end w-full lg:h-96'>
-                    <div class='relative cursor-pointer flex flex-col items-center justify-center mb-8 w-36 h-32 bg-bkg lg:w-56 lg:h-48 rounded-xl lg:mr-10'>
-                        <div class='absolute inset-0 bg-titleContent opacity-25 rounded-lg shadow-2xl'></div>
-                        <div class='absolute inset-0 transform  hover:scale-75 transition duration-300'>
-                            <div class='h-full w-full flex flex-col items-center justify-center bg-white rounded-lg shadow-2xl'>
+                    <div className='relative cursor-pointer flex flex-col items-center justify-center mb-8 w-36 h-32 bg-bkg lg:w-56 lg:h-48 rounded-xl lg:mr-10'>
+                        <div className='absolute inset-0 bg-titleContent opacity-25 rounded-lg shadow-2xl'></div>
+                        <div className='absolute inset-0 transform  hover:scale-75 transition duration-300'>
+                            <div className='h-full w-full flex flex-col items-center justify-center bg-white rounded-lg shadow-2xl'>
                                 <p className='text-xs lg:text-sm '>
                                     {t("Small Help")}
                                 </p>
@@ -46,10 +47,10 @@ const Page = () => {
                             </div>
                         </div>
                     </div>
-                    <div class='relative cursor-pointer flex flex-col items-center justify-center bg-bkg mb-8 w-44 h-36 lg:w-64 lg:h-60 rounded-xl mx-7'>
-                        <div class='absolute inset-0 bg-titleContent opacity-25 rounded-lg shadow-2xl'></div>
-                        <div class='absolute inset-0 transform  hover:scale-75 transition duration-300'>
-                            <div class='h-full w-full flex flex-col items-center justify-center bg-white rounded-lg shadow-2xl'>
+                    <div className='relative cursor-pointer flex flex-col items-center justify-center bg-bkg mb-8 w-44 h-36 lg:w-64 lg:h-60 rounded-xl mx-7'>
+                        <div className='absolute inset-0 bg-titleContent opacity-25 rounded-lg shadow-2xl'></div>
+                        <div className='absolute inset-0 transform  hover:scale-75 transition duration-300'>
+                            <div className='h-full w-full flex flex-col items-center justify-center bg-white rounded-lg shadow-2xl'>
                                 <p className='text-sm lg:text-base'>
                                     {t("Some Help")}
                                 </p>
@@ -63,10 +64,10 @@ const Page = () => {
                             </div>
                         </div>
                     </div>
-                    <div class='relative cursor-pointer flex flex-col items-center justify-center bg-bkg mb-8 w-56 h-48 lg:w-80 lg:h-72 rounded-xl lg:ml-7'>
-                        <div class='absolute inset-0 bg-titleContent opacity-25 rounded-lg shadow-2xl'></div>
-                        <div class='absolute inset-0 transform  hover:scale-75 transition duration-300'>
-                            <div class='h-full w-full bg-white rounded-lg shadow-2xl flex flex-col items-center justify-center '>
+                    <div className='relative cursor-pointer flex flex-col items-center justify-center bg-bkg mb-8 w-56 h-48 lg:w-80 lg:h-72 rounded-xl lg:ml-7'>
+                        <div className='absolute inset-0 bg-titleContent opacity-25 rounded-lg shadow-2xl'></div>
+                        <div className='absolute inset-0 transform  hover:scale-75 transition duration-300'>
+                            <div className='h-full w-full bg-white rounded-lg shadow-2xl flex flex-col items-center justify-center '>
                                 <p className='text-base lg:text-xl'>
                                     {t("Big Help")}
                                 </p>

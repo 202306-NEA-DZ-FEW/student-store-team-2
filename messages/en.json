@@ -111,7 +111,11 @@
         "Upload Image(s)": "Upload Image(s)",
         "List": "List",
         "Product Name": "Product Name",
+        "Authentication error": "Invalid login credentials. Please check your email and password.",
         "Filter": "Filter",
-        "Pending": "Pending"
+        "Pending": "Pending",
+        "We Couldn't Find the page you're looking for": "We Couldn't Find the page you're looking for",
+        "Go To Home": "Go To Home",
+        "We Couldn't Find the requested Product": "We Couldn't Find the requested Product."
     }
 }

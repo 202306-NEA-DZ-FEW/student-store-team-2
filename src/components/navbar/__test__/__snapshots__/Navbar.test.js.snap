@@ -90,18 +90,6 @@ exports[`renders correctly 1`] = `
               </div>
             </a>
             <a
-              href="/order"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-              onTouchStart={[Function]}
-            >
-              <div
-                className=" hover:bg-accent hover:text-white  block rounded-md px-3 py-2 text-base font-semibold font-lato antialiased tracking-widest"
-              >
-                Orders
-              </div>
-            </a>
-            <a
               href="/donate"
               onClick={[Function]}
               onMouseEnter={[Function]}

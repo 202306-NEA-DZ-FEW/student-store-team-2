@@ -1,22 +1,25 @@
+import { redirect } from "next/navigation";
+
+import { getCurrentUser, readUserSession } from "@/lib/_supabaseAuth";
 import { getCategories } from "@/lib/firestore";
-import { getUsers } from "@/lib/supabase";
+import { getDashboardOrders } from "@/lib/supabase";
 
 import AddProductForm from "@/components/addProduct/AddProductForm";
+import DashboardDisplay from "@/components/dashboardDisplay/DashboardDisplay";
 
-import DashboardDisplay from "../../../components/dashboardDisplay/DashboardDisplay";
 import NavLinks from "../../../components/dashboardNavLinks/NavLinks";
 
 const Page = async ({ searchParams }) => {
-    const fetchPurchases = async (table, filterField, filterValue) => {
-        "use server";
-        // // Use Supabase function to fetch data with filter
-        // const items = await getItems(table, filterField, filterValue);
-        // // console.log("iteeems", items);
-        // return items;
-        return ["1"];
-    };
+    const { session } = await readUserSession();
 
-    const data = await getUsers();
+    if (!session) {
+        redirect("sign-in");
+    }
+    const { user } = await getCurrentUser();
+    console.log("useeeeeeeeee", user);
+    console.log("iddddddddddddd", user.id);
+
+    const data = await getDashboardOrders(searchParams.type, user.id);
     console.log("daaaaata", data);
 
     // Fetch categories
@@ -32,10 +35,10 @@ const Page = async ({ searchParams }) => {
                         <AddProductForm categories={categories} />
                     </div>
                 ) : (
-                    <div className='flex-1 flex-col justify-center p-4 mt-40 ml-20  xl:pl-48'>
+                    <div className='flex-1 flex-col justify-center p-4 mt-40   sm:ml-64'>
                         {/* <SortingControl /> */}
                         <DashboardDisplay
-                            fetchPurchases={fetchPurchases}
+                            dashboardData={data}
                             type={searchParams.type}
                         />
                     </div>

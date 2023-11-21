@@ -102,15 +102,42 @@ export const getItems = async (table, filterField, filterValue) => {
     }
 };
 
-export const getUsers = async (table, filterField, filterValue) => {
+export const getDashboardOrders = async (type, userId) => {
+    // return the view name depend on the type of the dashboard page
+    const dashboardOrdersView = {
+        borrowings: "user_borrowings_view",
+        purchases: "user_purchases_view",
+        lendings: "user_lendings_view",
+        sales: "user_sales_view",
+    };
+
+    // figure out by type what is the role of the current user
+    const userRole = (type) =>
+        type === "borrowings" || type == "purchases" ? "receiver" : "sender";
+
+    console.log(userRole(type));
     try {
-        const { data, error } = await supabase.from("products").select("");
+        const { data, error } = await supabase
+            .from(dashboardOrdersView[type])
+            .select("*")
+            .eq(userRole(type), userId);
         console.log("error", error);
         return data;
     } catch (error) {
         console.error("Error adding item:", error);
         throw error;
     }
+};
+
+export const updateDashboardOrder = async (table, status, orderId) => {
+    const targetedDbTable = table === "for_borrow" ? "borrowings" : "purchases";
+
+    const { error } = await supabase
+        .from(targetedDbTable)
+        .update({ status })
+        .eq("id", orderId);
+
+    return error;
 };
 
 export const addItem = async (table, item) => {
@@ -145,12 +172,11 @@ export const updateItem = async (table, item, user) => {
 export const getUserProfile = async (user) => {
     try {
         const { data, error } = await supabase
-            .from("users")
-            .select(
-                "id, birth_date, first_name, last_name, phone_num, profile_pic, institution, gender,location, userId"
-            )
+            .from("users_view")
+            .select()
             .eq("id", user)
             .single();
+
         if (error) {
             throw error;
         }
@@ -223,4 +249,18 @@ export const addProduct = async (productData) => {
         console.error("Error adding product:", error);
         throw error; // Rethrow the error to handle it in the calling code
     }
+};
+
+export const getProductWithPrice = async (pid) => {
+    const { data, error } = await supabase
+        .from("products")
+        .select(
+            "pid,image,name,condition,offer_type, categories!inner(*),sale_offer(price),borrow_offer(price)"
+        )
+        .eq("pid", pid)
+        .single();
+    if (error) {
+        throw error;
+    }
+    return data;
 };

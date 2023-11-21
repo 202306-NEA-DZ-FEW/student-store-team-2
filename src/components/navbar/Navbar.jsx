@@ -8,20 +8,33 @@ import { BiMenu, BiMenuAltRight, BiUser } from "react-icons/bi";
 import MobileSidebar from "../mobileSidebar/MobileSidebar";
 import Portal from "../portal/Portal";
 import Searchbar from "../search/Searchbar";
+import { useUser } from "../userProvider/UserProvider";
 import UserStatus from "../userStatus/UserStatus";
 
 export default function Navbar() {
+    const { user } = useUser();
     const t = useTranslations("Index");
     const [isOpen, setIsOpen] = useState(false);
     const toggleMobileMenu = () => {
         setIsOpen(!isOpen);
     };
-    const navigation = [
-        { name: t("Home"), href: "/" },
-        { name: t("Products"), href: "/products" },
-        { name: t("Orders"), href: "/order" },
-        { name: t("Donate"), href: "/donate" },
-    ];
+
+    let navigation;
+
+    if (user) {
+        navigation = [
+            { name: t("Home"), href: "/" },
+            { name: t("Products"), href: "/products" },
+            { name: t("Orders"), href: "/dashboard" },
+            { name: t("Donate"), href: "/donate" },
+        ];
+    } else {
+        navigation = [
+            { name: t("Home"), href: "/" },
+            { name: t("Products"), href: "/products" },
+            { name: t("Donate"), href: "/donate" },
+        ];
+    }
 
     const pathname = usePathname();
     return (

@@ -2,9 +2,8 @@
 
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import React from "react";
 
-import { signOutUser } from "@/lib/authDetails";
+import { signOut } from "@/lib/_supabaseAuth";
 
 import { useUser } from "../userProvider/UserProvider";
 
@@ -12,7 +11,8 @@ function UserStatus() {
     const t = useTranslations("Index");
     const { user, userData, loading } = useUser();
     const handleSignOutUser = async () => {
-        await signOutUser();
+        await signOut();
+        window.location.href = "/";
     };
 
     if (loading) {
@@ -25,7 +25,7 @@ function UserStatus() {
         return (
             <div>
                 <p>
-                    {t("Hello")} {userData?.first_name}!
+                    {t("Hello")} {userData?.full_name.split(" ")[0]}!
                 </p>
                 <button className='text-red-500' onClick={handleSignOutUser}>
                     {t("Sign out")}

@@ -1,13 +1,12 @@
 "use client";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import DatePicker from "react-widgets/DatePicker";
 
 import "react-widgets/styles.css";
 
-import { updateItem } from "@/lib/supabase";
+import { updateUserMetadata } from "@/lib/_supabaseAuth";
 
 import { useUser } from "@/components/userProvider/UserProvider";
 
@@ -19,37 +18,43 @@ const UserProfileForm = () => {
     const { user, userData } = useUser();
     const [imageURL, setImageURL] = useState("");
     const [formData, setFormData] = useState({
+        full_name: "",
         birth_date: "",
         first_name: "",
         gender: "",
         institution: "",
         last_name: "",
         phone_num: "",
-        profile_pic: "",
+        avatar_url: "",
         userId: "",
     });
-    const [id, setId] = useState("");
 
+    //
+    const [id, setId] = useState("");
     const [loading, setLoading] = useState(true);
-    const router = useRouter();
     useEffect(() => {
         const fetcher = async () => {
             if (userData) {
+                const { full_name, ...otherData } = userData;
+                const [first_name = "", last_name = ""] = full_name.split(" ");
                 setFormData({
-                    ...userData,
-                    profile_pic: userData.profile_pic || "",
+                    ...otherData,
+                    first_name,
+                    last_name,
+                    full_name,
+                    avatar_url: userData.avatar_url || "",
                 });
-                console.log("formData", formData);
-                setImageURL(userData.profile_pic);
+                setImageURL(userData.avatar_url);
                 setId(userData.userId);
                 setLoading(false);
             }
         };
         fetcher();
     }, [loading, userData]);
+
     const handleImageUpload = (url) => {
         setImageURL(url);
-        setFormData({ ...formData, profile_pic: url });
+        setFormData({ ...formData, avatar_url: url });
     };
 
     const handleIdUpload = (url) => {
@@ -63,20 +68,13 @@ const UserProfileForm = () => {
     };
 
     const handleChange = (e) => {
-        // if (e.target.name.startsWith("address.")) {
-        //     const addressField = e.target.name.split(".")[1];
-        //     setFormData({
-        //         ...formData,
-        //         address: {
-        //             ...formData.address,
-        //             [addressField]: e.target.value,
-        //         },
-        //     });
-        // } else {
-        if (e.target.name === "birth_date") {
+        if (e.target.name === "full_name") {
+            const [first_name = "", last_name = ""] = e.target.value.split(" ");
             setFormData({
                 ...formData,
-                [e.target.name]: e.target.value,
+                first_name,
+                last_name,
+                full_name: e.target.value, // Optionally, update the full name field
             });
         } else {
             setFormData({
@@ -85,18 +83,21 @@ const UserProfileForm = () => {
             });
         }
     };
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (user) {
-            // const usersRef = collection(db, "users");
-            // const userRef = doc(usersRef, user);
-
-            const updatedData = { ...formData, profile_pic: imageURL };
-            updateItem("users", { ...updatedData }, user);
-            // addItem("users", { id: user, ...updatedData });
+            const { first_name, last_name, ...otherData } = formData;
+            const updatedData = {
+                ...otherData,
+                full_name: `${first_name} ${last_name}`,
+                avatar_url: imageURL,
+            };
+            // updateItem("auth.users", { ...updatedData }, user);
+            // addItem('users', { id: user, ...updatedData });
+            await updateUserMetadata(updatedData);
         }
     };
-
     if (loading) {
         return <span className='visually-hidden'>{t("Loading")}...</span>;
     }
@@ -132,7 +133,7 @@ const UserProfileForm = () => {
                 <div className='flex sm:flex-row flex-col mt-2 justify-center'>
                     <UploadImage
                         onImageUpload={handleImageUpload}
-                        profile_pic={imageURL}
+                        avatar_url={imageURL}
                     />
                     <UploadId onIdUpload={handleIdUpload} profile_id={id} />
                 </div>

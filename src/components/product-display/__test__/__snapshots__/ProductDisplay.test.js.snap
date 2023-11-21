@@ -20,8 +20,8 @@ exports[`renders correctly 1`] = `
         loading="lazy"
         onError={[Function]}
         onLoad={[Function]}
-        src="/_next/image?url=%2Fimg%2Fproduct4.jpg&w=384&q=75"
-        srcSet="/_next/image?url=%2Fimg%2Fproduct4.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg%2Fproduct4.jpg&w=384&q=75 2x"
+        src="/_next/image?url=https%3A%2F%2Fimages.placeholders.dev%2F%3Fwidth%3D100%26height%3D100&w=384&q=75"
+        srcSet="/_next/image?url=https%3A%2F%2Fimages.placeholders.dev%2F%3Fwidth%3D100%26height%3D100&w=256&q=75 1x, /_next/image?url=https%3A%2F%2Fimages.placeholders.dev%2F%3Fwidth%3D100%26height%3D100&w=384&q=75 2x"
         style={
           Object {
             "color": "transparent",
@@ -43,8 +43,8 @@ exports[`renders correctly 1`] = `
         loading="lazy"
         onError={[Function]}
         onLoad={[Function]}
-        src="/_next/image?url=%2Fimg%2Fproduct3.jpg&w=384&q=75"
-        srcSet="/_next/image?url=%2Fimg%2Fproduct3.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg%2Fproduct3.jpg&w=384&q=75 2x"
+        src="/_next/image?url=https%3A%2F%2Fimages.placeholders.dev%2F%3Fwidth%3D100%26height%3D100&w=384&q=75"
+        srcSet="/_next/image?url=https%3A%2F%2Fimages.placeholders.dev%2F%3Fwidth%3D100%26height%3D100&w=256&q=75 1x, /_next/image?url=https%3A%2F%2Fimages.placeholders.dev%2F%3Fwidth%3D100%26height%3D100&w=384&q=75 2x"
         style={
           Object {
             "color": "transparent",
@@ -66,8 +66,8 @@ exports[`renders correctly 1`] = `
         loading="lazy"
         onError={[Function]}
         onLoad={[Function]}
-        src="/_next/image?url=%2Fimg%2Fproduct2.jpg&w=384&q=75"
-        srcSet="/_next/image?url=%2Fimg%2Fproduct2.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg%2Fproduct2.jpg&w=384&q=75 2x"
+        src="/_next/image?url=https%3A%2F%2Fimages.placeholders.dev%2F%3Fwidth%3D100%26height%3D100&w=384&q=75"
+        srcSet="/_next/image?url=https%3A%2F%2Fimages.placeholders.dev%2F%3Fwidth%3D100%26height%3D100&w=256&q=75 1x, /_next/image?url=https%3A%2F%2Fimages.placeholders.dev%2F%3Fwidth%3D100%26height%3D100&w=384&q=75 2x"
         style={
           Object {
             "color": "transparent",
@@ -89,8 +89,8 @@ exports[`renders correctly 1`] = `
         loading="lazy"
         onError={[Function]}
         onLoad={[Function]}
-        src="/_next/image?url=%2Fimg%2Fproduct1.jpg&w=384&q=75"
-        srcSet="/_next/image?url=%2Fimg%2Fproduct1.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg%2Fproduct1.jpg&w=384&q=75 2x"
+        src="/_next/image?url=https%3A%2F%2Fimages.placeholders.dev%2F%3Fwidth%3D100%26height%3D100&w=384&q=75"
+        srcSet="/_next/image?url=https%3A%2F%2Fimages.placeholders.dev%2F%3Fwidth%3D100%26height%3D100&w=256&q=75 1x, /_next/image?url=https%3A%2F%2Fimages.placeholders.dev%2F%3Fwidth%3D100%26height%3D100&w=384&q=75 2x"
         style={
           Object {
             "color": "transparent",
@@ -112,8 +112,8 @@ exports[`renders correctly 1`] = `
       loading="lazy"
       onError={[Function]}
       onLoad={[Function]}
-      src="/_next/image?url=%2Fimg%2Fproduct4.jpg&w=1080&q=75"
-      srcSet="/_next/image?url=%2Fimg%2Fproduct4.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg%2Fproduct4.jpg&w=1080&q=75 2x"
+      src="/_next/image?url=https%3A%2F%2Fimages.placeholders.dev%2F%3Fwidth%3D100%26height%3D100&w=1080&q=75"
+      srcSet="/_next/image?url=https%3A%2F%2Fimages.placeholders.dev%2F%3Fwidth%3D100%26height%3D100&w=640&q=75 1x, /_next/image?url=https%3A%2F%2Fimages.placeholders.dev%2F%3Fwidth%3D100%26height%3D100&w=1080&q=75 2x"
       style={
         Object {
           "color": "transparent",
