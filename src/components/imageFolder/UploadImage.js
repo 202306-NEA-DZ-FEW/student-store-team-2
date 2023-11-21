@@ -38,7 +38,7 @@ const UploadImage = ({ onImageUpload, avatar_url }) => {
                 formData.append("quality", "auto:best");
                 formData.append("signature", signature);
                 formData.append("timestamp", timestamp);
-                formData.append("folder", "profile_pics");
+                formData.append("folder", "next");
                 console.log("formData", formData);
                 console.log("endpoint", endpoint);
 

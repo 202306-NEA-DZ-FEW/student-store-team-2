@@ -38,7 +38,7 @@ const UploadId = ({ onIdUpload, profile_id }) => {
                 formData.append("quality", "auto:best");
                 formData.append("signature", signature);
                 formData.append("timestamp", timestamp);
-                formData.append("folder", "ID");
+                formData.append("folder", "next");
 
                 const endpoint = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL;
                 const data = await fetch(endpoint, {
