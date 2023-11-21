@@ -56,10 +56,6 @@ const UploadImage = ({ onImageUpload, avatar_url }) => {
                 setDownloadURL(data.secure_url);
                 setIsUploading(false);
                 onImageUpload(data.secure_url);
-                console.log(" url", data.secure_url);
-                console.log(" downloadUrl", downloadURL);
-                console.log(" url", data.secure_url);
-                console.log(" image Upload", onImageUpload);
             } catch (error) {
                 console.error("Error uploading to Cloudinary: ", error);
                 setIsUploading(false);

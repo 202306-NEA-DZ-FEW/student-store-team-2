@@ -6,7 +6,7 @@ exports[`renders correctly 1`] = `
     className="flex justify-center items-center"
   >
     <svg
-      className="h-8 w-8 animate-spin duration-150 text-accent2"
+      className="h-6 w-6 animate-spin duration-150 text-accent2"
       fill="currentColor"
       height="1em"
       stroke="currentColor"
