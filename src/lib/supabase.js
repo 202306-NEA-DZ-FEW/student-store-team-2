@@ -329,3 +329,30 @@ export const getProductWithPrice = async (pid) => {
     }
     return data;
 };
+
+export const getTestimonials = async () => {
+    const supabase = await createSupabaseServerClient();
+
+    try {
+        const { data, error } = await supabase.from("testimonials").select("*");
+        return data;
+    } catch (error) {
+        console.error("Error fetching testimonials:", error);
+        throw error;
+    }
+};
+
+export const searchProduct = async (value) => {
+    const supabase = await createSupabaseServerClient();
+
+    const { data, error } = await supabase
+        .from("products")
+        .select("name, pid")
+        .ilike("name", `%${value}%`);
+
+    if (error) {
+        throw error;
+    }
+
+    return data;
+};
