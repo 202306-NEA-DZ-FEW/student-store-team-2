@@ -3,6 +3,7 @@
 exports[`renders correctly 1`] = `
 <div
   className="text-center "
+  id="how-it-works"
 >
   <h1
     className="text-2xl md:text-4xl"
