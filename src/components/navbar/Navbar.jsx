@@ -6,6 +6,7 @@ import { useState } from "react";
 import { BiMenu, BiMenuAltRight } from "react-icons/bi";
 
 import MobileSidebar from "../mobileSidebar/MobileSidebar";
+import NotificationsDropdown from "../notifications/NotificationsDropDown";
 import Portal from "../portal/Portal";
 import Searchbar from "../search/Searchbar";
 import { useUser } from "../userProvider/UserProvider";
@@ -79,8 +80,9 @@ export default function Navbar() {
                                 </div>
                             </div>
                             <div className='flex spacing-x-5 items-center md:hidden '>
-                                <UserStatus />
+                                <NotificationsDropdown />
 
+                                <UserStatus />
                                 <Searchbar />
                             </div>
                             <div className='hidden md:block'>
@@ -88,6 +90,7 @@ export default function Navbar() {
                                     <Searchbar toggleMobileMenu={() => {}} />
 
                                     <UserStatus />
+                                    <NotificationsDropdown />
                                 </div>
                             </div>
                         </div>
