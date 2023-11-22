@@ -1,15 +1,11 @@
 import { redirect } from "next/navigation";
 
-import { readUserSession } from "@/lib/_supabaseAuth";
+import { getCurrentUser, readUserSession } from "@/lib/_supabaseAuth";
 import { getCategories } from "@/lib/firestore";
-import { getItems } from "@/lib/supabase";
+import { getDashboardOrders } from "@/lib/supabase";
 
 import AddProductForm from "@/components/addProduct/AddProductForm";
-
-import DashboardDisplay from "../../../components/dashboardDisplay/DashboardDisplay";
-import NavLinks from "../../../components/dashboardNavLinks/NavLinks";
-import MyDashboard from "../../../components/myListings/MyDashboard";
-import SortingControl from "../../../components/sortingControl/SortingControl";
+import DashboardDisplay from "@/components/dashboardDisplay/DashboardDisplay";
 
 const Page = async ({ searchParams }) => {
     const { session } = await readUserSession();
@@ -17,39 +13,29 @@ const Page = async ({ searchParams }) => {
     if (!session) {
         redirect("sign-in");
     }
+    const { user } = await getCurrentUser();
 
-    const fetchPurchases = async (table, filterField, filterValue) => {
-        "use server";
-        // Use Supabase function to fetch data with filter
-        const items = await getItems(table, filterField, filterValue);
-
-        return items;
-    };
+    const data = await getDashboardOrders(
+        searchParams.type || "stuff",
+        user.id
+    );
+    // console.log("daaaaata", data);
 
     // Fetch categories
     const categories = await getCategories();
     return (
-        <div className='pb-40'>
-            <MyDashboard />
-            <div className='flex leading-6 tracking-wider mb-20'>
-                <NavLinks />
-                {searchParams.type === "List an Item" ? (
-                    <div className='flex-1 p-4'>
-                        <AddProductForm categories={categories} />
-                    </div>
-                ) : (
-                    <div className='flex-1 flex-col justify-center p-4 items-center   xl:pl-48'>
-                        <SortingControl />
-                        <DashboardDisplay
-                            fetchPurchases={fetchPurchases}
-                            type={searchParams.type}
-                        />
-                    </div>
-                )}
-
-                <div className=''></div>
-            </div>
-        </div>
+        <>
+            {searchParams.type === "add product" ? (
+                <div className='flex-1 p-4'>
+                    <AddProductForm categories={categories} />
+                </div>
+            ) : (
+                <DashboardDisplay
+                    dashboardData={data}
+                    type={searchParams.type}
+                />
+            )}
+        </>
     );
 };
 

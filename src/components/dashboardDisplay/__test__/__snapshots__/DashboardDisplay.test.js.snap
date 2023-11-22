@@ -2,12 +2,145 @@
 
 exports[`renders correctly 1`] = `
 <div
-  className="flex flex-wrap gap-4"
+  className=""
 >
+  <h1
+    className="text-3xl capitalize font-lato font-medium ml-4 mb-6"
+  />
   <div
-    className="text-titleContent uppercase font-jost mt-24"
+    className="mb-8"
   >
-    no current items
+    <div
+      className="flex items-end"
+    >
+      <select
+        className="bg-white py-2 px-4 w-16 h-12 border border-gray-300 rounded-md  ml-4"
+        id=""
+        name=""
+        onChange={[Function]}
+      >
+        <option
+          defaultChecked={true}
+          value="all"
+        >
+          All
+        </option>
+        <option
+          defaultChecked={true}
+          value="requested"
+        >
+          Requested
+        </option>
+        <option
+          defaultChecked={true}
+          value="pending"
+        >
+          Pending
+        </option>
+        <option
+          defaultChecked={true}
+          value="completed"
+        >
+          Completed
+        </option>
+      </select>
+      <form
+        className="ml-4  inline-block"
+      >
+        <label
+          className="sr-only"
+        >
+          Search
+        </label>
+        <div
+          className="mt-1 relative lg:w-64 xl:w-96"
+        >
+          <input
+            className="bg-gray-50 h-12 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-accent focus:border-accent block w-full p-2.5"
+            onChange={[Function]}
+            placeholder="Search for a product"
+            type="text"
+          />
+        </div>
+      </form>
+      <a
+        className="ml-8 sm:ml-auto rounded-md p-2.5  bg-cyan-600 text-white flex items-center hover:bg-cyan-800"
+        href="dashboard?type=add product"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onTouchStart={[Function]}
+      >
+        <svg
+          className="w-7 h-7"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          strokeWidth="0"
+          style={
+            Object {
+              "color": undefined,
+            }
+          }
+          viewBox="0 0 24 24"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M11.75 4.5a.75.75 0 0 1 .75.75V11h5.75a.75.75 0 0 1 0 1.5H12.5v5.75a.75.75 0 0 1-1.5 0V12.5H5.25a.75.75 0 0 1 0-1.5H11V5.25a.75.75 0 0 1 .75-.75Z"
+          />
+        </svg>
+        <span>
+          Add product
+        </span>
+      </a>
+    </div>
   </div>
+  <table
+    className="table-fixed min-w-full divide-y divide-gray-200 "
+  >
+    <thead
+      className="bg-gray-100"
+    >
+      <tr>
+        <th
+          className="p-4 text-left text-xs font-medium text-gray-500 uppercase"
+          scope="col"
+        >
+          Name
+        </th>
+        <th
+          className="p-4 text-left text-xs font-medium text-gray-500 uppercase"
+          scope="col"
+        />
+        <th
+          className="p-4 text-left text-xs font-medium text-gray-500 uppercase"
+          scope="col"
+        >
+          Message
+        </th>
+        <th
+          className="p-4 text-left text-xs font-medium text-gray-500 uppercase"
+          scope="col"
+        >
+          Phone Num
+        </th>
+        <th
+          className="p-4 text-left text-xs font-medium text-gray-500 uppercase"
+          scope="col"
+        >
+          Status
+        </th>
+        <th
+          className="p-4 text-left text-xs font-medium text-gray-500 uppercase"
+          scope="col"
+        >
+          Actions
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      className="bg-white divide-y divide-gray-200 "
+    />
+  </table>
 </div>
 `;

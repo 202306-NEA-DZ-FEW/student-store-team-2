@@ -1,5 +1,6 @@
 "use server";
 import { createServerClient } from "@supabase/ssr";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { v4 as uuidv4 } from "uuid";
 
@@ -122,15 +123,74 @@ export const getItems = async (table, filterField, filterValue) => {
     const supabase = await createSupabaseServerClient();
 
     try {
-        const { data, error } = await supabase
-            .from(table)
-            .select("")
-            .eq(filterField, filterValue);
+        const { data, error } = await supabase.rpc("get_purchases_by_user");
+
         return data;
     } catch (error) {
         console.error("Error adding item:", error);
         throw error;
     }
+};
+
+export const getDashboardOrders = async (type, userId) => {
+    const supabase = await createSupabaseServerClient();
+    // return the view name depend on the type of the dashboard page
+    const dashboardOrdersView = {
+        borrowings: "user_borrowings_view",
+        purchases: "user_purchases_view",
+        lendings: "user_lendings_view",
+        sales: "user_sales_view",
+        stuff: "user_stuff_view",
+    };
+
+    // figure out by type what is the role of the current user
+    const userRole = {
+        borrowings: "receiver",
+        purchases: "receiver",
+        lendings: "sender",
+        sales: "sender",
+        stuff: "uid",
+    };
+
+    try {
+        const { data, error } = await supabase
+            .from(dashboardOrdersView[type])
+            .select("*")
+            .eq(userRole[type], userId);
+
+        return data;
+    } catch (error) {
+        console.error("Error adding item:", error);
+        throw error;
+    }
+};
+
+export const updateDashboardOrder = async (table, status, orderId) => {
+    const supabase = await createSupabaseServerClient();
+    console.log("updating", table, status, orderId);
+    const targetedDbTable = table === "for_borrow" ? "borrowings" : "purchases";
+
+    const { data, error } = await supabase
+        .from(targetedDbTable)
+        .update({ status })
+        .eq("id", orderId);
+    console.log("ddddd", error);
+
+    revalidatePath("/dashboard");
+    return { data, error };
+};
+
+export const deleteDashboardOrder = async (table, id) => {
+    const supabase = await createSupabaseServerClient();
+
+    const targetedDbTable = table === "for_borrow" ? "borrowings" : "purchases";
+    const { data, error } = await supabase
+        .from(targetedDbTable)
+        .delete()
+        .eq("id", id);
+
+    revalidatePath("/dashboard");
+    return { data, error };
 };
 
 export const addItem = async (table, item) => {
