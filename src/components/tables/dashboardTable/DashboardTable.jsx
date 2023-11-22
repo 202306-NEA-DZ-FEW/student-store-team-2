@@ -1,17 +1,21 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { BiMessageSquareDots } from "react-icons/bi";
 import { FaCheckSquare } from "react-icons/fa";
 import { IoMdCloudDone } from "react-icons/io";
+import { IoEyeOutline } from "react-icons/io5";
 import { MdCancel } from "react-icons/md";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { TiCancel } from "react-icons/ti";
 
+import { deleteDashboardOrder, updateDashboardOrder } from "@/lib/supabase";
+
 function DashboardTable({ type, data }) {
     return (
-        <table className='table-fixed min-w-full divide-y divide-gray-200'>
+        <table className='table-fixed min-w-full divide-y divide-gray-200 '>
             <DashboardTableHead type={type} />
-            <tbody className='bg-white divide-y divide-gray-200'>
+            <tbody className='bg-white divide-y divide-gray-200 '>
                 {data &&
                     data?.map((item) => (
                         <DashboardTableRow
@@ -95,11 +99,13 @@ function DashboardTableRow({ item, type }) {
         requested: "text-green-400",
         pending: "text-purple-400",
         completed: "text-blue-400",
+        aborted: "text-rose-400",
     };
     const statusBgColor = {
         requested: "bg-green-200",
         pending: "bg-purple-200",
         completed: "bg-blue-200",
+        aborted: "bg-rose-200",
     };
     return (
         <tr className='hover:bg-gray-100 align-middle'>
@@ -119,16 +125,16 @@ function DashboardTableRow({ item, type }) {
                         <Image
                             layout='fill'
                             src={item?.raw_user_meta_data?.avatar_url}
-                            alt={`${item.raw_user_meta_data.full_name} avatar picture`}
+                            alt={` avatar picture`}
                         />
                     </div>
 
                     <div className='text-sm font-normal text-gray-500 ml-3'>
                         <div className='text-base font-semibold text-gray-900'>
-                            {item.raw_user_meta_data.full_name}
+                            {item?.raw_user_meta_data?.full_name}
                         </div>
                         <div className='text-sm font-normal text-gray-500'>
-                            {item.raw_user_meta_data.email}
+                            {item?.raw_user_meta_data?.email}
                         </div>
                     </div>
                 </div>
@@ -142,7 +148,7 @@ function DashboardTableRow({ item, type }) {
                 </td>
             )}
             <td className='p-4 whitespace-nowrap text-base font-medium text-gray-900'>
-                {item.raw_user_meta_data?.phone_num || "not provided"}
+                {item?.raw_user_meta_data?.phone_num || "not provided"}
             </td>
             <td className='p-4 whitespace-nowrap text-base font-normal text-gray-900'>
                 <p
@@ -169,13 +175,15 @@ function DashboardTableActions({
             icon: FaCheckSquare,
             style: "bg-cyan-600 hover:bg-cyan-700 focus:ring-cyan-300",
             text: "accept",
-            callback: () => {},
+            callback: async (table, orderId) => {
+                updateDashboardOrder(table, "pending", orderId);
+            },
         },
         cancel: {
             icon: MdCancel,
             style: " bg-red-600 hover:bg-red-800 focus:ring-red-300 ",
             text: "cancel",
-            callback: () => {},
+            callback: (table, orderId) => deleteDashboardOrder(table, orderId),
         },
         reject: {
             icon: MdCancel,
@@ -187,19 +195,23 @@ function DashboardTableActions({
             icon: IoMdCloudDone,
             style: " bg-green-600 hover:bg-green-800 focus:ring-green-300 ",
             text: "complete",
-            callback: () => {},
+            callback: async (table, orderId) => {
+                updateDashboardOrder(table, "completed", orderId);
+            },
         },
         abort: {
             icon: TiCancel,
             style: " bg-rose-600 hover:bg-rose-800 focus:ring-rose-300 ",
             text: "abort",
-            callback: () => {},
+            callback: async (table, orderId) => {
+                updateDashboardOrder(table, "aborted", orderId);
+            },
         },
         delete: {
             icon: RiDeleteBinFill,
             style: " bg-red-600 hover:bg-red-800 focus:ring-red-300 ",
             text: "delete",
-            callback: () => {},
+            callback: (table, orderId) => deleteDashboardOrder(table, orderId),
         },
     };
 
@@ -207,13 +219,13 @@ function DashboardTableActions({
         requested: ["cancel"],
         pending: ["abort"],
         completed: ["delete"],
-        abort: ["delete"],
+        aborted: ["delete"],
     };
     const receiverActions = {
         requested: ["accept", "reject"],
         pending: ["complete", "abort"],
         completed: ["delete"],
-        abort: ["delete"],
+        aborted: ["delete"],
     };
 
     const userActions =
@@ -223,21 +235,35 @@ function DashboardTableActions({
 
     return (
         <div>
-            {userActions[status].map((item) => {
-                const { icon: Icon, text, style, callback } = actions[item];
-                return (
-                    <button
-                        key={item}
-                        type='button'
-                        data-modal-toggle='delete-user-modal'
-                        className={`ml-2 ${style} text-white focus:ring-4 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center`}
-                        onClick={callback}
-                    >
-                        <Icon className='w-4 h-4 mr-2' />
-                        {text}
-                    </button>
-                );
-            })}
+            {status &&
+                userActions[status].map((item) => {
+                    const { icon: Icon, text, style, callback } = actions[item];
+
+                    const UpdateStatus = async () => {
+                        const res = await callback(offer_type, id);
+                        console.log("result", res);
+                    };
+                    return (
+                        <button
+                            key={item}
+                            type='button'
+                            data-modal-toggle='delete-user-modal'
+                            className={`ml-2 ${style} text-white  font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center`}
+                            onClick={UpdateStatus}
+                        >
+                            <Icon className='w-4 h-4 mr-2' />
+                            {text}
+                        </button>
+                    );
+                })}
+            <Link
+                href={"/products/" + productId}
+                data-modal-toggle='delete-user-modal'
+                className='ml-2 bg-gray-300 text-white  hover:bg-gray-400 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center'
+            >
+                <IoEyeOutline className='w-4 h-4 mr-2' />
+                view
+            </Link>
         </div>
     );
 }

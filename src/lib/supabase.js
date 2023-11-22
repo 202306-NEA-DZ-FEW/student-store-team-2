@@ -1,13 +1,41 @@
-import { createClient } from "@supabase/supabase-js";
+"use server";
+import { createServerClient } from "@supabase/ssr";
+import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
 import { v4 as uuidv4 } from "uuid";
 
-// Create a single supabase client for interacting with your database
-const supabase = createClient(
-    "https://zvipwzqccgaxkfjxdnue.supabase.co",
-    process.env.NEXT_PUBLIC_SUPABASE_API_KEY
-);
+export default async function createSupabaseServerClient() {
+    const cookieStore = cookies();
+
+    return createServerClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL,
+
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+
+        {
+            cookies: {
+                get(name) {
+                    return cookieStore.get(name)?.value;
+                },
+                set(name, value, options) {
+                    cookieStore.set({ name, value, ...options });
+                },
+                remove(name, options) {
+                    cookieStore.set({ name, value: "", ...options });
+                },
+            },
+        }
+    );
+}
+
+// const supabase = createClient(
+//     "https://zvipwzqccgaxkfjxdnue.supabase.co",
+//     process.env.NEXT_PUBLIC_SUPABASE_API_KEY
+// );
 
 export const getProducts = async (searchParams) => {
+    const supabase = await createSupabaseServerClient();
+
     try {
         let countQuery = null;
         let query = supabase.from("products");
@@ -92,6 +120,8 @@ export const getProducts = async (searchParams) => {
 };
 
 export const getItems = async (table, filterField, filterValue) => {
+    const supabase = await createSupabaseServerClient();
+
     try {
         const { data, error } = await supabase.rpc("get_purchases_by_user");
 
@@ -103,25 +133,31 @@ export const getItems = async (table, filterField, filterValue) => {
 };
 
 export const getDashboardOrders = async (type, userId) => {
+    const supabase = await createSupabaseServerClient();
     // return the view name depend on the type of the dashboard page
     const dashboardOrdersView = {
         borrowings: "user_borrowings_view",
         purchases: "user_purchases_view",
         lendings: "user_lendings_view",
         sales: "user_sales_view",
+        stuff: "user_stuff_view",
     };
 
     // figure out by type what is the role of the current user
-    const userRole = (type) =>
-        type === "borrowings" || type == "purchases" ? "receiver" : "sender";
+    const userRole = {
+        borrowings: "receiver",
+        purchases: "receiver",
+        lendings: "sender",
+        sales: "sender",
+        stuff: "uid",
+    };
 
-    console.log(userRole(type));
     try {
         const { data, error } = await supabase
             .from(dashboardOrdersView[type])
             .select("*")
-            .eq(userRole(type), userId);
-        console.log("error", error);
+            .eq(userRole[type], userId);
+
         return data;
     } catch (error) {
         console.error("Error adding item:", error);
@@ -130,17 +166,36 @@ export const getDashboardOrders = async (type, userId) => {
 };
 
 export const updateDashboardOrder = async (table, status, orderId) => {
+    const supabase = await createSupabaseServerClient();
+    console.log("updating", table, status, orderId);
     const targetedDbTable = table === "for_borrow" ? "borrowings" : "purchases";
 
-    const { error } = await supabase
+    const { data, error } = await supabase
         .from(targetedDbTable)
         .update({ status })
         .eq("id", orderId);
+    console.log("ddddd", error);
 
-    return error;
+    revalidatePath("/dashboard");
+    return { data, error };
+};
+
+export const deleteDashboardOrder = async (table, id) => {
+    const supabase = await createSupabaseServerClient();
+
+    const targetedDbTable = table === "for_borrow" ? "borrowings" : "purchases";
+    const { data, error } = await supabase
+        .from(targetedDbTable)
+        .delete()
+        .eq("id", id);
+
+    revalidatePath("/dashboard");
+    return { data, error };
 };
 
 export const addItem = async (table, item) => {
+    const supabase = await createSupabaseServerClient();
+
     try {
         const { data, error } = await supabase.from(table).upsert([item]);
 
@@ -156,6 +211,8 @@ export const addItem = async (table, item) => {
 };
 
 export const updateItem = async (table, item, user) => {
+    const supabase = await createSupabaseServerClient();
+
     const { data, error } = await supabase
         .from(table)
         .update({ ...item })
@@ -170,6 +227,8 @@ export const updateItem = async (table, item, user) => {
 };
 
 export const getUserProfile = async (user) => {
+    const supabase = await createSupabaseServerClient();
+
     try {
         const { data, error } = await supabase
             .from("users_view")
@@ -188,6 +247,8 @@ export const getUserProfile = async (user) => {
 };
 
 export const getProduct = async (productId) => {
+    const supabase = await createSupabaseServerClient();
+
     try {
         const { data, error } = await supabase
             .from("products")
@@ -205,6 +266,8 @@ export const getProduct = async (productId) => {
 };
 
 export const addProduct = async (productData) => {
+    const supabase = await createSupabaseServerClient();
+
     const newUuid = uuidv4();
 
     try {
@@ -252,6 +315,8 @@ export const addProduct = async (productData) => {
 };
 
 export const getProductWithPrice = async (pid) => {
+    const supabase = await createSupabaseServerClient();
+
     const { data, error } = await supabase
         .from("products")
         .select(

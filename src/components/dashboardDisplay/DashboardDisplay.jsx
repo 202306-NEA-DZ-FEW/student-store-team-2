@@ -1,13 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { GoPlus } from "react-icons/go";
 
 import DashboardTable from "../tables/dashboardTable/DashboardTable";
+import UserStuffTable from "../tables/userStuffTable/UserStuffTable";
 
 const DashboardDisplay = ({ dashboardData, type }) => {
     const [data, setData] = useState(dashboardData);
-    const [search, setSearch] = useState("");
 
     const handleChange = (e) => filterBySearch(e.target.value);
 
@@ -43,7 +44,7 @@ const DashboardDisplay = ({ dashboardData, type }) => {
 
     useEffect(() => {
         setData(dashboardData);
-    }, [dashboardData]);
+    }, [dashboardData, type]);
 
     return (
         <div className=''>
@@ -72,28 +73,30 @@ const DashboardDisplay = ({ dashboardData, type }) => {
                         </option>
                     </select>
                     <form className='ml-4  inline-block'>
-                        <label for='users-search' className='sr-only'>
-                            Search
-                        </label>
+                        <label className='sr-only'>Search</label>
                         <div className='mt-1 relative lg:w-64 xl:w-96'>
                             <input
                                 type='text'
-                                name='email'
-                                id='users-search'
                                 onChange={handleChange}
                                 className='bg-gray-50 h-12 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-accent focus:border-accent block w-full p-2.5'
                                 placeholder='Search for a product'
                             />
                         </div>
                     </form>
-                    <button className='ml-8 sm:ml-auto rounded-md p-2.5  bg-cyan-600 text-white flex items-center hover:bg-cyan-800'>
+                    <Link
+                        href='dashboard?type=add product'
+                        className='ml-8 sm:ml-auto rounded-md p-2.5  bg-cyan-600 text-white flex items-center hover:bg-cyan-800'
+                    >
                         <GoPlus className='w-7 h-7' />
                         <span>Add product</span>
-                    </button>
+                    </Link>
                 </div>
             </div>
-
-            <DashboardTable type={type} data={data} />
+            {type === "stuff" ? (
+                <UserStuffTable data={data} />
+            ) : (
+                <DashboardTable type={type} data={data} />
+            )}
         </div>
     );
 };

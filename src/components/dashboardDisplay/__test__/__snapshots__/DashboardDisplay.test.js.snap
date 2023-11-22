@@ -49,7 +49,6 @@ exports[`renders correctly 1`] = `
       >
         <label
           className="sr-only"
-          for="users-search"
         >
           Search
         </label>
@@ -58,16 +57,18 @@ exports[`renders correctly 1`] = `
         >
           <input
             className="bg-gray-50 h-12 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-accent focus:border-accent block w-full p-2.5"
-            id="users-search"
-            name="email"
             onChange={[Function]}
             placeholder="Search for a product"
             type="text"
           />
         </div>
       </form>
-      <button
+      <a
         className="ml-8 sm:ml-auto rounded-md p-2.5  bg-cyan-600 text-white flex items-center hover:bg-cyan-800"
+        href="dashboard?type=add product"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onTouchStart={[Function]}
       >
         <svg
           className="w-7 h-7"
@@ -91,11 +92,11 @@ exports[`renders correctly 1`] = `
         <span>
           Add product
         </span>
-      </button>
+      </a>
     </div>
   </div>
   <table
-    className="table-fixed min-w-full divide-y divide-gray-200"
+    className="table-fixed min-w-full divide-y divide-gray-200 "
   >
     <thead
       className="bg-gray-100"
@@ -138,7 +139,7 @@ exports[`renders correctly 1`] = `
       </tr>
     </thead>
     <tbody
-      className="bg-white divide-y divide-gray-200"
+      className="bg-white divide-y divide-gray-200 "
     />
   </table>
 </div>

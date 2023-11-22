@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="relative mb-4"
+>
+  <input
+    className="w-full border border-gray-300 p-2 rounded-md focus:border-blue-500 focus:outline-none"
+    onChange={[Function]}
+    placeholder="Enter Location"
+    type="text"
+  />
+</div>
+`;

@@ -1,9 +1,11 @@
 "use server";
+
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
 export default async function createSupabaseServerClient() {
     "use server";
+
     const cookieStore = cookies();
 
     return createServerClient(
@@ -84,17 +86,12 @@ export async function signInWithEmailAndPassword(email, password) {
     return JSON.stringify(data);
 }
 
-export const updateUserMetadata = async (userId, metadata) => {
+export const updateUserMetadata = async (metadata) => {
     const supabase = await createSupabaseServerClient();
 
-    const { data, error } = await supabase
-        .from("auth.users")
-        .update({ raw_user_meta_data: metadata })
-        .eq("id", userId);
-
+    const { data, error } = await supabase.auth.updateUser({ data: metadata });
     if (error) {
         throw error;
     }
-
     return data;
 };

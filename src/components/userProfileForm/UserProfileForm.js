@@ -2,21 +2,27 @@
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+import { FaSpinner } from "react-icons/fa";
 import DatePicker from "react-widgets/DatePicker";
 
 import "react-widgets/styles.css";
 
 import { updateUserMetadata } from "@/lib/_supabaseAuth";
+import { reverseGeocode } from "@/lib/openWeatherAPI";
 
 import { useUser } from "@/components/userProvider/UserProvider";
 
-import UploadImage from "../imageFolder/UploadImage";
-import UploadId from "../uploadId/UploadId";
+import LocationInput from "../locationInput/LocationInput";
 
 const UserProfileForm = () => {
     const t = useTranslations("Index");
     const { user, userData } = useUser();
     const [imageURL, setImageURL] = useState("");
+    const [uploading, setUploading] = useState(false);
+    const [location, setLocation] = useState("");
+    const [latitude, setLatitude] = useState("");
+    const [longitude, setLongitude] = useState("");
+
     const [formData, setFormData] = useState({
         full_name: "",
         birth_date: "",
@@ -29,7 +35,6 @@ const UserProfileForm = () => {
         userId: "",
     });
 
-    //
     const [id, setId] = useState("");
     const [loading, setLoading] = useState(true);
     useEffect(() => {
@@ -37,6 +42,7 @@ const UserProfileForm = () => {
             if (userData) {
                 const { full_name, ...otherData } = userData;
                 const [first_name = "", last_name = ""] = full_name.split(" ");
+
                 setFormData({
                     ...otherData,
                     first_name,
@@ -52,6 +58,32 @@ const UserProfileForm = () => {
         fetcher();
     }, [loading, userData]);
 
+    useEffect(() => {
+        const fetcher = async () => {
+            if (userData) {
+                const { location } = userData; // Assuming userData has a 'location' object with 'Lat' and 'Long'
+                const { Lat, Long } = location;
+
+                try {
+                    const data = await reverseGeocode(Lat, Long); // Fetch reverse geocoding data
+                    const [firstResult = {}] = data || []; // Get the first result (or default to an empty object)
+                    const { name, state, country } = firstResult; // Extract location details
+
+                    const formattedLocation = `${name}, ${state}, ${country}`; // Format the location string if necessary
+
+                    setLocation(formattedLocation); // Set the location state
+                } catch (error) {
+                    // Handle errors
+                    console.error(
+                        "Error fetching reverse geocoding data:",
+                        error
+                    );
+                }
+            }
+        };
+        fetcher();
+    }, [userData]);
+
     const handleImageUpload = (url) => {
         setImageURL(url);
         setFormData({ ...formData, avatar_url: url });
@@ -60,6 +92,13 @@ const UserProfileForm = () => {
     const handleIdUpload = (url) => {
         setId(url);
         setFormData({ ...formData, userId: url });
+    };
+
+    const handleLocationSelect = (lat, lon) => {
+        // Define the logic for handling the selected location here
+        console.log(lat);
+        setLatitude(lat);
+        setLongitude(lon);
     };
 
     const handleDateChange = (selectedDay) => {
@@ -74,7 +113,8 @@ const UserProfileForm = () => {
                 ...formData,
                 first_name,
                 last_name,
-                full_name: e.target.value, // Optionally, update the full name field
+                full_name: e.target.value,
+                location: { Lat: latitude, Long: longitude },
             });
         } else {
             setFormData({
@@ -86,20 +126,34 @@ const UserProfileForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        await setUploading(true);
         if (user) {
             const { first_name, last_name, ...otherData } = formData;
             const updatedData = {
                 ...otherData,
                 full_name: `${first_name} ${last_name}`,
                 avatar_url: imageURL,
+                location: { Lat: latitude, Long: longitude },
             };
-            // updateItem("auth.users", { ...updatedData }, user);
-            // addItem('users', { id: user, ...updatedData });
             await updateUserMetadata(updatedData);
-        }
+            console.log(updatedData);
+            await setUploading(false);
+        } else setUploading(true);
     };
+
     if (loading) {
-        return <span className='visually-hidden'>{t("Loading")}...</span>;
+        return (
+            <div className='flex h-screen justify-center items-center'>
+                <FaSpinner className='h-24 w-24 animate-spin duration-150 text-accent' />
+            </div>
+        );
+    }
+    if (uploading) {
+        return (
+            <div className='flex  h-screen justify-center items-center'>
+                <FaSpinner className='h-24 w-24 animate-spin duration-150 text-accent' />
+            </div>
+        );
     }
 
     return (
@@ -130,13 +184,13 @@ const UserProfileForm = () => {
                 <h1 className='font-lato  text-titleContent sm:text-l  text-center font-bold uppercase mb-4 mt-2'>
                     {t("General details")}
                 </h1>
-                <div className='flex sm:flex-row flex-col mt-2 justify-center'>
+                {/* <div className='flex sm:flex-row flex-col mt-2 justify-center'>
                     <UploadImage
                         onImageUpload={handleImageUpload}
                         avatar_url={imageURL}
                     />
                     <UploadId onIdUpload={handleIdUpload} profile_id={id} />
-                </div>
+                </div> */}
 
                 <div className='mb-4 grid gap-4 md:grid-cols-2'>
                     <div className='mb-4'>
@@ -151,7 +205,7 @@ const UserProfileForm = () => {
                             name='first_name'
                             value={formData.first_name}
                             onChange={handleChange}
-                            className='w-full border border-gray-300 p-2 rounded-md'
+                            className='w-full border border-gray-300 p-2 rounded-md focus:border-blue-500'
                         />
                     </div>
 
@@ -166,7 +220,7 @@ const UserProfileForm = () => {
                             name='last_name'
                             value={formData.last_name}
                             onChange={handleChange}
-                            className='w-full border border-gray-300 p-2 rounded-md'
+                            className='w-full border border-gray-300 p-2 rounded-md focus:border-blue-500 '
                         />
                     </div>
                     <div className='mb-4'>
@@ -176,7 +230,7 @@ const UserProfileForm = () => {
                             name='gender'
                             value={formData.gender}
                             onChange={handleChange}
-                            className='w-full border border-gray-300 p-2 rounded-md'
+                            className='w-full border border-gray-300 p-2 rounded-md focus:border-blue-500'
                         >
                             <option value='male'>Male</option>
                             <option value='female'>Female</option>
@@ -196,7 +250,7 @@ const UserProfileForm = () => {
                                 id: "birth_date",
                                 name: "birth_date",
                                 className:
-                                    "w-full border border-gray-300 p-2 rounded-md",
+                                    "w-full border border-gray-300 p-2 rounded-md focus:border-blue-500",
                             }}
                         />
                     </div>
@@ -209,7 +263,7 @@ const UserProfileForm = () => {
                         name='institution'
                         value={formData.institution}
                         onChange={handleChange}
-                        className='w-full border border-gray-300 p-2 rounded-md'
+                        className='w-full border border-gray-300 p-2 rounded-md focus:border-blue-500'
                     />
                 </div>
                 <h1 className='font-lato  text-titleContent sm:text-l text-center font-bold uppercase mb-4 sm:ml-10'>
@@ -227,61 +281,14 @@ const UserProfileForm = () => {
                             name='phone_num'
                             value={formData.phone_num}
                             onChange={handleChange}
-                            className='w-full border border-gray-300 p-2 rounded-md'
+                            className='w-full border border-gray-300 p-2 rounded-md focus:border-blue-500'
                         />
                     </div>
-
-                    {/* <div className='mb-4'>
-                        <span className='text-sm text-black '>
-                            <span className='text-red-500'>*</span> Required
-                        </span>
-                        <input
-                            placeholder={t("Building")}
-                            type='text'
-                            id='building'
-                            name='address.building'
-                            value={formData.address.building}
-                            onChange={handleChange}
-                            className='w-full border border-gray-300 p-2 rounded-md'
-                        />
-                    </div>
-                    <div className='mb-4'>
-                        <input
-                            placeholder={t("Street")}
-                            type='text'
-                            id='street'
-                            name='address.street'
-                            value={formData.address.street}
-                            onChange={handleChange}
-                            className='w-full border border-gray-300 p-2 rounded-md'
-                        />
-                    </div>
-                    <div className='mb-4'>
-                        <input
-                            placeholder={t("City")}
-                            type='text'
-                            id='city'
-                            name='address.city'
-                            value={formData.address.city}
-                            onChange={handleChange}
-                            className='w-full border border-gray-300 p-2 rounded-md'
-                        />
-                    </div>
-
-                    <div className='mb-4'>
-                        <span className='text-sm text-black '>
-                            <span className='text-red-500'>*</span> Required
-                        </span>
-                        <input
-                            placeholder={t("State")}
-                            type='text'
-                            id='state'
-                            name='address.state'
-                            value={formData.address.state}
-                            onChange={handleChange}
-                            className='w-full border border-gray-300 p-2 rounded-md'
-                        />
-                    </div> */}
+                    <LocationInput
+                        location={location}
+                        setLocation={setLocation} // Assuming you have a state setter function for location
+                        onLocationSelect={handleLocationSelect} // Pass the callback function
+                    />
                 </div>
                 <button
                     type='submit'
