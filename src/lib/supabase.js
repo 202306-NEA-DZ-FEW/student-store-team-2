@@ -280,7 +280,8 @@ export const getTestimonials = async () => {
         console.error("Error fetching testimonials:", error);
         throw error;
     }
-  
+};
+
 export const searchProduct = async (value) => {
     const supabase = await createSupabaseServerClient();
 
