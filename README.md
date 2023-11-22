@@ -3,7 +3,6 @@
 Welcome to LaCité, a fully-responsive web application platform for students to lend, borrow, sell, and buy new and used items of different categories from each other.
 
 ## Table of Contents
-
 - [Features](#features)
 - [Getting Started](#getting-started)
   - [Installation](#installation)
@@ -54,4 +53,29 @@ No installation is required since LaCité is a web-based platform. Simply visit 
    - If suitable, click "Borrow" or "Buy" to contact the owner and start the transaction.
 
 5. **Creating Listings**:
-   - Log in, go to the Dashboard, select "List an Item," and upl
+   - Log in, go to the Dashboard, select "List an Item," and upload up to 4 pictures along with details.
+
+6. **User Dashboard**:
+   - Access your dashboard to monitor borrowed, purchased, sold, or lent items.
+
+7. **Settings**:
+   - Click on your profile picture, go to Dashboard, and choose "Settings" to update your profile information.
+
+## Support and Donations
+
+If you appreciate the service and want to support LaCité, consider visiting our [Donate Page](#) (leading to a mock checkout page) and choose from three donation options: $5, $10, and $25. Your support is crucial as the website runs purely on donations.
+
+**Note: This website is a template and is not live yet. It is connected to Firebase and Supabase for authentication, real-time database, and database storage. Cloudinary is used for image storage, and React Leaflet is integrated for geolocation maps.**
+
+## Contact Us
+
+- Visit the [About Us](#) page to learn more about the team.
+- Connect with us on social media via our respective profiles.
+
+## Language Preference
+
+If English is not your first language, change the language by selecting your preferred option at the bottom-right of the screen.
+
+## Footer
+
+Explore quick links, find our contact information, and access our [GitHub repository](#) for the project.
