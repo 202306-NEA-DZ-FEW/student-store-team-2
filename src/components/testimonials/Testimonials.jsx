@@ -65,7 +65,7 @@ const Testimonials = () => {
     };
 
     return (
-        <div className='w-1/2 flex flex-col items-center font-lato tracking-wide pt-10'>
+        <div className='w-full md:w-3/4 flex flex-col items-center font-lato tracking-wide pt-10'>
             <div className='w-full flex items-center'>
                 <BsChevronLeft
                     onClick={goToPreviousSlide}
