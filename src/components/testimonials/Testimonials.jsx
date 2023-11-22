@@ -5,35 +5,7 @@ import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
 import StarRating from "../starRating/StarRating";
 
-const Testimonials = () => {
-    const testimonials = [
-        {
-            text: "Cillum sit tempor non culpa id proident aliqua sint.",
-            author: "John Doe",
-            rating: 4.0,
-        },
-        {
-            text: "Nisi veniam qui aliquip sunt in nisi commodo fugiat do est ipsum commodo.",
-            author: "Jane Smith",
-            rating: 2.0,
-        },
-        {
-            text: "Nulla aute cupidatat ut cupidatat deserunt non elit culpa proident officia ea sit.",
-            author: "Bob Johnson",
-            rating: 3.0,
-        },
-        {
-            text: "Incididunt laborum adipisicing cupidatat occaecat aliquip pariatur sint amet nostrud.",
-            author: "Bob Moe",
-            rating: 4.5,
-        },
-        {
-            text: "Nulla aute cupidatat ut cupidatat deserunt non elit culpa proident officia ea sit.",
-            author: "Bob Johnson",
-            rating: 3.0,
-        },
-    ];
-
+const Testimonials = ({ testimonials }) => {
     const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
     const sliderRef = useRef(null);
 
@@ -83,15 +55,15 @@ const Testimonials = () => {
                         clipPath: "inset(0 0 15px 0)",
                     }}
                 >
-                    {testimonials.map((testimonial, index) => (
+                    {testimonials?.map((testimonial, index) => (
                         <div
                             key={index}
-                            className='testimonial-slide w-full flex flex-col flex-shrink-0 justify-center items-center snap-start'
+                            className='testimonial-slide w-full flex flex-col flex-shrink-0 justify-center items-center'
                         >
                             <BiSolidQuoteRight className='text-accent2 h-24 w-24' />
 
                             <p className='text-xl text-center  mb-8'>
-                                {testimonial.text}
+                                {testimonial.testimonial}
                             </p>
 
                             <StarRating rating={testimonial.rating} />
@@ -104,7 +76,7 @@ const Testimonials = () => {
                 <BsChevronRight
                     onClick={goToNextSlide}
                     className={`mt-2 text-5xl ${
-                        currentSlideIndex === testimonials.length - 1
+                        currentSlideIndex === testimonials?.length - 1
                             ? "text-gray-500 pointer-events-none"
                             : "text-accent cursor-pointer"
                     }`}
