@@ -1,286 +1,218 @@
 "use client";
-import { useTranslations } from "next-intl";
-import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { FaFacebook, FaLinkedin } from "react-icons/fa";
+
+import LanguageChanger from "../languageChanger/LanguageChanger";
 
 function Footer() {
     const t = useTranslations("Index");
+    // const contributors = [
+    //     {
+    //         name: "BARKA Oussama",
+    //         link: "https://github.com/0m3ga13"
+    //     },
+
+    //     {
+    //         name: "Mohammed Bennaceur",
+    //         link: "https://github.com/medshk"
+    //     },
+    //     {
+    //         name: "Ahmed Djebnoune",
+    //         link: "https://github.com/Bolphunga"
+    //     },
+    //     {
+    //         name: "Imane BELAID",
+    //         link: "https://github.com/Emybel"
+    //     },
+    //     {
+    //         name: "Samira TOUBAL SEGHIR",
+    //         link: "https://github.com/samiraTbl"
+    //     }
+    // ];
 
     return (
-        <footer className='h-1/5 w-full mx-auto'>
-            <div className='flex lg:flex-col flex-row lg:justify-between justify-center'>
-                <div className='sb_footer section_padding p-10'>
-                    <div className='flex justify-around items-start flex-col md:flex-row md:flex-wrap w-full text-left mb-8'>
-                        <div className='w-40 m-4 flex justify-start flex-col'>
-                            <Link href='/'>
-                                <button className='font-bold text-3xl sm:text-base tracking-wide md:hover:tracking-widest transform-all ease-in-out duration-500 font-mono text-black z-50 '>
-                                    {t("Title")}
-                                </button>
-                            </Link>
-                            <p className='mt-10 text-content sm:text-base'>
-                                {t("Description")}
-                            </p>
-                        </div>
+        <footer className='relative w-full flex flex-col items-center justify-center text-base sm:flex-col sm:justify-between sm:text-sm sm:flex-wrap sm:p-4 sm:text-left'>
+            <div className='flex justify-between items-baseline w-full h-24 my-6'>
+                <Link href='/'>
+                    <button className='font-bold text-3xl tracking-wide sm:hover:tracking-widest transform-all ease-in-out duration-500 font-mono text-black ml-5'>
+                        {t("Title")}
+                    </button>
+                </Link>
+                {/* <p className='my-10 text-content sm:text-base'>
+                    {t("Description")}
+                </p> */}
+                <LanguageChanger />
+            </div>
 
-                        {/* Created by */}
-
-                        <div className='w-30  flex justify-start flex-col'>
-                            <p className='font-semibold tracking-wider py-1 my-1'>
-                                CONTACT US
-                            </p>
-
+            <div className='flex flex-col sm:flex-row sm:items-baseline sm:justify-evenly items-center justify-center w-full md:mb-10'>
+                <div className='flex items-start sm:items-center sm:justify-center flex-col uppercase w-1/2 sm:w-1/3 mb-3'>
+                    <p className=' font-semibold text-sm sm:text-base text-titleContent tracking-wider py-1'>
+                        {t("Contact Us")}
+                    </p>
+                    <div className='flex flex-col sm:flex-row '>
+                        <div className='py-1 sm:px-1'>
                             <Link
-                                href='https://github.com/0m3ga13'
-                                className='flex flex-row items-center mt-3   hover:text-accent dark:hover:text-white'
+                                href='https://www.instagram.com/recodedofficial/'
+                                className='flex flex-row items-center hover:text-accent '
                             >
                                 <svg
-                                    className='w-4 h-4 mx-2'
-                                    aria-hidden='true'
                                     xmlns='http://www.w3.org/2000/svg'
-                                    fill='currentColor'
-                                    viewBox='0 0 20 20'
+                                    x='0px'
+                                    y='0px'
+                                    width='33'
+                                    height='33'
+                                    viewBox='0 0 48 48'
                                 >
+                                    <radialGradient
+                                        id='yOrnnhliCrdS2gy~4tD8ma_Xy10Jcu1L2Su_gr1'
+                                        cx='19.38'
+                                        cy='42.035'
+                                        r='44.899'
+                                        gradientUnits='userSpaceOnUse'
+                                    >
+                                        <stop
+                                            offset='0'
+                                            stop-color='#fd5'
+                                        ></stop>
+                                        <stop
+                                            offset='.328'
+                                            stop-color='#ff543f'
+                                        ></stop>
+                                        <stop
+                                            offset='.348'
+                                            stop-color='#fc5245'
+                                        ></stop>
+                                        <stop
+                                            offset='.504'
+                                            stop-color='#e64771'
+                                        ></stop>
+                                        <stop
+                                            offset='.643'
+                                            stop-color='#d53e91'
+                                        ></stop>
+                                        <stop
+                                            offset='.761'
+                                            stop-color='#cc39a4'
+                                        ></stop>
+                                        <stop
+                                            offset='.841'
+                                            stop-color='#c837ab'
+                                        ></stop>
+                                    </radialGradient>
                                     <path
-                                        fillRule='evenodd'
-                                        d='M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z'
-                                        clipRule='evenodd'
-                                    />
-                                </svg>
-
-                                <span className='sr-only'>GitHub account</span>
-                                <p className='py-1'>BARKA Oussama</p>
-                            </Link>
-
-                            <Link
-                                href='https://github.com/Emybel'
-                                className='flex flex-row items-center   hover:text-accent dark:hover:text-white'
-                            >
-                                <svg
-                                    className='w-4 h-4 mx-2'
-                                    aria-hidden='true'
-                                    xmlns='http://www.w3.org/2000/svg'
-                                    fill='currentColor'
-                                    viewBox='0 0 20 20'
-                                >
+                                        fill='url(#yOrnnhliCrdS2gy~4tD8ma_Xy10Jcu1L2Su_gr1)'
+                                        d='M34.017,41.99l-20,0.019c-4.4,0.004-8.003-3.592-8.008-7.992l-0.019-20	c-0.004-4.4,3.592-8.003,7.992-8.008l20-0.019c4.4-0.004,8.003,3.592,8.008,7.992l0.019,20	C42.014,38.383,38.417,41.986,34.017,41.99z'
+                                    ></path>
+                                    <radialGradient
+                                        id='yOrnnhliCrdS2gy~4tD8mb_Xy10Jcu1L2Su_gr2'
+                                        cx='11.786'
+                                        cy='5.54'
+                                        r='29.813'
+                                        gradientTransform='matrix(1 0 0 .6663 0 1.849)'
+                                        gradientUnits='userSpaceOnUse'
+                                    >
+                                        <stop
+                                            offset='0'
+                                            stop-color='#4168c9'
+                                        ></stop>
+                                        <stop
+                                            offset='.999'
+                                            stop-color='#4168c9'
+                                            stop-opacity='0'
+                                        ></stop>
+                                    </radialGradient>
                                     <path
-                                        fillRule='evenodd'
-                                        d='M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z'
-                                        clipRule='evenodd'
-                                    />
-                                </svg>
-
-                                <span className='sr-only'>GitHub account</span>
-                                <p>Imane BELAID</p>
-                            </Link>
-
-                            <Link
-                                href='https://github.com/medshk'
-                                className='flex flex-row items-center  hover:text-accent dark:hover:text-white'
-                            >
-                                <svg
-                                    className='w-4 h-4 mx-2'
-                                    aria-hidden='true'
-                                    xmlns='http://www.w3.org/2000/svg'
-                                    fill='currentColor'
-                                    viewBox='0 0 20 20'
-                                >
+                                        fill='url(#yOrnnhliCrdS2gy~4tD8mb_Xy10Jcu1L2Su_gr2)'
+                                        d='M34.017,41.99l-20,0.019c-4.4,0.004-8.003-3.592-8.008-7.992l-0.019-20	c-0.004-4.4,3.592-8.003,7.992-8.008l20-0.019c4.4-0.004,8.003,3.592,8.008,7.992l0.019,20	C42.014,38.383,38.417,41.986,34.017,41.99z'
+                                    ></path>
                                     <path
-                                        fillRule='evenodd'
-                                        d='M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z'
-                                        clipRule='evenodd'
-                                    />
-                                </svg>
-
-                                <span className='sr-only'>GitHub account</span>
-                                <p className='py-1'>Mohammed Bennaceur</p>
-                            </Link>
-
-                            <Link
-                                href='https://github.com/Bolphunga'
-                                className='flex flex-row items-center  hover:text-accent dark:hover:text-white'
-                            >
-                                <svg
-                                    className='w-4 h-4 mx-2'
-                                    aria-hidden='true'
-                                    xmlns='http://www.w3.org/2000/svg'
-                                    fill='currentColor'
-                                    viewBox='0 0 20 20'
-                                >
+                                        fill='#fff'
+                                        d='M24,31c-3.859,0-7-3.14-7-7s3.141-7,7-7s7,3.14,7,7S27.859,31,24,31z M24,19c-2.757,0-5,2.243-5,5	s2.243,5,5,5s5-2.243,5-5S26.757,19,24,19z'
+                                    ></path>
+                                    <circle
+                                        cx='31.5'
+                                        cy='16.5'
+                                        r='1.5'
+                                        fill='#fff'
+                                    ></circle>
                                     <path
-                                        fillRule='evenodd'
-                                        d='M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z'
-                                        clipRule='evenodd'
-                                    />
+                                        fill='#fff'
+                                        d='M30,37H18c-3.859,0-7-3.14-7-7V18c0-3.86,3.141-7,7-7h12c3.859,0,7,3.14,7,7v12	C37,33.86,33.859,37,30,37z M18,13c-2.757,0-5,2.243-5,5v12c0,2.757,2.243,5,5,5h12c2.757,0,5-2.243,5-5V18c0-2.757-2.243-5-5-5H18z'
+                                    ></path>
                                 </svg>
-
-                                <span className='sr-only'>GitHub account</span>
-                                <p className='py-1'>Ahmed Djebnoune</p>
-                            </Link>
-
-                            <Link
-                                href='https://github.com/samiraTbl'
-                                className='flex flex-row items-center  hover:text-accent dark:hover:text-white'
-                            >
-                                <svg
-                                    className='w-4 h-4 mx-2'
-                                    aria-hidden='true'
-                                    xmlns='http://www.w3.org/2000/svg'
-                                    fill='currentColor'
-                                    viewBox='0 0 20 20'
-                                >
-                                    <path
-                                        fillRule='evenodd'
-                                        d='M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z'
-                                        clipRule='evenodd'
-                                    />
-                                </svg>
-
-                                <span className='sr-only'>GitHub account</span>
-                                <p>Samira TOUBAL SEGHIR</p>
                             </Link>
                         </div>
-
-                        {/* Our Products */}
-
-                        <div className='w-40 flex justify-start flex-col uppercase tracking-wide '>
-                            <p className='font-semibold tracking-wider py-1'>
-                                Quick links
-                            </p>
-
+                        <div className='py-1 sm:px-1'>
                             <Link
-                                href='#'
-                                className='py-2 mt-3  no-underline hover:text-accent'
+                                href='https://www.linkedin.com/school/re-coded/'
+                                className='flex flex-row items-center hover:text-accent '
                             >
-                                <p>Home</p>
-                            </Link>
-                            <Link
-                                href='#'
-                                className='py-2  no-underline hover:text-accent'
-                            >
-                                <p>Furniture</p>
-                            </Link>
-                            <Link
-                                href='#'
-                                className='py-2  no-underline hover:text-accent'
-                            >
-                                <p>Clothes</p>
-                            </Link>
-                            <Link
-                                href='#'
-                                className='py-2  no-underline hover:text-accent'
-                            >
-                                <p>Electronics</p>
-                            </Link>
-                            <Link
-                                href='#'
-                                className='py-2  no-underline hover:text-accent'
-                            >
-                                <p>gaming</p>
+                                <FaLinkedin className='text-3xl text-blue-500' />
                             </Link>
                         </div>
-                        <div className='w-40  flex justify-start flex-col'>
-                            <p className='font-semibold tracking-wide'>
-                                HELP AND INFO
-                            </p>
+                        <div className='py-1 sm:px-1'>
                             <Link
-                                href='#'
-                                className='py-2  no-underline hover:text-accent'
+                                href='https://www.facebook.com/recodedofficial/'
+                                className='flex flex-row items-center hover:text-accent '
                             >
-                                <p>TRACK YOUR ORDER</p>
-                            </Link>
-                            <Link
-                                href='#'
-                                className='py-2  no-underline hover:text-accent'
-                            >
-                                <p>RETURNS POLICIES</p>
-                            </Link>
-                            <Link
-                                href='#'
-                                className='py-2  no-underline hover:text-accent'
-                            >
-                                <p>SHIPPING + DELIVERY</p>
-                            </Link>
-                            <Link
-                                href='#'
-                                className='py-2  no-underline hover:text-accent'
-                            >
-                                <p>FAQS</p>
-                            </Link>
-                        </div>
-
-                        <div className='w-40  flex justify-start flex-col uppercase'>
-                            <p className='font-semibold tracking-wide py-1'>
-                                ABOUT STUDENT STORE
-                            </p>
-                            <Link
-                                href='#'
-                                className='py-2 no-underline hover:text-accent'
-                            >
-                                <p>ABOUT US</p>
-                            </Link>
-                            <Link
-                                href='#'
-                                className='py-2 no-underline hover:text-accent'
-                            >
-                                <p>HOW IT WORKS!</p>
-                            </Link>
-                            <Link
-                                href='#'
-                                className='py-2 no-underline hover:text-accent'
-                            >
-                                <p>Terms of Use</p>
-                            </Link>
-                            <Link
-                                href='#'
-                                className='py-2  no-underline hover:text-accent'
-                            >
-                                <p>Privacy Policy</p>
+                                <FaFacebook className='text-3xl text-blue-700' />
                             </Link>
                         </div>
                     </div>
-                    <hr className=' w-full py-2'></hr>
+                </div>
 
-                    <div className='text-sm text-content sm:text-base sm:text-center  flex justify-around items-start flex-col  md:flex-row'>
-                        <div className='sb_footer-copyright text-lg tracking-wider font- text-[13px] leading-[15px]  '>
-                            <p>
-                                We ship with:
-                                <a
-                                    href='https://www.dhl.com/dz-fr/home.html'
-                                    className='icon-link'
-                                >
-                                    <Image
-                                        src='/img/dhl.png'
-                                        alt='dhl icon'
-                                        className='icon'
-                                        style={{ display: "inline" }}
-                                        height={8.49}
-                                        width={60}
-                                    />
-                                </a>
-                                <a
-                                    href='https://yalidine.com/'
-                                    className='icon-link'
-                                >
-                                    <Image
-                                        src='/img/yalidine.png'
-                                        className='icon'
-                                        alt='yalidine icon'
-                                        style={{ display: "inline" }}
-                                        height={8.49}
-                                        width={40}
-                                    />
-                                </a>
-                            </p>
-                        </div>
+                <div className='flex items-start sm:items-center sm:justify-center flex-col uppercase w-1/2 sm:w-1/3 mb-3'>
+                    <p className='font-semibold text-sm sm:text-base text-titleContent tracking-wider pl-1'>
+                        {t("Quick Links")}
+                    </p>
 
-                        <div className='sb_footer-copyright text-lg tracking-wider font- text-[13px] leading-[15px] pt-7  '>
-                            <p>
-                                @ Copyright {new Date().getFullYear()}{" "}
-                                StudentStore.
-                            </p>
-                        </div>
-                        <div className='sb_footer-below-links flex flex-row justify-between mx-4 text-[13px] leading-[15px] ml-8  font-semibold'></div>
-                    </div>
+                    <Link
+                        href='/'
+                        className='py-1 pl-2 mt-1  no-underline hover:text-accent'
+                    >
+                        <p className='text-sm sm:text-base'>{t("Home")}</p>
+                    </Link>
+                    <Link
+                        href='/products.js'
+                        className='py-1 pl-2  no-underline hover:text-accent'
+                    >
+                        <p className='text-sm sm:text-base'>{t("Products")}</p>
+                    </Link>
+                    <Link
+                        href='/donate.js'
+                        className='py-1 pl-2 no-underline hover:text-accent'
+                    >
+                        <p className='text-sm sm:text-base'>{t("Donate")}</p>
+                    </Link>
+                </div>
+
+                <div className='flex items-start sm:items-center sm:justify-center flex-col uppercase  w-1/2 sm:w-1/3 mb-3'>
+                    <p className='font-semibold text-sm sm:text-base text-titleContent tracking-wide py-1 pl-1'>
+                        {t("About LACITÉ")}
+                    </p>
+                    <Link
+                        href='/about-us'
+                        className='py-1 pl-2 no-underline hover:text-accent'
+                    >
+                        <p className='text-sm sm:text-base'>{t("About Us")}</p>
+                    </Link>
+                    <Link
+                        href='/#how-it-works'
+                        className='py-1 pl-2 no-underline hover:text-accent'
+                    >
+                        <p className='text-sm sm:text-base'>
+                            {t("How It Works")}
+                        </p>
+                    </Link>
+                    <Link
+                        href='https://github.com/202306-NEA-DZ-FEW/student-store-team-2'
+                        className='py-1 pl-2 no-underline font-semibold hover:text-accent'
+                    >
+                        <p className='text-sm sm:text-base'>
+                            {t("Github Project Link")}
+                        </p>
+                    </Link>
                 </div>
             </div>
         </footer>
