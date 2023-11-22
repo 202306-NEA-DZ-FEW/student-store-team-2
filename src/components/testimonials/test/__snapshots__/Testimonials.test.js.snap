@@ -68,9 +68,10 @@ exports[`renders correctly 1`] = `
           className="flex text-accent"
         >
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 cursor-pointer"
             fill="currentColor"
             height="1em"
+            onClick={[Function]}
             stroke="currentColor"
             strokeWidth="0"
             style={
@@ -87,9 +88,10 @@ exports[`renders correctly 1`] = `
             />
           </svg>
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 cursor-pointer"
             fill="currentColor"
             height="1em"
+            onClick={[Function]}
             stroke="currentColor"
             strokeWidth="0"
             style={
@@ -106,9 +108,10 @@ exports[`renders correctly 1`] = `
             />
           </svg>
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 cursor-pointer"
             fill="currentColor"
             height="1em"
+            onClick={[Function]}
             stroke="currentColor"
             strokeWidth="0"
             style={
@@ -125,9 +128,10 @@ exports[`renders correctly 1`] = `
             />
           </svg>
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 cursor-pointer"
             fill="currentColor"
             height="1em"
+            onClick={[Function]}
             stroke="currentColor"
             strokeWidth="0"
             style={
@@ -144,9 +148,10 @@ exports[`renders correctly 1`] = `
             />
           </svg>
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 cursor-pointer"
             fill="currentColor"
             height="1em"
+            onClick={[Function]}
             stroke="currentColor"
             strokeWidth="0"
             style={
@@ -200,9 +205,10 @@ exports[`renders correctly 1`] = `
           className="flex text-accent"
         >
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 cursor-pointer"
             fill="currentColor"
             height="1em"
+            onClick={[Function]}
             stroke="currentColor"
             strokeWidth="0"
             style={
@@ -219,9 +225,10 @@ exports[`renders correctly 1`] = `
             />
           </svg>
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 cursor-pointer"
             fill="currentColor"
             height="1em"
+            onClick={[Function]}
             stroke="currentColor"
             strokeWidth="0"
             style={
@@ -238,9 +245,10 @@ exports[`renders correctly 1`] = `
             />
           </svg>
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 cursor-pointer"
             fill="currentColor"
             height="1em"
+            onClick={[Function]}
             stroke="currentColor"
             strokeWidth="0"
             style={
@@ -257,9 +265,10 @@ exports[`renders correctly 1`] = `
             />
           </svg>
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 cursor-pointer"
             fill="currentColor"
             height="1em"
+            onClick={[Function]}
             stroke="currentColor"
             strokeWidth="0"
             style={
@@ -276,9 +285,10 @@ exports[`renders correctly 1`] = `
             />
           </svg>
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 cursor-pointer"
             fill="currentColor"
             height="1em"
+            onClick={[Function]}
             stroke="currentColor"
             strokeWidth="0"
             style={
@@ -332,9 +342,10 @@ exports[`renders correctly 1`] = `
           className="flex text-accent"
         >
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 cursor-pointer"
             fill="currentColor"
             height="1em"
+            onClick={[Function]}
             stroke="currentColor"
             strokeWidth="0"
             style={
@@ -351,9 +362,10 @@ exports[`renders correctly 1`] = `
             />
           </svg>
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 cursor-pointer"
             fill="currentColor"
             height="1em"
+            onClick={[Function]}
             stroke="currentColor"
             strokeWidth="0"
             style={
@@ -370,9 +382,10 @@ exports[`renders correctly 1`] = `
             />
           </svg>
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 cursor-pointer"
             fill="currentColor"
             height="1em"
+            onClick={[Function]}
             stroke="currentColor"
             strokeWidth="0"
             style={
@@ -389,9 +402,10 @@ exports[`renders correctly 1`] = `
             />
           </svg>
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 cursor-pointer"
             fill="currentColor"
             height="1em"
+            onClick={[Function]}
             stroke="currentColor"
             strokeWidth="0"
             style={
@@ -408,9 +422,10 @@ exports[`renders correctly 1`] = `
             />
           </svg>
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 cursor-pointer"
             fill="currentColor"
             height="1em"
+            onClick={[Function]}
             stroke="currentColor"
             strokeWidth="0"
             style={
@@ -464,9 +479,10 @@ exports[`renders correctly 1`] = `
           className="flex text-accent"
         >
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 cursor-pointer"
             fill="currentColor"
             height="1em"
+            onClick={[Function]}
             stroke="currentColor"
             strokeWidth="0"
             style={
@@ -483,9 +499,10 @@ exports[`renders correctly 1`] = `
             />
           </svg>
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 cursor-pointer"
             fill="currentColor"
             height="1em"
+            onClick={[Function]}
             stroke="currentColor"
             strokeWidth="0"
             style={
@@ -502,9 +519,10 @@ exports[`renders correctly 1`] = `
             />
           </svg>
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 cursor-pointer"
             fill="currentColor"
             height="1em"
+            onClick={[Function]}
             stroke="currentColor"
             strokeWidth="0"
             style={
@@ -521,9 +539,10 @@ exports[`renders correctly 1`] = `
             />
           </svg>
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 cursor-pointer"
             fill="currentColor"
             height="1em"
+            onClick={[Function]}
             stroke="currentColor"
             strokeWidth="0"
             style={
@@ -540,9 +559,10 @@ exports[`renders correctly 1`] = `
             />
           </svg>
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 cursor-pointer"
             fill="currentColor"
             height="1em"
+            onClick={[Function]}
             stroke="currentColor"
             strokeWidth="0"
             style={
@@ -596,9 +616,10 @@ exports[`renders correctly 1`] = `
           className="flex text-accent"
         >
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 cursor-pointer"
             fill="currentColor"
             height="1em"
+            onClick={[Function]}
             stroke="currentColor"
             strokeWidth="0"
             style={
@@ -615,9 +636,10 @@ exports[`renders correctly 1`] = `
             />
           </svg>
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 cursor-pointer"
             fill="currentColor"
             height="1em"
+            onClick={[Function]}
             stroke="currentColor"
             strokeWidth="0"
             style={
@@ -634,9 +656,10 @@ exports[`renders correctly 1`] = `
             />
           </svg>
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 cursor-pointer"
             fill="currentColor"
             height="1em"
+            onClick={[Function]}
             stroke="currentColor"
             strokeWidth="0"
             style={
@@ -653,9 +676,10 @@ exports[`renders correctly 1`] = `
             />
           </svg>
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 cursor-pointer"
             fill="currentColor"
             height="1em"
+            onClick={[Function]}
             stroke="currentColor"
             strokeWidth="0"
             style={
@@ -672,9 +696,10 @@ exports[`renders correctly 1`] = `
             />
           </svg>
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 cursor-pointer"
             fill="currentColor"
             height="1em"
+            onClick={[Function]}
             stroke="currentColor"
             strokeWidth="0"
             style={
