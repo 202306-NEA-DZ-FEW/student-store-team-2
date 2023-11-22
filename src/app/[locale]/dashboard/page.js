@@ -1,3 +1,6 @@
+import { redirect } from "next/navigation";
+
+import { readUserSession } from "@/lib/_supabaseAuth";
 import { getCategories } from "@/lib/firestore";
 import { getItems } from "@/lib/supabase";
 
@@ -9,6 +12,12 @@ import MyDashboard from "../../../components/myListings/MyDashboard";
 import SortingControl from "../../../components/sortingControl/SortingControl";
 
 const Page = async ({ searchParams }) => {
+    const { session } = await readUserSession();
+
+    if (!session) {
+        redirect("sign-in");
+    }
+
     const fetchPurchases = async (table, filterField, filterValue) => {
         "use server";
         // Use Supabase function to fetch data with filter
@@ -29,7 +38,7 @@ const Page = async ({ searchParams }) => {
                         <AddProductForm categories={categories} />
                     </div>
                 ) : (
-                    <div className='flex-1 flex-col justify-center p-4   xl:pl-48'>
+                    <div className='flex-1 flex-col justify-center p-4 items-center   xl:pl-48'>
                         <SortingControl />
                         <DashboardDisplay
                             fetchPurchases={fetchPurchases}

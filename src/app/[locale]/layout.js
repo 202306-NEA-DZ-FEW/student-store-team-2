@@ -1,6 +1,16 @@
-import { Jost, Jua, Lato, Poppins, Roboto } from "next/font/google";
+import {
+    Jost,
+    Jua,
+    Lato,
+    Noto_Kufi_Arabic,
+    Noto_Sans_Arabic,
+    Poppins,
+    Roboto,
+} from "next/font/google";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
+
+import { getCurrentUser } from "@/lib/_supabaseAuth";
 
 export function generateStaticParams() {
     return [{ locale: "en" }, { locale: "ar" }];
@@ -34,6 +44,15 @@ const roboto = Roboto({
     subsets: ["cyrillic"],
     variable: "--font-roboto",
 });
+const notoAr = Noto_Sans_Arabic({
+    subsets: ["arabic"],
+    variable: "--font-notoAr",
+});
+const notoKufi = Noto_Kufi_Arabic({
+    subsets: ["arabic"],
+    weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+    variable: "--font-notoKufi",
+});
 
 export const metadata = {
     title: "Create Next App",
@@ -56,12 +75,23 @@ export default async function RootLayout({ children, params: { locale } }) {
     } catch (error) {
         notFound();
     }
+
     return (
         <html lang={locale}>
             <body
-                className={`relative ${jua.variable} font-jua ${lato.variable} font-lato ${jost.variable} font-jost ${poppins.variable} font-poppins ${roboto.variable} font-roboto`}
+                className={`relative ${
+                    locale === "ar" ? notoKufi.variable : ""
+                } font-notoKufi  ${
+                    locale === "en" ? jua.variable : ""
+                } font-jua ${locale === "en" ? lato.variable : ""} font-lato ${
+                    locale === "en" ? jost.variable : ""
+                } font-jost ${
+                    locale === "en" ? poppins.variable : ""
+                } font-poppins ${
+                    locale === "en" ? roboto.variable : ""
+                } font-roboto`}
             >
-                <UserProvider fetchUserData={fetchUserData}>
+                <UserProvider getCurrentUser={getCurrentUser}>
                     <NextIntlClientProvider locale={locale} messages={messages}>
                         <Navbar />
                         {children}

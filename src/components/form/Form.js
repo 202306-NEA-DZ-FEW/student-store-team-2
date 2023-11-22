@@ -4,9 +4,9 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 import {
-    loginWithEmailAndPassword,
-    registerUserWithEmailAndPassword,
-} from "@/lib/authDetails";
+    signInWithEmailAndPassword,
+    signUpWithEmailAndPassword,
+} from "@/lib/_supabaseAuth";
 
 function CustomForm({ formType }) {
     const t = useTranslations("Index");
@@ -34,31 +34,46 @@ function CustomForm({ formType }) {
     const authenticate = async (userData) => {
         const { formType, ...data } = userData;
 
-        if (formType === "registration") {
-            const user = await registerUserWithEmailAndPassword(
-                data.email,
-                data.password,
-                {
-                    first_name: data.first_name || "null",
-                    email: data.email || "null",
-                    phone_num: data.phone_num || "null",
-                    last_name: data.last_name || "null",
-                    // Add other user data fields here
-                }
-            );
+        try {
+            if (formType === "registration") {
+                const user = await signUpWithEmailAndPassword(
+                    data.email,
+                    data.password,
+                    {
+                        full_name: data.full_name || "null",
+                        email: data.email || "null",
+                        phone_num: data.phone_num || "null",
+                        last_name: data.last_name || "null",
+                    }
+                );
+                window.location.href = "/profile?page=form";
+                return user;
+            } else if (formType === "login") {
+                const user = await signInWithEmailAndPassword(
+                    data.email,
+                    data.password
+                );
+                window.location.href = "/dashboard";
 
-            return user;
-        } else if (formType === "login") {
-            const user = await loginWithEmailAndPassword(
-                data.email,
-                data.password
-            );
-            return user;
+                return user;
+            }
+        } catch (error) {
+            let errorMessage = "An error occurred during authentication.";
+
+            if (error.code === "auth/invalid-login-credentials") {
+                errorMessage = t("Authentication error");
+            }
+
+            setErrorMessage(errorMessage);
+
+            setTimeout(() => {
+                setErrorMessage("");
+            }, 3000);
         }
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setErrorMessage(""); // Clear any previous error message
+        setErrorMessage("");
 
         if (!email || !password) {
             setErrorMessage("Email and password are required");
@@ -72,8 +87,7 @@ function CustomForm({ formType }) {
 
         const data = {
             formType: formType,
-            first_name: fullName.split(" ")[0],
-            last_name: fullName.split(" ")[1],
+            full_name: fullName,
             email: email,
             phone_num: phoneNumber,
             password: password,
