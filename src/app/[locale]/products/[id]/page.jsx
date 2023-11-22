@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 
 import { getProductWithPrice, getUserProfile } from "@/lib/supabase";
@@ -5,6 +6,10 @@ import { getProductWithPrice, getUserProfile } from "@/lib/supabase";
 import ProductDisplay from "@/components/product-display/ProductDisplay";
 import ProductDetailSection from "@/components/productDetailsSection/ProductDetailSection";
 import TabsComponent from "@/components/tabs/TabsComponent";
+
+const DynamicMap = dynamic(() => import("@/components/map/Map"), {
+    ssr: false,
+});
 
 // // Placeholder object to be replaced with data from Firestore
 // const userData = {
@@ -81,6 +86,9 @@ const SingleProductPage = async ({ params }) => {
                     />
                 </div>
             </div>
+
+            <DynamicMap />
+
             <div className='m-5 py-5 flex justify-center items-center'>
                 <TabsComponent tabs={sections} />
             </div>
