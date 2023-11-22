@@ -24,28 +24,28 @@ exports[`renders correctly 1`] = `
         stroke="#72AEC8"
         stroke-linecap="round"
         stroke-linejoin="round"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <path
         d="M19.4275 25.9993C20.9933 25.9993 22.2626 24.7557 22.2626 23.2216C22.2626 21.6875 20.9933 20.4438 19.4275 20.4438C17.8618 20.4438 16.5925 21.6875 16.5925 23.2216C16.5925 24.7557 17.8618 25.9993 19.4275 25.9993Z"
         stroke="#72AEC8"
         stroke-linecap="round"
         stroke-linejoin="round"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <path
         d="M19.4276 20.4441H3.83501V1H1"
         stroke="#72AEC8"
         stroke-linecap="round"
         stroke-linejoin="round"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <path
         d="M3.83496 3.77734L23.6801 5.16621L22.2625 14.8883H3.83496"
         stroke="#72AEC8"
         stroke-linecap="round"
         stroke-linejoin="round"
-        stroke-width="2"
+        strokeWidth="2"
       />
     </svg>
     <div
@@ -85,21 +85,21 @@ exports[`renders correctly 1`] = `
         stroke="#72AEC8"
         stroke-linecap="round"
         stroke-linejoin="round"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <path
         d="M14.3677 18.2544L19.356 26.7214L21.7005 22.0739L26.9794 22.4074L21.991 13.9419"
         stroke="#72AEC8"
         stroke-linecap="round"
         stroke-linejoin="round"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <path
         d="M6.73835 13.9419L1.75 22.4089L7.02884 22.0739L9.37337 26.72L14.3617 18.2544"
         stroke="#72AEC8"
         stroke-linecap="round"
         stroke-linejoin="round"
-        stroke-width="2"
+        strokeWidth="2"
       />
     </svg>
     <div
@@ -138,14 +138,14 @@ exports[`renders correctly 1`] = `
         stroke="#72AEC8"
         stroke-linecap="round"
         stroke-linejoin="round"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <path
         d="M10.5406 12.4842C12.1589 12.4842 13.4708 11.1988 13.4708 9.61319C13.4708 8.02758 12.1589 6.74219 10.5406 6.74219C8.92225 6.74219 7.61035 8.02758 7.61035 9.61319C7.61035 11.1988 8.92225 12.4842 10.5406 12.4842Z"
         stroke="#72AEC8"
         stroke-linecap="round"
         stroke-linejoin="round"
-        stroke-width="2"
+        strokeWidth="2"
       />
     </svg>
     <div
@@ -185,14 +185,14 @@ exports[`renders correctly 1`] = `
         stroke="#72AEC8"
         stroke-linecap="round"
         stroke-linejoin="round"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <path
         d="M14.2395 1C17.5506 3.87024 21.8722 5.36468 26.2885 5.16667C26.9315 7.30974 27.1283 9.55759 26.8671 11.7766C26.6059 13.9957 25.8921 16.1407 24.7681 18.0841C23.6441 20.0275 22.1329 21.7297 20.3242 23.0896C18.5155 24.4494 16.4463 25.4392 14.2395 26C12.0327 25.4392 9.96353 24.4494 8.15485 23.0896C6.34618 21.7297 4.83495 20.0275 3.71097 18.0841C2.58699 16.1407 1.8732 13.9957 1.61201 11.7766C1.35081 9.55759 1.54755 7.30974 2.19053 5.16667C6.60689 5.36468 10.9284 3.87024 14.2395 1"
         stroke="#72AEC8"
         stroke-linecap="round"
         stroke-linejoin="round"
-        stroke-width="2"
+        strokeWidth="2"
       />
     </svg>
     <div
