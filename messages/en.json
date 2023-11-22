@@ -111,6 +111,11 @@
         "List": "List",
         "Product Name": "Product Name",
         "Filter": "Filter",
-        "Pending": "Pending"
+        "Pending": "Pending",
+        "Quick Links": "Quick Links",
+        "About LACITÉ": "ABOUT LACITÉ",
+        "About Us": "ABOUT US",
+        "Github Project Link": "GITHUB PROJECT LINK",
+        "Contact Us": "Contact Us"
     }
 }
