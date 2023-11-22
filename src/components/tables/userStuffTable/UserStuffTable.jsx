@@ -25,7 +25,7 @@ function UserStuffTable({ data }) {
                     <p key='no items'>you have no item yet</p>
                 )} */}
                 {data &&
-                    data[0].pid &&
+                    data[0]?.pid &&
                     data?.map((item) => (
                         <tr key={item?.pid}>
                             <td className='p-4  '>
