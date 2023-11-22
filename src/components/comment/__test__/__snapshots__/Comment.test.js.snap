@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render correnctly 1`] = `
+<div
+  className="p-10 mb-20 sm:flex justify-center"
+>
+  <div
+    className="p-6 bg-accent rounded-full h-8 w-8 flex items-center justify-center text-2xl text-white mt-4 shadow-lg cursor-pointer"
+    onClick={[Function]}
+  >
+    +
+  </div>
+  <div
+    className="flex flex-wrap space-x-3 justify-center items-start mt-6 border-t border-gray-200/80 pt-6 space-y-4"
+  />
+</div>
+`;
