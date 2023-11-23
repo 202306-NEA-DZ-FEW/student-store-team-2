@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import React from "react";
-import { useEffect } from "react";
 import { BiPlus } from "react-icons/bi";
 import { FaBook, FaGithub, FaLinkedin, FaPen } from "react-icons/fa";
 import { FaHandsHoldingChild } from "react-icons/fa6";
@@ -21,52 +20,52 @@ import {
 const Page = () => {
     const t = useTranslations("Index");
 
-    useEffect(() => {
-        const sections = document.querySelectorAll("section");
-        const handleScroll = () => {
-            const scrollPosition = window.scrollY;
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
+    // useEffect(() => {
+    //     const sections = document.querySelectorAll("section");
+    //     const handleScroll = () => {
+    //         const scrollPosition = window.scrollY;
+    //         const windowHeight = window.innerHeight;
+    //         const documentHeight = document.documentElement.scrollHeight;
 
-            sections.forEach((section) => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                const sectionMiddle =
-                    sectionTop + sectionHeight / 2 - windowHeight / 2;
+    //         sections.forEach((section) => {
+    //             const sectionTop = section.offsetTop;
+    //             const sectionHeight = section.clientHeight;
+    //             const sectionMiddle =
+    //                 sectionTop + sectionHeight / 2 - windowHeight / 2;
 
-                if (
-                    scrollPosition >= sectionMiddle &&
-                    scrollPosition <
-                        sectionTop + sectionHeight - windowHeight / 2
-                ) {
-                    window.scrollTo({
-                        top: sectionTop,
-                        behavior: "smooth",
-                    });
-                }
-            });
+    //             if (
+    //                 scrollPosition >= sectionMiddle &&
+    //                 scrollPosition <
+    //                     sectionTop + sectionHeight - windowHeight / 2
+    //             ) {
+    //                 window.scrollTo({
+    //                     top: sectionTop,
+    //                     behavior: "smooth",
+    //                 });
+    //             }
+    //         });
 
-            // Handling the last section to prevent going back when reaching the bottom
-            const lastSection = sections[sections.length - 1];
-            const lastSectionTop = lastSection.offsetTop;
+    //         // Handling the last section to prevent going back when reaching the bottom
+    //         const lastSection = sections[sections.length - 1];
+    //         const lastSectionTop = lastSection.offsetTop;
 
-            if (scrollPosition + windowHeight >= documentHeight) {
-                window.scrollTo({
-                    top:
-                        lastSectionTop +
-                        lastSection.clientHeight -
-                        windowHeight,
-                    behavior: "smooth",
-                });
-            }
-        };
+    //         if (scrollPosition + windowHeight >= documentHeight) {
+    //             window.scrollTo({
+    //                 top:
+    //                     lastSectionTop +
+    //                     lastSection.clientHeight -
+    //                     windowHeight,
+    //                 behavior: "smooth",
+    //             });
+    //         }
+    //     };
 
-        window.addEventListener("scroll", handleScroll);
+    //     window.addEventListener("scroll", handleScroll);
 
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, []);
+    //     return () => {
+    //         window.removeEventListener("scroll", handleScroll);
+    //     };
+    // }, []);
 
     const team = [
         {
