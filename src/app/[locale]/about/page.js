@@ -3,21 +3,30 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import React from "react";
 import { useEffect } from "react";
 import { BiPlus } from "react-icons/bi";
 import { FaBook, FaGithub, FaLinkedin, FaPen } from "react-icons/fa";
+import { FaHandsHoldingChild } from "react-icons/fa6";
 import { PiStudent } from "react-icons/pi";
 import { RiArchiveDrawerLine } from "react-icons/ri";
-import { SiElectron } from "react-icons/si";
+import {
+    SiElectron,
+    SiNextdotjs,
+    SiSupabase,
+    SiTailwindcss,
+} from "react-icons/si";
 
 const Page = () => {
-    useEffect(() => {
-        const sections = document.querySelectorAll("section"); // Get all sections
+    const t = useTranslations("Index");
 
+    useEffect(() => {
+        const sections = document.querySelectorAll("section");
         const handleScroll = () => {
             const scrollPosition = window.scrollY;
             const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
 
             sections.forEach((section) => {
                 const sectionTop = section.offsetTop;
@@ -27,15 +36,31 @@ const Page = () => {
 
                 if (
                     scrollPosition >= sectionMiddle &&
-                    scrollPosition < sectionMiddle + windowHeight - 10
+                    scrollPosition <
+                        sectionTop + sectionHeight - windowHeight / 2
                 ) {
                     window.scrollTo({
-                        top: sectionMiddle,
+                        top: sectionTop,
                         behavior: "smooth",
                     });
                 }
             });
+
+            // Handling the last section to prevent going back when reaching the bottom
+            const lastSection = sections[sections.length - 1];
+            const lastSectionTop = lastSection.offsetTop;
+
+            if (scrollPosition + windowHeight >= documentHeight) {
+                window.scrollTo({
+                    top:
+                        lastSectionTop +
+                        lastSection.clientHeight -
+                        windowHeight,
+                    behavior: "smooth",
+                });
+            }
         };
+
         window.addEventListener("scroll", handleScroll);
 
         return () => {
@@ -140,23 +165,22 @@ const Page = () => {
                     content='Your one-stop destination for all your academic needs! Explore, buy, sell, or borrow items for your academic journey.'
                 />
             </Head>
-            <div className='container my-24 mx-auto md:px-6'>
+
+            <div className='container my-24 mx-auto md:'>
                 <div className=' flex justify-center items-center border rounded-xl border-accent2/50 py-2 px-8 '>
                     <div className='text-center'>
                         <h1 className='text-4xl font-bold mb-4'>
-                            Welcome to Our Student Store
+                            {t("Welcome to Our Student Store")}
                         </h1>
                         <p className='text-lg mb-8'>
-                            Your one-stop destination for all your academic
-                            needs!
+                            {t(
+                                "Your one-stop destination for all your academic needs!"
+                            )}
                         </p>
                         <p className='text-gray-600'>
-                            Whether you&aposre searching for textbooks,
-                            calculators, lab equipment, or even selling items
-                            you no longer need, we&aposve got you covered. Our
-                            store offers a variety of options to buy, sell, and
-                            even borrow items, ensuring you have access to the
-                            materials you need for your academic journey.
+                            {t(
+                                "Whether you're searching for textbooks, calculators, lab equipment, or even selling items you no longer need, we've got you covered Our store offers a variety of options to buy, sell, and even borrow items, ensuring you have access to the materials you need for your academic journey"
+                            )}
                         </p>
                     </div>
                 </div>
@@ -169,75 +193,63 @@ const Page = () => {
             }`}
                     </style>
 
-                    <div className='py-12 md:px-6 '>
+                    <div className='py-12 md: '>
                         <div className='container mx-auto xl:px-32'>
                             <div className=' grid items-center lg:grid-cols-2'>
                                 <div className='mb-12 md:mt-12 lg:mt-0 lg:mb-0'>
-                                    <div className='relative z-[1] block rounded-lg bg-[hsla(0,0%,100%,0.55)] px-6 py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] backdrop-blur-[25px] dark:bg-[hsla(0,0%,5%,0.55)] dark:shadow-black/20 md:px-12 lg:-mr-14'>
+                                    <div className='relative z-[1] block rounded-lg bg-[hsla(0,0%,100%,0.55)]  py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] backdrop-blur-[25px] dark:bg-[hsla(0,0%,5%,0.55)] dark:shadow-black/20  lg:-mr-14'>
                                         <h2 className='mb-6 text-3xl font-bold'>
-                                            Why Choose LaCité?
+                                            {t("Why Choose LaCité?")}
                                         </h2>
+
                                         <p className='mb-8 text-neutral-500 dark:text-neutral-300'>
-                                            Our student store stands out for its
-                                            diverse range of resources and
-                                            services. Whether you&aposre looking
-                                            to buy or sell textbooks, scientific
-                                            equipment, or other academic
-                                            necessities, we&aposve created a
-                                            platform that caters specifically to
-                                            students&apos needs. Our commitment
-                                            to providing a seamless experience
-                                            ensures that you can easily find
-                                            what you&aposre looking for and even
-                                            explore options to borrow items you
-                                            may need temporarily. We prioritize
-                                            your academic success by offering
-                                            convenience and accessibility at
-                                            every step.
+                                            {t(
+                                                "Our student store stands out for its diverse range of resources and services Whether you're looking to buy or sell textbooks, scientific equipment, or other academic necessities, we've created a platform that caters specifically to students' needs; Our commitment to providing a seamless experience ensures that you can easily find what you're looking for and even explore options to borrow items you may need temporarily; We prioritize your academic success by offering convenience and accessibility at every step"
+                                            )}
                                         </p>
                                         <div className='grid gap-x-6 md:grid-cols-3 lg:grid-cols-2'>
                                             <div className='mb-6'>
                                                 <p className='flex items-center'>
                                                     <FaBook className='mr-3 h-5 w-5' />
-                                                    Textbooks
+                                                    {t("Textbooks")}
                                                 </p>
                                             </div>
 
                                             <div className='mb-6'>
                                                 <p className='flex items-center'>
                                                     <FaPen className='mr-3 h-5 w-5' />
-                                                    Stationery
+                                                    {t("Stationery")}
                                                 </p>
                                             </div>
 
                                             <div className='mb-6'>
                                                 <p className='flex items-center'>
                                                     <RiArchiveDrawerLine className='mr-3 h-5 w-5' />
-                                                    Art Supplies
+                                                    {t("Art Supplies")}
                                                 </p>
                                             </div>
 
                                             <div className='mb-6'>
                                                 <p className='flex items-center'>
                                                     <SiElectron className='mr-3 h-5 w-5' />
-                                                    Electronics
+                                                    {t("Electronics")}
                                                 </p>
                                             </div>
 
                                             <div className='mb-6'>
                                                 <p className='flex items-center'>
                                                     <PiStudent className='mr-3 h-5 w-5' />
-                                                    Study Guides
+                                                    {t("Study Guides")}
                                                 </p>
                                             </div>
 
                                             <Link
-                                                href='/products'
+                                                href='/products?page=1'
                                                 className='mb-6'
                                             >
-                                                <p className='flex items-center hover:underline  hover:text-accent'>
+                                                <p className='flex items-center hover:underline hover:text-accent'>
                                                     <BiPlus className='mr-3 h-5 w-5' />
-                                                    And More
+                                                    {t("And More")}
                                                 </p>
                                             </Link>
                                         </div>
@@ -273,13 +285,12 @@ const Page = () => {
                             <div className='flex h-full items-center rounded-lg bg-primary p-6 text-center text-neutral-500 lg:pl-12 lg:text-left'>
                                 <div className='lg:pl-12'>
                                     <h2 className='mb-6 text-3xl font-bold'>
-                                        Start exploring today!
+                                        {t("Start exploring today!")}
                                     </h2>
                                     <p className='mb-6 pb-2 lg:pb-0'>
-                                        Find all the tools and resources you
-                                        need for your academic journey. From
-                                        textbooks to stationery, we&aposve got
-                                        you covered.
+                                        {t(
+                                            "Find all the tools and resources you need for your academic journey From textbooks to stationery, we've got you covered"
+                                        )}
                                     </p>
                                     <Link
                                         href='/sign-up'
@@ -288,16 +299,17 @@ const Page = () => {
                                         data-te-ripple-init
                                         data-te-ripple-color='light'
                                     >
-                                        Get Started
+                                        {t("Get Started")}
                                     </Link>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-                <section className='mb-16 text-center'>
+                <section className='mb-32 text-center'>
                     <h2 className='mb-12 text-3xl font-bold'>
-                        Meet the <u className='text-accent'>team</u>
+                        {t("Meet the")}{" "}
+                        <u className='text-accent'>{t("team")}</u>
                     </h2>
 
                     <div className='lg:gap-xl-12 grid gap-x-6 md:grid-cols-2 lg:grid-cols-5'>
@@ -344,6 +356,64 @@ const Page = () => {
                         ))}
                     </div>
                 </section>
+
+                <section className='mb-32 text-center'>
+                    <h2 className='mb-16 text-3xl font-bold'>
+                        {t("Technologies Used")}
+                    </h2>
+
+                    <div className='flex items-center justify-center flex-wrap text-gray-400 space-x-24'>
+                        <a
+                            className='mb-12 lg:mb-0 hover:text-black'
+                            href='https://nextjs.org/'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                        >
+                            <SiNextdotjs className=' h-12 w-12  ' />
+                        </a>
+                        <a
+                            className='mb-12 lg:mb-0 hover:text-green-900'
+                            href='https://supabase.com/docs'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                        >
+                            <SiSupabase className=' h-12 w-12  ' />
+                        </a>
+                        <a
+                            className='mb-12 lg:mb-0 hover:text-cyan-600'
+                            href='https://tailwindcss.com/docs/installation'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                        >
+                            <SiTailwindcss className=' h-12 w-12  ' />
+                        </a>
+
+                        <a
+                            href='https://next-intl-docs.vercel.app/docs/getting-started'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='mb-12 lg:mb-0'
+                        >
+                            <Image
+                                className=' h-12 w-36 grayscale hover:grayscale-0 '
+                                alt=''
+                                src='https://raw.githubusercontent.com/amannn/next-intl/HEAD/media/logo.svg'
+                                width={500}
+                                height={500}
+                            />
+                        </a>
+                    </div>
+                </section>
+
+                <Link
+                    className='fixed bottom-4 right-4 z-50 flex items-center border-accent border bg-white rounded-full shadow-md p-2 cursor-pointer hover:scale-110 animate-bounce  infinite'
+                    href='/donate'
+                >
+                    <FaHandsHoldingChild className='text-accent h-6 w-6 mr-2 ' />
+                    <span className='text-gray-600 text-sm font-medium'>
+                        {t("Support Students")}
+                    </span>
+                </Link>
             </div>
         </div>
     );
