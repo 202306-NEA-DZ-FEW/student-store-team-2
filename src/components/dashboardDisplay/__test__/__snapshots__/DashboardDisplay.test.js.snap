@@ -6,7 +6,9 @@ exports[`renders correctly 1`] = `
 >
   <h1
     className="text-3xl capitalize font-lato font-medium ml-4 mb-6"
-  />
+  >
+    my stuff
+  </h1>
   <div
     className="mb-8"
   >
