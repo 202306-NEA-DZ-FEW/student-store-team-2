@@ -2,19 +2,13 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse } from "next/server";
 import createMiddleware from "next-intl/middleware";
 
-export default createMiddleware({
+const intlMiddleware = createMiddleware({
     // A list of all locales that are supported
     locales: ["en", "ar"],
 
     // If this locale is matched, pathnames work without a prefix (e.g. `/about`)
     defaultLocale: "ar",
 });
-
-export const config = {
-    // Skip all paths that should not be internationalized. This example skips
-    // certain folders and all pathnames with a dot (e.g. favicon.ico)
-    matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
-};
 
 export async function middleware(request) {
     let response = NextResponse.next({
@@ -71,5 +65,11 @@ export async function middleware(request) {
 
     await supabase.auth.getSession();
 
-    return response;
+    return intlMiddleware(request);
 }
+
+export const config = {
+    // Skip all paths that should not be internationalized. This example skips
+    // certain folders and all pathnames with a dot (e.g. favicon.ico)
+    matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
+};
