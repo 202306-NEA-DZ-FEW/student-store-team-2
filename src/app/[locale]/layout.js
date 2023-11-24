@@ -76,7 +76,6 @@ export default async function RootLayout({ children, params: { locale } }) {
 
     return (
         <html lang={locale} className='scroll-smooth	'>
-
             <body
                 className={`"relative ${
                     locale === "ar" ? notoKufi.variable : ""
