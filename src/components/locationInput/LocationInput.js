@@ -3,7 +3,12 @@ import { useState } from "react";
 
 import { getGeocodeByCity } from "@/lib/openWeatherAPI";
 
-const LocationInput = ({ location, setLocation, onLocationSelect }) => {
+const LocationInput = ({
+    location,
+    setLocation,
+    onLocationSelect,
+    styling,
+}) => {
     const [suggestions, setSuggestions] = useState([]);
     const [error, setError] = useState(null);
     let typingTimer = null;
@@ -54,14 +59,15 @@ const LocationInput = ({ location, setLocation, onLocationSelect }) => {
     return (
         <div className='relative mb-4'>
             <input
+                required
                 type='text'
                 placeholder='Enter Location'
                 value={location}
                 onChange={handleLocationChange}
-                className='w-full border border-gray-300 p-2 rounded-md focus:border-blue-500 focus:outline-none'
+                className={styling}
             />
             {location?.length >= 4 && suggestions?.length > 0 && (
-                <ul className='absolute  bg-white border border-gray-300 w-full mt-1 py-1 rounded-md focus:border-blue-500 shadow-md'>
+                <ul className='absolute z-10 bg-white border border-gray-300 w-full mt-1 py-1 rounded-md focus:border-blue-500 shadow-md'>
                     {suggestions.map((city) => (
                         <li
                             key={city.id}

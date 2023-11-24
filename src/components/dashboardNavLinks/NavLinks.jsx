@@ -21,7 +21,7 @@ const NavLinks = ({ fetchPurchases }) => {
     const type = params.get("type") || "stuff";
 
     return (
-        <div className='font-lato fixed top-6 pt-12   px-8  border-r border-r-gray-200 font-semibold text-lg capitalize h-screen    mt-10 bg-bkg text-titleContent  hidden md:block'>
+        <div className='font-lato fixed top-6 pt-12  px-8  border-r border-r-gray-200 font-semibold text-lg capitalize h-screen    mt-10 bg-bkg text-titleContent  hidden md:block'>
             {links.map(({ name, link, icon: Icon }) => (
                 <Link href={`/dashboard?type=${link}`} key={name}>
                     <div

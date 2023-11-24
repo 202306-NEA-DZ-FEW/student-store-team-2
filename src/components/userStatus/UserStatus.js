@@ -56,7 +56,7 @@ function UserStatus() {
                 </div>
             </div>
         );
-    } else if (user) {
+    } else if (userData) {
         return (
             <div className='relative'>
                 <div

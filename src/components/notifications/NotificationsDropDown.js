@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-import { FaSpinner } from "react-icons/fa";
 import { IoNotifications } from "react-icons/io5";
 
 import { getNotifications, updatedNotifications } from "@/lib/supabase";
@@ -98,13 +97,7 @@ function NotificationsDropdown() {
     };
 
     if (loading) {
-        return (
-            <div>
-                <div className='flex justify-center items-center'>
-                    <FaSpinner className='h-6 w-6 animate-spin duration-150 text-accent2' />
-                </div>
-            </div>
-        );
+        return null;
     } else if (user) {
         return (
             <div className='relative '>

@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { FaFacebook, FaLinkedin } from "react-icons/fa";
 
@@ -7,32 +8,16 @@ import LanguageChanger from "../languageChanger/LanguageChanger";
 
 function Footer() {
     const t = useTranslations("Index");
-    // const contributors = [
-    //     {
-    //         name: "BARKA Oussama",
-    //         link: "https://github.com/0m3ga13"
-    //     },
-
-    //     {
-    //         name: "Mohammed Bennaceur",
-    //         link: "https://github.com/medshk"
-    //     },
-    //     {
-    //         name: "Ahmed Djebnoune",
-    //         link: "https://github.com/Bolphunga"
-    //     },
-    //     {
-    //         name: "Imane BELAID",
-    //         link: "https://github.com/Emybel"
-    //     },
-    //     {
-    //         name: "Samira TOUBAL SEGHIR",
-    //         link: "https://github.com/samiraTbl"
-    //     }
-    // ];
+    const pathname = usePathname();
 
     return (
-        <footer className='relative w-full flex flex-col items-center justify-center text-base sm:flex-col sm:justify-between sm:text-sm sm:flex-wrap sm:p-4 sm:text-left'>
+        <footer
+            className={`relative mt-auto border-t w-full flex flex-col items-center justify-center text-base sm:flex-col sm:justify-between sm:text-sm sm:flex-wrap sm:p-4 sm:text-left  ${
+                pathname === "/dashboard" || pathname === "/en/dashboard"
+                    ? "hidden"
+                    : ""
+            } `}
+        >
             <div className='flex justify-between items-baseline w-full h-24 my-6'>
                 <Link href='/'>
                     <button className='font-bold text-3xl tracking-wide sm:hover:tracking-widest transform-all ease-in-out duration-500 font-mono text-black ml-5'>
@@ -73,31 +58,31 @@ function Footer() {
                                     >
                                         <stop
                                             offset='0'
-                                            stop-color='#fd5'
+                                            stopColor='#fd5'
                                         ></stop>
                                         <stop
                                             offset='.328'
-                                            stop-color='#ff543f'
+                                            stopColor='#ff543f'
                                         ></stop>
                                         <stop
                                             offset='.348'
-                                            stop-color='#fc5245'
+                                            stopColor='#fc5245'
                                         ></stop>
                                         <stop
                                             offset='.504'
-                                            stop-color='#e64771'
+                                            stopColor='#e64771'
                                         ></stop>
                                         <stop
                                             offset='.643'
-                                            stop-color='#d53e91'
+                                            stopColor='#d53e91'
                                         ></stop>
                                         <stop
                                             offset='.761'
-                                            stop-color='#cc39a4'
+                                            stopColor='#cc39a4'
                                         ></stop>
                                         <stop
                                             offset='.841'
-                                            stop-color='#c837ab'
+                                            stopColor='#c837ab'
                                         ></stop>
                                     </radialGradient>
                                     <path
@@ -114,12 +99,12 @@ function Footer() {
                                     >
                                         <stop
                                             offset='0'
-                                            stop-color='#4168c9'
+                                            stopColor='#4168c9'
                                         ></stop>
                                         <stop
                                             offset='.999'
-                                            stop-color='#4168c9'
-                                            stop-opacity='0'
+                                            stopColor='#4168c9'
+                                            stopOpacity='0'
                                         ></stop>
                                     </radialGradient>
                                     <path
@@ -174,13 +159,13 @@ function Footer() {
                         <p className='text-sm sm:text-base'>{t("Home")}</p>
                     </Link>
                     <Link
-                        href='/products.js'
+                        href='/products?page=1'
                         className='py-1 pl-2  no-underline hover:text-accent'
                     >
                         <p className='text-sm sm:text-base'>{t("Products")}</p>
                     </Link>
                     <Link
-                        href='/donate.js'
+                        href='/donate?page=1'
                         className='py-1 pl-2 no-underline hover:text-accent'
                     >
                         <p className='text-sm sm:text-base'>{t("Donate")}</p>
@@ -207,6 +192,8 @@ function Footer() {
                     </Link>
                     <Link
                         href='https://github.com/202306-NEA-DZ-FEW/student-store-team-2'
+                        target='_blank'
+                        rel='noopener noreferrer'
                         className='py-1 pl-2 no-underline font-semibold hover:text-accent'
                     >
                         <p className='text-sm sm:text-base'>

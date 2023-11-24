@@ -415,3 +415,18 @@ export const searchProduct = async (value) => {
 
     return data;
 };
+
+export const getCoordinates = async (productId) => {
+    const supabase = await createSupabaseServerClient();
+
+    try {
+        const { data, error } = await supabase
+            .from("products")
+            .select("location")
+            .eq("pid", productId);
+        return data;
+    } catch (error) {
+        console.error("Error fetching testimonials:", error);
+        throw error;
+    }
+};
