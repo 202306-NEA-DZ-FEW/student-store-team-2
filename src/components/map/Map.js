@@ -33,7 +33,7 @@ const Map = ({ coord }) => {
             <div style={{ height: "65vh", width: "70vw" }}>
                 <MapContainer
                     ref={mapRef}
-                    center={coord ? Coord : Map.defaultProps}
+                    center={Coord}
                     zoom={13}
                     scrollWheelZoom={true}
                     style={{ height: "100%", width: "100%" }}
