@@ -1,5 +1,4 @@
-import { getCategories, getProductsLength } from "@/lib/firestore";
-import { getProducts } from "@/lib/supabase";
+import { getCategories, getProducts } from "@/lib/supabase";
 
 import Pagination from "@/components/pagination/Pagination";
 import ProductCard from "@/components/productCard/ProductCard";
@@ -8,9 +7,7 @@ import ProductsFilterWrapper from "@/components/wrappers/productsFilterWrapper/P
 
 const Page = async ({ searchParams }) => {
     const { data, count } = await getProducts(searchParams);
-    const dataLength = await getProductsLength();
     const categories = await getCategories();
-
     return (
         <div className=' pt-1 pb-24'>
             <div className='wrapper  mt-48'>

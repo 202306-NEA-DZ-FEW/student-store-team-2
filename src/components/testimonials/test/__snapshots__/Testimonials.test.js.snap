@@ -2,62 +2,6 @@
 
 exports[`renders correctly 1`] = `
 <div
-  className="w-full md:w-3/4 flex flex-col items-center font-lato tracking-wide pt-10"
->
-  <div
-    className="w-full flex items-center"
-  >
-    <svg
-      className="mb-2 text-5xl text-gray-500 pointer-events-none"
-      fill="currentColor"
-      height="1em"
-      onClick={[Function]}
-      stroke="currentColor"
-      strokeWidth="0"
-      style={
-        Object {
-          "color": undefined,
-        }
-      }
-      viewBox="0 0 16 16"
-      width="1em"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
-        fillRule="evenodd"
-      />
-    </svg>
-    <div
-      className="w-full flex flex-row overflow-x-scroll snap-x snap-mandatory mx-12"
-      style={
-        Object {
-          "clipPath": "inset(0 0 15px 0)",
-          "paddingBottom": "15px",
-        }
-      }
-    />
-    <svg
-      className="mt-2 text-5xl text-accent cursor-pointer"
-      fill="currentColor"
-      height="1em"
-      onClick={[Function]}
-      stroke="currentColor"
-      strokeWidth="0"
-      style={
-        Object {
-          "color": undefined,
-        }
-      }
-      viewBox="0 0 16 16"
-      width="1em"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
-        fillRule="evenodd"
-      />
-    </svg>
-  </div>
-</div>
+  className="flex justify-center items-center h-96  "
+/>
 `;

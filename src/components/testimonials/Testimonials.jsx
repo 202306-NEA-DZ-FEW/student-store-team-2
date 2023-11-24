@@ -1,87 +1,53 @@
 "use client";
-import React, { useRef, useState } from "react";
-import { BiSolidQuoteRight } from "react-icons/bi";
-import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import React, { useEffect, useState } from "react";
+import { animated, useTransition } from "react-spring"; // Import from react-spring for animations
 
 import StarRating from "../starRating/StarRating";
 
 const Testimonials = ({ testimonials }) => {
+    const [items, setItems] = useState(testimonials);
     const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
-    const sliderRef = useRef(null);
+    const transitions = useTransition(items[currentSlideIndex], {
+        from: { opacity: 0, transform: "translateY(20px)" }, // Move the initial state slightly downwards
+        enter: { opacity: 1, transform: "translateY(0px)" }, // Smoothly transition to the normal state
+        leave: { opacity: 0, transform: "translateY(20px)" }, // Exit upwards
+    });
 
-    const goToSlide = (index) => {
-        if (sliderRef.current) {
-            const slider = sliderRef.current;
-            const slides = slider.querySelectorAll(".testimonial-slide");
-            if (index >= 0 && index < slides.length) {
-                const slide = slides[index];
-                slide.scrollIntoView({ behavior: "smooth" });
-            }
-        }
-    };
-
-    const goToNextSlide = () => {
-        const nextIndex = currentSlideIndex + 1;
-        if (nextIndex < testimonials.length) {
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const nextIndex = (currentSlideIndex + 1) % testimonials.length;
             setCurrentSlideIndex(nextIndex);
-            goToSlide(nextIndex);
-        }
-    };
+        }, 3000); // Change testimonial every 3 seconds
 
-    const goToPreviousSlide = () => {
-        const previousIndex = currentSlideIndex - 1;
-        if (previousIndex >= 0) {
-            setCurrentSlideIndex(previousIndex);
-            goToSlide(previousIndex);
-        }
-    };
+        return () => clearInterval(interval);
+    }, [currentSlideIndex, testimonials.length]);
 
     return (
-        <div className='w-full md:w-3/4 flex flex-col items-center font-lato tracking-wide pt-10'>
-            <div className='w-full flex items-center'>
-                <BsChevronLeft
-                    onClick={goToPreviousSlide}
-                    className={`mb-2 text-5xl ${
-                        currentSlideIndex === 0
-                            ? "text-gray-500 pointer-events-none"
-                            : "text-accent cursor-pointer"
-                    }`}
-                />
-                <div
-                    ref={sliderRef}
-                    className='w-full flex flex-row overflow-x-scroll snap-x snap-mandatory mx-12'
-                    style={{
-                        paddingBottom: "15px",
-                        clipPath: "inset(0 0 15px 0)",
-                    }}
-                >
-                    {testimonials?.map((testimonial, index) => (
-                        <div
-                            key={index}
-                            className='testimonial-slide w-full flex flex-col flex-shrink-0 justify-center items-center'
-                        >
-                            <BiSolidQuoteRight className='text-accent2 h-24 w-24' />
-
-                            <p className='text-xl text-center  mb-8'>
-                                {testimonial.testimonial}
-                            </p>
-
-                            <StarRating rating={testimonial.rating} />
-                            <p className='text-title uppercase tracking-widest text-xs mt-2 font-bold'>
-                                {testimonial.author}
-                            </p>
+        <div className='flex justify-center items-center h-96  '>
+            {transitions((props, item) => (
+                <animated.div style={props} className='absolute'>
+                    <div className=' py-4 px-8  bg-white shadow-lg rounded-lg font-lato  w-96  mx-auto'>
+                        <div className='relative'>
+                            <div className='flex justify-center md:justify-end -mt-16'>
+                                <StarRating rating={item.rating} />
+                            </div>
+                            <div>
+                                <h2 className='text-gray-800 text-3xl font-semibold'>
+                                    {item?.title}
+                                </h2>
+                                <p className='mt-2 text-gray-600'>
+                                    {item?.testimonial}
+                                </p>
+                            </div>
+                            <div className='flex justify-end '>
+                                <p className='text-xl font-medium text-accent'>
+                                    {item?.author}
+                                </p>
+                            </div>
                         </div>
-                    ))}
-                </div>
-                <BsChevronRight
-                    onClick={goToNextSlide}
-                    className={`mt-2 text-5xl ${
-                        currentSlideIndex === testimonials?.length - 1
-                            ? "text-gray-500 pointer-events-none"
-                            : "text-accent cursor-pointer"
-                    }`}
-                />
-            </div>
+                    </div>
+                </animated.div>
+            ))}
         </div>
     );
 };

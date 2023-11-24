@@ -393,12 +393,25 @@ export const getTestimonials = async () => {
     const supabase = await createSupabaseServerClient();
 
     try {
-        const { data, error } = await supabase.from("testimonials").select("*");
+        const { data, error } = await supabase
+            .from("testimonials")
+            .select("author, testimonial, rating");
         return data;
     } catch (error) {
         console.error("Error fetching testimonials:", error);
         throw error;
     }
+};
+
+export const getCategories = async () => {
+    const supabase = await createSupabaseServerClient();
+    const { data, error } = await supabase
+        .from("categories")
+        .select("id, category_name");
+    if (error) {
+        throw error;
+    }
+    return data;
 };
 
 export const searchProduct = async (value) => {
@@ -415,3 +428,19 @@ export const searchProduct = async (value) => {
 
     return data;
 };
+
+export async function getLatestProducts() {
+    const supabase = await createSupabaseServerClient();
+
+    const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(8);
+
+    if (error) {
+        throw error;
+    }
+
+    return data;
+}

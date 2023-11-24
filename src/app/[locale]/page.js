@@ -1,4 +1,4 @@
-import { getTestimonials } from "@/lib/supabase";
+import { getLatestProducts, getTestimonials } from "@/lib/supabase";
 
 import AddedGrid from "@/components/addedGrid/AddedGrid";
 import FeatureBanner from "@/components/features-banner/FeatureBanner";
@@ -7,12 +7,13 @@ import HowItWorks from "@/components/sections/HowItWorks";
 import Testimonials from "@/components/testimonials/Testimonials";
 
 export default async function Home() {
+    const latestProducts = await getLatestProducts();
     const testimonials = await getTestimonials();
     return (
         <main className='flex justify-center flex-col items-center'>
             <HeroCarousel />
             <FeatureBanner />
-            <AddedGrid />
+            <AddedGrid latestProducts={latestProducts} />
             <HowItWorks />
             <Testimonials testimonials={testimonials} />
         </main>

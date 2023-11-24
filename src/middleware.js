@@ -1,12 +1,11 @@
+//middleware.js
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse } from "next/server";
 import createMiddleware from "next-intl/middleware";
 
 const intlMiddleware = createMiddleware({
-    // A list of all locales that are supported
     locales: ["en", "ar"],
 
-    // If this locale is matched, pathnames work without a prefix (e.g. `/about`)
     defaultLocale: "ar",
 });
 
@@ -69,7 +68,5 @@ export async function middleware(request) {
 }
 
 export const config = {
-    // Skip all paths that should not be internationalized. This example skips
-    // certain folders and all pathnames with a dot (e.g. favicon.ico)
     matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
 };
