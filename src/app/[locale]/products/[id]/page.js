@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
-
+import { getCoordinates } from "@/lib/supabase";
 import { getProductWithPrice, getUserProfile } from "@/lib/supabase";
 
 import Comment from "@/components/comment/Comment";
@@ -69,13 +69,39 @@ const sections = [
     },
     {
         title: "Location",
-        location: "Location - Maps",
     },
 ];
 
 const SingleProductPage = async ({ params }) => {
     // const categories = await getCategories(params.category);
     // console.log("categories", categories);
+
+    let coordinatesArray = [36.77326479858625, 3.059852057256325]; // Default coordinates
+
+    try {
+        const location = await getCoordinates(params.id);
+
+        // Check if location data exists
+        if (location && location.length > 0) {
+            const locationString = location[0].location;
+
+            // Parsing the 'location' string into a JavaScript object
+            const locationObject = JSON.parse(locationString);
+
+            // Accessing the latitude and longitude values
+            const latitude = locationObject.lat;
+            const longitude = locationObject.long;
+            coordinatesArray = [latitude, longitude]; // Update coordinatesArray
+        } else {
+            console.error(
+                "Location data not found. Using default coordinates."
+            );
+            // Handle the absence of location data, if needed
+        }
+    } catch (error) {
+        console.error("Error parsing locationString:", error);
+        // Handle the error as needed
+    }
 
     const productData = await getProductWithPrice(params.id);
     if (!productData) {
@@ -102,10 +128,10 @@ const SingleProductPage = async ({ params }) => {
                 </div>
             </div>
 
-            <DynamicMap />
+            {/* <DynamicMap /> */}
 
             <div className='m-5 py-5 flex justify-center items-center'>
-                <TabsComponent tabs={sections} />
+                <TabsComponent tabs={sections} coord={coordinatesArray} />
             </div>
             <Comment userData={user} comments={commentData} reply={replyData} />
         </div>
