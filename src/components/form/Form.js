@@ -8,15 +8,19 @@ import {
     signUpWithEmailAndPassword,
 } from "@/lib/_supabaseAuth";
 
+import LocationInput from "../locationInput/LocationInput";
+
 function CustomForm({ formType }) {
     const t = useTranslations("Index");
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [password, setPassword] = useState("");
-    const [address, setAddress] = useState("");
+    const [location, setLocation] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [terms, setTerms] = useState(false);
+    const [latitude, setLatitude] = useState("");
+    const [longitude, setLongitude] = useState("");
 
     const isFormFilled = () => {
         return (
@@ -26,9 +30,14 @@ function CustomForm({ formType }) {
                 password &&
                 fullName &&
                 phoneNumber &&
-                address &&
+                location &&
                 terms)
         );
+    };
+
+    const handleLocationChange = (lat, long) => {
+        setLatitude(lat);
+        setLongitude(long);
     };
 
     const authenticate = async (userData) => {
@@ -44,6 +53,7 @@ function CustomForm({ formType }) {
                         email: data.email || "null",
                         phone_num: data.phone_num || "null",
                         last_name: data.last_name || "null",
+                        location: { Lat: latitude, Long: longitude },
                     }
                 );
                 window.location.href = "/profile?page=form";
@@ -71,6 +81,7 @@ function CustomForm({ formType }) {
             }, 3000);
         }
     };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrorMessage("");
@@ -250,20 +261,13 @@ function CustomForm({ formType }) {
 
                 {/* Additional Fields for Registration */}
                 {formType === "registration" && (
-                    <div className='relative flex md:flex-row flex-col items-center h-11 w-6/12 min-w-[232px]'>
-                        <textarea
-                            id='address'
-                            onChange={(e) => setAddress(e.target.value)}
-                            className='peer h-full w-full min-w-[200px] rounded-md border border-gray-500 border-t-transparent  px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-accent focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50'
-                            placeholder=' '
+                    <div className='relative h-11 w-1/2 min-w-[200px]'>
+                        <LocationInput
+                            location={location}
+                            setLocation={setLocation}
+                            onLocationSelect={handleLocationChange}
+                            styling='peer h-full w-full rounded-md border border-gray-500 border-t-transparent  px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-accent focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50'
                         />
-                        <label
-                            htmlFor='address'
-                            value={address}
-                            className='before:content[" "] after:content[" "] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full min-w-[200px] select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-accent peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-accent peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-accent peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500'
-                        >
-                            {t("Address")}
-                        </label>
                     </div>
                 )}
 

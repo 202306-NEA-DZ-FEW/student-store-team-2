@@ -5,9 +5,9 @@ exports[`renders correctly 1`] = `
   className="relative mb-4"
 >
   <input
-    className="w-full border border-gray-300 p-2 rounded-md focus:border-blue-500 focus:outline-none"
     onChange={[Function]}
     placeholder="Enter Location"
+    required={true}
     type="text"
   />
 </div>

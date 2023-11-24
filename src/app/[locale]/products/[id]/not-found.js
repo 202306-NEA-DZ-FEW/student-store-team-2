@@ -171,7 +171,10 @@ export default function NotFound() {
                         {t("Go To Home")}
                     </Link>
                     {t("or")}:
-                    <Link href='/Products' className='underline text-accent'>
+                    <Link
+                        href='/Products?page=1'
+                        className='underline text-accent'
+                    >
                         {t("Check More Products")}
                     </Link>
                 </div>
