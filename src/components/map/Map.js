@@ -6,8 +6,8 @@ import { MapContainer, Marker, TileLayer } from "react-leaflet";
 
 import "leaflet/dist/leaflet.css";
 
-const Map = ({ location }) => {
-    const [coord, setCoord] = useState(location);
+const Map = ({ coord }) => {
+    const [Coord, setCoord] = useState(coord);
     delete L.Icon.Default.prototype._getIconUrl;
 
     const customMarkerIcon = L.icon({
@@ -25,16 +25,16 @@ const Map = ({ location }) => {
                     height: "50vh",
                     width: "50vw",
                 }}
-                center={coord}
+                center={coord ? Coord : [28.0289837, 1.6666663]}
                 zoom={2}
-                scrollWheelZoom={false}
+                scrollWheelZoom={true}
             >
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
                 />
 
-                <Marker position={coord} icon={customMarkerIcon} />
+                <Marker position={Coord} icon={customMarkerIcon} />
             </MapContainer>
         </div>
     );

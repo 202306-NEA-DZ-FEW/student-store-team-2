@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
-
+import { getCoordinates } from "@/lib/supabase";
 import { getProductWithPrice, getUserProfile } from "@/lib/supabase";
 
 import Comment from "@/components/comment/Comment";
@@ -69,13 +69,23 @@ const sections = [
     },
     {
         title: "Location",
-        location: "Location - Maps",
     },
 ];
 
 const SingleProductPage = async ({ params }) => {
     // const categories = await getCategories(params.category);
     // console.log("categories", categories);
+
+    const location = await getCoordinates(params.id);
+    const locationString = location[0].location;
+
+    // Parsing the 'location' string into a JavaScript object
+    const locationObject = JSON.parse(locationString);
+
+    // Accessing the latitude and longitude values
+    const latitude = locationObject.lat;
+    const longitude = locationObject.long;
+    const coordinatesArray = [latitude, longitude];
 
     const productData = await getProductWithPrice(params.id);
     if (!productData) {
@@ -102,10 +112,10 @@ const SingleProductPage = async ({ params }) => {
                 </div>
             </div>
 
-            <DynamicMap />
+            {/* <DynamicMap /> */}
 
             <div className='m-5 py-5 flex justify-center items-center'>
-                <TabsComponent tabs={sections} />
+                <TabsComponent tabs={sections} coord={coordinatesArray} />
             </div>
             <Comment userData={user} comments={commentData} reply={replyData} />
         </div>

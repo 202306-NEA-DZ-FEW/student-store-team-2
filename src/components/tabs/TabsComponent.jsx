@@ -3,12 +3,12 @@ import { useState } from "react";
 import AdditionalInfoTab from "./additionalInfoTab/AdditionalInfoTab";
 import LocationTab from "./locationTab/LocationTab";
 
-function TabsComponent({ tabs }) {
+function TabsComponent({ tabs, coord }) {
     const [selectedTabIndex, setSelectedTabIndex] = useState(0);
 
     const components = [
         <AdditionalInfoTab key={0} items={tabs} />,
-        <LocationTab key={1} items={tabs} />,
+        <LocationTab key={1} coord={coord} />,
     ];
 
     const handleTabClick = (index) => {
