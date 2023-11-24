@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <nav
-  className="text-navbar fixed z-20 w-full text-black"
+  className="text-navbar fixed z-20 mb-auto w-full transition-all duration-300 ease-in-out text-black bg-white"
 >
   <div
     className="mx-auto px-2 sm:px-6 lg:px-8 "
@@ -86,7 +86,7 @@ exports[`renders correctly 1`] = `
               </div>
             </a>
             <a
-              href="/donate"
+              href="/about"
               onClick={[Function]}
               onMouseEnter={[Function]}
               onTouchStart={[Function]}
@@ -94,7 +94,7 @@ exports[`renders correctly 1`] = `
               <div
                 className=" hover:bg-accent hover:text-white block rounded-md px-3 py-2 text-sm lg:text-base font-semibold font-lato antialiased tracking-widest"
               >
-                Donate
+                About
               </div>
             </a>
           </div>

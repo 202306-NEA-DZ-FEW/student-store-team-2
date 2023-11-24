@@ -3,18 +3,19 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
+import { useEffect } from "react";
 import { BiMenu, BiMenuAltRight } from "react-icons/bi";
 
 import MobileSidebar from "../mobileSidebar/MobileSidebar";
 import NotificationsDropdown from "../notifications/NotificationsDropDown";
 import Portal from "../portal/Portal";
 import Searchbar from "../search/Searchbar";
-import { useUser } from "../userProvider/UserProvider";
 import UserStatus from "../userStatus/UserStatus";
 
 export default function Navbar() {
-    const { user } = useUser();
     const t = useTranslations("Index");
+    const pathname = usePathname();
+
     const [isOpen, setIsOpen] = useState(false);
     const toggleMobileMenu = () => {
         setIsOpen(!isOpen);
@@ -25,18 +26,46 @@ export default function Navbar() {
     navigation = [
         { name: t("Home"), href: "/" },
         { name: t("Products"), href: "/products" },
-        { name: t("Donate"), href: "/donate" },
+        { name: t("About"), href: "/about" },
     ];
 
-    const pathname = usePathname();
+    const [isInMiddleSection, setIsInMiddleSection] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.body.scrollHeight;
+
+            // Calculate the middle section's approximate position
+            const middleSectionPosition = documentHeight / 2;
+
+            // Logic to determine if the user is in the middle section
+            const isInMiddle =
+                scrollPosition >= middleSectionPosition - windowHeight / 2 &&
+                scrollPosition <= middleSectionPosition + windowHeight / 2;
+
+            setIsInMiddleSection(isInMiddle);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
+    const navbarClassName = `text-navbar fixed z-20 mb-auto w-full transition-all duration-300 ease-in-out ${
+        (pathname === "/" || pathname === "/en") && !isInMiddleSection
+            ? "text-white"
+            : "text-black"
+    } ${
+        (pathname === "/" || pathname === "/en") && !isInMiddleSection
+            ? ""
+            : "bg-white"
+    }`;
+
     return (
-        <nav
-            className={`text-navbar fixed z-20 w-full ${
-                pathname === "/" || pathname === "/en"
-                    ? "text-white"
-                    : "text-black"
-            }`}
-        >
+        <nav className={navbarClassName}>
             <>
                 <div className='mx-auto px-2 sm:px-6 lg:px-8 '>
                     <div className='relative flex h-16 items-center justify-between'>

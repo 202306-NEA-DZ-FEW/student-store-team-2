@@ -76,8 +76,9 @@ export default async function RootLayout({ children, params: { locale } }) {
 
     return (
         <html lang={locale} className='scroll-smooth	'>
+
             <body
-                className={`relative ${
+                className={`"relative ${
                     locale === "ar" ? notoKufi.variable : ""
                 } font-notoKufi  ${
                     locale === "en" ? jua.variable : ""
@@ -90,7 +91,11 @@ export default async function RootLayout({ children, params: { locale } }) {
                 } font-roboto`}
             >
                 <UserProvider getCurrentUser={getCurrentUser}>
-                    <NextIntlClientProvider locale={locale} messages={messages}>
+                    <NextIntlClientProvider
+                        locale={locale}
+                        messages={messages}
+                        className='relative flex flex-col h-screen'
+                    >
                         <Navbar />
                         {children}
                         <Footer />
