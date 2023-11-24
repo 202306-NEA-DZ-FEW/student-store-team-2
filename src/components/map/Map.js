@@ -25,8 +25,8 @@ const Map = ({ coord }) => {
                     height: "50vh",
                     width: "50vw",
                 }}
-                center={coord ? Coord : [28.0289837, 1.6666663]}
-                zoom={2}
+                center={coord ? Coord : Map.defaultProps}
+                zoom={13}
                 scrollWheelZoom={true}
             >
                 <TileLayer
@@ -38,10 +38,6 @@ const Map = ({ coord }) => {
             </MapContainer>
         </div>
     );
-};
-
-Map.defaultProps = {
-    location: [36.7538, 3.0588],
 };
 
 export default Map;

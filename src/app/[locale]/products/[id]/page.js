@@ -76,16 +76,32 @@ const SingleProductPage = async ({ params }) => {
     // const categories = await getCategories(params.category);
     // console.log("categories", categories);
 
-    const location = await getCoordinates(params.id);
-    const locationString = location[0].location;
+    let coordinatesArray = [36.77326479858625, 3.059852057256325]; // Default coordinates
 
-    // Parsing the 'location' string into a JavaScript object
-    const locationObject = JSON.parse(locationString);
+    try {
+        const location = await getCoordinates(params.id);
 
-    // Accessing the latitude and longitude values
-    const latitude = locationObject.lat;
-    const longitude = locationObject.long;
-    const coordinatesArray = [latitude, longitude];
+        // Check if location data exists
+        if (location && location.length > 0) {
+            const locationString = location[0].location;
+
+            // Parsing the 'location' string into a JavaScript object
+            const locationObject = JSON.parse(locationString);
+
+            // Accessing the latitude and longitude values
+            const latitude = locationObject.lat;
+            const longitude = locationObject.long;
+            coordinatesArray = [latitude, longitude]; // Update coordinatesArray
+        } else {
+            console.error(
+                "Location data not found. Using default coordinates."
+            );
+            // Handle the absence of location data, if needed
+        }
+    } catch (error) {
+        console.error("Error parsing locationString:", error);
+        // Handle the error as needed
+    }
 
     const productData = await getProductWithPrice(params.id);
     if (!productData) {
