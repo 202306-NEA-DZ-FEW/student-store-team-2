@@ -12,7 +12,6 @@ const UploadImage = ({ onImageUpload, avatar_url }) => {
     const [imageFile, setImageFile] = useState(null);
     const [downloadURL, setDownloadURL] = useState(avatar_url);
     const [isUploading, setIsUploading] = useState(false);
-    const [progressUpload, setProgressUpload] = useState(0);
 
     const handleSelectedFile = (files) => {
         if (files && files[0].size < 10000000) {
@@ -39,7 +38,6 @@ const UploadImage = ({ onImageUpload, avatar_url }) => {
                 formData.append("signature", signature);
                 formData.append("timestamp", timestamp);
                 formData.append("folder", "next");
-                console.log("formData", formData);
 
                 const endpoint = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL;
                 const data = await fetch(endpoint, {
@@ -65,7 +63,6 @@ const UploadImage = ({ onImageUpload, avatar_url }) => {
         }
     };
     const handleRemoveFile = () => setImageFile(null);
-    console.log(downloadURL);
 
     return (
         <>
