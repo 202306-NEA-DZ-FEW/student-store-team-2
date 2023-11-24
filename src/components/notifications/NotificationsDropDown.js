@@ -57,9 +57,10 @@ function NotificationsDropdown() {
         );
 
         // Listen to changes on the notifications table filtered by the user ID
-
+        console.log("outside user data", userData);
         if (userData) {
             fetchData();
+            console.log("inside user data", userData);
 
             const handleInserts = (payload) => {
                 console.log("Change received!", payload, notifications);
