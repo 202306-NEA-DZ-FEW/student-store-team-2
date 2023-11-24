@@ -49,7 +49,7 @@ const DashboardDisplay = ({ dashboardData, type }) => {
     return (
         <div className='min-h-screen'>
             <h1 className='text-3xl capitalize font-lato font-medium ml-4 mb-6'>
-                {type}
+                {type || "my stuff"}
             </h1>
             <div className='mb-8'>
                 <div className='flex items-end'>
