@@ -20,13 +20,16 @@ export function UserProvider({ children, getCurrentUser }) {
 
         fetchData();
     }, []);
+
     useEffect(() => {
         const fetchUserData = async () => {
             try {
                 if (user) {
-                    setUserData(user.user_metadata);
+                    await setUserData(user.user_metadata);
                     setLoading(false);
-                } else setLoading(false);
+                } else {
+                    setLoading(false);
+                }
             } catch (error) {
                 // Handle errors
             }

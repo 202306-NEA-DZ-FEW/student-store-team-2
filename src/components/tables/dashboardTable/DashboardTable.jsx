@@ -9,7 +9,11 @@ import { MdCancel } from "react-icons/md";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { TiCancel } from "react-icons/ti";
 
-import { deleteDashboardOrder, updateDashboardOrder } from "@/lib/supabase";
+import {
+    deleteDashboardOrder,
+    setNotification,
+    updateDashboardOrder,
+} from "@/lib/supabase";
 
 function DashboardTable({ type, data }) {
     return (
@@ -168,15 +172,16 @@ function DashboardTableRow({ item, type }) {
 
 function DashboardTableActions({
     type,
-    item: { status, id, offer_type, productId },
+    item: { status, id, offer_type, productId, sender, receiver },
 }) {
     const actions = {
         accept: {
             icon: FaCheckSquare,
             style: "bg-cyan-600 hover:bg-cyan-700 focus:ring-cyan-300",
             text: "accept",
-            callback: async (table, orderId) => {
+            callback: async (table, orderId, sender, receiver) => {
                 updateDashboardOrder(table, "pending", orderId);
+                sendNotification("accept", sender, receiver, orderId);
             },
         },
         cancel: {
@@ -189,22 +194,27 @@ function DashboardTableActions({
             icon: MdCancel,
             style: " bg-red-600 hover:bg-red-800 focus:ring-red-300 ",
             text: "reject",
-            callback: () => {},
+            callback: async (table, orderId, sender, receiver) => {
+                deleteDashboardOrder(table, orderId);
+                sendNotification("reject", sender, receiver, orderId);
+            },
         },
         complete: {
             icon: IoMdCloudDone,
             style: " bg-green-600 hover:bg-green-800 focus:ring-green-300 ",
             text: "complete",
-            callback: async (table, orderId) => {
+            callback: async (table, orderId, sender, receiver) => {
                 updateDashboardOrder(table, "completed", orderId);
+                sendNotification("complete", sender, receiver, orderId);
             },
         },
         abort: {
             icon: TiCancel,
             style: " bg-rose-600 hover:bg-rose-800 focus:ring-rose-300 ",
             text: "abort",
-            callback: async (table, orderId) => {
+            callback: async (table, orderId, sender, receiver) => {
                 updateDashboardOrder(table, "aborted", orderId);
+                sendNotification("abort", sender, receiver, orderId);
             },
         },
         delete: {
@@ -217,13 +227,13 @@ function DashboardTableActions({
 
     const senderActions = {
         requested: ["cancel"],
-        pending: ["abort"],
+        pending: ["complete", "abort"],
         completed: ["delete"],
         aborted: ["delete"],
     };
     const receiverActions = {
         requested: ["accept", "reject"],
-        pending: ["complete", "abort"],
+        pending: ["abort"],
         completed: ["delete"],
         aborted: ["delete"],
     };
@@ -233,6 +243,37 @@ function DashboardTableActions({
             ? senderActions
             : receiverActions;
 
+    const sendNotification = async (action, sender, receiver, orderId) => {
+        const notifier =
+            type === "borrowings" || type === "purchases" ? receiver : sender;
+        const notified =
+            type === "borrowings" || type === "purchases" ? sender : receiver;
+
+        const statusMessage = {
+            requested: "has requested to buy your item",
+            accept: "has accepeted your request",
+            reject: "has rejected your request",
+            abort: "has aborted the order",
+            complete: "has picked your item",
+        };
+
+        const link = {
+            borrowings: "lendings",
+            lendings: "borrowings",
+            purchases: "sales",
+            sales: "purchases",
+        };
+
+        const data = {
+            orderId,
+            message: statusMessage[action],
+            path: link[type],
+        };
+
+        const res = await setNotification(notifier, notified, data, "order");
+        return res;
+    };
+
     return (
         <div>
             {status &&
@@ -240,7 +281,12 @@ function DashboardTableActions({
                     const { icon: Icon, text, style, callback } = actions[item];
 
                     const UpdateStatus = async () => {
-                        const res = await callback(offer_type, id);
+                        const res = await callback(
+                            offer_type,
+                            id,
+                            sender,
+                            receiver
+                        );
                         console.log("result", res);
                     };
                     return (

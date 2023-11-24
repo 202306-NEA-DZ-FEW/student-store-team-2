@@ -193,9 +193,47 @@ export const deleteDashboardOrder = async (table, id) => {
     return { data, error };
 };
 
+// get notifications
+
+export const getNotifications = async (userId) => {
+    const supabase = await createSupabaseServerClient();
+    const { data, error } = await supabase
+        .from("notifications")
+        .select()
+        .eq("notified", userId)
+        .order("created_at", { ascending: false });
+    if (error) {
+        return error;
+    }
+    return data;
+};
+
+// insert new notification
+
+export const setNotification = async (notifierId, notifiedId, data, type) => {
+    const supabase = await createSupabaseServerClient();
+    const { raw_user_meta_data: notifier_data } = await getUserProfile(
+        notifierId
+    );
+
+    const { error: err } = await supabase.from("notifications").insert({
+        notifier: notifierId,
+        notified: notifiedId,
+        data: { ...data, notifier_data },
+        type,
+    });
+};
+
+// set notifications to seen when user click on notificaion
+export const updatedNotifications = async (userId) => {
+    const supabase = await createSupabaseServerClient();
+    const { data, error } = await supabase
+        .from("notifications")
+        .update({ viewed: true })
+        .eq("notified", userId);
+};
 export const addItem = async (table, item) => {
     const supabase = await createSupabaseServerClient();
-
     try {
         const { data, error } = await supabase.from(table).upsert([item]);
 
@@ -208,6 +246,27 @@ export const addItem = async (table, item) => {
         console.error("Error adding item:", error);
         throw error;
     }
+};
+
+// create borrow order
+
+export const createBorrow = async (order) => {
+    const supabase = await createSupabaseServerClient();
+    const { data, error } = await supabase
+
+        .from("borrowings")
+
+        .insert(order);
+};
+
+// create purchase order
+export const createPurchase = async (order) => {
+    const supabase = await createSupabaseServerClient();
+    const { data, error } = await supabase
+
+        .from("purchases")
+
+        .insert(order);
 };
 
 export const updateItem = async (table, item, user) => {

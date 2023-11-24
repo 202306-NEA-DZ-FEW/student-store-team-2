@@ -17,6 +17,7 @@ module.exports = {
                     "via.placeholder.com", 
                     "leadershipmemphis.org",
                     "source.unsplash.com",
+                    'media.licdn.com',
                 ],
     },
     

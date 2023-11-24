@@ -98,7 +98,6 @@ const UserProfileForm = () => {
 
     const handleLocationSelect = (lat, lon) => {
         // Define the logic for handling the selected location here
-        console.log(lat);
         setLatitude(lat);
         setLongitude(lon);
     };
@@ -138,7 +137,6 @@ const UserProfileForm = () => {
                 location: { Lat: latitude, Long: longitude },
             };
             await updateUserMetadata(updatedData);
-            console.log(updatedData);
             await setUploading(false);
         } else setUploading(true);
     };
@@ -258,11 +256,15 @@ const UserProfileForm = () => {
                     </div>
                 </div>
                 <div className='mb-8'>
+                    <span className='text-sm text-black '>
+                        <span className='text-red-500'>*</span> Required
+                    </span>
                     <input
                         placeholder={t("Institution")}
                         type='text'
                         id='institution'
                         name='institution'
+                        required
                         value={formData.institution}
                         onChange={handleChange}
                         className='w-full border border-gray-300 p-2 rounded-md focus:border-blue-500'
@@ -281,6 +283,7 @@ const UserProfileForm = () => {
                             type='number'
                             id='phone_num'
                             name='phone_num'
+                            required
                             value={formData.phone_num}
                             onChange={handleChange}
                             className='w-full border border-gray-300 p-2 rounded-md focus:border-blue-500'
@@ -289,7 +292,8 @@ const UserProfileForm = () => {
                     <LocationInput
                         location={location}
                         setLocation={setLocation} // Assuming you have a state setter function for location
-                        onLocationSelect={handleLocationSelect} // Pass the callback function
+                        onLocationSelect={handleLocationSelect}
+                        styling='w-full border border-gray-300 p-2 rounded-md focus:border-blue-500' // Pass the callback function
                     />
                 </div>
                 <button

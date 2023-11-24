@@ -4,8 +4,6 @@ import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
 export default async function createSupabaseServerClient() {
-    "use server";
-
     const cookieStore = cookies();
 
     return createServerClient(
@@ -41,7 +39,6 @@ export async function signUpWithEmailAndPassword(email, password, userData) {
     if (error) {
         throw error;
     }
-    window.location.href = "/profile?page=form";
 
     return JSON.stringify(data);
 }
