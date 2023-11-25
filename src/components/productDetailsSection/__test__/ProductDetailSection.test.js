@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 
 import ProductDetailSection from "../ProductDetailSection";
 import messages from "../../../../messages/en.json";
-const user = {};
+const user = { phone_num: "0556214761" };
 it("renders correctly", () => {
     const tree = renderer
         .create(
