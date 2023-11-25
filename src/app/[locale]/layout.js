@@ -22,7 +22,6 @@ import "./loader.css";
 
 import { UserProvider } from "@/components/userProvider/UserProvider";
 
-import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
 
 const jua = Jua({ weight: "400", subsets: ["latin"], variable: "--font-jua" });
@@ -97,7 +96,7 @@ export default async function RootLayout({ children, params: { locale } }) {
                     >
                         <Navbar />
                         {children}
-                        <Footer />
+                        {/* <Footer /> */}
                     </NextIntlClientProvider>
                 </UserProvider>
             </body>

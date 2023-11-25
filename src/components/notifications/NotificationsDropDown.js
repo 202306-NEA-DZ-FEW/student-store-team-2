@@ -89,7 +89,6 @@ function NotificationsDropdown() {
         setNotifications(data);
         const unviewArray = data.filter((item) => !item.viewed);
         setUnviewedCount(unviewArray.length);
-        console.log("ddddddd", data);
     };
 
     const updatedNotificationsVisibility = () => {
