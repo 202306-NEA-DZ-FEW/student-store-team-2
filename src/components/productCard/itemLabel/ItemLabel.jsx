@@ -18,7 +18,7 @@ const ItemLabel = ({ textContent }) => {
         <div
             className={`capitalize flex justify-center text-center items-center font-jost font-bold rounded-full ${style} text-white text-sm w-[105px] h-[26px]`}
         >
-            {textContent?.split("_")?.join(" ")}
+            {t(textContent?.split("_")?.join(" "))}
         </div>
     );
 };

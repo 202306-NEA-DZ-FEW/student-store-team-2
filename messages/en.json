@@ -1,6 +1,6 @@
 {
     "Index": {
-        "Title": "MiniStore",
+        "Title": "LaCité",
         "Home": "Home",
         "Products": "Products",
         "Orders": "Orders",
@@ -169,6 +169,8 @@
         "Once you've settled all the details and agreed with the seller, confirm your purchase or borrowing Make the payment or arrange the pickup/delivery, and you're all set to enjoy your new item!": "Once you've settled all the details and agreed with the seller, confirm your purchase or borrowing. Make the payment or arrange the pickup/delivery, and you're all set to enjoy your new item!",
         "Enjoy!": "Enjoy!",
         "How it Works": "How it Works",
-        "They Said About Us": "They Said About Us"
+        "They Said About Us": "They Said About Us",
+        "for sale": "for sale",
+        "for buy": "for buy"
     }
 }
