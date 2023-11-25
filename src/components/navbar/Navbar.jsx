@@ -34,18 +34,16 @@ export default function Navbar() {
     useEffect(() => {
         const handleScroll = () => {
             const scrollPosition = window.scrollY;
-            const windowHeight = window.innerHeight;
             const documentHeight = document.body.scrollHeight;
 
-            // Calculate the middle section's approximate position
-            const middleSectionPosition = documentHeight / 2;
+            // Calculate the first quarter position of the page
+            const firstQuarterPosition = documentHeight / 4;
 
-            // Logic to determine if the user is in the middle section
-            const isInMiddle =
-                scrollPosition >= middleSectionPosition - windowHeight / 2 &&
-                scrollPosition <= middleSectionPosition + windowHeight / 2;
+            // Logic to determine if the user is in the first quarter to end of the page
+            const isInFirstQuarterToEnd =
+                scrollPosition >= firstQuarterPosition;
 
-            setIsInMiddleSection(isInMiddle);
+            setIsInMiddleSection(isInFirstQuarterToEnd);
         };
 
         window.addEventListener("scroll", handleScroll);
@@ -54,16 +52,11 @@ export default function Navbar() {
         };
     }, []);
 
-    const navbarClassName = `text-navbar fixed z-20 mb-auto w-full transition-all duration-300 ease-in-out ${
-        (pathname === "/" || pathname === "/en") && !isInMiddleSection
-            ? "text-white"
-            : "text-black"
-    } ${
-        (pathname === "/" || pathname === "/en") && !isInMiddleSection
-            ? ""
-            : "bg-white"
+    const navbarClassName = `text-navbar w-full fixed z-20 mb-auto w-full transition-all duration-300 ease-in-out ${
+        (pathname === "/" || pathname === "/en") && isInMiddleSection
+            ? "text-black bg-white"
+            : "text-white"
     }`;
-
     return (
         <nav className={navbarClassName}>
             <>

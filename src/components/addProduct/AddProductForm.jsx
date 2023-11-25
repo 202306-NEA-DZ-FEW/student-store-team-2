@@ -270,9 +270,9 @@ const AddProductForm = ({ className, categories }) => {
                                 required
                             >
                                 <option value=''>{t("Category")}</option>
-                                {categories.map((cat, index) => (
-                                    <option key={index} value={index}>
-                                        {t(cat)}
+                                {categories.map((cat) => (
+                                    <option key={cat.id} value={cat.id}>
+                                        {t(cat.category_name)}
                                     </option>
                                 ))}
                             </select>

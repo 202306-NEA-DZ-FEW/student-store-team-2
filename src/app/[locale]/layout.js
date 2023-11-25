@@ -75,7 +75,11 @@ export default async function RootLayout({ children, params: { locale } }) {
     }
 
     return (
-        <html lang={locale} className='scroll-smooth	'>
+        <html
+            lang={locale}
+            className='scroll-smooth'
+            dir={locale === "ar" ? "rtl" : "ltr"}
+        >
             <body
                 className={`"relative ${
                     locale === "ar" ? notoKufi.variable : ""
@@ -93,7 +97,7 @@ export default async function RootLayout({ children, params: { locale } }) {
                     <NextIntlClientProvider
                         locale={locale}
                         messages={messages}
-                        className='relative flex flex-col h-screen'
+                        className='relative flex flex-col'
                     >
                         <Navbar />
                         {children}
