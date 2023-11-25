@@ -19,16 +19,19 @@ function ProductDisplay({ product }) {
     const scrollRef = useRef(null);
 
     useEffect(() => {
-        setInterval(() => {
-            setCurrentImage(images[indexRef.current]);
-            scrollRef.current.scrollTo(0, indexRef.current * 249);
-            indexRef.current = indexRef.current + 1;
-            if (indexRef.current === 4) {
-                indexRef.current = 0;
-            }
-        }, 4000);
-    }, [images]);
+        if (typeof window !== "undefined") {
+            const interval = setInterval(() => {
+                setCurrentImage(images[indexRef.current]);
+                scrollRef.current.scrollTo(0, indexRef.current * 249);
+                indexRef.current = indexRef.current + 1;
+                if (indexRef.current === 4) {
+                    indexRef.current = 0;
+                }
+            }, 4000);
 
+            return () => clearInterval(interval);
+        }
+    }, [images]);
     return (
         <>
             <div className=' flex gap-2 w-full'>
