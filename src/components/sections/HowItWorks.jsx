@@ -7,6 +7,9 @@ const HowItWorks = () => {
     const t = useTranslations("Index");
     return (
         <div className='px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 font-lato '>
+            <p className='text-titleContent text-3xl capitalize-words text-center font-jost tracking-wide py-14'>
+                {t("How it Works")}
+            </p>
             <div className='grid gap-6 row-gap-10 lg:grid-cols-2'>
                 <div className='lg:py-6 lg:pr-16'>
                     <div className='flex'>
@@ -190,7 +193,7 @@ const HowItWorks = () => {
                             <div>
                                 <div className='flex items-center justify-center w-10 h-10 border rounded-full'>
                                     <svg
-                                        className='w-6 text-gray-600'
+                                        className='w-6 text-accent'
                                         stroke='currentColor'
                                         viewBox='0 0 24 24'
                                     >
@@ -207,10 +210,10 @@ const HowItWorks = () => {
                             </div>
                         </div>
                         <div className='pt-1'>
-                            <p className='mb-2 text-lg font-bold'>
+                            <p className='mb-2 text-lg text-accent font-bold'>
                                 {t("Enjoy!")}
                             </p>
-                            <p className='text-gray-700' />
+                            <p className='text-accent' />
                         </div>
                     </div>
                 </div>

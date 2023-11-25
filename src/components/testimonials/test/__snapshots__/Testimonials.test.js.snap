@@ -2,6 +2,15 @@
 
 exports[`renders correctly 1`] = `
 <div
-  className="flex justify-center items-center h-96  "
-/>
+  className="flex flex-col"
+>
+  <p
+    className="text-titleContent text-3xl capitalize-words text-center font-jost tracking-wide "
+  >
+    They Said About Us
+  </p>
+  <div
+    className="flex justify-center items-center h-96  "
+  />
+</div>
 `;
