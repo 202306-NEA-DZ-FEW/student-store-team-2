@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import React, { useEffect } from "react";
 import { useState } from "react";
@@ -43,11 +44,13 @@ const sendItemRequestNotification = async (
 
 export default function ProductDetailSection({ user, product }) {
     const t = useTranslations("Index");
+    const router = useRouter();
+    const currentUser = useUser();
+
     const [isLoading, setLoading] = useState(false);
     const [hasUserPurchased, setHasUserPurchased] = useState(false);
     const [hasUserBorrowed, setHasUserBorrowed] = useState(false);
     const [isChecking, setIsChecking] = useState(false);
-    const currentUser = useUser();
     useEffect(() => {
         const checkUserPurchase = async () => {
             setIsChecking(true);
@@ -63,8 +66,8 @@ export default function ProductDetailSection({ user, product }) {
                     currentUser.user.id
                 );
                 setHasUserBorrowed(userHasBorrowed);
-                setIsChecking(false);
             }
+            setIsChecking(false);
         };
 
         checkUserPurchase();
@@ -72,43 +75,53 @@ export default function ProductDetailSection({ user, product }) {
 
     const handleClick = async () => {
         try {
-            setLoading(true);
-            if (product?.offer_type === "for_sale") {
-                const order = {
-                    productId: product.pid,
-                    receiver: currentUser.user.id,
-                    sender: product.uid,
-                };
+            if (currentUser.user) {
+                setLoading(true);
+                if (product?.offer_type === "for_sale") {
+                    const order = {
+                        productId: product.pid,
+                        receiver: currentUser.user.id,
+                        sender: product.uid,
+                    };
 
-                await sendItemRequestNotification(
-                    order.receiver,
-                    order.sender,
-                    "buy",
-                    "buy"
-                );
+                    await sendItemRequestNotification(
+                        order.receiver,
+                        order.sender,
+                        "buy",
+                        "buy"
+                    );
 
-                await createPurchase(order);
+                    await createPurchase(order);
+                } else {
+                    const order = {
+                        productId: product.pid,
+                        receiver: currentUser.user.id,
+                        sender: product.uid,
+                    };
+
+                    await sendItemRequestNotification(
+                        order.receiver,
+                        order.sender,
+                        "borrow",
+                        "borrow"
+                    );
+                    await createBorrow(order);
+                }
+                toast("Item Added Successfully", {
+                    hideProgressBar: true,
+                    autoClose: 2000,
+                    type: "success",
+                    position: "bottom-center",
+                });
             } else {
-                const order = {
-                    productId: product.pid,
-                    receiver: currentUser.user.id,
-                    sender: product.uid,
-                };
-
-                await sendItemRequestNotification(
-                    order.receiver,
-                    order.sender,
-                    "borrow",
-                    "borrow"
-                );
-                await createBorrow(order);
+                toast("You must be logged In to Continue", {
+                    hideProgressBar: false,
+                    autoClose: 2000,
+                    type: "error",
+                    position: "bottom-center",
+                });
+                router.push("/sign-in");
             }
-            toast("Item Added Successfully", {
-                hideProgressBar: true,
-                autoClose: 2000,
-                type: "success",
-                position: "bottom-center",
-            });
         } catch (error) {
             toast("You've already Sent a Request", {
                 hideProgressBar: true,
