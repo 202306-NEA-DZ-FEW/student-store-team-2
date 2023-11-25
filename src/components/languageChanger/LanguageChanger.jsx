@@ -36,7 +36,7 @@ export default function LanguageChanger() {
             <div className='relative'>
                 <button
                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                    className='items-center space-x-2 flex border border-accent2 shadow-md mx-6 cursor-pointer font-medium hover:bg-accent hover:text-white rounded-md py-2 px-4 tracking-wides transition-all duration-200 text-titleContent'
+                    className='items-center space-x-2 flex border border-accent2 shadow-md sm:mx-6 cursor-pointer font-medium hover:bg-accent hover:text-white rounded-md py-2 px-4 tracking-wides transition-all duration-200 text-titleContent'
                 >
                     <IoIosArrowUp className='w-6 h-6 ' />
                     {lang === "ar" ? "العربية" : "English"}

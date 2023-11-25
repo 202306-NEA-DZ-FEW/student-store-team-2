@@ -6,6 +6,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { BiMenu, BiMenuAltRight } from "react-icons/bi";
 
+import useTextDirection from "@/hooks/useTextDirection";
+
 import MobileSidebar from "../mobileSidebar/MobileSidebar";
 import NotificationsDropdown from "../notifications/NotificationsDropDown";
 import Portal from "../portal/Portal";
@@ -15,7 +17,7 @@ import UserStatus from "../userStatus/UserStatus";
 export default function Navbar() {
     const t = useTranslations("Index");
     const pathname = usePathname();
-
+    const direction = useTextDirection();
     const [isOpen, setIsOpen] = useState(false);
     const toggleMobileMenu = () => {
         setIsOpen(!isOpen);
@@ -52,11 +54,16 @@ export default function Navbar() {
         };
     }, []);
 
-    const navbarClassName = `text-navbar w-full fixed z-20 mb-auto w-full transition-all duration-300 ease-in-out ${
-        (pathname === "/" || pathname === "/en") && isInMiddleSection
-            ? "text-black bg-white"
-            : "text-white"
+    const navbarClassName = `text-navbar fixed z-20 mb-auto w-full transition-all duration-300 ease-in-out ${
+        (pathname === "/" || pathname === "/en") && !isInMiddleSection
+            ? "text-white"
+            : "text-black"
+    } ${
+        (pathname === "/" || pathname === "/en") && !isInMiddleSection
+            ? ""
+            : "bg-white"
     }`;
+
     return (
         <nav className={navbarClassName}>
             <>
@@ -82,7 +89,13 @@ export default function Navbar() {
                         <div className='flex flex-1 items-center justify-between'>
                             <Link href='/'>
                                 <div className='flex flex-shrink-0 items-center  w-1/3'>
-                                    <h1 className=' tracking-widest font-lato font-semibold text-2xl px-5'>
+                                    <h1
+                                        className={`${
+                                            direction === "ltr"
+                                                ? "tracking-widest"
+                                                : ""
+                                        } font-lato font-semibold text-2xl px-5`}
+                                    >
                                         {t("Title")}.
                                     </h1>
                                 </div>

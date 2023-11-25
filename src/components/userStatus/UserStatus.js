@@ -130,7 +130,12 @@ function UserStatus() {
             </div>
         );
     } else {
-        return <Link href='/sign-in'> {t("Sign In")}</Link>;
+        return (
+            <Link className='mx-4' href='/sign-in'>
+                {" "}
+                {t("Sign In")}
+            </Link>
+        );
     }
 }
 

@@ -6,12 +6,14 @@ import { useTranslations } from "next-intl";
 import { FaShoppingCart } from "react-icons/fa";
 import { SiHandshake } from "react-icons/si";
 
+import useTextDirection from "@/hooks/useTextDirection";
+
 import ItemConditionLabel from "./itemConditionLabel/ItemConditionLabel";
 import ItemLabel from "./itemLabel/ItemLabel";
 
 export default function ProductCard({ product }) {
     const t = useTranslations("Index");
-
+    const direction = useTextDirection();
     // Conditional rendering function for displaying what icon to show under the item depending on its offer type
     const itemOffer = ({ sale_offer, borrow_offer }) => {
         return (
@@ -30,17 +32,6 @@ export default function ProductCard({ product }) {
                 )}
             </div>
         );
-    };
-    // This determins what ItemLabel displays according the product offer type
-    const determineLabel = ({ for_sale, for_borrow }) => {
-        if (for_sale && for_borrow) {
-            return "Sale & Borrow"; // Translate the label
-        } else if (for_sale) {
-            return "For Sale"; // Translate the label
-        } else if (for_borrow) {
-            return "For Borrow"; // Translate the label
-        }
-        return "";
     };
 
     return (
@@ -71,7 +62,11 @@ export default function ProductCard({ product }) {
 
                     {itemOffer(product)}
                 </div>
-                <div className='ml-auto'>
+                <div
+                    className={`${
+                        direction === "ltr" ? "ml-auto" : "mr-auto"
+                    }  i`}
+                >
                     {" "}
                     <ItemLabel textContent={product.offer_type} />
                 </div>
