@@ -120,9 +120,9 @@
         "Filter": "Filter",
         "Pending": "Pending",
         "Quick Links": "Quick Links",
-        "About LACITÉ": "ABOUT LACITÉ",
-        "About Us": "ABOUT US",
-        "Github Project Link": "GITHUB PROJECT LINK",
+        "About LACITÉ": "About LACITÉ",
+        "About Us": "About Us",
+        "Github Project Link": "Github Project Link",
         "Contact Us": "Contact Us",
         "We Couldn't Find the page you're looking for": "We Couldn't Find the page you're looking for",
         "Go To Home": "Go To Home",
@@ -210,6 +210,10 @@
         "Requested": "Requested",
         "Search for a product": "Search for a product",
         "Forgot your password?": "Forgot your password?",
-        "Remember Me": "Remember Me"
+        "Remember Me": "Remember Me",
+        "Messages": "Messages",
+        "Account": "Account",
+        "Welcome": "Welcome",
+        "Security": "Security"
     }
 }

@@ -11,4 +11,7 @@ module.exports = createJestConfig({
     },
     testEnvironment: "jsdom",
     rootDir: "src",
+    transform: {
+        "^.+\\.[t|j]sx?$": "babel-jest", // Include both .js and .jsx, as well as .ts and .tsx
+    },
 });

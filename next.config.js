@@ -1,10 +1,13 @@
+const withPWA = require('next-pwa')({
+        dest: "public",
+       
+})
 
-module.exports = {
+module.exports = withPWA({
     eslint: {
         dirs: ["src"],
     },
     reactStrictMode: true,
-    
     images: {
 
         domains: [
@@ -21,5 +24,5 @@ module.exports = {
                 ],
     },
     
-}
+})
 

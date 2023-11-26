@@ -67,11 +67,11 @@ function FeatureBanner() {
                 </div>
                 {/* Feature Card 4 */}
                 <div
-                    className='flex mx-4 p-1 items-start rounded-xl bg-white p-4 shadow-lg hover:scale-105'
+                    className='flex items-start rounded-xl bg-white p-4 shadow-lg hover:scale-105'
                     style={{ width: "283px" }}
                 >
                     {/* Icon */}
-                    <div className='flex h-12 w-12 items-center justify-center rounded-full border border-red-100 bg-red-50'>
+                    <div className='flex mx-4 p-1 h-12 w-12 items-center justify-center rounded-full border border-red-100 bg-red-50'>
                         <FaThumbsUp className='h-6 w-6 text-red-400' />
                     </div>
                     <div className='ml-4'>

@@ -212,6 +212,10 @@
         "Requested": "مطلوب",
         "Search for a product": "ابحث عن منتج",
         "Forgot your password?": "نسيت كلمة السر؟",
-        "Remember Me": "تذكرني"
+        "Remember Me": "تذكرني",
+        "Messages": "الرسائل",
+        "Account": "الحساب",
+        "Welcome": "مرحبا",
+        "Security": "الحماية"
     }
 }

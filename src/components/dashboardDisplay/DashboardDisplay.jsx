@@ -87,10 +87,12 @@ const DashboardDisplay = ({ dashboardData, type }) => {
                     </form>
                     <Link
                         href='dashboard?type=add product'
-                        className='ml-8 sm:ml-auto rounded-md p-2.5  bg-cyan-600 text-white flex items-center hover:bg-cyan-800'
+                        className=' mb-14 sm:mb-auto sm:ml-auto rounded-full sm:rounded-md p-2.5  bg-cyan-600 text-white flex items-center hover:bg-cyan-800'
                     >
                         <GoPlus className='w-7 h-7' />
-                        <span>{t("Add Product")}</span>
+                        <span className='hidden sm:inline-block'>
+                            {t("Add Product")}
+                        </span>
                     </Link>
                 </div>
             </div>

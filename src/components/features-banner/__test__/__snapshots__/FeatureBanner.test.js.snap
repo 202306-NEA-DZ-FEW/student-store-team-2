@@ -148,7 +148,7 @@ exports[`renders correctly 1`] = `
       </div>
     </div>
     <div
-      className="flex mx-4 p-1 items-start rounded-xl bg-white p-4 shadow-lg hover:scale-105"
+      className="flex items-start rounded-xl bg-white p-4 shadow-lg hover:scale-105"
       style={
         Object {
           "width": "283px",
@@ -156,7 +156,7 @@ exports[`renders correctly 1`] = `
       }
     >
       <div
-        className="flex h-12 w-12 items-center justify-center rounded-full border border-red-100 bg-red-50"
+        className="flex mx-4 p-1 h-12 w-12 items-center justify-center rounded-full border border-red-100 bg-red-50"
       >
         <svg
           className="h-6 w-6 text-red-400"
