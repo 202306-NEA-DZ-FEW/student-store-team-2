@@ -494,3 +494,18 @@ export const hasBorrowed = async (productId, userId) => {
 
     return data.length > 0;
 };
+
+export const getAdditionalInfo = async (productId) => {
+    const supabase = await createSupabaseServerClient();
+
+    try {
+        const { data, error } = await supabase
+            .from("additional_info")
+            .select()
+            .eq("pid", productId);
+        return data;
+    } catch (error) {
+        console.error("Error fetching testimonials:", error);
+        throw error;
+    }
+};
