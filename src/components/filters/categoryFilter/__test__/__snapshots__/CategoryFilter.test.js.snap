@@ -7,7 +7,7 @@ exports[`renders correctly 1`] = `
   <h2
     className="capitalize text-lg"
   >
-    categories
+    Categories
   </h2>
   <div
     className="mt-4 border-t border-t-[#EEEEEE] flex flex-col items-start gap-5 py-4 px-3"

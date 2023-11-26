@@ -1,7 +1,9 @@
+import { useTranslations } from "next-intl";
 import React from "react";
 
 function NoteFilter({ currentNote, handleNoteChange }) {
-    const title = "product note";
+    const t = useTranslations("Index");
+    const title = t("Product Note");
     return (
         <div>
             <h2 className='capitalize text-lg'>{title}</h2>

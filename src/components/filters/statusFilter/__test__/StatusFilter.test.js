@@ -1,5 +1,4 @@
 import { render } from "@testing-library/react";
-import pick from "lodash/pick";
 import { NextIntlClientProvider } from "next-intl";
 
 import StatusFilter from "@/components/filters/statusFilter/StatusFilter";
@@ -23,10 +22,7 @@ jest.mock("next/navigation", () => ({
 
 it("renders", () => {
     render(
-        <NextIntlClientProvider
-            locale='en'
-            messages={pick(messages, ["Navigation", "LocaleSwitcher"])}
-        >
+        <NextIntlClientProvider locale='en' messages={messages}>
             <StatusFilter />
         </NextIntlClientProvider>
     );

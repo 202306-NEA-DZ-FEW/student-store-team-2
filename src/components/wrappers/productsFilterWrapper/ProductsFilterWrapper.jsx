@@ -1,5 +1,6 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useRef } from "react";
@@ -15,6 +16,7 @@ function ProductsFilterWrapper({
     categories,
 }) {
     const searchParams = useSearchParams();
+    const t = useTranslations("Index");
     const router = useRouter();
     const [price, setPrice] = useState({
         min: searchParams.get("minPrice") ? searchParams.get("minPrice") : 0,
@@ -109,9 +111,9 @@ function ProductsFilterWrapper({
                     onClick={resetState}
                     className='block text-md py-1 px-3 ml-auto mb-4 w-fit bg-gray-200 rounded-sm hover:bg-gray-400 active:bg-gray-200'
                 >
-                    Reset
+                    {t("Reset")}
                 </button>
-                <h1 className='block uppercase text-lg '>filter by: </h1>
+                <h1 className='block uppercase text-lg '>{t("Filter By")}: </h1>
             </div>
             <div className='flex flex-col gap-8'>
                 <PriceFilter
@@ -139,7 +141,7 @@ function ProductsFilterWrapper({
                     onClick={handleSendRequest}
                     className='bg-accent  mt-4 float-right bottom-2 px-3 py-1 text-white active:bg-slate-600'
                 >
-                    Filter
+                    {t("Filter")}
                 </button>
             )}
         </div>

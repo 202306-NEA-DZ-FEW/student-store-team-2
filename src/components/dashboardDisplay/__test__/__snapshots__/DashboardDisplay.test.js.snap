@@ -66,7 +66,7 @@ exports[`renders correctly 1`] = `
         </div>
       </form>
       <a
-        className="ml-8 sm:ml-auto rounded-md p-2.5  bg-cyan-600 text-white flex items-center hover:bg-cyan-800"
+        className=" mb-14 sm:mb-auto sm:ml-auto rounded-full sm:rounded-md p-2.5  bg-cyan-600 text-white flex items-center hover:bg-cyan-800"
         href="dashboard?type=add product"
         onClick={[Function]}
         onMouseEnter={[Function]}
@@ -91,8 +91,10 @@ exports[`renders correctly 1`] = `
             d="M11.75 4.5a.75.75 0 0 1 .75.75V11h5.75a.75.75 0 0 1 0 1.5H12.5v5.75a.75.75 0 0 1-1.5 0V12.5H5.25a.75.75 0 0 1 0-1.5H11V5.25a.75.75 0 0 1 .75-.75Z"
           />
         </svg>
-        <span>
-          Add product
+        <span
+          className="hidden sm:inline-block"
+        >
+          Add Product
         </span>
       </a>
     </div>
@@ -124,7 +126,7 @@ exports[`renders correctly 1`] = `
           className="p-4 text-left text-xs font-medium text-gray-500 uppercase"
           scope="col"
         >
-          Phone Num
+          Phone Number
         </th>
         <th
           className="p-4 text-left text-xs font-medium text-gray-500 uppercase"

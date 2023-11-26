@@ -120,7 +120,7 @@ function NotificationsDropdown() {
                 {isDropdownOpen && (
                     <div className='absolute h-96 overflow-y-auto  top-16 right-0  w-80 text-gray-900 z-50 bg-white rounded-lg shadow border dark:border-transparent user-dropdown'>
                         <div className='font-semibold  text-gray-900 text-lg my-4  px-5 py-3'>
-                            Notifications
+                            {t("Notifications")}
                         </div>
                         <ul className='space-y-3 '>
                             {notifications &&
