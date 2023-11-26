@@ -2,10 +2,10 @@ import { useTranslations } from "next-intl";
 import React from "react";
 import { FaPhoneVolume } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-function ContactDetails({ user }) {
 
+function ContactDetails({ user }) {
+    const t = useTranslations("Index");
     function formatPhoneNumber(phoneNumber) {
-         const t = useTranslations("Index");
         if (phoneNumber.startsWith("0")) {
             return "+213" + phoneNumber.slice(1); // Remove the first character '0' and add '+213'
         }
