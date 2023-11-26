@@ -171,7 +171,7 @@
         "for sale": "Buy",
         "for borrow": "Borrow",
         "Filter By": "Filter By",
-        "For Borrow":"To Borrow",
+        "For Borrow": "To Borrow",
         "For Sale": "To Buy",
         "Price Filter": "Price Filter",
         "Product Status": "Product Status",
@@ -211,6 +211,5 @@
         "Search for a product": "Search for a product",
         "Forgot your password?": "Forgot your password?",
         "Remember Me": "Remember Me"
-        
     }
 }
