@@ -1,11 +1,65 @@
 "use client";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import React, { useState } from "react";
 
 import InputReview from "./inputReview";
 import StarRating from "../starRating/StarRating";
 
-const Comment = ({ userData, comments, reply }) => {
+const Comment = () => {
+    const t = useTranslations("Index");
+
+    const user = {
+        first_name: "Mohammed",
+        last_name: "Bennaceur",
+        birth_date: "29 octobre 2000",
+        gender: "male",
+        email: "bennaceurm@gmail.com",
+        phoneNumber: "777112233",
+        address: {
+            building: "villa N°15",
+            street: "Boulvard des martyres",
+            city: "Ghazaouat",
+            state: "Tlemcen",
+        },
+        institution: "Abou Bekr Belkaid University of Tlemcen",
+        profile_pic:
+            "https://images.unsplash.com/photo-1600486913747-55e5470d6f40?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    };
+
+    const commentData = {
+        1: {
+            text: "i like that product <3 ",
+            date: "November 14,2023 at 11:55 pm",
+            likes: 2,
+        },
+        2: {
+            text: "what's the price",
+            date: "November 29,2023 at 01:55 am",
+            likes: 0,
+        },
+    };
+    const replyData = {
+        1: {
+            1: {
+                text: "me too",
+                date: "November 14,2023 at 11:59 pm",
+                likes: 1,
+            },
+            2: {
+                text: "i don't",
+                date: "November 15,2023 at 10:55 am",
+                likes: 0,
+            },
+        },
+        2: {
+            1: {
+                text: "it is cheap",
+                date: "November 29,2023 at 10:55 am",
+                likes: 4,
+            },
+        },
+    };
     const [showReplyInputs, setShowReplyInputs] = useState({});
     const [showReplies, setShowReplies] = useState({});
     const [isOpen, setIsOpen] = useState(false);
@@ -25,9 +79,9 @@ const Comment = ({ userData, comments, reply }) => {
 
         // Assuming reply is a nested object where replies for each comment are stored under their respective commentIds
         const updatedReplies = {
-            ...reply,
+            ...replyData,
             [commentId]: {
-                ...(reply[commentId] || {}),
+                ...(replyData[commentId] || {}),
                 [new Date().getTime()]: newReply, // Using timestamp as the unique ID (not recommended in a real app)
             },
         };
@@ -57,7 +111,7 @@ const Comment = ({ userData, comments, reply }) => {
                         <div className='w-12 h-12 rounded-full overflow-hidden'>
                             <Image
                                 className='w-full h-full object-cover'
-                                src={userData.profile_pic} // Assuming each comment has a user object with a profilePic field
+                                src={user.profile_pic} // Assuming each comment has a user object with a profilePic field
                                 alt='User'
                                 width={500}
                                 height={500}
@@ -65,7 +119,7 @@ const Comment = ({ userData, comments, reply }) => {
                         </div>
                         <div>
                             <h2 className='text-sm font-semibold'>
-                                {userData.firstName} {userData.lastName}
+                                {user.firstName} {user.lastName}
                             </h2>
                             <p className='text-gray-600'>{reply.text}</p>
                         </div>
@@ -92,10 +146,10 @@ const Comment = ({ userData, comments, reply }) => {
                 +
             </div>
             <div className='flex flex-wrap space-x-3 justify-center items-start mt-6 border-t border-gray-200/80 pt-6 space-y-4'>
-                {comments &&
-                    Object.keys(comments).map((commentId) => {
-                        const comment = comments[commentId];
-                        const replies = reply[commentId];
+                {commentData &&
+                    Object.keys(commentData).map((commentId) => {
+                        const comment = commentData[commentId];
+                        const replies = replyData[commentId];
 
                         return (
                             <div
@@ -105,7 +159,7 @@ const Comment = ({ userData, comments, reply }) => {
                                 <div className='w-14 h-14  bg-accent rounded-full flex items-center justify-center font-bold text-white'>
                                     <Image
                                         className='w-full h-full object-cover rounded-full'
-                                        src={userData.profile_pic} // Assuming each comment has a user object with a profilePic field
+                                        src={user.profile_pic} // Assuming each comment has a user object with a profilePic field
                                         alt='User'
                                         width={500}
                                         height={500}
@@ -113,7 +167,7 @@ const Comment = ({ userData, comments, reply }) => {
                                 </div>
                                 <div className='mt-4 flex items-center space-x-4'>
                                     <div className='text-sm font-semibold'>
-                                        {userData.first_name} •{" "}
+                                        {user.first_name} •{" "}
                                         <span className='font-normal'>
                                             {" "}
                                             5 minutes ago

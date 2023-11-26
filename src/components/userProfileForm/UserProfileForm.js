@@ -195,7 +195,8 @@ const UserProfileForm = () => {
                 <div className='mb-4 grid gap-4 md:grid-cols-2'>
                     <div className='mb-4'>
                         <span className='text-sm text-black '>
-                            <span className='text-red-500'>*</span> Required
+                            <span className='text-red-500'>*</span>{" "}
+                            {t("Required")}
                         </span>
 
                         <input
@@ -211,7 +212,8 @@ const UserProfileForm = () => {
 
                     <div className='mb-4'>
                         <span className='text-sm text-black '>
-                            <span className='text-red-500'>*</span> Required
+                            <span className='text-red-500'>*</span>{" "}
+                            {t("Required")}
                         </span>
                         <input
                             type='text'
@@ -232,8 +234,8 @@ const UserProfileForm = () => {
                             onChange={handleChange}
                             className='w-full border border-gray-300 p-2 rounded-md focus:border-blue-500'
                         >
-                            <option value='male'>Male</option>
-                            <option value='female'>Female</option>
+                            <option value='male'>{t("Male")}</option>
+                            <option value='female'>{t("Female")}</option>
                         </select>
                     </div>
                     <div className='mb-4'>
@@ -257,7 +259,7 @@ const UserProfileForm = () => {
                 </div>
                 <div className='mb-8'>
                     <span className='text-sm text-black '>
-                        <span className='text-red-500'>*</span> Required
+                        <span className='text-red-500'>*</span> {t("Required")}
                     </span>
                     <input
                         placeholder={t("Institution")}
@@ -276,7 +278,8 @@ const UserProfileForm = () => {
                 <div className='mb-4 grid gap-4'>
                     <div className='mb-4'>
                         <span className='text-sm text-black '>
-                            <span className='text-red-500'>*</span> Required
+                            <span className='text-red-500'>*</span>{" "}
+                            {t("Required")}
                         </span>
                         <input
                             placeholder={t("Phone Number")}

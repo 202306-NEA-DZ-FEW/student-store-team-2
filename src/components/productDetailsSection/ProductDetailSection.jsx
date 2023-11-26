@@ -62,7 +62,7 @@ export default function ProductDetailSection({ user, product }) {
                 </div>
                 <div className=' w-full flex mt-8 gap-2'>
                     <p className=' text-sm sm:text-base text-[#3A3A3A] font-semibold '>
-                        Category :
+                        {t("Category:")}
                     </p>
                     <Link
                         href='/'

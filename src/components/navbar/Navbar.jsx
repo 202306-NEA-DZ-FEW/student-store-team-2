@@ -27,7 +27,7 @@ export default function Navbar() {
 
     navigation = [
         { name: t("Home"), href: "/" },
-        { name: t("Products"), href: "/products" },
+        { name: t("Products"), href: "/products?page=1" },
         { name: t("About"), href: "/about" },
     ];
 

@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
+
 import { getCoordinates } from "@/lib/supabase";
 import { getProductWithPrice, getUserProfile } from "@/lib/supabase";
 

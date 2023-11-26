@@ -1,11 +1,13 @@
+import { useTranslations } from "next-intl";
 import React from "react";
 import { FaPhoneVolume } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 function ContactDetails({ user }) {
+    const t = useTranslations("Index");
     return (
         <div className='mt-8'>
             <h1 className='font-lato text-md font-semibold text-[#55585B]'>
-                Contact Details
+                {t("Contact Details")}
             </h1>
             <div className='ml-4 mt-3 font-jost flex gap-1 text-[#72ADC7]'>
                 <FaPhoneVolume />

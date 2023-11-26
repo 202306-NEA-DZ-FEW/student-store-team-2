@@ -74,7 +74,7 @@ exports[`renders correctly 1`] = `
               </div>
             </a>
             <a
-              href="/products"
+              href="/products?page=1"
               onClick={[Function]}
               onMouseEnter={[Function]}
               onTouchStart={[Function]}

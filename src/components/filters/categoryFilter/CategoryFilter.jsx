@@ -1,7 +1,10 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 function CategoryFilter({ currentCategory, handleCategoryChange, categories }) {
-    const title = "categories";
+    const t = useTranslations("Index");
+    const title = t("Categories");
     return (
         <div className=''>
             <h2 className='capitalize text-lg'>{title}</h2>

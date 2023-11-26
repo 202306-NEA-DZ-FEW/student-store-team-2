@@ -92,7 +92,7 @@ exports[`renders correctly 1`] = `
           />
         </svg>
         <span>
-          Add product
+          Add Product
         </span>
       </a>
     </div>
@@ -124,7 +124,7 @@ exports[`renders correctly 1`] = `
           className="p-4 text-left text-xs font-medium text-gray-500 uppercase"
           scope="col"
         >
-          Phone Num
+          Phone Number
         </th>
         <th
           className="p-4 text-left text-xs font-medium text-gray-500 uppercase"
