@@ -18,7 +18,7 @@ function Footer() {
         return null;
     }
     return (
-        <footer className='relative pt-8 pb-6 '>
+        <footer className='hidden sm:block relative pt-8 pb-6 '>
             <div className='container mx-auto px-4'>
                 <div
                     className={`flex ${
@@ -109,7 +109,7 @@ function Footer() {
                                     <li>
                                         <Link
                                             className='text-titleContent hover:text-accent font-semibold block pb-2 text-sm'
-                                            href='/about-us'
+                                            href='/about'
                                         >
                                             {t("About Us")}
                                         </Link>

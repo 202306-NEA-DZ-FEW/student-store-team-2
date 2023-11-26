@@ -35,8 +35,11 @@ export default function ProductCard({ product }) {
     };
 
     return (
-        <Link href={"/products/" + product.pid} className='group w-fit'>
-            <div className='relative rounded-md bg-gray-200  group-hover:opacity-75 overflow-hidden'>
+        <Link
+            href={"/products/" + product.pid}
+            className='group w-fit border border-gray-300/80 shadow-md py-2 px-1 rounded-md pt-1 '
+        >
+            <div className='relative rounded-md bg-gray-200  group-hover:opacity-75 overflow-hidden '>
                 <Image
                     src={product.image[0]}
                     alt={product.name}

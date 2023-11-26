@@ -113,7 +113,7 @@ function CustomForm({ formType }) {
                 className='mx-auto flex flex-col space-y-4 text-sm font-lato font-semibold justify-start items-center sm:items-center mt-6'
             >
                 {formType === "login" && (
-                    <div className='flex flex-col gap-4 p-6'>
+                    <div className='flex flex-col w-10/12 sm:w-7/12 gap-4 p-6'>
                         <div className='relative h-11 w-full'>
                             <input
                                 type='email'
@@ -124,10 +124,10 @@ function CustomForm({ formType }) {
                                 placeholder=' '
                             />
                             <label className='before:content[" "] after:content[" "] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-accent peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-accent peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-accent peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500'>
-                                Email
+                                {t("Email")}
                             </label>
                         </div>
-                        <div className='relative h-11 w-full min-w-[200px]'>
+                        <div className='relative h-11 w-full min-w-3/6'>
                             <input
                                 type='password'
                                 id='password'
@@ -137,11 +137,11 @@ function CustomForm({ formType }) {
                                 placeholder=' '
                             />
                             <label className='before:content[" "] after:content[" "] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-accent peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-accent peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-accent peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500'>
-                                Password
+                                {t("Password")}
                             </label>
                             <Link href='/resetPassword'>
                                 <p className='flex justify-end text-xs font-light hover:text-accent mt-2'>
-                                    Forgot your password?
+                                    {t("Forgot your password?")}
                                 </p>
                             </Link>
                         </div>
@@ -154,7 +154,7 @@ function CustomForm({ formType }) {
                                 >
                                     <input
                                         type='checkbox'
-                                        className='before:content[""] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-bkg before:opacity-0 before:transition-opacity checked:border-accent checked:bg-accent checked:before:bg-accent hover:before:opacity-10'
+                                        className='before:content[""] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-bkg before:opacity-0 before:transition-opacity checked:border-titleContent checked:bg-accent checked:before:bg-bkg hover:before:opacity-10'
                                         id='checkbox'
                                     />
                                     <span className='pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100'>
@@ -178,7 +178,7 @@ function CustomForm({ formType }) {
                                     className='mt-px cursor-pointer select-none font-light text-titleContent'
                                     htmlFor='checkbox'
                                 >
-                                    Remember Me
+                                    {t("Remember Me")}
                                 </label>
                             </div>
                         </div>
@@ -187,8 +187,8 @@ function CustomForm({ formType }) {
 
                 {/* Full Name and Email */}
                 {formType === "registration" && (
-                    <div className='flex items-center flex-col space-y-4  sm:flex sm:items-end sm:justify-start'>
-                        <div className='relative h-11 w-full'>
+                    <div className='flex items-center flex-col sm:flex-row space-y-4 sm:flex sm:items-end sm:justify-start'>
+                        <div className='relative h-11 w-full sm:mr-3'>
                             <input
                                 type='name'
                                 id='fullName'
@@ -225,8 +225,8 @@ function CustomForm({ formType }) {
 
                 {/* Phone Number and Password */}
                 {formType === "registration" && (
-                    <div className='flex items-center flex-col space-y-4 justify-center sm:flex sm:justify-start'>
-                        <div className='relative h-11 w-full min-w-[232px]'>
+                    <div className='flex items-center flex-col sm:flex-row justify-center sm:flex sm:justify-start'>
+                        <div className='relative h-11 w-full min-w-[232px] sm:mr-3'>
                             <input
                                 type='tel'
                                 id='phoneNumber'

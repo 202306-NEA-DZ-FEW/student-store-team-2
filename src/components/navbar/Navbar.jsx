@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useEffect } from "react";
-import { BiMenu, BiMenuAltRight } from "react-icons/bi";
 
 import useTextDirection from "@/hooks/useTextDirection";
 
@@ -27,7 +26,7 @@ export default function Navbar() {
 
     navigation = [
         { name: t("Home"), href: "/" },
-        { name: t("Products"), href: "/products" },
+        { name: t("Products"), href: "/products?page=1" },
         { name: t("About"), href: "/about" },
     ];
 
@@ -38,14 +37,13 @@ export default function Navbar() {
             const scrollPosition = window.scrollY;
             const documentHeight = document.body.scrollHeight;
 
-            // Calculate the first quarter position of the page
-            const firstQuarterPosition = documentHeight / 4;
+            // Calculate the first fifth position of the page
+            const firstFifthPosition = documentHeight / 5;
 
-            // Logic to determine if the user is in the first quarter to end of the page
-            const isInFirstQuarterToEnd =
-                scrollPosition >= firstQuarterPosition;
+            // Logic to determine if the user is in the first fifth to end of the page
+            const isInFirstFifthToEnd = scrollPosition >= firstFifthPosition;
 
-            setIsInMiddleSection(isInFirstQuarterToEnd);
+            setIsInMiddleSection(isInFirstFifthToEnd);
         };
 
         window.addEventListener("scroll", handleScroll);
@@ -69,7 +67,7 @@ export default function Navbar() {
             <>
                 <div className='mx-auto px-2 sm:px-6 lg:px-8 '>
                     <div className='relative flex h-16 items-center justify-between'>
-                        <button
+                        {/* <button
                             onClick={toggleMobileMenu}
                             className=' sm:hidden inline-flex items-center justify-center rounded-md p-2  hover:bg-accent2 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white transition-all duration-300 ease-in-out'
                         >
@@ -84,7 +82,7 @@ export default function Navbar() {
                                     aria-hidden='true'
                                 />
                             )}
-                        </button>
+                        </button> */}
 
                         <div className='flex flex-1 items-center justify-between'>
                             <Link href='/'>
@@ -101,8 +99,8 @@ export default function Navbar() {
                                 </div>
                             </Link>
 
-                            <div className='hidden md:block'>
-                                <div className=' flex-1  flex space-x-4 items-center '>
+                            <div className=''>
+                                <div className=' flex-1 hidden sm:flex space-x-4 items-center '>
                                     {navigation.map((item) => (
                                         <Link key={item.name} href={item.href}>
                                             <div
@@ -114,10 +112,8 @@ export default function Navbar() {
                                     ))}
                                 </div>
                             </div>
-                            <div className='flex spacing-x-5 items-center md:hidden '>
+                            <div className='flex spacing-x-5 items-center md:hidden mr-4'>
                                 <NotificationsDropdown />
-
-                                <UserStatus />
                                 <Searchbar />
                             </div>
                             <div className='hidden md:block'>
