@@ -6,6 +6,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { BiMenu, BiMenuAltRight } from "react-icons/bi";
 
+import useTextDirection from "@/hooks/useTextDirection";
+
 import MobileSidebar from "../mobileSidebar/MobileSidebar";
 import NotificationsDropdown from "../notifications/NotificationsDropDown";
 import Portal from "../portal/Portal";
@@ -15,7 +17,7 @@ import UserStatus from "../userStatus/UserStatus";
 export default function Navbar() {
     const t = useTranslations("Index");
     const pathname = usePathname();
-
+    const direction = useTextDirection();
     const [isOpen, setIsOpen] = useState(false);
     const toggleMobileMenu = () => {
         setIsOpen(!isOpen);
@@ -34,18 +36,16 @@ export default function Navbar() {
     useEffect(() => {
         const handleScroll = () => {
             const scrollPosition = window.scrollY;
-            const windowHeight = window.innerHeight;
             const documentHeight = document.body.scrollHeight;
 
-            // Calculate the middle section's approximate position
-            const middleSectionPosition = documentHeight / 2;
+            // Calculate the first quarter position of the page
+            const firstQuarterPosition = documentHeight / 4;
 
-            // Logic to determine if the user is in the middle section
-            const isInMiddle =
-                scrollPosition >= middleSectionPosition - windowHeight / 2 &&
-                scrollPosition <= middleSectionPosition + windowHeight / 2;
+            // Logic to determine if the user is in the first quarter to end of the page
+            const isInFirstQuarterToEnd =
+                scrollPosition >= firstQuarterPosition;
 
-            setIsInMiddleSection(isInMiddle);
+            setIsInMiddleSection(isInFirstQuarterToEnd);
         };
 
         window.addEventListener("scroll", handleScroll);
@@ -89,7 +89,13 @@ export default function Navbar() {
                         <div className='flex flex-1 items-center justify-between'>
                             <Link href='/'>
                                 <div className='flex flex-shrink-0 items-center  w-1/3'>
-                                    <h1 className=' tracking-widest font-lato font-semibold text-2xl px-5'>
+                                    <h1
+                                        className={`${
+                                            direction === "ltr"
+                                                ? "tracking-widest"
+                                                : ""
+                                        } font-lato font-semibold text-2xl px-5`}
+                                    >
                                         {t("Title")}.
                                     </h1>
                                 </div>

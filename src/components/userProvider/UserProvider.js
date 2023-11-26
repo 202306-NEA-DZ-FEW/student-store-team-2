@@ -28,10 +28,14 @@ export function UserProvider({ children, getCurrentUser }) {
                     await setUserData(user.user_metadata);
                     setLoading(false);
                 } else {
+                    await new Promise((resolve) => setTimeout(resolve, 1000));
+
                     setLoading(false);
                 }
             } catch (error) {
                 // Handle errors
+                setLoading(false);
+                throw error;
             }
         };
 

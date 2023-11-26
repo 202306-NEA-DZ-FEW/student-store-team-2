@@ -48,9 +48,9 @@ exports[`renders correctly 1`] = `
             className="flex flex-shrink-0 items-center  w-1/3"
           >
             <h1
-              className=" tracking-widest font-lato font-semibold text-2xl px-5"
+              className="tracking-widest font-lato font-semibold text-2xl px-5"
             >
-              MiniStore
+              LaCité
               .
             </h1>
           </div>
@@ -135,7 +135,7 @@ exports[`renders correctly 1`] = `
               className="flex sm:relative mx-auto"
             >
               <svg
-                className="sm:mr-4 z-10 cursor-pointer my-auto h-6 w-6 hover:text-accent false text-black"
+                className="sm:mr-4 z-10 cursor-pointer my-auto h-6 w-6 hover:text-accent false text-inherit"
                 fill="currentColor"
                 height="1em"
                 onClick={[Function]}
@@ -171,7 +171,7 @@ exports[`renders correctly 1`] = `
                 className="flex sm:relative mx-auto"
               >
                 <svg
-                  className="sm:mr-4 z-10 cursor-pointer my-auto h-6 w-6 hover:text-accent false text-black"
+                  className="sm:mr-4 z-10 cursor-pointer my-auto h-6 w-6 hover:text-accent false text-inherit"
                   fill="currentColor"
                   height="1em"
                   onClick={[Function]}

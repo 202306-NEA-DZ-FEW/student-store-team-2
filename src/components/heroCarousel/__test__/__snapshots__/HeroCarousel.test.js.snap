@@ -56,7 +56,7 @@ exports[`renders correctly 1`] = `
         <h1
           className="title text-6xl sm:text-8xl w-96 bold font-sans  uppercase"
         >
-          Sports Equipements
+          Sports Equipments
         </h1>
         <p
           className="des mt-4 w-96 sm:w-[600px]"
@@ -211,7 +211,7 @@ exports[`renders correctly 1`] = `
       onClick={[Function]}
     >
       <svg
-        className="text-white group-hover:text-gray-500 w-7 h-7"
+        className="text-white w-7 h-7 group-hover:text-gray-500"
         fill="currentColor"
         height="1em"
         stroke="currentColor"

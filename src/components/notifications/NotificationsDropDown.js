@@ -57,7 +57,7 @@ function NotificationsDropdown() {
 
         // Listen to changes on the notifications table filtered by the user ID
 
-        if (userData) {
+        if (user) {
             fetchData();
 
             const handleInserts = (payload) => {

@@ -16,10 +16,15 @@ export function generateStaticParams() {
     return [{ locale: "en" }, { locale: "ar" }];
 }
 
+import { ToastContainer } from "react-toastify";
+
 import "./globals.css";
 import "./carousel.css";
 import "./loader.css";
+import "react-toastify/dist/ReactToastify.css";
 
+import Footer from "@/components/footer/Footer";
+import MobileNavigation from "@/components/mobileNavigation/MobileNavigation";
 import { UserProvider } from "@/components/userProvider/UserProvider";
 
 import Navbar from "../../components/navbar/Navbar";
@@ -74,7 +79,11 @@ export default async function RootLayout({ children, params: { locale } }) {
     }
 
     return (
-        <html lang={locale} className='scroll-smooth	'>
+        <html
+            lang={locale}
+            className='scroll-smooth'
+            dir={locale === "ar" ? "rtl" : "ltr"}
+        >
             <body
                 className={`"relative ${
                     locale === "ar" ? notoKufi.variable : ""
@@ -92,11 +101,14 @@ export default async function RootLayout({ children, params: { locale } }) {
                     <NextIntlClientProvider
                         locale={locale}
                         messages={messages}
-                        className='relative flex flex-col h-screen'
+                        className='relative flex flex-col'
                     >
                         <Navbar />
                         {children}
                         {/* <Footer /> */}
+                        <ToastContainer />
+                        <MobileNavigation />
+                        <Footer />
                     </NextIntlClientProvider>
                 </UserProvider>
             </body>

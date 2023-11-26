@@ -3,12 +3,15 @@ import { useTranslations } from "next-intl";
 import React from "react";
 import { BiCollapseAlt } from "react-icons/bi";
 
+import useTextDirection from "@/hooks/useTextDirection";
+
 export default function MobileSidebar({
     navigation,
     toggleMobileMenu,
     isOpen,
 }) {
     const t = useTranslations("Index");
+    const direction = useTextDirection();
 
     async function handleSearch(e) {
         if (e.keyCode === 13) {
@@ -27,15 +30,25 @@ export default function MobileSidebar({
             >
                 <Link href='/'>
                     <div className='flex flex-shrink-0 items-center'>
-                        <h1 className='tracking-widest font-lato font-semibold text-2xl px-5'>
+                        <h1
+                            className={`${
+                                direction === "ltr" ? "tracking-widest" : ""
+                            }  font-lato font-semibold text-2xl px-5`}
+                        >
                             {t("Title")}
                         </h1>
                     </div>
                 </Link>
-                <div className='absolute inset-y-0 right-0 flex items-center sm:hidden '>
+                <div
+                    className={`absolute inset-y-0 flex items-center sm:hidden ${
+                        direction === "ltr" ? "right-0" : "left-0"
+                    }   `}
+                >
                     <button
                         onClick={toggleMobileMenu}
-                        className='absolute right-0 items-center justify-center rounded-md p-2 hover:bg-accent hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'
+                        className={`absolute ${
+                            direction === "ltr" ? "right-0" : "left-0"
+                        }  items-center justify-center rounded-md p-2 hover:bg-accent hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white`}
                     >
                         <BiCollapseAlt
                             className='block h-8 w-8'

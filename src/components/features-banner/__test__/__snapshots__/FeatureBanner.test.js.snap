@@ -2,214 +2,198 @@
 
 exports[`renders correctly 1`] = `
 <div
-  className="flex flex-wrap md:flex-no-wrap  justify-center sm:gap-y-6 sm:gap-x-2 md:gap-x-0 md:space-x-6 mt-20 pt-4"
+  className="flex flex-col mt-32"
 >
   <div
-    className="flex flex-row space-x-2 mb-5 text-base "
-    style={
-      Object {
-        "width": "283px",
-      }
-    }
+    className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center font-lato"
   >
-    <svg
-      fill="none"
-      height="27"
-      viewBox="0 0 25 27"
-      width="25"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M3.83501 25.9993C5.40075 25.9993 6.67003 24.7557 6.67003 23.2216C6.67003 21.6875 5.40075 20.4438 3.83501 20.4438C2.26928 20.4438 1 21.6875 1 23.2216C1 24.7557 2.26928 25.9993 3.83501 25.9993Z"
-        stroke="#72AEC8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-      />
-      <path
-        d="M19.4275 25.9993C20.9933 25.9993 22.2626 24.7557 22.2626 23.2216C22.2626 21.6875 20.9933 20.4438 19.4275 20.4438C17.8618 20.4438 16.5925 21.6875 16.5925 23.2216C16.5925 24.7557 17.8618 25.9993 19.4275 25.9993Z"
-        stroke="#72AEC8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-      />
-      <path
-        d="M19.4276 20.4441H3.83501V1H1"
-        stroke="#72AEC8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-      />
-      <path
-        d="M3.83496 3.77734L23.6801 5.16621L22.2625 14.8883H3.83496"
-        stroke="#72AEC8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-      />
-    </svg>
     <div
-      className=" "
+      className="flex items-start rounded-xl bg-white p-4 shadow-lg hover:scale-105"
+      style={
+        Object {
+          "width": "283px",
+        }
+      }
     >
-      <p
-        className="uppercase text-12 md:text-25 "
+      <div
+        className="flex  mx-4 p-1  h-12 w-12 items-center justify-center rounded-full border border-blue-100 bg-blue-50"
       >
-        Free delivery
-         
-      </p>
-      <p
-        className="text-12 md:text-16 text-content "
+        <svg
+          className="h-6 w-6  text-blue-400"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          strokeWidth="0"
+          style={
+            Object {
+              "color": undefined,
+            }
+          }
+          viewBox="0 0 512 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M80 368H16a16 16 0 0 0-16 16v64a16 16 0 0 0 16 16h64a16 16 0 0 0 16-16v-64a16 16 0 0 0-16-16zm0-320H16A16 16 0 0 0 0 64v64a16 16 0 0 0 16 16h64a16 16 0 0 0 16-16V64a16 16 0 0 0-16-16zm0 160H16a16 16 0 0 0-16 16v64a16 16 0 0 0 16 16h64a16 16 0 0 0 16-16v-64a16 16 0 0 0-16-16zm416 176H176a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h320a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0-320H176a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h320a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16zm0 160H176a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h320a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16z"
+          />
+        </svg>
+      </div>
+      <div
+        className="ml-4"
       >
-         
-        You can receive your order without incurring any additional shipping costs
-      </p>
+        <p
+          className="font-semibold uppercase text-12 md:text-25"
+        >
+          Comprehensive Catalog
+        </p>
+        <p
+          className="mt-2 text-sm text-gray-500"
+        >
+          Access a diverse range of academic essentials for various student needs.
+        </p>
+      </div>
     </div>
-  </div>
-  <div
-    className="flex flex-row space-x-2 mb-5 "
-    style={
-      Object {
-        "width": "283px",
-      }
-    }
-  >
-    <svg
-      fill="none"
-      height="28"
-      viewBox="0 0 28 28"
-      width="28"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M14.3645 18.2502C19.2262 18.2502 23.1675 14.3886 23.1675 9.6251C23.1675 4.86159 19.2262 1 14.3645 1C9.50274 1 5.56152 4.86159 5.56152 9.6251C5.56152 14.3886 9.50274 18.2502 14.3645 18.2502Z"
-        stroke="#72AEC8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-      />
-      <path
-        d="M14.3677 18.2544L19.356 26.7214L21.7005 22.0739L26.9794 22.4074L21.991 13.9419"
-        stroke="#72AEC8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-      />
-      <path
-        d="M6.73835 13.9419L1.75 22.4089L7.02884 22.0739L9.37337 26.72L14.3617 18.2544"
-        stroke="#72AEC8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-      />
-    </svg>
     <div
-      className=" "
+      className="flex items-start rounded-xl bg-white p-4 shadow-lg hover:scale-105"
+      style={
+        Object {
+          "width": "283px",
+        }
+      }
     >
-      <p
-        className="uppercase text-12 md:text-25 "
+      <div
+        className="flex mx-4 p-1 h-12 w-12 items-center justify-center rounded-full border border-orange-100 bg-orange-50"
       >
-        qualite guarantee
-      </p>
-      <p
-        className="text-12 md:text-16 text-content "
+        <svg
+          className="h-6 w-6 text-orange-400"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          strokeWidth="0"
+          style={
+            Object {
+              "color": undefined,
+            }
+          }
+          viewBox="0 0 448 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M352 160v-32C352 57.42 294.579 0 224 0 153.42 0 96 57.42 96 128v32H0v272c0 44.183 35.817 80 80 80h288c44.183 0 80-35.817 80-80V160h-96zm-192-32c0-35.29 28.71-64 64-64s64 28.71 64 64v32H160v-32zm160 120c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24zm-192 0c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24z"
+          />
+        </svg>
+      </div>
+      <div
+        className="ml-4"
       >
-         
-        Our products or services meet high standards and perform as promised.
-      </p>
+        <p
+          className="font-semibold uppercase text-12 md:text-25"
+        >
+          Buy, Sell, Borrow
+        </p>
+        <p
+          className="mt-2 text-sm text-gray-500"
+        >
+          Seamlessly buy, sell, or borrow items for flexible access to materials.
+        </p>
+      </div>
     </div>
-  </div>
-  <div
-    className="flex flex-row space-x-2 mb-5 "
-    style={
-      Object {
-        "width": "283px",
-      }
-    }
-  >
-    <svg
-      fill="none"
-      height="27"
-      viewBox="0 0 29 27"
-      width="29"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M13.4708 1L26.6567 13.9195C27.0171 14.3143 27.2163 14.8253 27.2163 15.355C27.2163 15.8846 27.0171 16.3957 26.6567 16.7905L17.8661 25.4035C17.4632 25.7566 16.9416 25.9518 16.401 25.9518C15.8604 25.9518 15.3388 25.7566 14.9359 25.4035L1.75 12.484V6.742C1.75 5.21913 2.36743 3.75863 3.46647 2.68179C4.56551 1.60496 6.05613 1 7.61041 1H13.4708Z"
-        stroke="#72AEC8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-      />
-      <path
-        d="M10.5406 12.4842C12.1589 12.4842 13.4708 11.1988 13.4708 9.61319C13.4708 8.02758 12.1589 6.74219 10.5406 6.74219C8.92225 6.74219 7.61035 8.02758 7.61035 9.61319C7.61035 11.1988 8.92225 12.4842 10.5406 12.4842Z"
-        stroke="#72AEC8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-      />
-    </svg>
     <div
-      className=" "
+      className="flex items-start rounded-xl bg-white p-4 shadow-lg hover:scale-105"
+      style={
+        Object {
+          "width": "283px",
+        }
+      }
     >
-      <p
-        className="uppercase text-12 md:text-25 "
+      <div
+        className="flex mx-4 p-1 h-12 w-12 items-center justify-center rounded-full border border-green-100 bg-green-50"
       >
-        daily offers
-         
-      </p>
-      <p
-        className="text-12 md:text-16 text-content "
+        <svg
+          className="h-6 w-6 text-green-400"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          strokeWidth="0"
+          style={
+            Object {
+              "color": undefined,
+            }
+          }
+          viewBox="0 0 496 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 448c-110.3 0-200-89.7-200-200S137.7 56 248 56s200 89.7 200 200-89.7 200-200 200zm-80-216c17.7 0 32-14.3 32-32s-14.3-32-32-32-32 14.3-32 32 14.3 32 32 32zm160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32-32 14.3-32 32 14.3 32 32 32zm4 72.6c-20.8 25-51.5 39.4-84 39.4s-63.2-14.3-84-39.4c-8.5-10.2-23.7-11.5-33.8-3.1-10.2 8.5-11.5 23.6-3.1 33.8 30 36 74.1 56.6 120.9 56.6s90.9-20.6 120.9-56.6c8.5-10.2 7.1-25.3-3.1-33.8-10.1-8.4-25.3-7.1-33.8 3.1z"
+          />
+        </svg>
+      </div>
+      <div
+        className="ml-4"
       >
-         
-        Exclusive discounts and promotions on a daily basis
-      </p>
+        <p
+          className="font-semibold uppercase text-12 md:text-25"
+        >
+          User-Friendly Experience
+           
+        </p>
+        <p
+          className="mt-2 text-sm text-gray-500"
+        >
+           
+          Enjoy easy navigation and quick access to academic resources.
+        </p>
+      </div>
     </div>
-  </div>
-  <div
-    className="flex flex-row space-x-2 mb-5 "
-    style={
-      Object {
-        "width": "283px",
-      }
-    }
-  >
-    <svg
-      fill="none"
-      height="27"
-      viewBox="0 0 28 27"
-      width="28"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M9.98706 13.4999L12.8221 16.2777L18.4922 10.7222"
-        stroke="#72AEC8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-      />
-      <path
-        d="M14.2395 1C17.5506 3.87024 21.8722 5.36468 26.2885 5.16667C26.9315 7.30974 27.1283 9.55759 26.8671 11.7766C26.6059 13.9957 25.8921 16.1407 24.7681 18.0841C23.6441 20.0275 22.1329 21.7297 20.3242 23.0896C18.5155 24.4494 16.4463 25.4392 14.2395 26C12.0327 25.4392 9.96353 24.4494 8.15485 23.0896C6.34618 21.7297 4.83495 20.0275 3.71097 18.0841C2.58699 16.1407 1.8732 13.9957 1.61201 11.7766C1.35081 9.55759 1.54755 7.30974 2.19053 5.16667C6.60689 5.36468 10.9284 3.87024 14.2395 1"
-        stroke="#72AEC8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-      />
-    </svg>
     <div
-      className=" "
+      className="flex mx-4 p-1 items-start rounded-xl bg-white p-4 shadow-lg hover:scale-105"
+      style={
+        Object {
+          "width": "283px",
+        }
+      }
     >
-      <p
-        className="uppercase text-12 md:text-25 "
+      <div
+        className="flex h-12 w-12 items-center justify-center rounded-full border border-red-100 bg-red-50"
       >
-        100% secure payement
-         
-      </p>
-      <p
-        className="text-12 md:text-16 text-content "
+        <svg
+          className="h-6 w-6 text-red-400"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          strokeWidth="0"
+          style={
+            Object {
+              "color": undefined,
+            }
+          }
+          viewBox="0 0 512 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M104 224H24c-13.255 0-24 10.745-24 24v240c0 13.255 10.745 24 24 24h80c13.255 0 24-10.745 24-24V248c0-13.255-10.745-24-24-24zM64 472c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24zM384 81.452c0 42.416-25.97 66.208-33.277 94.548h101.723c33.397 0 59.397 27.746 59.553 58.098.084 17.938-7.546 37.249-19.439 49.197l-.11.11c9.836 23.337 8.237 56.037-9.308 79.469 8.681 25.895-.069 57.704-16.382 74.757 4.298 17.598 2.244 32.575-6.148 44.632C440.202 511.587 389.616 512 346.839 512l-2.845-.001c-48.287-.017-87.806-17.598-119.56-31.725-15.957-7.099-36.821-15.887-52.651-16.178-6.54-.12-11.783-5.457-11.783-11.998v-213.77c0-3.2 1.282-6.271 3.558-8.521 39.614-39.144 56.648-80.587 89.117-113.111 14.804-14.832 20.188-37.236 25.393-58.902C282.515 39.293 291.817 0 312 0c24 0 72 8 72 81.452z"
+          />
+        </svg>
+      </div>
+      <div
+        className="ml-4"
       >
-         
-        Your financial information is protected and your transactions are safe from unauthorized access
-      </p>
+        <p
+          className="font-semibold uppercase text-12 md:text-25"
+        >
+          Community Support Initiative
+           
+        </p>
+        <p
+          className="mt-2 text-sm text-gray-500"
+        >
+           
+          Engage in supporting fellow students through dedicated programs, fostering a sense of community.
+        </p>
+      </div>
     </div>
   </div>
 </div>
