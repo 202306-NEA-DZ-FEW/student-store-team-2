@@ -33,7 +33,6 @@ exports[`render correnctly 1`] = `
     <p
       className="text-sm font-medium"
     >
-       
       Phone Number Not Available
     </p>
   </div>

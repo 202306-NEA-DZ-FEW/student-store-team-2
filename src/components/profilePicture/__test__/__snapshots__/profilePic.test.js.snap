@@ -2,7 +2,7 @@
 
 exports[`render correctly 1`] = `
 <div
-  className="w-16 h-16 bg-sky-200 border border-gray-500 rounded-full flex items-center justify-center drop-shadow "
+  className="w-16 h-16 border-gray-500 rounded-full flex items-center justify-center drop-shadow "
   style={
     Object {
       "background": "lavender",

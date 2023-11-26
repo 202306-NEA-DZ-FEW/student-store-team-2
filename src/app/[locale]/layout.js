@@ -16,9 +16,12 @@ export function generateStaticParams() {
     return [{ locale: "en" }, { locale: "ar" }];
 }
 
+import { ToastContainer } from "react-toastify";
+
 import "./globals.css";
 import "./carousel.css";
 import "./loader.css";
+import "react-toastify/dist/ReactToastify.css";
 
 import { UserProvider } from "@/components/userProvider/UserProvider";
 
@@ -101,6 +104,8 @@ export default async function RootLayout({ children, params: { locale } }) {
                     >
                         <Navbar />
                         {children}
+                        <ToastContainer />
+
                         <Footer />
                     </NextIntlClientProvider>
                 </UserProvider>

@@ -2,7 +2,6 @@
 import { useTranslations } from "next-intl";
 import React, { useState } from "react";
 
-import AdditionalInfoTab from "./additionalInfoTab/AdditionalInfoTab";
 import LocationTab from "./locationTab/LocationTab";
 import MobileTabs from "../mobileTabs/MobileTabs";
 
@@ -24,7 +23,8 @@ function TabsComponent({ coord }) {
     const [selectedTabIndex, setSelectedTabIndex] = useState(0);
 
     const components = [
-        <AdditionalInfoTab key={0} />,
+
+        // <AdditionalInfoTab key={0} items={tabs} />,
         <LocationTab key={1} coord={coord} />,
     ];
 
