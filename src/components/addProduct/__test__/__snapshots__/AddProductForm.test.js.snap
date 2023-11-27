@@ -51,36 +51,32 @@ Array [
         type="text"
         value=""
       />
-      <div
-        className="flex justify-center mx-auto space-x-2 text-sm"
+      <select
+        className="border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2 uppercase"
+        onChange={[Function]}
+        required={true}
+        value=""
       >
-        <select
-          className="border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2 uppercase"
-          onChange={[Function]}
-          required={true}
+        <option
           value=""
         >
-          <option
-            value=""
-          >
-            Category
-          </option>
-          <option>
-            Index
-          </option>
-        </select>
-        <div
-          className="relative mb-4"
-        >
-          <input
-            className="border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2 uppercase"
-            onChange={[Function]}
-            placeholder="Enter Location"
-            required={true}
-            type="text"
-            value=""
-          />
-        </div>
+          Category
+        </option>
+        <option>
+          Index
+        </option>
+      </select>
+      <div
+        className="relative mb-4"
+      >
+        <input
+          className="border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-full uppercase"
+          onChange={[Function]}
+          placeholder="Enter Location"
+          required={true}
+          type="text"
+          value=""
+        />
       </div>
       <textarea
         className="w-full h-48 border border-accent/50  placeholder:text-accent/50 px-4  rounded-md placeholder:flex placeholder:items-center placeholder:justify-center placeholder:text-center placeholder:text-md"

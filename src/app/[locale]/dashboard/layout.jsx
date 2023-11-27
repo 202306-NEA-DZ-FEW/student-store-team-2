@@ -10,7 +10,7 @@ function layout({ children }) {
             <div className='flex leading-6 tracking-wider mb-20'>
                 <NavLinks />
 
-                <div className='flex-1 flex-col justify-center p-4 mt-40   sm:ml-64'>
+                <div className='flex-1 max-w-screen overflow-scroll sm:overflow-hidden flex-col justify-center p-4 mt-40   sm:ml-64'>
                     {children}
                 </div>
 

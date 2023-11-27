@@ -43,8 +43,11 @@ const AddProductForm = ({ className, categories }) => {
             ]);
         }
     }, []);
-    /* The above code is defining a function called `onDrop` using the `useCallback` hook in React. This
-  function takes in an array of `acceptedFiles` as a parameter. */
+
+    const handleLocationSelect = (lat, lon) => {
+        setLatitude(lat);
+        setLongitude(lon);
+    };
 
     /**
      * The `removeFile` function removes a file from a list of files based on its name.
@@ -104,7 +107,7 @@ const AddProductForm = ({ className, categories }) => {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Prevents the default form submission
+        e.preventDefault();
 
         setLoading(true);
         try {
@@ -175,7 +178,7 @@ const AddProductForm = ({ className, categories }) => {
 
         const additionalInfoData = {
             pid, // Replace 'productId' with the actual product ID
-            title: name,
+            name,
             description,
             additional_information: additionalInfo,
         };
@@ -210,6 +213,7 @@ const AddProductForm = ({ className, categories }) => {
             </button>
         </>
     );
+
     const renderPriceInput = () => {
         if (type === "for_sale") {
             return (
@@ -232,12 +236,6 @@ const AddProductForm = ({ className, categories }) => {
                 />
             );
         }
-    };
-
-    const handleLocationSelect = (lat, lon) => {
-        // Define the logic for handling the selected location here
-        setLatitude(lat);
-        setLongitude(lon);
     };
 
     return (
@@ -304,29 +302,27 @@ const AddProductForm = ({ className, categories }) => {
                             required
                         />
 
-                        <div className='flex justify-center mx-auto space-x-2 text-sm'>
-                            <select
-                                value={category}
-                                onChange={(e) =>
-                                    setCategory(parseInt(e.target.value, 10))
-                                }
-                                className='border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2 uppercase'
-                                required
-                            >
-                                <option value=''>{t("Category")}</option>
-                                {categories.map((cat) => (
-                                    <option key={cat.id} value={cat.id}>
-                                        {t(cat.category_name)}
-                                    </option>
-                                ))}
-                            </select>
-                            <LocationInput
-                                location={location}
-                                setLocation={setLocation} // Assuming you have a state setter function for location
-                                onLocationSelect={handleLocationSelect}
-                                styling='border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2 uppercase'
-                            />
-                        </div>
+                        <select
+                            value={category}
+                            onChange={(e) =>
+                                setCategory(parseInt(e.target.value, 10))
+                            }
+                            className='border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2 uppercase'
+                            required
+                        >
+                            <option value=''>{t("Category")}</option>
+                            {categories.map((cat) => (
+                                <option key={cat.id} value={cat.id}>
+                                    {t(cat.category_name)}
+                                </option>
+                            ))}
+                        </select>
+                        <LocationInput
+                            location={location}
+                            setLocation={setLocation} // Assuming you have a state setter function for location
+                            onLocationSelect={handleLocationSelect}
+                            styling='border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-full uppercase'
+                        />
 
                         <textarea
                             placeholder={t("description")}
