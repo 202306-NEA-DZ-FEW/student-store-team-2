@@ -18,6 +18,8 @@ import { v4 as uuidv4 } from "uuid";
  * @returns The function `createSupabaseServerClient` is returning a promise that resolves to a
  * Supabase server client.
  */
+import { getCurrentUser } from "./_supabaseAuth";
+
 export default async function createSupabaseServerClient() {
     const cookieStore = cookies();
 
@@ -613,6 +615,74 @@ export const getCoordinates = async (productId) => {
  * @returns a boolean value. It returns `true` if there is at least one purchase record in the
  * "purchases" table that matches the given `productId` and `userId`, and `false` otherwise.
  */
+// get all user connections
+
+export const getUserConnections = async () => {
+    const { user } = await getCurrentUser();
+
+    const supabase = await createSupabaseServerClient();
+    const { data: data1, error: error1 } = await supabase.rpc("get_users_ids", {
+        p_user_id: user.id,
+    });
+
+    if (data1) {
+        const connectionIds = data1.map((user) => user.userid);
+
+        // get connections data
+        const { data: data2, error: error2 } = await supabase
+            .from("users_view")
+            .select("*")
+            .in("id", connectionIds);
+        return { name: user.user_metadata.full_name, connections: data2 };
+    }
+
+    return { name: user.user_metadata.full_name, connections: [] };
+};
+
+// search for exisitng room if not create one
+
+export const createOrGetRoom = async (user1, user2) => {
+    const supabase = await createSupabaseServerClient();
+
+    const { data, error } = await supabase
+        .from("rooms")
+        .select("*")
+        .or(
+            `and(user1.eq.${user1},user2.eq.${user2}),and(user1.eq.${user2},user2.eq.${user1}))`
+        );
+    if (data?.length > 0) return data[0].id;
+    else {
+        const { data, error } = await supabase
+            .from("rooms")
+            .insert({ user1, user2 })
+            .select();
+
+        return data[0].id;
+    }
+};
+
+export const insertNewMessage = async (userId, content, roomId) => {
+    const supabase = await createSupabaseServerClient();
+
+    const { data, error } = await supabase
+        .from("messages")
+        .insert({ userId, content, roomId })
+        .select();
+
+    return data;
+};
+
+// get message between two users
+
+export const getRoomMessages = async (roomId) => {
+    const supabase = await createSupabaseServerClient();
+    const { data, error } = await supabase
+        .from("messages")
+        .select("")
+        .eq("roomId", roomId);
+
+    return data;
+};
 export const hasPurchased = async (productId, userId) => {
     const supabase = await createSupabaseServerClient();
 

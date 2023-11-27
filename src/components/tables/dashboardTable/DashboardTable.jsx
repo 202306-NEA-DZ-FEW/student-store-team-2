@@ -147,7 +147,15 @@ function DashboardTableRow({ item, type }) {
                 </div>
             </td>
             <td className='p-4 whitespace-nowrap text-base font-medium text-gray-900'>
-                <BiMessageSquareDots className='w-8 h-8' />
+                {type === "borrowings" || type === "purchases" ? (
+                    <Link href={"inbox/" + item?.sender}>
+                        <BiMessageSquareDots className='w-8 h-8' />
+                    </Link>
+                ) : (
+                    <Link href={"inbox/" + item?.receiver}>
+                        <BiMessageSquareDots className='w-8 h-8' />
+                    </Link>
+                )}
             </td>
             {item?.borrow_period && (
                 <td className='p-4 whitespace-nowrap text-base font-medium text-gray-900'>
