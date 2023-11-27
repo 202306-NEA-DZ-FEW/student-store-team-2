@@ -1,33 +1,16 @@
 import { notFound } from "next/navigation";
 
-import { getCoordinates } from "@/lib/supabase";
+import { getAdditionalInfo, getCoordinates } from "@/lib/supabase";
 import { getProductWithPrice, getUserProfile } from "@/lib/supabase";
 
 import ProductDisplay from "@/components/product-display/ProductDisplay";
 import ProductDetailSection from "@/components/productDetailsSection/ProductDetailSection";
 import TabsComponent from "@/components/tabs/TabsComponent";
+import dynamic from "next/dynamic";
 
-// const DynamicMap = dynamic(() => import("@/components/map/Map"), {
-//     ssr: false,
-// });
-
-// const user = {
-//     first_name: "Mohammed",
-//     last_name: "Bennaceur",
-//     birth_date: "29 octobre 2000",
-//     gender: "male",
-//     email: "bennaceurm@gmail.com",
-//     phoneNumber: "777112233",
-//     address: {
-//         building: "villa N°15",
-//         street: "Boulvard des martyres",
-//         city: "Ghazaouat",
-//         state: "Tlemcen",
-//     },
-//     institution: "Abou Bekr Belkaid University of Tlemcen",
-//     profile_pic:
-//         "https://images.unsplash.com/photo-1600486913747-55e5470d6f40?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-// };
+const DynamicMap = dynamic(() => import("@/components/map/Map"), {
+    ssr: false,
+});
 
 // const commentData = {
 //     1: {
@@ -58,23 +41,19 @@ import TabsComponent from "@/components/tabs/TabsComponent";
 //         },
 //     },
 // };
-
 const SingleProductPage = async ({ params }) => {
     // const categories = await getCategories(params.category);
     // console.log("categories", categories);
 
     let coordinatesArray = [36.77326479858625, 3.059852057256325]; // Default coordinates
-
     try {
         const location = await getCoordinates(params.id);
 
         // Check if location data exists
         if (location && location.length > 0) {
             const locationString = location[0].location;
-
             // Parsing the 'location' string into a JavaScript object
             const locationObject = JSON.parse(locationString);
-
             // Accessing the latitude and longitude values
             const latitude = locationObject.lat;
             const longitude = locationObject.long;
@@ -96,15 +75,10 @@ const SingleProductPage = async ({ params }) => {
     }
 
     const userData = await getUserProfile(productData.uid);
-    const sections = [
-        // {
-        //     title: "Additionnal Information",
-        //     content: productData.description,
-        // },
-        {
-            title: "Location",
-        },
-    ];
+
+    const additional_info = await getAdditionalInfo(params.id);
+
+    const tabsTitle = ["Additionnal Information", "Location"];
 
     return (
         <div>
@@ -125,7 +99,11 @@ const SingleProductPage = async ({ params }) => {
             {/* <DynamicMap /> */}
 
             <div className='m-5 py-5 flex justify-center items-center'>
-                <TabsComponent tabs={sections} coord={coordinatesArray} />
+                <TabsComponent
+                    tabs={tabsTitle}
+                    coord={coordinatesArray}
+                    additional_info={additional_info}
+                />
             </div>
             {/* <Comment userData={user} comments={commentData} reply={replyData} /> */}
         </div>

@@ -8,9 +8,11 @@ const MobileTabs = ({ tabs, components, selectedTabIndex, handleTabClick }) => {
                     {components.map((tab, index) => (
                         <details className='group' key={index}>
                             <summary className='flex border-2 font-roboto rounded-md justify-between items-center font-medium cursor-pointer pl-4 list-none h-20'>
-                                <span> {tabs[index].title}</span>
+                                <span> {tabs[index]}</span>
                                 <span
-                                    onClick={() => handleTabClick(index)}
+                                    onClick={() =>
+                                        handleTabClick(selectedTabIndex)
+                                    }
                                     className='transition group-open:rotate-180'
                                 >
                                     <svg
