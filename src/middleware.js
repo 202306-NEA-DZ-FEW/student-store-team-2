@@ -13,8 +13,8 @@ import { supabseMiddleware } from "./utils/supabase/middleware";
 
 const intlMiddleware = createMiddleware({
     locales: ["en", "ar"],
-
-    defaultLocale: "ar",
+    localeDetection: true,
+    defaultLocale: "en",
 });
 
 export async function middleware(request) {

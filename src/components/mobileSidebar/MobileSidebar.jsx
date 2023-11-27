@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import React from "react";
 import { BiCollapseAlt } from "react-icons/bi";
 import { CiLogin, CiLogout } from "react-icons/ci";
 import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
@@ -104,7 +103,7 @@ export default function MobileSidebar({ toggleMobileMenu, isOpen }) {
                 <div className='space-y-1 mt-5 px-2 pt-2 pb-3 flex flex-col justify-start'>
                     <Link
                         href='/sign-in'
-                        onClick={handleSignOutUser}
+                        onClick={toggleMobileMenu}
                         className='hover:bg-accent hover:text-white rounded-md
                         px-3 py-2 text-xl font-medium tracking-widest'
                     >
@@ -147,15 +146,6 @@ export default function MobileSidebar({ toggleMobileMenu, isOpen }) {
                                 {t("Donate")}
                             </Link>
                         </li>
-                        <li>
-                            <a
-                                onClick={handleSignOutUser}
-                                className='text-titleContent hover:text-accent font-semibold block pb-2 '
-                                href='https://www.github.com/creativetimofficial?ref=njs-profile'
-                            >
-                                {t("Donate")}
-                            </a>
-                        </li>
                     </ul>
                     <span className='block uppercase   font-semibold mb-2'>
                         {t("About LACITÉ")}
@@ -163,7 +153,7 @@ export default function MobileSidebar({ toggleMobileMenu, isOpen }) {
                     <ul className='list-unstyled'>
                         <li>
                             <Link
-                                onClick={handleSignOutUser}
+                                onClick={toggleMobileMenu}
                                 href='https://github.com/202306-NEA-DZ-FEW/student-store-team-2'
                                 target='_blank'
                                 rel='noopener noreferrer'
@@ -174,7 +164,7 @@ export default function MobileSidebar({ toggleMobileMenu, isOpen }) {
                         </li>
                         <li>
                             <Link
-                                onClick={handleSignOutUser}
+                                onClick={toggleMobileMenu}
                                 className='text-titleContent hover:text-accent font-semibold block pb-2 '
                                 href='/#how-it-works'
                             >
@@ -183,7 +173,7 @@ export default function MobileSidebar({ toggleMobileMenu, isOpen }) {
                         </li>
                         <li>
                             <Link
-                                onClick={handleSignOutUser}
+                                onClick={toggleMobileMenu}
                                 className='text-titleContent hover:text-accent font-semibold block pb-2 '
                                 href='/about'
                             >
