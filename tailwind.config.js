@@ -11,6 +11,7 @@ module.exports = {
     ],
     theme: {
         extend: {
+               
             colors: {
                 bkg: "rgb(var(--color-bkg) / <alpha-value>)",
                 content: "rgb(var(--color-content) / <alpha-value>)",
@@ -46,9 +47,16 @@ module.exports = {
                     "0%": { transform: "translate(700px,0)" },
                     "100%": { transform: "translate(0,0)" },
                 },
+                loader: {
+                    to: {
+                      opacity: 0.2,
+                      transform: 'translate3d(0, -0.6rem, 0)'
+                    }
+                  }
             },
             animation: {
                 wiggle: "wiggle 0.5s ease-in-out ",
+                loader: 'loader 0.4s infinite alternate'
             },
         },
     },

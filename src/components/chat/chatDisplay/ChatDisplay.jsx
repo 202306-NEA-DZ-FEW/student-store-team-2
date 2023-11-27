@@ -1,31 +1,37 @@
 "use client";
 import { createClient } from "@supabase/supabase-js";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
+import { IoMdArrowRoundBack } from "react-icons/io";
 import { v1 } from "uuid";
 
 import { insertNewMessage } from "@/lib/supabase";
 function ChatDisplay({ roomId, receiverInfo, userInfo, savedMessages }) {
     const [msg, setMsg] = useState("");
     const [messages, setMessages] = useState(savedMessages);
+    const [isTyping, setIsTyping] = useState(false);
+    const [isSeen, setIsSeen] = useState(false);
+    const [lastMsgSeen, setLastMsgSeen] = useState("default");
 
     // init firebase client
     const clientA = createClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL,
         process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
     );
-
     const channelA = useRef(null);
     useEffect(() => {
         channelA.current = clientA.channel(roomId, {
             config: {
                 broadcast: { self: false },
+                presence: {
+                    key: userInfo.id,
+                },
             },
         });
         if (channelA.current) {
             channelA.current
                 .on("broadcast", { event: "chat-message" }, (payload) => {
-                    console.log("msg :", payload);
                     setMessages((prevMessages) => [
                         ...prevMessages,
                         {
@@ -35,6 +41,28 @@ function ChatDisplay({ roomId, receiverInfo, userInfo, savedMessages }) {
                         },
                     ]);
                 })
+                .on("presence", { event: "sync" }, () => {
+                    const receiver =
+                        channelA.current.presenceState()[receiverInfo.id];
+                    const user =
+                        channelA.current.presenceState()[userInfo.id] || {};
+                    const { msgId } = user[0] || {};
+                    console.log("reees", receiver);
+                    if (!receiver) return;
+                    const { isTyping, userId, isSeen } = receiver[0];
+                    if (isSeen && msgId !== lastMsgSeen) {
+                        setIsSeen(true);
+                        setLastMsgSeen(msgId);
+                        console.log("yoo", channelA.current.presenceState());
+                        return;
+                    }
+                    console.log(
+                        "Synced presence state: ",
+                        channelA.current.presenceState()
+                    );
+                    if (userId === receiverInfo.id) setIsTyping(isTyping);
+                })
+
                 .subscribe();
         }
 
@@ -43,15 +71,46 @@ function ChatDisplay({ roomId, receiverInfo, userInfo, savedMessages }) {
         };
     }, [roomId]);
 
+    const handleLeave = async () => {
+        const userStatus = {
+            user: userInfo.id,
+            online_at: new Date(),
+        };
+        await channelA.current.track(userStatus);
+        await channelA.current.untrack();
+    };
+    // broadcast when the user is typing
+    const handleTyping = (event) => {
+        setMsg(event.target.value);
+        const typing = event.target.value.length;
+        if (typing) {
+            channelA.current.track({ isTyping: true, userId: userInfo.id });
+        } else {
+            channelA.current.track({ isTyping: false, userId: userInfo.id });
+        }
+    };
+    const handleSeenMessage = () => {
+        console.log("sap");
+        const lastMsg = messages[messages.length - 1];
+        if (channelA.current && lastMsg.userId === receiverInfo.id) {
+            channelA.current.track({
+                isSeen: true,
+                userid: userInfo.id,
+                msgId: lastMsg.id,
+            });
+        }
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
-
-        if (channelA.current) {
+        setIsSeen(false);
+        if (channelA.current && msg) {
             channelA.current.send({
                 type: "broadcast",
                 event: "chat-message",
                 payload: { msg },
             });
+            channelA.current.track({ isTyping: false, userId: userInfo.id });
             setMessages((prevMessages) => [
                 ...prevMessages,
                 { id: v1(), userId: userInfo.id, content: msg },
@@ -65,6 +124,9 @@ function ChatDisplay({ roomId, receiverInfo, userInfo, savedMessages }) {
         <div className='flex-1 p:2 sm:p-6 justify-between flex flex-col h-screen'>
             <div className='flex sm:items-center justify-between py-3 border-b-2 border-gray-200'>
                 <div className='relative flex items-center space-x-4 mt-16'>
+                    <Link href='/inbox' className='sm:hidden ml-2'>
+                        <IoMdArrowRoundBack className='h-8 w-8 text-gray-800' />
+                    </Link>
                     <div className='relative'>
                         <span className='absolute text-green-500 right-0 bottom-0'>
                             <svg width='20' height='20'>
@@ -76,18 +138,24 @@ function ChatDisplay({ roomId, receiverInfo, userInfo, savedMessages }) {
                                 ></circle>
                             </svg>
                         </span>
-                        <Image
-                            width={46}
-                            height={46}
-                            src={receiverInfo.raw_user_meta_data.avatar_url}
-                            alt=''
-                            className='w-10 sm:w-16 h-10 sm:h-16 rounded-full'
-                        />
+                        {receiverInfo.raw_user_meta_data.avatar_url && (
+                            <Image
+                                width={46}
+                                height={46}
+                                src={receiverInfo.raw_user_meta_data.avatar_url}
+                                alt=''
+                                className='w-10 sm:w-16 h-10 sm:h-16 rounded-full'
+                            />
+                        )}
                     </div>
                     <div className='flex flex-col leading-tight'>
                         <div className='text-2xl mt-1 flex items-center'>
                             <span className='text-gray-700 mr-3'>
-                                {receiverInfo.raw_user_meta_data.full_name}
+                                {
+                                    receiverInfo.raw_user_meta_data.full_name?.split(
+                                        " "
+                                    )[0]
+                                }
                             </span>
                         </div>
                         <span className='text-lg text-gray-600'>
@@ -98,47 +166,81 @@ function ChatDisplay({ roomId, receiverInfo, userInfo, savedMessages }) {
             </div>
             <div
                 id='messages'
-                className='flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch'
+                className='flex flex-col-reverse p-3 pb-12 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch'
             >
-                {messages &&
-                    messages.map((msg) => (
-                        <div className='chat-message' key={msg.id}>
+                <div className='flex flex-col  space-y-4'>
+                    {messages &&
+                        messages.map((msg, index) => (
                             <div
-                                className={`flex items-end ${
-                                    msg.userId === userInfo.id
-                                        ? " flex-row-reverse"
-                                        : ""
-                                }`}
+                                className='chat-message max-w-64 relative'
+                                key={msg.id}
+                                value={index}
                             >
-                                <div className='flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start'>
-                                    <div>
-                                        <span
-                                            className={`${
-                                                msg.userId !== userInfo.id
-                                                    ? " rounded-bl-none bg-gray-100 text-gray-700"
-                                                    : "rounded-br-none bg-fuchsia-400 text-white "
-                                            } px-4 py-2 rounded-lg inline-block`}
-                                        >
-                                            {msg.content}
-                                        </span>
+                                {/* display seen when the other user saw the msg */}
+                                {messages.length - 1 === index &&
+                                    isSeen &&
+                                    msg.userId === userInfo.id && (
+                                        <p className='absolute -bottom-8 right-3 text-gray-500 font-mono text-xs'>
+                                            Seen
+                                        </p>
+                                    )}
+                                <div
+                                    className={`flex items-end ${
+                                        msg.userId === userInfo.id
+                                            ? " flex-row-reverse"
+                                            : ""
+                                    }`}
+                                >
+                                    <div className='flex flex-col space-y-2 text-lg max-w-xs mx-2 order-2 items-start'>
+                                        <div>
+                                            <span
+                                                className={`${
+                                                    msg.userId !== userInfo.id
+                                                        ? " rounded-bl-none bg-gray-100 text-gray-700"
+                                                        : "rounded-br-none bg-fuchsia-400 text-white "
+                                                } px-4 py-2 rounded-lg inline-block break-all`}
+                                            >
+                                                {msg.content}
+                                            </span>
+                                        </div>
                                     </div>
+                                    {msg.userId === receiverInfo.id && (
+                                        <Image
+                                            width={46}
+                                            height={46}
+                                            src={
+                                                receiverInfo.raw_user_meta_data
+                                                    .avatar_url
+                                            }
+                                            alt='My profile'
+                                            className='w-6 h-6 rounded-full order-1'
+                                        />
+                                    )}
                                 </div>
-                                <Image
-                                    width={46}
-                                    height={46}
-                                    src='https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144'
-                                    alt='My profile'
-                                    className='w-6 h-6 rounded-full order-1'
-                                />
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                </div>
             </div>
             <div className=' px-4 pt-4 mb-2 sm:mb-0'>
                 <form
                     className='relative flex border border-gray-300 rounded-3xl'
                     onSubmit={handleSubmit}
                 >
+                    {/* is user typing animation */}
+                    {isTyping && (
+                        <div className='absolute left-2 flex  -top-12 rounded-xl items-center gap-2 h-12'>
+                            <Image
+                                width={46}
+                                height={46}
+                                src={receiverInfo.raw_user_meta_data.avatar_url}
+                                alt='My profile'
+                                className='w-6 h-6 rounded-full '
+                            />
+                            <span className='circle animate-loader'></span>
+                            <span className='circle animate-loader animation-delay-200'></span>
+                            <span className='circle animate-loader animation-delay-400'></span>
+                        </div>
+                    )}
                     <span className=' inset-y-0 flex items-center'>
                         <button
                             type='button'
@@ -162,14 +264,13 @@ function ChatDisplay({ roomId, receiverInfo, userInfo, savedMessages }) {
                     </span>
                     <input
                         type='text'
-                        placeholder='message'
+                        placeholder='Message'
                         className='w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600   rounded-md py-3'
-                        onChange={(e) => {
-                            setMsg(e.target.value);
-                        }}
+                        onChange={handleTyping}
+                        onFocus={handleSeenMessage}
                         value={msg}
                     />
-                    <div className=' right-0 items-center inset-y-0 hidden sm:flex'>
+                    <div className=' right-0 items-center inset-y-0  flex'>
                         {!msg && (
                             <>
                                 <button
