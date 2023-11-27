@@ -4,9 +4,9 @@ import { AiOutlineMessage } from "react-icons/ai";
 import { BsPersonCircle } from "react-icons/bs";
 import { FaPhoneAlt } from "react-icons/fa";
 
-import { getProduct, getUserProfile } from "@/lib/supabase";
+import { getProduct, getUserProfile } from "@/lib/_supabase";
 
-const ProductItem = ({ fetchPurchases, product }) => {
+const ProductItem = ({ product }) => {
     let text = product.status; // Use product status
     let secondUser = product.second_user;
     let textColorClass = "text-black";
@@ -30,7 +30,7 @@ const ProductItem = ({ fetchPurchases, product }) => {
                 const userDetails = await getUserProfile(secondUser);
                 setUserData(userDetails);
             } catch (error) {
-                console.error("Error fetching data:", error);
+                throw ("Error fetching data:", error);
             }
 
             setLoading(false);

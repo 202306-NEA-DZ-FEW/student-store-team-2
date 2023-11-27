@@ -7,6 +7,7 @@ module.exports = withPWA({
     eslint: {
         dirs: ["src"],
     },
+    
     reactStrictMode: true,
     images: {
 

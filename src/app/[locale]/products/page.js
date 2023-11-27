@@ -1,4 +1,4 @@
-import { getCategories, getProducts } from "@/lib/supabase";
+import { getCategories, getProducts } from "@/lib/_supabase";
 
 import Pagination from "@/components/pagination/Pagination";
 import ProductCard from "@/components/productCard/ProductCard";

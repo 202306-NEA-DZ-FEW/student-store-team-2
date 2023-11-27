@@ -4,10 +4,11 @@ import { useEffect } from "react";
 import { FaUniversity } from "react-icons/fa";
 import { PiMapPinLineDuotone } from "react-icons/pi";
 
-import { reverseGeocode } from "@/lib/openWeatherAPI";
+import { reverseGeocode } from "@/lib/_openWeatherAPI";
 
 function ProfileUserInfo({ user }) {
     const [location, setLocation] = useState("");
+
     useEffect(() => {
         const fetcher = async () => {
             if (user) {
@@ -24,10 +25,7 @@ function ProfileUserInfo({ user }) {
                     setLocation(formattedLocation); // Set the location state
                 } catch (error) {
                     // Handle errors
-                    console.error(
-                        "Error fetching reverse geocoding data:",
-                        error
-                    );
+                    throw ("Error fetching reverse geocoding data:", error);
                 }
             }
         };

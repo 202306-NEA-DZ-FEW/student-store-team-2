@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-import { getGeocodeByCity } from "@/lib/openWeatherAPI";
+import { getGeocodeByCity } from "@/lib/_openWeatherAPI";
 
 const LocationInput = ({
     location,

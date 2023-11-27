@@ -7,7 +7,7 @@ import { FaCoins, FaShoppingBag } from "react-icons/fa";
 import { PiArrowULeftDownBold } from "react-icons/pi";
 import { RiShakeHandsFill, RiShoppingBag3Fill } from "react-icons/ri";
 
-const NavLinks = ({ fetchPurchases }) => {
+const NavLinks = () => {
     const t = useTranslations("Index");
     const links = [
         { name: "my stuff", link: "stuff", icon: FaShoppingBag },
@@ -18,6 +18,7 @@ const NavLinks = ({ fetchPurchases }) => {
     ];
 
     const params = useSearchParams();
+
     const type = params.get("type") || "stuff";
 
     return (

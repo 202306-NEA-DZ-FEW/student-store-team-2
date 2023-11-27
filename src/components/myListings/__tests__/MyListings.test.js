@@ -4,6 +4,7 @@ import renderer from "react-test-renderer";
 import MyListings from "@/components/myListings/MyDashboard";
 
 import messages from "../../../../messages/en.json";
+
 jest.mock("next/navigation", () => ({
     useRouter: jest.fn(() => ({
         push: jest.fn(),
@@ -18,6 +19,7 @@ jest.mock("next/navigation", () => ({
 }));
 
 it("renders correctly", () => {
+    const type = "stuff";
     const tree = renderer
         .create(
             <NextIntlClientProvider locale='en' messages={messages}>

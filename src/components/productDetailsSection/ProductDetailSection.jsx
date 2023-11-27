@@ -14,7 +14,7 @@ import {
     hasBorrowed,
     hasPurchased,
     setNotification,
-} from "@/lib/supabase";
+} from "@/lib/_supabase";
 
 import BuyBorrowBtn from "../buyborrow-btn/BuyBorrowBtn";
 import ContactDetails from "../contactDetails/ContactDetails/ContactDetails";

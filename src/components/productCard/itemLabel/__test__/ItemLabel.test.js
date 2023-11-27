@@ -8,7 +8,7 @@ it("renders correctly", () => {
     const tree = renderer
         .create(
             <NextIntlClientProvider locale='en' messages={messages}>
-                <ItemLabel />
+                <ItemLabel textContent='for_sale' />
             </NextIntlClientProvider>
         )
         .toJSON();

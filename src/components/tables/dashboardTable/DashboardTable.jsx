@@ -15,7 +15,7 @@ import {
     deleteDashboardOrder,
     setNotification,
     updateDashboardOrder,
-} from "@/lib/supabase";
+} from "@/lib/_supabase";
 
 function DashboardTable({ type, data }) {
     return (
@@ -291,8 +291,8 @@ function DashboardTableActions({
                             sender,
                             receiver
                         );
-                        console.log("result", res);
                     };
+
                     return (
                         <button
                             key={item}

@@ -1,13 +1,12 @@
 import { notFound } from "next/navigation";
 
-import { getCoordinates } from "@/lib/supabase";
-import { getProductWithPrice, getUserProfile } from "@/lib/supabase";
+import { getCoordinates } from "@/lib/_supabase";
+import { getProductWithPrice, getUserProfile } from "@/lib/_supabase";
 
 import ProductDisplay from "@/components/product-display/ProductDisplay";
 import ProductDetailSection from "@/components/productDetailsSection/ProductDetailSection";
 import TabsComponent from "@/components/tabs/TabsComponent";
 
-// const DynamicMap = dynamic(() => import("@/components/map/Map"), {
 //     ssr: false,
 // });
 
@@ -60,9 +59,6 @@ import TabsComponent from "@/components/tabs/TabsComponent";
 // };
 
 const SingleProductPage = async ({ params }) => {
-    // const categories = await getCategories(params.category);
-    // console.log("categories", categories);
-
     let coordinatesArray = [36.77326479858625, 3.059852057256325]; // Default coordinates
 
     try {
@@ -80,13 +76,11 @@ const SingleProductPage = async ({ params }) => {
             const longitude = locationObject.long;
             coordinatesArray = [latitude, longitude]; // Update coordinatesArray
         } else {
-            console.error(
-                "Location data not found. Using default coordinates."
-            );
+            throw "Location data not found. Using default coordinates.";
             // Handle the absence of location data, if needed
         }
     } catch (error) {
-        console.error("Error parsing locationString:", error);
+        throw ("Error parsing locationString:", error);
         // Handle the error as needed
     }
 

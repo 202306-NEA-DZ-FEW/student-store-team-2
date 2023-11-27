@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";
 import { BsSearch } from "react-icons/bs";
 
-import { searchProduct } from "@/lib/supabase";
+import { searchProduct } from "@/lib/_supabase";
 
 const Searchbar = ({ toggleMobileMenu }) => {
     const router = useRouter();
@@ -19,7 +19,6 @@ const Searchbar = ({ toggleMobileMenu }) => {
         const inputValue = e.target.value;
         setSearchValue(inputValue);
     };
-    const pathname = usePathname();
 
     const handleSearch = async (e) => {
         e.preventDefault();
@@ -95,7 +94,7 @@ const Searchbar = ({ toggleMobileMenu }) => {
                         <div className='container mx-auto w-11/12 md:w-2/3 max-w-lg'>
                             <div className='relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400'>
                                 <h1 className='text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4'>
-                                    Search For Product:
+                                    {t("Search For Product:")}
                                 </h1>
                                 <form onSubmit={handleSearch}>
                                     <input
