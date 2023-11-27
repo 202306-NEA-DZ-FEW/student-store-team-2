@@ -154,6 +154,49 @@ export const getItems = async () => {
 };
 
 /**
+ * The function `getDashboardOrders` retrieves orders from a Supabase database based on the type of
+ * dashboard page and the user ID.
+ * @param type - The `type` parameter is a string that represents the type of dashboard page. It can
+ * have one of the following values: "borrowings", "purchases", "lendings", "sales", or "stuff".
+ * @param userId - The `userId` parameter is the unique identifier of the user for whom you want to
+ * retrieve the dashboard orders. It is used to filter the orders based on the user's role and type of
+ * dashboard page.
+ * @returns the data retrieved from the Supabase database based on the specified type and userId.
+ */
+export const getDashboardOrders = async (type, userId) => {
+    const supabase = await createSupabaseServerClient();
+    // return the view name depend on the type of the dashboard page
+    const dashboardOrdersView = {
+        borrowings: "user_borrowings_view",
+        purchases: "user_purchases_view",
+        lendings: "user_lendings_view",
+        sales: "user_sales_view",
+        stuff: "user_stuff_view",
+    };
+
+    // figure out by type what is the role of the current user
+    const userRole = {
+        borrowings: "receiver",
+        purchases: "receiver",
+        lendings: "sender",
+        sales: "sender",
+        stuff: "uid",
+    };
+
+    try {
+        const { data, error } = await supabase
+            .from(dashboardOrdersView[type])
+            .select("*")
+            .eq(userRole[type], userId);
+
+        return data;
+    } catch (error) {
+        console.error("Error adding item:", error);
+        throw error;
+    }
+};
+
+/**
  * The function updates the status of an order in a Supabase database table and revalidates the
  * dashboard path.
  * @param table - The "table" parameter is a string that specifies the type of table to update. It can
