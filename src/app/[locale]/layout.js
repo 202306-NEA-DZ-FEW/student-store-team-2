@@ -95,20 +95,20 @@ export default async function RootLayout({ children, params: { locale } }) {
                     locale === "en" ? roboto.variable : ""
                 } font-roboto`}
             >
-                <UserProvider getCurrentUser={getCurrentUser}>
-                    <NextIntlClientProvider
-                        locale={locale}
-                        messages={messages}
-                        className='relative w-screen h-screen'
-                    >
+                <NextIntlClientProvider
+                    locale={locale}
+                    messages={messages}
+                    className='relative w-screen h-screen'
+                >
+                    <UserProvider getCurrentUser={getCurrentUser}>
                         <Navbar />
                         {children}
                         {/* <Footer /> */}
                         <ToastContainer />
                         <Footer />
                         <MobileNavigation />
-                    </NextIntlClientProvider>
-                </UserProvider>
+                    </UserProvider>
+                </NextIntlClientProvider>
             </body>
         </html>
     );
