@@ -28,7 +28,7 @@ function MobileNavigation() {
             >
                 <div id='tabs' className='flex justify-between'>
                     <a
-                        href='#'
+                        href='/'
                         className='w-full focus:text-accent hover:text-accent justify-center inline-block text-center pt-2 pb-1'
                     >
                         <MdHome className='inline-block mb-1 h-6 w-6' />

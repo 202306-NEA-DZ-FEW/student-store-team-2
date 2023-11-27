@@ -83,6 +83,17 @@ function UserStatus() {
                                     {userData?.full_name}
                                 </div>
                             </div>
+                            <li className='font-medium text-gray-600 font-jua '>
+                                <Link
+                                    onClick={() =>
+                                        setIsDropdownOpen(!isDropdownOpen)
+                                    }
+                                    href='/inbox'
+                                    className='flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-accent'
+                                >
+                                    Messages
+                                </Link>
+                            </li>
                             <li className='font-medium  '>
                                 <Link
                                     onClick={() =>
