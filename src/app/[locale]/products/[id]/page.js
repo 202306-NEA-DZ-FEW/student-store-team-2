@@ -1,16 +1,32 @@
 import { notFound } from "next/navigation";
 
-import { getAdditionalInfo, getCoordinates } from "@/lib/supabase";
-import { getProductWithPrice, getUserProfile } from "@/lib/supabase";
+import { getCoordinates } from "@/lib/_supabase";
+import { getProductWithPrice, getUserProfile } from "@/lib/_supabase";
 
 import ProductDisplay from "@/components/product-display/ProductDisplay";
 import ProductDetailSection from "@/components/productDetailsSection/ProductDetailSection";
 import TabsComponent from "@/components/tabs/TabsComponent";
-import dynamic from "next/dynamic";
 
-const DynamicMap = dynamic(() => import("@/components/map/Map"), {
-    ssr: false,
-});
+//     ssr: false,
+// });
+
+// const user = {
+//     first_name: "Mohammed",
+//     last_name: "Bennaceur",
+//     birth_date: "29 octobre 2000",
+//     gender: "male",
+//     email: "bennaceurm@gmail.com",
+//     phoneNumber: "777112233",
+//     address: {
+//         building: "villa N°15",
+//         street: "Boulvard des martyres",
+//         city: "Ghazaouat",
+//         state: "Tlemcen",
+//     },
+//     institution: "Abou Bekr Belkaid University of Tlemcen",
+//     profile_pic:
+//         "https://images.unsplash.com/photo-1600486913747-55e5470d6f40?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+// };
 
 // const commentData = {
 //     1: {
@@ -42,9 +58,6 @@ const DynamicMap = dynamic(() => import("@/components/map/Map"), {
 //     },
 // };
 const SingleProductPage = async ({ params }) => {
-    // const categories = await getCategories(params.category);
-    // console.log("categories", categories);
-
     let coordinatesArray = [36.77326479858625, 3.059852057256325]; // Default coordinates
     try {
         const location = await getCoordinates(params.id);
@@ -59,13 +72,11 @@ const SingleProductPage = async ({ params }) => {
             const longitude = locationObject.long;
             coordinatesArray = [latitude, longitude]; // Update coordinatesArray
         } else {
-            console.error(
-                "Location data not found. Using default coordinates."
-            );
+            throw "Location data not found. Using default coordinates.";
             // Handle the absence of location data, if needed
         }
     } catch (error) {
-        console.error("Error parsing locationString:", error);
+        throw ("Error parsing locationString:", error);
         // Handle the error as needed
     }
 

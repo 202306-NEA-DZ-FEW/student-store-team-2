@@ -8,7 +8,7 @@ import DatePicker from "react-widgets/DatePicker";
 import "react-widgets/styles.css";
 
 import { updateUserMetadata } from "@/lib/_supabaseAuth";
-import { reverseGeocode } from "@/lib/openWeatherAPI";
+import { reverseGeocode } from "@/lib/_openWeatherAPI";
 
 import { useUser } from "@/components/userProvider/UserProvider";
 
@@ -76,10 +76,7 @@ const UserProfileForm = () => {
                     setLocation(formattedLocation); // Set the location state
                 } catch (error) {
                     // Handle errors
-                    console.error(
-                        "Error fetching reverse geocoding data:",
-                        error
-                    );
+                    throw ("Error fetching reverse geocoding data:", error);
                 }
             }
         };

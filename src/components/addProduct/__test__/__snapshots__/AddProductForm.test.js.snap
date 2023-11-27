@@ -3,11 +3,11 @@
 exports[`renders correctly 1`] = `
 Array [
   <form
-    className="flex md:flex-row flex-col justify-center items-center space-x-8 "
+    className="flex md:flex-row flex-col justify-center items-center space-x-8 sm:mb-0 mb-5 "
     onSubmit={[Function]}
   >
     <div
-      className="md:w-1/2"
+      className="md:w-1/2 hidden sm:block"
     >
       <div
         className="border border-dashed border-accent/50 md:flex flex flex-col items-center justify-center text-center p-8 text-accent/50 text-sm"
@@ -51,28 +51,28 @@ Array [
         type="text"
         value=""
       />
-      <div
-        className="flex justify-center mx-auto space-x-2 text-sm"
+      <select
+        className="border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2 uppercase"
+        onChange={[Function]}
+        required={true}
+        value=""
       >
-        <select
-          className="border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2 uppercase"
-          onChange={[Function]}
-          required={true}
+        <option
           value=""
         >
-          <option
-            value=""
-          >
-            Category
-          </option>
-          <option>
-            Index
-          </option>
-        </select>
+          Category
+        </option>
+        <option>
+          Index
+        </option>
+      </select>
+      <div
+        className="relative mb-4"
+      >
         <input
-          className=" border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2"
+          className="border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-full uppercase"
           onChange={[Function]}
-          placeholder="Location"
+          placeholder="Enter Location"
           required={true}
           type="text"
           value=""
@@ -194,6 +194,13 @@ Array [
           </option>
         </select>
       </div>
+      <input
+        className="border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md w-full"
+        onChange={[Function]}
+        placeholder="Additional Information"
+        type="text"
+        value=""
+      />
       <div
         className="flex space-x-2 w-full justify-center"
       >

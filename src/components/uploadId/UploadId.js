@@ -12,13 +12,12 @@ const UploadId = ({ onIdUpload, profile_id }) => {
     const [idFile, setIdFile] = useState(null);
     const [downloadURL, setDownloadURL] = useState(profile_id);
     const [isUploading, setIsUploading] = useState(false);
-    const [progressUpload, setProgressUpload] = useState(0);
 
     const handleSelectedFile = (files) => {
         if (files && files[0].size < 10000000) {
             setIdFile(files[0]);
         } else {
-            console.error("The file size is too large or no file selected.");
+            throw "The file size is too large or no file selected.";
         }
     };
 
@@ -55,11 +54,12 @@ const UploadId = ({ onIdUpload, profile_id }) => {
                 setIsUploading(false);
                 onIdUpload(data.secure_url);
             } catch (error) {
-                console.error("Error uploading to Cloudinary: ", error);
                 setIsUploading(false);
+
+                throw ("Error uploading to Cloudinary: ", error);
             }
         } else {
-            console.error("File not found");
+            throw "File not found";
         }
     };
 

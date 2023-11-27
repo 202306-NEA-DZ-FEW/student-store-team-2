@@ -1,4 +1,5 @@
 import renderer from "react-test-renderer";
+
 import ProfileUserInfo from "../ProfileUserInfo";
 
 it("renders correctly", () => {

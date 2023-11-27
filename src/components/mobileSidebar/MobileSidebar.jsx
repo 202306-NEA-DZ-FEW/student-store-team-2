@@ -71,7 +71,7 @@ export default function MobileSidebar({ toggleMobileMenu, isOpen }) {
             {/* Navigation Links */}
             {user ? (
                 <div className='space-y-1 mt-5 px-2 pt-2 pb-3 flex flex-col justify-start'>
-                    <Link href='/profile?page=form"'>
+                    <Link href='/profile?page=form'>
                         <div
                             className='hover:bg-accent hover:text-white rounded-md px-3 py-2 text-xl font-medium tracking-widest'
                             onClick={toggleMobileMenu}
@@ -80,7 +80,7 @@ export default function MobileSidebar({ toggleMobileMenu, isOpen }) {
                             {t("Profile")}
                         </div>
                     </Link>
-                    <Link href='/profile?page=security"'>
+                    <Link href='/profile?page=security'>
                         <div
                             className='hover:bg-accent hover:text-white rounded-md px-3 py-2 text-xl font-medium tracking-widest'
                             onClick={toggleMobileMenu}
@@ -104,6 +104,7 @@ export default function MobileSidebar({ toggleMobileMenu, isOpen }) {
                 <div className='space-y-1 mt-5 px-2 pt-2 pb-3 flex flex-col justify-start'>
                     <Link
                         href='/sign-in'
+                        onClick={handleSignOutUser}
                         className='hover:bg-accent hover:text-white rounded-md
                         px-3 py-2 text-xl font-medium tracking-widest'
                     >
@@ -123,23 +124,32 @@ export default function MobileSidebar({ toggleMobileMenu, isOpen }) {
                     </span>
                     <ul className='list-unstyled'>
                         <li>
-                            <a
+                            <Link
                                 className='text-titleContent hover:text-accent font-semibold block pb-2 '
-                                href='https://www.creative-tim.com/presentation?ref=njs-profile'
+                                href='/'
                             >
                                 {t("Home")}
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a
+                            <Link
                                 className='text-titleContent hover:text-accent font-semibold block pb-2 '
-                                href='https://blog.creative-tim.com?ref=njs-profile'
+                                href='/products?page=1'
                             >
                                 {t("Products")}
-                            </a>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                className='text-titleContent hover:text-accent font-semibold block pb-2 '
+                                href='/donate'
+                            >
+                                {t("Donate")}
+                            </Link>
                         </li>
                         <li>
                             <a
+                                onClick={handleSignOutUser}
                                 className='text-titleContent hover:text-accent font-semibold block pb-2 '
                                 href='https://www.github.com/creativetimofficial?ref=njs-profile'
                             >
@@ -153,6 +163,7 @@ export default function MobileSidebar({ toggleMobileMenu, isOpen }) {
                     <ul className='list-unstyled'>
                         <li>
                             <Link
+                                onClick={handleSignOutUser}
                                 href='https://github.com/202306-NEA-DZ-FEW/student-store-team-2'
                                 target='_blank'
                                 rel='noopener noreferrer'
@@ -163,6 +174,7 @@ export default function MobileSidebar({ toggleMobileMenu, isOpen }) {
                         </li>
                         <li>
                             <Link
+                                onClick={handleSignOutUser}
                                 className='text-titleContent hover:text-accent font-semibold block pb-2 '
                                 href='/#how-it-works'
                             >
@@ -171,6 +183,7 @@ export default function MobileSidebar({ toggleMobileMenu, isOpen }) {
                         </li>
                         <li>
                             <Link
+                                onClick={handleSignOutUser}
                                 className='text-titleContent hover:text-accent font-semibold block pb-2 '
                                 href='/about'
                             >
@@ -194,18 +207,38 @@ export default function MobileSidebar({ toggleMobileMenu, isOpen }) {
                 </div>
             </div>
             <div className='w-full flex  justify-center items-end'>
-                <button type='button'>
+                <Link
+                    type='button'
+                    href='https://www.instagram.com/recodedofficial/'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                >
                     <PiInstagramLogo className='bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2  ' />
-                </button>
-                <button type='button'>
+                </Link>
+                <Link
+                    type='button'
+                    href='https://www.facebook.com/recodedofficial/'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                >
                     <FaFacebook className='bg-white text-blue-900 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 ' />
-                </button>
-                <button type='button'>
+                </Link>
+                <Link
+                    type='button'
+                    href='https://www.linkedin.com/school/re-coded/'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                >
                     <FaLinkedin className='bg-white text-blue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 ' />{" "}
-                </button>
-                <button type='button'>
+                </Link>
+                <Link
+                    type='button'
+                    href='https://github.com/202306-NEA-DZ-FEW/'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                >
                     <FaGithub className='bg-white text-black shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 ' />
-                </button>
+                </Link>
             </div>
         </div>
     );

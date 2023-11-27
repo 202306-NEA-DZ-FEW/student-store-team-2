@@ -3,7 +3,6 @@ import {
     Jua,
     Lato,
     Noto_Kufi_Arabic,
-    Noto_Sans_Arabic,
     Poppins,
     Roboto,
 } from "next/font/google";
@@ -23,33 +22,33 @@ import "./carousel.css";
 import "./loader.css";
 import "react-toastify/dist/ReactToastify.css";
 
+import Footer from "@/components/footer/Footer";
 import MobileNavigation from "@/components/mobileNavigation/MobileNavigation";
 import { UserProvider } from "@/components/userProvider/UserProvider";
 
-import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
 
 const jua = Jua({ weight: "400", subsets: ["latin"], variable: "--font-jua" });
+
 const lato = Lato({
     subsets: ["latin"],
     weight: ["100", "300", "400", "700", "900"],
     variable: "--font-lato",
 });
+
 const jost = Jost({ subsets: ["cyrillic"], variable: "--font-jost" });
 const poppins = Poppins({
     subsets: ["latin"],
     weight: ["100", "300", "400", "700", "900"],
     variable: "--font-poppins",
 });
+
 const roboto = Roboto({
     weight: "700",
     subsets: ["cyrillic"],
     variable: "--font-roboto",
 });
-const notoAr = Noto_Sans_Arabic({
-    subsets: ["arabic"],
-    variable: "--font-notoAr",
-});
+
 const notoKufi = Noto_Kufi_Arabic({
     subsets: ["arabic"],
     weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -68,15 +67,6 @@ export const metadata = {
     },
     manifest: "/manifest.webmanifest",
 };
-
-// const fetchUserData = async (user) => {
-//     "use server";
-//     if (user) {
-//         const userData = await getUserProfile(user);
-
-//         return userData;
-//     }
-// };
 
 export default async function RootLayout({ children, params: { locale } }) {
     let messages;
@@ -113,8 +103,8 @@ export default async function RootLayout({ children, params: { locale } }) {
                     >
                         <Navbar />
                         {children}
+                        {/* <Footer /> */}
                         <ToastContainer />
-
                         <Footer />
                         <MobileNavigation />
                     </NextIntlClientProvider>

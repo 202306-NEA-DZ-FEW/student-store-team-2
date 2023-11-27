@@ -6,23 +6,33 @@ import { useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { FaSpinner } from "react-icons/fa";
 import { SiXamarin } from "react-icons/si";
+import { v4 as uuidv4 } from "uuid";
 
 import { getSignature, saveToDatabase } from "@/lib/_cloudinary";
-import { addProduct } from "@/lib/supabase";
+import { addProduct, sendAdditionalInfo } from "@/lib/_supabase";
 
+import LocationInput from "../locationInput/LocationInput";
 import { useUser } from "../userProvider/UserProvider";
 
 const AddProductForm = ({ className, categories }) => {
     const t = useTranslations("Index");
+
     const [files, setFiles] = useState([]);
     const [name, setName] = useState("");
     const [category, setCategory] = useState("");
     const [location, setLocation] = useState("");
+    const [latitude, setLatitude] = useState("");
+    const [longitude, setLongitude] = useState("");
     const [description, setDescription] = useState("");
     const [type, setType] = useState("for_sale");
     const [price, setPrice] = useState("");
     const [condition, setCondition] = useState(5);
+    const [additionalInfo, setAdditionalInfo] = useState("");
+
     const [loading, setLoading] = useState(false);
+
+    const { user } = useUser();
+
     const onDrop = useCallback((acceptedFiles) => {
         if (acceptedFiles?.length) {
             setFiles((previousFiles) => [
@@ -34,13 +44,22 @@ const AddProductForm = ({ className, categories }) => {
         }
     }, []);
 
+    const handleLocationSelect = (lat, lon) => {
+        setLatitude(lat);
+        setLongitude(lon);
+    };
+
+    /**
+     * The `removeFile` function removes a file from a list of files based on its name.
+     */
     const removeFile = (name, event) => {
         event.stopPropagation();
         const updatedFiles = files.filter((file) => file.name !== name);
         setFiles(updatedFiles);
     };
 
-    const { user } = useUser();
+    /* The above code is using the `useDropzone` hook from the `react-dropzone` library in a JavaScript
+    React component. */
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         "image/*": [".jpeg", ".jpg", ".png"],
         maxSize: 1024 * 1000,
@@ -53,20 +72,27 @@ const AddProductForm = ({ className, categories }) => {
         return () => files.forEach((file) => URL.revokeObjectURL(file.preview));
     }, [files]);
 
+    /**
+     * The function `addMoreImages` allows the user to add more images by clicking on an input file
+     * button, but throws an error if the maximum number of images (4) has already been reached.
+     */
     const addMoreImages = () => {
         if (files.length < 4) {
             document.querySelector('input[type="file"]').click();
         } else {
-            console.error("You can't add more than 4 images");
+            throw "You can't add more than 4 images";
         }
     };
 
+    /**
+     * The function `handleFileChange` takes in an event object and updates the state with new files,
+     * while also checking if the total number of files exceeds 4.
+     */
     const handleFileChange = (e) => {
         const fileList = e.target.files;
         const newFiles = Array.from(fileList);
         if (files.length + newFiles.length > 4) {
-            console.error("You can't add more than 4 images");
-            return;
+            throw "You can't add more than 4 images";
         }
         if (newFiles.length > 0) {
             setFiles([
@@ -81,7 +107,7 @@ const AddProductForm = ({ className, categories }) => {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Prevents the default form submission
+        e.preventDefault();
 
         setLoading(true);
         try {
@@ -128,25 +154,35 @@ const AddProductForm = ({ className, categories }) => {
         setFiles(uploadedFiles);
 
         const imageLinks = uploadedFiles.map((file) => file.cloudinaryUrl);
-
         const today = new Date();
         const year = today.getFullYear();
         const month = String(today.getMonth() + 1).padStart(2, "0");
         const day = String(today.getDate()).padStart(2, "0");
         const formattedDate = `${year}-${month}-${day}`;
+        const pid = uuidv4();
+
         const productData = {
+            pid,
             name,
             category,
-            location,
+            location: { lat: latitude, long: longitude },
             description,
             offer_type: type,
             condition,
             price,
-            uid: user,
+            uid: user.id,
             created_at: formattedDate,
             image: imageLinks,
         };
         await addProduct(productData);
+
+        const additionalInfoData = {
+            pid, // Replace 'productId' with the actual product ID
+            name,
+            description,
+            additional_information: additionalInfo,
+        };
+        await sendAdditionalInfo(additionalInfoData);
 
         setName("");
         setCategory("");
@@ -154,6 +190,8 @@ const AddProductForm = ({ className, categories }) => {
         setDescription("");
         setType("");
         setPrice("");
+        setAdditionalInfo("");
+
         setFiles([]);
     }
 
@@ -175,6 +213,7 @@ const AddProductForm = ({ className, categories }) => {
             </button>
         </>
     );
+
     const renderPriceInput = () => {
         if (type === "for_sale") {
             return (
@@ -198,10 +237,11 @@ const AddProductForm = ({ className, categories }) => {
             );
         }
     };
+
     return (
         <form
             onSubmit={handleSubmit}
-            className='flex md:flex-row flex-col justify-center items-center space-x-8 '
+            className='flex md:flex-row flex-col justify-center items-center space-x-8 sm:mb-0 mb-5 '
         >
             {loading ? (
                 <div className='justify-center items-center'>
@@ -209,7 +249,7 @@ const AddProductForm = ({ className, categories }) => {
                 </div>
             ) : (
                 <>
-                    <div className='md:w-1/2'>
+                    <div className='md:w-1/2 hidden sm:block'>
                         {files.length < 4 && (
                             <div
                                 {...getRootProps({ className: className })}
@@ -262,29 +302,27 @@ const AddProductForm = ({ className, categories }) => {
                             required
                         />
 
-                        <div className='flex justify-center mx-auto space-x-2 text-sm'>
-                            <select
-                                value={category}
-                                onChange={(e) => setCategory(e.target.value)}
-                                className='border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2 uppercase'
-                                required
-                            >
-                                <option value=''>{t("Category")}</option>
-                                {categories.map((cat) => (
-                                    <option key={cat.id} value={cat.id}>
-                                        {t(cat.category_name)}
-                                    </option>
-                                ))}
-                            </select>
-                            <input
-                                type='text'
-                                placeholder={t("Location")}
-                                className=' border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2'
-                                value={location}
-                                onChange={(e) => setLocation(e.target.value)}
-                                required
-                            />
-                        </div>
+                        <select
+                            value={category}
+                            onChange={(e) =>
+                                setCategory(parseInt(e.target.value, 10))
+                            }
+                            className='border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2 uppercase'
+                            required
+                        >
+                            <option value=''>{t("Category")}</option>
+                            {categories.map((cat) => (
+                                <option key={cat.id} value={cat.id}>
+                                    {t(cat.category_name)}
+                                </option>
+                            ))}
+                        </select>
+                        <LocationInput
+                            location={location}
+                            setLocation={setLocation} // Assuming you have a state setter function for location
+                            onLocationSelect={handleLocationSelect}
+                            styling='border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-full uppercase'
+                        />
 
                         <textarea
                             placeholder={t("description")}
@@ -308,6 +346,7 @@ const AddProductForm = ({ className, categories }) => {
                             </select>
                             {renderPriceInput()}
                         </div>
+
                         <div className='flex justify-center mx-auto space-x-2 items-center text-sm'>
                             <label>{t("Product Condition")}:</label>
                             <select
@@ -323,6 +362,13 @@ const AddProductForm = ({ className, categories }) => {
                                 ))}
                             </select>
                         </div>
+                        <input
+                            type='text'
+                            placeholder={t("Additional Information")}
+                            className='border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md w-full'
+                            value={additionalInfo}
+                            onChange={(e) => setAdditionalInfo(e.target.value)}
+                        />
 
                         <div className='flex space-x-2 w-full justify-center'>
                             <input

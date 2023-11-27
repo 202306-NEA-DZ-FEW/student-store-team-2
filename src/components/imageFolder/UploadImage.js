@@ -17,7 +17,7 @@ const UploadImage = ({ onImageUpload, avatar_url }) => {
         if (files && files[0].size < 10000000) {
             setImageFile(files[0]);
         } else {
-            console.error("The file size is too large or no file selected.");
+            throw "The file size is too large or no file selected.";
         }
     };
 
@@ -55,11 +55,12 @@ const UploadImage = ({ onImageUpload, avatar_url }) => {
                 setIsUploading(false);
                 onImageUpload(data.secure_url);
             } catch (error) {
-                console.error("Error uploading to Cloudinary: ", error);
                 setIsUploading(false);
+
+                throw ("Error uploading to Cloudinary: ", error);
             }
         } else {
-            console.error("File not found");
+            throw "File not found";
         }
     };
     const handleRemoveFile = () => setImageFile(null);

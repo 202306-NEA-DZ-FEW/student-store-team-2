@@ -132,7 +132,7 @@ exports[`renders correctly 1`] = `
                 name="radio"
                 onChange={[Function]}
                 type="radio"
-                value="Index.sale"
+                value="sale"
               />
               <span
                 className="absolute -top-2 -left-3 rounded-sm h-8 w-28 group-hover:bg-gray-200 -z-10   "
@@ -147,7 +147,7 @@ exports[`renders correctly 1`] = `
                 name="radio"
                 onChange={[Function]}
                 type="radio"
-                value="Index.borrow"
+                value="borrow"
               />
               <span
                 className="absolute -top-2 -left-3 rounded-sm h-8 w-28 group-hover:bg-gray-200 -z-10   "

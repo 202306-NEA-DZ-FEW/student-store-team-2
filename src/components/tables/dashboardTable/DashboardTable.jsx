@@ -1,7 +1,5 @@
-"use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
 import React from "react";
 import { BiMessageSquareDots } from "react-icons/bi";
 import { FaCheckSquare } from "react-icons/fa";
@@ -15,7 +13,7 @@ import {
     deleteDashboardOrder,
     setNotification,
     updateDashboardOrder,
-} from "@/lib/supabase";
+} from "@/lib/_supabase";
 
 function DashboardTable({ type, data }) {
     return (
@@ -38,12 +36,11 @@ function DashboardTable({ type, data }) {
 export default DashboardTable;
 
 function DashboardTableHead({ type }) {
-    const t = useTranslations("Index");
     const userRoleObject = {
-        purchases: t("bought from"),
-        sales: t("sold to"),
-        borrowings: t("borrowed from"),
-        lendings: t("borrowed for"),
+        purchases: "bought form",
+        sales: "sold to",
+        borrowings: "borrowed from",
+        lendings: "borrowed for",
     };
 
     const userRole = userRoleObject[type];
@@ -56,7 +53,7 @@ function DashboardTableHead({ type }) {
                     scope='col'
                     className='p-4 text-left text-xs font-medium text-gray-500 uppercase'
                 >
-                    {t("Name")}
+                    Name
                 </th>
                 <th
                     scope='col'
@@ -68,33 +65,33 @@ function DashboardTableHead({ type }) {
                     scope='col'
                     className='p-4 text-left text-xs font-medium text-gray-500 uppercase'
                 >
-                    {t("Message")}
+                    Message
                 </th>
                 {isBorrowPeriodExists && (
                     <th
                         scope='col'
                         className='p-4 text-left text-xs font-medium text-gray-500 uppercase'
                     >
-                        {t("Borrow Period")}
+                        Borrow period
                     </th>
                 )}
                 <th
                     scope='col'
                     className='p-4 text-left text-xs font-medium text-gray-500 uppercase'
                 >
-                    {t("Phone Number")}
+                    Phone Num
                 </th>
                 <th
                     scope='col'
                     className='p-4 text-left text-xs font-medium text-gray-500 uppercase'
                 >
-                    {t("Status")}
+                    Status
                 </th>
                 <th
                     scope='col'
                     className='p-4 text-left text-xs font-medium text-gray-500 uppercase'
                 >
-                    {t("Actions")}
+                    Actions
                 </th>
             </tr>
         </thead>
@@ -147,7 +144,15 @@ function DashboardTableRow({ item, type }) {
                 </div>
             </td>
             <td className='p-4 whitespace-nowrap text-base font-medium text-gray-900'>
-                <BiMessageSquareDots className='w-8 h-8' />
+                {type === "borrowings" || type === "purchases" ? (
+                    <Link href={"inbox/" + item?.sender}>
+                        <BiMessageSquareDots className='w-8 h-8' />
+                    </Link>
+                ) : (
+                    <Link href={"inbox/" + item?.receiver}>
+                        <BiMessageSquareDots className='w-8 h-8' />
+                    </Link>
+                )}
             </td>
             {item?.borrow_period && (
                 <td className='p-4 whitespace-nowrap text-base font-medium text-gray-900'>
@@ -177,7 +182,6 @@ function DashboardTableActions({
     type,
     item: { status, id, offer_type, productId, sender, receiver },
 }) {
-    const t = useTranslations("Index");
     const actions = {
         accept: {
             icon: FaCheckSquare,
@@ -254,11 +258,11 @@ function DashboardTableActions({
             type === "borrowings" || type === "purchases" ? sender : receiver;
 
         const statusMessage = {
-            requested: t("requested"),
-            accept: t("accept"),
-            reject: t("reject"),
-            abort: t("abort"),
-            complete: t("complete"),
+            requested: "has requested to buy your item",
+            accept: "has accepeted your request",
+            reject: "has rejected your request",
+            abort: "has aborted the order",
+            complete: "has picked your item",
         };
 
         const link = {
@@ -291,7 +295,6 @@ function DashboardTableActions({
                             sender,
                             receiver
                         );
-                        console.log("result", res);
                     };
                     return (
                         <button
@@ -312,7 +315,7 @@ function DashboardTableActions({
                 className='ml-2 bg-gray-300 text-white  hover:bg-gray-400 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center'
             >
                 <IoEyeOutline className='w-4 h-4 mr-2' />
-                View
+                view
             </Link>
         </div>
     );

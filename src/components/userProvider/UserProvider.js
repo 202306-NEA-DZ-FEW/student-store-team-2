@@ -14,7 +14,7 @@ export function UserProvider({ children, getCurrentUser }) {
                 const data = await getCurrentUser();
                 setUser(data?.user);
             } catch (error) {
-                console.error(error);
+                return error;
             }
         };
 

@@ -168,6 +168,8 @@
         "Enjoy!": "Enjoy!",
         "How it Works": "How it Works",
         "They Said About Us": "They Said About Us",
+        "for buy": "for buy",
+        "Log In": "Log In",
         "for sale": "Buy",
         "for borrow": "Borrow",
         "Filter By": "Filter By",
@@ -214,6 +216,9 @@
         "Messages": "Messages",
         "Account": "Account",
         "Welcome": "Welcome",
-        "Security": "Security"
+        "Security": "Security",
+        "Search For Product:": "Search For Product:",
+        "electronics": "Electronics",
+        "Additional Information": "Additional Information"
     }
 }

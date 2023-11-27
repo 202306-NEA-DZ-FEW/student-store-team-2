@@ -5,10 +5,11 @@ import ContactDetails from "../ContactDetails/ContactDetails";
 import messages from "../../../../messages/en.json";
 
 it("render correnctly", () => {
+    const user = { phone_num: "0556214761" };
     const tree = renderer
         .create(
             <NextIntlClientProvider locale='en' messages={messages}>
-                <ContactDetails />
+                <ContactDetails user={user} />
             </NextIntlClientProvider>
         )
         .toJSON();

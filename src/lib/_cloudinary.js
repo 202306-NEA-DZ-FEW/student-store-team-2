@@ -1,3 +1,9 @@
+/**
+ * The above code is a JavaScript module that uses the Cloudinary API to generate a signature for
+ * uploading files and verifies the signature before saving the file details to a database.
+ * @returns The code is returning an object with the properties `timestamp` and `signature` in the
+ * `getSignature` function.
+ */
 "use server";
 
 import { v2 as cloudinary } from "cloudinary";

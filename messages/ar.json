@@ -175,6 +175,7 @@
         "How it Works": "كيفية العمل",
         "for sale": "للبيع",
         "for buy": "للكراء",
+        "Log In": "دخول",
         "Filter By": "صنف بواسطة",
         "Price Filter": "تصفية الأسعار",
         "Product Status": "حالة المنتج",
@@ -216,6 +217,8 @@
         "Messages": "الرسائل",
         "Account": "الحساب",
         "Welcome": "مرحبا",
-        "Security": "الحماية"
+        "Security": "الحماية",
+        "Search For Product:": "البحث عن منتج",
+        "Additional Information": "معلومات إضافية"
     }
 }

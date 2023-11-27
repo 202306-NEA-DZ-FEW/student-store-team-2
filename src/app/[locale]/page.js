@@ -1,4 +1,4 @@
-import { getLatestProducts, getTestimonials } from "@/lib/supabase";
+import { getLatestProducts, getTestimonials } from "@/lib/_supabase";
 
 import AddedGrid from "@/components/addedGrid/AddedGrid";
 import FeatureBanner from "@/components/features-banner/FeatureBanner";

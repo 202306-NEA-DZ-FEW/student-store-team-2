@@ -4,30 +4,31 @@ import { useEffect } from "react";
 import { FaUniversity } from "react-icons/fa";
 import { PiMapPinLineDuotone } from "react-icons/pi";
 
-import { reverseGeocode } from "@/lib/openWeatherAPI";
+import { reverseGeocode } from "@/lib/_openWeatherAPI";
 
 function ProfileUserInfo({ user }) {
     const [location, setLocation] = useState("");
+
     useEffect(() => {
         const fetcher = async () => {
             if (user) {
                 const { location } = user; // Assuming userData has a 'location' object with 'Lat' and 'Long'
-                const { Lat, Long } = location;
 
-                try {
-                    const data = await reverseGeocode(Lat, Long); // Fetch reverse geocoding data
-                    const [firstResult = {}] = data || []; // Get the first result (or default to an empty object)
-                    const { name, state, country } = firstResult; // Extract location details
+                if (location) {
+                    const { Lat, Long } = location;
 
-                    const formattedLocation = `${name}, ${state}, ${country}`; // Format the location string if necessary
+                    try {
+                        const data = await reverseGeocode(Lat, Long); // Fetch reverse geocoding data
+                        const [firstResult = {}] = data || []; // Get the first result (or default to an empty object)
+                        const { name, state, country } = firstResult; // Extract location details
 
-                    setLocation(formattedLocation); // Set the location state
-                } catch (error) {
-                    // Handle errors
-                    console.error(
-                        "Error fetching reverse geocoding data:",
-                        error
-                    );
+                        const formattedLocation = `${name}, ${state}, ${country}`; // Format the location string if necessary
+
+                        setLocation(formattedLocation); // Set the location state
+                    } catch (error) {
+                        // Handle errors
+                        throw ("Error fetching reverse geocoding data:", error);
+                    }
                 }
             }
         };

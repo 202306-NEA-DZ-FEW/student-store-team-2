@@ -8,12 +8,12 @@ function StatusFilter({ handleStatusChange, currentStatus }) {
         {
             id: t("for sale"),
             title: t("For Sale"),
-            value: t("sale"),
+            value: "sale",
         },
         {
             id: t("for borrow"),
             title: t("For Borrow"),
-            value: t("borrow"),
+            value: "borrow",
         },
     ];
     const title = t("Product Status");

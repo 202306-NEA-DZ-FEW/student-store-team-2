@@ -5,13 +5,13 @@ import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { IoNotifications } from "react-icons/io5";
 
-import { getNotifications, updatedNotifications } from "@/lib/supabase";
+import { getNotifications, updatedNotifications } from "@/lib/_supabase";
 
 import { useUser } from "../userProvider/UserProvider";
 
 function NotificationsDropdown() {
     const t = useTranslations("Index");
-    const { user, userData, loading } = useUser();
+    const { user, loading } = useUser();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     // Mock notifications array
@@ -61,9 +61,9 @@ function NotificationsDropdown() {
             fetchData();
 
             const handleInserts = (payload) => {
-                console.log("Change received!", payload, notifications);
                 fetchData();
             };
+
             const realtime = supabase
                 .channel(`notified:${user.id}`)
 
@@ -89,7 +89,6 @@ function NotificationsDropdown() {
         setNotifications(data);
         const unviewArray = data.filter((item) => !item.viewed);
         setUnviewedCount(unviewArray.length);
-        console.log("ddddddd", data);
     };
 
     const updatedNotificationsVisibility = () => {
