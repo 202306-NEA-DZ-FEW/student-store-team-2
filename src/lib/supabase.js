@@ -381,7 +381,7 @@ export const getProductWithPrice = async (pid) => {
     const { data, error } = await supabase
         .from("products")
         .select(
-            "pid,image,name,condition,offer_type, categories!inner(*),sale_offer(price),borrow_offer(price)"
+            "pid,uid, image,name,condition,offer_type,description, categories!inner(*),sale_offer(price),borrow_offer(price)"
         )
         .eq("pid", pid)
         .single();
@@ -395,12 +395,25 @@ export const getTestimonials = async () => {
     const supabase = await createSupabaseServerClient();
 
     try {
-        const { data, error } = await supabase.from("testimonials").select("*");
+        const { data, error } = await supabase
+            .from("testimonials")
+            .select("author, testimonial, rating");
         return data;
     } catch (error) {
         console.error("Error fetching testimonials:", error);
         throw error;
     }
+};
+
+export const getCategories = async () => {
+    const supabase = await createSupabaseServerClient();
+    const { data, error } = await supabase
+        .from("categories")
+        .select("id, category_name");
+    if (error) {
+        throw error;
+    }
+    return data;
 };
 
 export const searchProduct = async (value) => {
@@ -417,6 +430,22 @@ export const searchProduct = async (value) => {
 
     return data;
 };
+
+export async function getLatestProducts() {
+    const supabase = await createSupabaseServerClient();
+
+    const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(8);
+
+    if (error) {
+        throw error;
+    }
+
+    return data;
+}
 
 export const getCoordinates = async (productId) => {
     const supabase = await createSupabaseServerClient();
@@ -500,4 +529,38 @@ export const getRoomMessages = async (roomId) => {
         .eq("roomId", roomId);
 
     return data;
+};
+export const hasPurchased = async (productId, userId) => {
+    const supabase = await createSupabaseServerClient();
+
+    const { data, error } = await supabase
+        .from("purchases")
+        .select()
+        .eq("productId", productId)
+        .eq("receiver", userId);
+
+    if (error) {
+        // Handle error, perhaps log it or display an error message
+        console.error("Error fetching purchase:", error);
+        return false;
+    }
+
+    return data.length > 0;
+};
+
+export const hasBorrowed = async (productId, userId) => {
+    const supabase = await createSupabaseServerClient();
+
+    const { data, error } = await supabase
+        .from("borrowings")
+        .select()
+        .eq("productId", productId)
+        .eq("receiver", userId);
+    if (error) {
+        // Handle error, perhaps log it or display an error message
+        console.error("Error fetching purchase:", error);
+        return false;
+    }
+
+    return data.length > 0;
 };

@@ -65,10 +65,8 @@ Array [
           >
             Category
           </option>
-          <option
-            value={0}
-          >
-            Index.Electronics,Books,Clothing
+          <option>
+            Index
           </option>
         </select>
         <input

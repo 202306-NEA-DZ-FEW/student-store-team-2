@@ -102,7 +102,7 @@ function UserStatus() {
                                     href='/dashboard'
                                     className='flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-accent'
                                 >
-                                    Dashboard
+                                    {t("Dashboard")}
                                 </Link>
                             </li>
                             {links.map((link) => (
@@ -123,7 +123,7 @@ function UserStatus() {
                                     href='/profile?page=form'
                                     className='flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-accent'
                                 >
-                                    Setting
+                                    {t("Settings")}
                                 </Link>
                             </li>
                             <hr className='dark:border-gray-700' />
@@ -132,7 +132,7 @@ function UserStatus() {
                                     onClick={handleSignOutUser}
                                     className='flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-red-600'
                                 >
-                                    Logout
+                                    {t("Logout")}
                                 </a>
                             </li>
                         </ul>
@@ -141,7 +141,12 @@ function UserStatus() {
             </div>
         );
     } else {
-        return <Link href='/sign-in'> {t("Sign In")}</Link>;
+        return (
+            <Link className='mx-4' href='/sign-in'>
+                {" "}
+                {t("Sign In")}
+            </Link>
+        );
     }
 }
 

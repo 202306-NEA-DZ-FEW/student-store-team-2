@@ -1,5 +1,7 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import React from "react";
 import { BiMessageSquareDots } from "react-icons/bi";
 import { FaCheckSquare } from "react-icons/fa";
@@ -36,11 +38,12 @@ function DashboardTable({ type, data }) {
 export default DashboardTable;
 
 function DashboardTableHead({ type }) {
+    const t = useTranslations("Index");
     const userRoleObject = {
-        purchases: "bought form",
-        sales: "sold to",
-        borrowings: "borrowed from",
-        lendings: "borrowed for",
+        purchases: t("bought from"),
+        sales: t("sold to"),
+        borrowings: t("borrowed from"),
+        lendings: t("borrowed for"),
     };
 
     const userRole = userRoleObject[type];
@@ -53,7 +56,7 @@ function DashboardTableHead({ type }) {
                     scope='col'
                     className='p-4 text-left text-xs font-medium text-gray-500 uppercase'
                 >
-                    Name
+                    {t("Name")}
                 </th>
                 <th
                     scope='col'
@@ -65,33 +68,33 @@ function DashboardTableHead({ type }) {
                     scope='col'
                     className='p-4 text-left text-xs font-medium text-gray-500 uppercase'
                 >
-                    Message
+                    {t("Message")}
                 </th>
                 {isBorrowPeriodExists && (
                     <th
                         scope='col'
                         className='p-4 text-left text-xs font-medium text-gray-500 uppercase'
                     >
-                        Borrow period
+                        {t("Borrow Period")}
                     </th>
                 )}
                 <th
                     scope='col'
                     className='p-4 text-left text-xs font-medium text-gray-500 uppercase'
                 >
-                    Phone Num
+                    {t("Phone Number")}
                 </th>
                 <th
                     scope='col'
                     className='p-4 text-left text-xs font-medium text-gray-500 uppercase'
                 >
-                    Status
+                    {t("Status")}
                 </th>
                 <th
                     scope='col'
                     className='p-4 text-left text-xs font-medium text-gray-500 uppercase'
                 >
-                    Actions
+                    {t("Actions")}
                 </th>
             </tr>
         </thead>
@@ -182,6 +185,7 @@ function DashboardTableActions({
     type,
     item: { status, id, offer_type, productId, sender, receiver },
 }) {
+    const t = useTranslations("Index");
     const actions = {
         accept: {
             icon: FaCheckSquare,
@@ -258,11 +262,11 @@ function DashboardTableActions({
             type === "borrowings" || type === "purchases" ? sender : receiver;
 
         const statusMessage = {
-            requested: "has requested to buy your item",
-            accept: "has accepeted your request",
-            reject: "has rejected your request",
-            abort: "has aborted the order",
-            complete: "has picked your item",
+            requested: t("requested"),
+            accept: t("accept"),
+            reject: t("reject"),
+            abort: t("abort"),
+            complete: t("complete"),
         };
 
         const link = {
@@ -316,7 +320,7 @@ function DashboardTableActions({
                 className='ml-2 bg-gray-300 text-white  hover:bg-gray-400 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center'
             >
                 <IoEyeOutline className='w-4 h-4 mr-2' />
-                view
+                View
             </Link>
         </div>
     );

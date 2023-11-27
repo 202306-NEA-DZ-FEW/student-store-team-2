@@ -405,7 +405,7 @@ const Page = () => {
                 </section>
 
                 <Link
-                    className='fixed bottom-4 right-4 z-50 flex items-center border-accent border bg-white rounded-full shadow-md p-2 cursor-pointer hover:scale-110 animate-bounce  infinite'
+                    className='fixed sm:bottom-4  bottom-20 right-4 z-40 flex items-center border-accent border bg-white rounded-full shadow-md p-2 cursor-pointer hover:scale-110 animate-bounce  infinite'
                     href='/donate'
                 >
                     <FaHandsHoldingChild className='text-accent h-6 w-6 mr-2 ' />

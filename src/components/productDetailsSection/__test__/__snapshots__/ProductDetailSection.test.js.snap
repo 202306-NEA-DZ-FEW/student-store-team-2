@@ -8,7 +8,7 @@ exports[`renders correctly 1`] = `
     className="w-full m-4 flex gap-2"
   >
     <div
-      className="w-16 h-16 bg-sky-200 border border-gray-500 rounded-full flex items-center justify-center drop-shadow "
+      className="w-16 h-16 border-gray-500 rounded-full flex items-center justify-center drop-shadow "
       style={
         Object {
           "background": "lavender",
@@ -17,7 +17,7 @@ exports[`renders correctly 1`] = `
       }
     />
     <div
-      clssName="flex flex-col p-2 ml-4 border border-red-300 border-l-1 "
+      className="flex flex-col p-2 ml-4 border-l-1 "
     >
       <h2
         className="font-semibold text-base text-[#55585B]"
@@ -125,10 +125,12 @@ exports[`renders correctly 1`] = `
         className="flex flex-row gap-2 sm:gap-0 w-full sm:w-2/3 mt-2"
       >
         <div
-          className=" sm:w-1/3 w-1/2 flex justify-evenly flex-col"
+          className="sm:w-1/3 w-1/2 flex justify-center flex-col"
         >
           <button
-            className="bg-[#FFBD00] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-[#e8ac09] duration-300 text-white text-center hover:transition-all font-lato text-base px-5 py-1 rounded shadow-md sm-absolute"
+            className="bg-[#FFBD00] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-[#e8ac09] duration-300 text-white text-center hover:transition-all font-lato text-base px-5 py-1 rounded shadow-md sm-absolute "
+            disabled={false}
+            onClick={[Function]}
           >
             Borrow
           </button>
@@ -151,11 +153,11 @@ exports[`renders correctly 1`] = `
       <p
         className=" text-sm sm:text-base text-[#3A3A3A] font-semibold "
       >
-        Category :
+        Category:
       </p>
       <a
         className="font-normal text-[#72AEC8] underline hover:text-[#45adda] text-sm sm:text-base transform hover:scale-105 transition-transform duration-300 ease-in-out"
-        href="/"
+        href="/products?category=undefined"
         onClick={[Function]}
         onMouseEnter={[Function]}
         onTouchStart={[Function]}
@@ -193,8 +195,7 @@ exports[`renders correctly 1`] = `
         <p
           className="text-sm font-medium"
         >
-           
-          +213 (0)undefined
+          +213556214761
         </p>
       </div>
       <div

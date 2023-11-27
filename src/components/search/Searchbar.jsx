@@ -88,11 +88,7 @@ const Searchbar = ({ toggleMobileMenu }) => {
                     }}
                     className={`sm:mr-4 z-10 cursor-pointer my-auto h-6 w-6 hover:text-accent ${
                         toggleSearch && "text-accent"
-                    } ${
-                        pathname === "/" || pathname === "/en"
-                            ? "text-white"
-                            : "text-black"
-                    }`}
+                    } text-inherit`}
                 />
                 {isOpen && (
                     <div className='sm:h-auto h-screen sm:w-auto w-screen fixed top-0 right-0 bottom-0 left-0 bg-gray-700 bg-opacity-70 flex items-center justify-center z-50'>

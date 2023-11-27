@@ -1,7 +1,9 @@
 "use client";
+import { useTranslations } from "next-intl";
 import React, { useEffect, useRef, useState } from "react";
 
 const PriceFilter = ({ minVal, maxVal, handlePriceChange }) => {
+    const t = useTranslations("Index");
     const [min, setMin] = useState(minVal);
     const [max, setMax] = useState(maxVal);
     const minValRef = useRef(min);
@@ -9,7 +11,7 @@ const PriceFilter = ({ minVal, maxVal, handlePriceChange }) => {
     const range = useRef(null);
 
     // title
-    const title = "Price Filter";
+    const title = t("Price Filter");
     // Convert to percentage
     const getPercent = (value) =>
         Math.round(

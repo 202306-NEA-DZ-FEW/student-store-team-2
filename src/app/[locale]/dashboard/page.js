@@ -1,8 +1,7 @@
 import { redirect } from "next/navigation";
 
 import { getCurrentUser, readUserSession } from "@/lib/_supabaseAuth";
-import { getCategories } from "@/lib/firestore";
-import { getDashboardOrders } from "@/lib/supabase";
+import { getCategories, getDashboardOrders } from "@/lib/supabase";
 
 import AddProductForm from "@/components/addProduct/AddProductForm";
 import DashboardDisplay from "@/components/dashboardDisplay/DashboardDisplay";

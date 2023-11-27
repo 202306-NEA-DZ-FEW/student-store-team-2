@@ -1,19 +1,22 @@
+import { useTranslations } from "next-intl";
 import React from "react";
 
-const radios = [
-    {
-        id: "for sale",
-        title: "For Sale",
-        value: "sale",
-    },
-    {
-        id: "for borrow",
-        title: "For Borrow",
-        value: "borrow",
-    },
-];
 function StatusFilter({ handleStatusChange, currentStatus }) {
-    const title = "product status";
+    const t = useTranslations("Index");
+
+    const radios = [
+        {
+            id: t("for sale"),
+            title: t("For Sale"),
+            value: t("sale"),
+        },
+        {
+            id: t("for borrow"),
+            title: t("For Borrow"),
+            value: t("borrow"),
+        },
+    ];
+    const title = t("Product Status");
     return (
         <div className=''>
             <h2 className='capitalize text-lg'>{title}</h2>

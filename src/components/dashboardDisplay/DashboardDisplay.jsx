@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { GoPlus } from "react-icons/go";
 
@@ -8,6 +9,7 @@ import DashboardTable from "../tables/dashboardTable/DashboardTable";
 import UserStuffTable from "../tables/userStuffTable/UserStuffTable";
 
 const DashboardDisplay = ({ dashboardData, type }) => {
+    const t = useTranslations("Index");
     const [data, setData] = useState(dashboardData);
 
     const handleChange = (e) => filterBySearch(e.target.value);
@@ -60,35 +62,37 @@ const DashboardDisplay = ({ dashboardData, type }) => {
                         className='bg-white py-2 px-4 w-16 h-12 border border-gray-300 rounded-md  ml-4'
                     >
                         <option value='all' defaultChecked>
-                            All
+                            {t("All")}
                         </option>
                         <option value='requested' defaultChecked>
-                            Requested
+                            {t("Requested")}
                         </option>
                         <option value='pending' defaultChecked>
-                            Pending
+                            {t("Pending")}
                         </option>
                         <option value='completed' defaultChecked>
-                            Completed
+                            {t("Completed")}
                         </option>
                     </select>
                     <form className='ml-4  inline-block'>
-                        <label className='sr-only'>Search</label>
+                        <label className='sr-only'>{t("Search")}</label>
                         <div className='mt-1 relative lg:w-64 xl:w-96'>
                             <input
                                 type='text'
                                 onChange={handleChange}
                                 className='bg-gray-50 h-12 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-accent focus:border-accent block w-full p-2.5'
-                                placeholder='Search for a product'
+                                placeholder={t("Search for a product")}
                             />
                         </div>
                     </form>
                     <Link
                         href='dashboard?type=add product'
-                        className='ml-8 sm:ml-auto rounded-md p-2.5  bg-cyan-600 text-white flex items-center hover:bg-cyan-800'
+                        className=' mb-14 sm:mb-auto sm:ml-auto rounded-full sm:rounded-md p-2.5  bg-cyan-600 text-white flex items-center hover:bg-cyan-800'
                     >
                         <GoPlus className='w-7 h-7' />
-                        <span>Add product</span>
+                        <span className='hidden sm:inline-block'>
+                            {t("Add Product")}
+                        </span>
                     </Link>
                 </div>
             </div>

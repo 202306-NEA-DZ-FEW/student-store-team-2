@@ -2,14 +2,14 @@
 
 exports[`renders correctly 1`] = `
 <a
-  className="group w-fit"
+  className="group w-fit border border-gray-300/80 shadow-md py-2 px-1 rounded-md pt-1 "
   href="/products/5"
   onClick={[Function]}
   onMouseEnter={[Function]}
   onTouchStart={[Function]}
 >
   <div
-    className="relative rounded-md bg-gray-200  group-hover:opacity-75 overflow-hidden"
+    className="relative rounded-md bg-gray-200  group-hover:opacity-75 overflow-hidden "
   >
     <img
       alt="Classic literature set"
@@ -80,12 +80,14 @@ exports[`renders correctly 1`] = `
       <div />
     </div>
     <div
-      className="ml-auto"
+      className="ml-auto  i"
     >
        
       <div
         className="capitalize flex justify-center text-center items-center font-jost font-bold rounded-full bg-secondaryGreen text-white text-sm w-[105px] h-[26px]"
-      />
+      >
+        Index
+      </div>
     </div>
   </div>
 </a>
