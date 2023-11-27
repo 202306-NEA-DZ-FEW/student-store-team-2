@@ -241,7 +241,7 @@ const AddProductForm = ({ className, categories }) => {
     return (
         <form
             onSubmit={handleSubmit}
-            className='flex md:flex-row flex-col justify-center items-center space-x-8 '
+            className='flex md:flex-row flex-col justify-center items-center space-x-8 sm:mb-0 mb-5 '
         >
             {loading ? (
                 <div className='justify-center items-center'>

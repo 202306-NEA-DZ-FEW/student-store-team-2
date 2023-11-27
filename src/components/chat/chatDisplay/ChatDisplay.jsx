@@ -47,19 +47,14 @@ function ChatDisplay({ roomId, receiverInfo, userInfo, savedMessages }) {
                     const user =
                         channelA.current.presenceState()[userInfo.id] || {};
                     const { msgId } = user[0] || {};
-                    console.log("reees", receiver);
                     if (!receiver) return;
                     const { isTyping, userId, isSeen } = receiver[0];
                     if (isSeen && msgId !== lastMsgSeen) {
                         setIsSeen(true);
                         setLastMsgSeen(msgId);
-                        console.log("yoo", channelA.current.presenceState());
                         return;
                     }
-                    console.log(
-                        "Synced presence state: ",
-                        channelA.current.presenceState()
-                    );
+
                     if (userId === receiverInfo.id) setIsTyping(isTyping);
                 })
 
@@ -90,7 +85,6 @@ function ChatDisplay({ roomId, receiverInfo, userInfo, savedMessages }) {
         }
     };
     const handleSeenMessage = () => {
-        console.log("sap");
         const lastMsg = messages[messages.length - 1];
         if (channelA.current && lastMsg.userId === receiverInfo.id) {
             channelA.current.track({

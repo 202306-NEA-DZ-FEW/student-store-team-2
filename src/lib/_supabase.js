@@ -736,7 +736,7 @@ export const sendAdditionalInfo = async (additionalInfoData) => {
     try {
         const { data, error } = await supabase
             .from("additional_info")
-            .insert([additionalInfoData]);
+            .upsert([additionalInfoData]);
         if (error) {
             throw error;
         }

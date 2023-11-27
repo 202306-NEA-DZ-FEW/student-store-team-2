@@ -3,7 +3,7 @@
 exports[`renders correctly 1`] = `
 Array [
   <form
-    className="flex md:flex-row flex-col justify-center items-center space-x-8 "
+    className="flex md:flex-row flex-col justify-center items-center space-x-8 sm:mb-0 mb-5 "
     onSubmit={[Function]}
   >
     <div
