@@ -73,7 +73,7 @@ Array [
           className="relative mb-4"
         >
           <input
-            className="border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2"
+            className="border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2 uppercase"
             onChange={[Function]}
             placeholder="Enter Location"
             required={true}
@@ -198,6 +198,13 @@ Array [
           </option>
         </select>
       </div>
+      <input
+        className="border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md w-full"
+        onChange={[Function]}
+        placeholder="Additional Information"
+        type="text"
+        value=""
+      />
       <div
         className="flex space-x-2 w-full justify-center"
       >

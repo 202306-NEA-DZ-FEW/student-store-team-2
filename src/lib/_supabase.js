@@ -452,7 +452,6 @@ export const addProduct = async (productData) => {
         rest.pid = newUuid;
         const { data: productDataResult, error: productDataError } =
             await supabase.from("products").upsert(rest).select("*");
-
         if (productDataError) {
             throw (
                 ("Error inserting data into products table:", productDataError)
@@ -723,4 +722,26 @@ export const hasBorrowed = async (productId, userId) => {
     }
 
     return data.length > 0;
+};
+
+/**
+ * The `sendAdditionalInfo` function sends additional information to the 'additional_info' table in Supabase.
+ * @param additionalInfoData - The `additionalInfoData` parameter is an object containing the additional information to be sent.
+ * It should have the properties 'pid', 'title', 'description', and 'additional_information'.
+ * @returns The function sends the provided additional information to the 'additional_info' table in Supabase.
+ */
+export const sendAdditionalInfo = async (additionalInfoData) => {
+    const supabase = await createSupabaseServerClient();
+
+    try {
+        const { data, error } = await supabase
+            .from("additional_info")
+            .insert([additionalInfoData]);
+        if (error) {
+            throw error;
+        }
+        return data;
+    } catch (error) {
+        throw ("Error sending additional information:", error);
+    }
 };

@@ -6,9 +6,10 @@ import { useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { FaSpinner } from "react-icons/fa";
 import { SiXamarin } from "react-icons/si";
+import { v4 as uuidv4 } from "uuid";
 
 import { getSignature, saveToDatabase } from "@/lib/_cloudinary";
-import { addProduct } from "@/lib/_supabase";
+import { addProduct, sendAdditionalInfo } from "@/lib/_supabase";
 
 import LocationInput from "../locationInput/LocationInput";
 import { useUser } from "../userProvider/UserProvider";
@@ -26,6 +27,8 @@ const AddProductForm = ({ className, categories }) => {
     const [type, setType] = useState("for_sale");
     const [price, setPrice] = useState("");
     const [condition, setCondition] = useState(5);
+    const [additionalInfo, setAdditionalInfo] = useState("");
+
     const [loading, setLoading] = useState(false);
 
     const { user } = useUser();
@@ -153,10 +156,13 @@ const AddProductForm = ({ className, categories }) => {
         const month = String(today.getMonth() + 1).padStart(2, "0");
         const day = String(today.getDate()).padStart(2, "0");
         const formattedDate = `${year}-${month}-${day}`;
+        const pid = uuidv4();
+
         const productData = {
+            pid,
             name,
-            category: parseInt(category),
-            location: { Lat: latitude, Long: longitude },
+            category,
+            location: { lat: latitude, long: longitude },
             description,
             offer_type: type,
             condition,
@@ -167,12 +173,22 @@ const AddProductForm = ({ className, categories }) => {
         };
         await addProduct(productData);
 
+        const additionalInfoData = {
+            pid, // Replace 'productId' with the actual product ID
+            title: name,
+            description,
+            additional_information: additionalInfo,
+        };
+        await sendAdditionalInfo(additionalInfoData);
+
         setName("");
         setCategory("");
         setLocation("");
         setDescription("");
         setType("");
         setPrice("");
+        setAdditionalInfo("");
+
         setFiles([]);
     }
 
@@ -291,7 +307,9 @@ const AddProductForm = ({ className, categories }) => {
                         <div className='flex justify-center mx-auto space-x-2 text-sm'>
                             <select
                                 value={category}
-                                onChange={(e) => setCategory(e.target.value)}
+                                onChange={(e) =>
+                                    setCategory(parseInt(e.target.value, 10))
+                                }
                                 className='border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2 uppercase'
                                 required
                             >
@@ -306,7 +324,7 @@ const AddProductForm = ({ className, categories }) => {
                                 location={location}
                                 setLocation={setLocation} // Assuming you have a state setter function for location
                                 onLocationSelect={handleLocationSelect}
-                                styling='border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2'
+                                styling='border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2 uppercase'
                             />
                         </div>
 
@@ -348,6 +366,13 @@ const AddProductForm = ({ className, categories }) => {
                                 ))}
                             </select>
                         </div>
+                        <input
+                            type='text'
+                            placeholder={t("Additional Information")}
+                            className='border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md w-full'
+                            value={additionalInfo}
+                            onChange={(e) => setAdditionalInfo(e.target.value)}
+                        />
 
                         <div className='flex space-x-2 w-full justify-center'>
                             <input
