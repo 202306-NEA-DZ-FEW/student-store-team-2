@@ -113,8 +113,8 @@ export default async function RootLayout({ children, params: { locale } }) {
                     >
                         <Navbar />
                         {children}
+                        {/* <Footer /> */}
                         <ToastContainer />
-
                         <Footer />
                         <MobileNavigation />
                     </NextIntlClientProvider>
