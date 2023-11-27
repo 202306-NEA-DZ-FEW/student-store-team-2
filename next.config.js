@@ -5,7 +5,7 @@ const withPWA = require('next-pwa')({
        
 })
 
-module.exports = {
+module.exports = withPWA({
     eslint: {
         dirs: ["src"],
     },
@@ -27,5 +27,5 @@ module.exports = {
                 ],
     },
     
-}
+})
 
