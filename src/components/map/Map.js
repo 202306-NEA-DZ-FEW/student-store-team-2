@@ -1,13 +1,14 @@
 "use client";
 
 import L from "leaflet";
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { LayersControl, MapContainer, Marker, TileLayer } from "react-leaflet";
 
 import "leaflet/dist/leaflet.css";
 
 const Map = ({ coord }) => {
     const [Coord, setCoord] = useState(coord);
+
     delete L.Icon.Default.prototype._getIconUrl;
 
     const customMarkerIcon = L.icon({

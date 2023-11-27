@@ -12,7 +12,7 @@ import { useUser } from "../userProvider/UserProvider";
 
 function UserStatus() {
     const t = useTranslations("Index");
-    const { user, userData, loading } = useUser();
+    const { userData, loading } = useUser();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const handleSignOutUser = async () => {

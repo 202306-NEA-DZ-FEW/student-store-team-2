@@ -6,7 +6,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { v1 } from "uuid";
 
-import { insertNewMessage } from "@/lib/supabase";
+import { insertNewMessage } from "@/lib/_supabase";
 function ChatDisplay({ roomId, receiverInfo, userInfo, savedMessages }) {
     const [msg, setMsg] = useState("");
     const [messages, setMessages] = useState(savedMessages);

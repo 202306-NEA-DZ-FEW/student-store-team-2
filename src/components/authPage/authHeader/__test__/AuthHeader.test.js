@@ -5,10 +5,11 @@ import AuthHeader from "../AuthHeader";
 import messages from "../../../../../messages/en.json";
 
 it("renders correctly", () => {
+    const title = "LOGIN";
     const tree = renderer
         .create(
             <NextIntlClientProvider locale='en' messages={messages}>
-                <AuthHeader />
+                <AuthHeader title={title} />
             </NextIntlClientProvider>
         )
         .toJSON();

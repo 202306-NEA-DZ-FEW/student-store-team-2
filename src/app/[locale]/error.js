@@ -7,7 +7,7 @@ export default function Error({ error, reset }) {
     const [showDetails, setShowDetails] = useState(false);
     const t = useTranslations("Index");
     useEffect(() => {
-        console.error(error);
+        throw error;
     }, [error]);
     return (
         <div className='grid h-screen px-4 bg-white place-content-center'>

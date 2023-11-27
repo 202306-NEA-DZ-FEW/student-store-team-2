@@ -18,7 +18,7 @@ function MobileNavigation() {
     const toggleMobileMenu = () => {
         setIsOpen(!isOpen);
     };
-    const { user, userData, loading } = useUser();
+    const { userData, loading } = useUser();
 
     return (
         <>
