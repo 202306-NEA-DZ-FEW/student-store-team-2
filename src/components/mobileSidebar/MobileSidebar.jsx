@@ -124,22 +124,28 @@ export default function MobileSidebar({ toggleMobileMenu, isOpen }) {
                     </span>
                     <ul className='list-unstyled'>
                         <li>
-                            <a
-                                onClick={handleSignOutUser}
+                            <Link
                                 className='text-titleContent hover:text-accent font-semibold block pb-2 '
-                                href='https://www.creative-tim.com/presentation?ref=njs-profile'
+                                href='/'
                             >
                                 {t("Home")}
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a
-                                onClick={handleSignOutUser}
+                            <Link
                                 className='text-titleContent hover:text-accent font-semibold block pb-2 '
-                                href='https://blog.creative-tim.com?ref=njs-profile'
+                                href='/products?page=1'
                             >
                                 {t("Products")}
-                            </a>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                className='text-titleContent hover:text-accent font-semibold block pb-2 '
+                                href='/donate'
+                            >
+                                {t("Donate")}
+                            </Link>
                         </li>
                         <li>
                             <a

@@ -58,28 +58,28 @@ function Footer() {
                                 </span>
                                 <ul className='list-unstyled'>
                                     <li>
-                                        <a
+                                        <Link
                                             className='text-titleContent hover:text-accent font-semibold block pb-2 text-sm'
-                                            href='https://www.creative-tim.com/presentation?ref=njs-profile'
+                                            href='/'
                                         >
                                             {t("Home")}
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a
+                                        <Link
                                             className='text-titleContent hover:text-accent font-semibold block pb-2 text-sm'
-                                            href='https://blog.creative-tim.com?ref=njs-profile'
+                                            href='/products?page=1'
                                         >
                                             {t("Products")}
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a
+                                        <Link
                                             className='text-titleContent hover:text-accent font-semibold block pb-2 text-sm'
-                                            href='https://www.github.com/creativetimofficial?ref=njs-profile'
+                                            href='/donate'
                                         >
                                             {t("Donate")}
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>

@@ -10,6 +10,7 @@ import { SiXamarin } from "react-icons/si";
 import { getSignature, saveToDatabase } from "@/lib/_cloudinary";
 import { addProduct } from "@/lib/_supabase";
 
+import LocationInput from "../locationInput/LocationInput";
 import { useUser } from "../userProvider/UserProvider";
 
 const AddProductForm = ({ className, categories }) => {
@@ -19,6 +20,8 @@ const AddProductForm = ({ className, categories }) => {
     const [name, setName] = useState("");
     const [category, setCategory] = useState("");
     const [location, setLocation] = useState("");
+    const [latitude, setLatitude] = useState("");
+    const [longitude, setLongitude] = useState("");
     const [description, setDescription] = useState("");
     const [type, setType] = useState("for_sale");
     const [price, setPrice] = useState("");
@@ -145,7 +148,6 @@ const AddProductForm = ({ className, categories }) => {
         setFiles(uploadedFiles);
 
         const imageLinks = uploadedFiles.map((file) => file.cloudinaryUrl);
-
         const today = new Date();
         const year = today.getFullYear();
         const month = String(today.getMonth() + 1).padStart(2, "0");
@@ -153,13 +155,13 @@ const AddProductForm = ({ className, categories }) => {
         const formattedDate = `${year}-${month}-${day}`;
         const productData = {
             name,
-            category,
-            location,
+            category: parseInt(category),
+            location: { Lat: latitude, Long: longitude },
             description,
             offer_type: type,
             condition,
             price,
-            uid: user,
+            uid: user.id,
             created_at: formattedDate,
             image: imageLinks,
         };
@@ -215,6 +217,13 @@ const AddProductForm = ({ className, categories }) => {
             );
         }
     };
+
+    const handleLocationSelect = (lat, lon) => {
+        // Define the logic for handling the selected location here
+        setLatitude(lat);
+        setLongitude(lon);
+    };
+
     return (
         <form
             onSubmit={handleSubmit}
@@ -226,7 +235,7 @@ const AddProductForm = ({ className, categories }) => {
                 </div>
             ) : (
                 <>
-                    <div className='md:w-1/2'>
+                    <div className='md:w-1/2 hidden sm:block'>
                         {files.length < 4 && (
                             <div
                                 {...getRootProps({ className: className })}
@@ -293,13 +302,11 @@ const AddProductForm = ({ className, categories }) => {
                                     </option>
                                 ))}
                             </select>
-                            <input
-                                type='text'
-                                placeholder={t("Location")}
-                                className=' border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2'
-                                value={location}
-                                onChange={(e) => setLocation(e.target.value)}
-                                required
+                            <LocationInput
+                                location={location}
+                                setLocation={setLocation} // Assuming you have a state setter function for location
+                                onLocationSelect={handleLocationSelect}
+                                styling='border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2'
                             />
                         </div>
 
@@ -325,6 +332,7 @@ const AddProductForm = ({ className, categories }) => {
                             </select>
                             {renderPriceInput()}
                         </div>
+
                         <div className='flex justify-center mx-auto space-x-2 items-center text-sm'>
                             <label>{t("Product Condition")}:</label>
                             <select

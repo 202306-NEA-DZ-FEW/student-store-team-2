@@ -1,11 +1,11 @@
 import React from "react";
 
-import { getCurrentUser } from "@/lib/_supabaseAuth";
 import {
     createOrGetRoom,
     getRoomMessages,
     getUserProfile,
-} from "@/lib/supabase";
+} from "@/lib/_supabase";
+import { getCurrentUser } from "@/lib/_supabaseAuth";
 
 import ChatDisplay from "@/components/chat/chatDisplay/ChatDisplay";
 

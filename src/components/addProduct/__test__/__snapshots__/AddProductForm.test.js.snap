@@ -7,7 +7,7 @@ Array [
     onSubmit={[Function]}
   >
     <div
-      className="md:w-1/2"
+      className="md:w-1/2 hidden sm:block"
     >
       <div
         className="border border-dashed border-accent/50 md:flex flex flex-col items-center justify-center text-center p-8 text-accent/50 text-sm"
@@ -69,14 +69,18 @@ Array [
             Index
           </option>
         </select>
-        <input
-          className=" border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2"
-          onChange={[Function]}
-          placeholder="Location"
-          required={true}
-          type="text"
-          value=""
-        />
+        <div
+          className="relative mb-4"
+        >
+          <input
+            className="border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2"
+            onChange={[Function]}
+            placeholder="Enter Location"
+            required={true}
+            type="text"
+            value=""
+          />
+        </div>
       </div>
       <textarea
         className="w-full h-48 border border-accent/50  placeholder:text-accent/50 px-4  rounded-md placeholder:flex placeholder:items-center placeholder:justify-center placeholder:text-center placeholder:text-md"

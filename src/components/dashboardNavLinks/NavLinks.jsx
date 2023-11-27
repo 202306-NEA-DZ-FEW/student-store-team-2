@@ -7,7 +7,7 @@ import { FaCoins, FaShoppingBag } from "react-icons/fa";
 import { PiArrowULeftDownBold } from "react-icons/pi";
 import { RiShakeHandsFill, RiShoppingBag3Fill } from "react-icons/ri";
 
-const NavLinks = () => {
+const NavLinks = ({ fetchPurchases }) => {
     const t = useTranslations("Index");
     const links = [
         { name: "my stuff", link: "stuff", icon: FaShoppingBag },
@@ -18,11 +18,10 @@ const NavLinks = () => {
     ];
 
     const params = useSearchParams();
-
     const type = params.get("type") || "stuff";
 
     return (
-        <div className='font-lato fixed top-6 pt-12  px-8  border-r border-r-gray-200 font-semibold text-lg capitalize h-screen mt-10 bg-bkg text-titleContent  hidden md:block'>
+        <div className='font-lato fixed top-6 pt-12  px-8  border-r border-r-gray-200 font-semibold text-lg capitalize h-screen    mt-10 bg-bkg text-titleContent  hidden md:block'>
             {links.map(({ name, link, icon: Icon }) => (
                 <Link href={`/dashboard?type=${link}`} key={name}>
                     <div
@@ -31,7 +30,7 @@ const NavLinks = () => {
                         }`}
                     >
                         <Icon className='w-6 h-6' />
-                        <span className='ml-4   '>{t(name)}</span>
+                        <span className='ml-4'>{t(name)}</span>
                     </div>
                 </Link>
             ))}

@@ -6,7 +6,7 @@ import { useParams } from "next/navigation";
 import React, { useState } from "react";
 import { useEffect } from "react";
 
-import { getUserConnections } from "@/lib/supabase";
+import { getUserConnections } from "@/lib/_supabase";
 
 function ChatSideBar() {
     const [name, setName] = useState();
