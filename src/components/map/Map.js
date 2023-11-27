@@ -31,7 +31,7 @@ const Map = ({ coord }) => {
 
     return (
         <div className='flex justify-center items-center'>
-            <div style={{ height: "65vh", width: "70vw" }}>
+            <div style={{ height: "65vh", width: "70vw", zIndex: 1 }}>
                 <MapContainer
                     ref={mapRef}
                     center={Coord}

@@ -6,9 +6,10 @@ import { useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { FaSpinner } from "react-icons/fa";
 import { SiXamarin } from "react-icons/si";
+import { v4 as uuidv4 } from "uuid";
 
 import { getSignature, saveToDatabase } from "@/lib/_cloudinary";
-import { addProduct } from "@/lib/_supabase";
+import { addProduct, sendAdditionalInfo } from "@/lib/_supabase";
 
 import LocationInput from "../locationInput/LocationInput";
 import { useUser } from "../userProvider/UserProvider";
@@ -26,6 +27,8 @@ const AddProductForm = ({ className, categories }) => {
     const [type, setType] = useState("for_sale");
     const [price, setPrice] = useState("");
     const [condition, setCondition] = useState(5);
+    const [additionalInfo, setAdditionalInfo] = useState("");
+
     const [loading, setLoading] = useState(false);
 
     const { user } = useUser();
@@ -40,8 +43,11 @@ const AddProductForm = ({ className, categories }) => {
             ]);
         }
     }, []);
-    /* The above code is defining a function called `onDrop` using the `useCallback` hook in React. This
-  function takes in an array of `acceptedFiles` as a parameter. */
+
+    const handleLocationSelect = (lat, lon) => {
+        setLatitude(lat);
+        setLongitude(lon);
+    };
 
     /**
      * The `removeFile` function removes a file from a list of files based on its name.
@@ -101,7 +107,7 @@ const AddProductForm = ({ className, categories }) => {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Prevents the default form submission
+        e.preventDefault();
 
         setLoading(true);
         try {
@@ -153,10 +159,13 @@ const AddProductForm = ({ className, categories }) => {
         const month = String(today.getMonth() + 1).padStart(2, "0");
         const day = String(today.getDate()).padStart(2, "0");
         const formattedDate = `${year}-${month}-${day}`;
+        const pid = uuidv4();
+
         const productData = {
+            pid,
             name,
-            category: parseInt(category),
-            location: { Lat: latitude, Long: longitude },
+            category,
+            location: { lat: latitude, long: longitude },
             description,
             offer_type: type,
             condition,
@@ -167,12 +176,22 @@ const AddProductForm = ({ className, categories }) => {
         };
         await addProduct(productData);
 
+        const additionalInfoData = {
+            pid, // Replace 'productId' with the actual product ID
+            name,
+            description,
+            additional_information: additionalInfo,
+        };
+        await sendAdditionalInfo(additionalInfoData);
+
         setName("");
         setCategory("");
         setLocation("");
         setDescription("");
         setType("");
         setPrice("");
+        setAdditionalInfo("");
+
         setFiles([]);
     }
 
@@ -194,6 +213,7 @@ const AddProductForm = ({ className, categories }) => {
             </button>
         </>
     );
+
     const renderPriceInput = () => {
         if (type === "for_sale") {
             return (
@@ -218,16 +238,10 @@ const AddProductForm = ({ className, categories }) => {
         }
     };
 
-    const handleLocationSelect = (lat, lon) => {
-        // Define the logic for handling the selected location here
-        setLatitude(lat);
-        setLongitude(lon);
-    };
-
     return (
         <form
             onSubmit={handleSubmit}
-            className='flex md:flex-row flex-col justify-center items-center space-x-8 '
+            className='flex md:flex-row flex-col justify-center items-center space-x-8 sm:mb-0 mb-5 '
         >
             {loading ? (
                 <div className='justify-center items-center'>
@@ -288,27 +302,27 @@ const AddProductForm = ({ className, categories }) => {
                             required
                         />
 
-                        <div className='flex justify-center mx-auto space-x-2 text-sm'>
-                            <select
-                                value={category}
-                                onChange={(e) => setCategory(e.target.value)}
-                                className='border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2 uppercase'
-                                required
-                            >
-                                <option value=''>{t("Category")}</option>
-                                {categories.map((cat) => (
-                                    <option key={cat.id} value={cat.id}>
-                                        {t(cat.category_name)}
-                                    </option>
-                                ))}
-                            </select>
-                            <LocationInput
-                                location={location}
-                                setLocation={setLocation} // Assuming you have a state setter function for location
-                                onLocationSelect={handleLocationSelect}
-                                styling='border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2'
-                            />
-                        </div>
+                        <select
+                            value={category}
+                            onChange={(e) =>
+                                setCategory(parseInt(e.target.value, 10))
+                            }
+                            className='border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-1/2 uppercase'
+                            required
+                        >
+                            <option value=''>{t("Category")}</option>
+                            {categories.map((cat) => (
+                                <option key={cat.id} value={cat.id}>
+                                    {t(cat.category_name)}
+                                </option>
+                            ))}
+                        </select>
+                        <LocationInput
+                            location={location}
+                            setLocation={setLocation} // Assuming you have a state setter function for location
+                            onLocationSelect={handleLocationSelect}
+                            styling='border border-accent/50  placeholder:text-accent/50 px-4 py-2 rounded-md w-full uppercase'
+                        />
 
                         <textarea
                             placeholder={t("description")}
@@ -348,6 +362,13 @@ const AddProductForm = ({ className, categories }) => {
                                 ))}
                             </select>
                         </div>
+                        <input
+                            type='text'
+                            placeholder={t("Additional Information")}
+                            className='border border-accent/50 placeholder:text-accent/50 px-4 py-2 rounded-md w-full'
+                            value={additionalInfo}
+                            onChange={(e) => setAdditionalInfo(e.target.value)}
+                        />
 
                         <div className='flex space-x-2 w-full justify-center'>
                             <input

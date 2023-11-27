@@ -452,7 +452,6 @@ export const addProduct = async (productData) => {
         rest.pid = newUuid;
         const { data: productDataResult, error: productDataError } =
             await supabase.from("products").upsert(rest).select("*");
-
         if (productDataError) {
             throw (
                 ("Error inserting data into products table:", productDataError)
@@ -723,4 +722,50 @@ export const hasBorrowed = async (productId, userId) => {
     }
 
     return data.length > 0;
+};
+
+/**
+ * The `sendAdditionalInfo` function sends additional information to the 'additional_info' table in Supabase.
+ * @param additionalInfoData - The `additionalInfoData` parameter is an object containing the additional information to be sent.
+ * It should have the properties 'pid', 'title', 'description', and 'additional_information'.
+ * @returns The function sends the provided additional information to the 'additional_info' table in Supabase.
+ */
+export const sendAdditionalInfo = async (additionalInfoData) => {
+    const supabase = await createSupabaseServerClient();
+
+    try {
+        const { data, error } = await supabase
+            .from("additional_info")
+            .upsert([additionalInfoData]);
+        if (error) {
+            throw error;
+        }
+        return data;
+    } catch (error) {
+        throw ("Error sending additional information:", error);
+    }
+};
+
+/**
+ * The function `getAdditionalInfo` fetches additional information for a given product ID from a
+ * Supabase server.
+ * @param productId - The `productId` parameter is the unique identifier of the product for which you
+ * want to retrieve additional information. It is used to filter the records in the "additional_info"
+ * table and fetch the relevant data.
+ * @returns the data fetched from the "additional_info" table in the Supabase database, filtered by the
+ * "pid" column matching the provided productId.
+ */
+export const getAdditionalInfo = async (productId) => {
+    const supabase = await createSupabaseServerClient();
+
+    try {
+        const { data, error } = await supabase
+            .from("additional_info")
+            .select()
+            .eq("pid", productId);
+        return data;
+    } catch (error) {
+        console.error("Error fetching testimonials:", error);
+        throw error;
+    }
 };

@@ -12,7 +12,6 @@ function ChatSideBar() {
     const [name, setName] = useState();
     const [connections, setConnections] = useState([]);
     const params = useParams();
-    console.log("pathname", params);
 
     const fetchConnections = async () => {
         const { name: username, connections: data } =

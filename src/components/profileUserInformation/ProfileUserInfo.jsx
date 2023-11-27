@@ -13,26 +13,29 @@ function ProfileUserInfo({ user }) {
         const fetcher = async () => {
             if (user) {
                 const { location } = user; // Assuming userData has a 'location' object with 'Lat' and 'Long'
-                const { Lat, Long } = location;
 
-                try {
-                    const data = await reverseGeocode(Lat, Long); // Fetch reverse geocoding data
-                    const [firstResult = {}] = data || []; // Get the first result (or default to an empty object)
-                    const { name, state, country } = firstResult; // Extract location details
+                if (location) {
+                    const { Lat, Long } = location;
 
-                    const formattedLocation = `${name}, ${state}, ${country}`; // Format the location string if necessary
+                    try {
+                        const data = await reverseGeocode(Lat, Long); // Fetch reverse geocoding data
+                        const [firstResult = {}] = data || []; // Get the first result (or default to an empty object)
+                        const { name, state, country } = firstResult; // Extract location details
 
-                    setLocation(formattedLocation); // Set the location state
-                } catch (error) {
-                    // Handle errors
-                    throw ("Error fetching reverse geocoding data:", error);
+                        const formattedLocation = `${name}, ${state}, ${country}`; // Format the location string if necessary
+
+                        setLocation(formattedLocation); // Set the location state
+                    } catch (error) {
+                        // Handle errors
+                        throw ("Error fetching reverse geocoding data:", error);
+                    }
                 }
             }
         };
         fetcher();
     }, [user]);
     return (
-        <div className='flex flex-col p-2 ml-4 border-l-1 '>
+        <div className='flex flex-col sm:p-2 sm:ml-4 ml-2 border-l-1 '>
             <h2 className='font-semibold text-base text-[#55585B]'>
                 {user ? user.full_name : null}
             </h2>

@@ -134,17 +134,13 @@ export default function ProductDetailSection({ user, product }) {
         }
     };
     return (
-        <section className='w-full sm:w-full flex flex-col'>
-            <div className='w-full m-4 flex gap-2'>
-                <ProfilePic user={user} />
-                <ProfileUserInfo user={user} />
-            </div>
+        <section className='w-full sm:w-full flex flex-col font-lato '>
             <div className='border border-0.5 border[#EDF1F3] rounded-md drop-shadow-sm p-4 w-full'>
-                <div className='mb-10 ml-4'>
-                    <h2 className='font-lato text-lg sm:3xl uppercase text-[#55585B]'>
+                <div className='sm:mb-4 mb-4 ml-4'>
+                    <h2 className='font-lato text-lg sm:3xl uppercase text-[#55585B] flex sm:flex-col'>
                         {product && product.name}
                     </h2>
-                    <div className='relative mt-2'>
+                    <div className='relative'>
                         <Image
                             className='z-0'
                             src='/conditionLabelVector.svg'
@@ -152,16 +148,16 @@ export default function ProductDetailSection({ user, product }) {
                             width={139}
                             height={39}
                         ></Image>
-                        <div className='font-jost font-extrabold text-sm sm:text-base text-bkg absolute bottom-1 left-2 tracking-wider '>
+                        <div className='font-jost font-extrabold text-sm sm:text-base text-bkg absolute bottom-1 left-2 tracking-wide '>
                             {t("State")}: {product && product.condition + "/10"}
                         </div>
                     </div>
                 </div>
 
-                <p className='w-full sm:w-5/6 text-sm sm:text-base font-medium mb-2 leading-5 tracking-wide'>
+                <p className='w-full sm:w-5/6 text-sm sm:text-base font-lato mb-2 leading-5 tracking-wide sm:-mt-2 font-semibold'>
                     {product && product.description}
                 </p>
-                <div className=' mt-8 text-[#3A3A3A] w-full flex flex-col items-start sm:flex-row sm:items-center my-1'>
+                <div className=' sm:mt-8 mt-4 text-[#3A3A3A] w-full flex flex-col items-start sm:flex-row sm:items-center my-1'>
                     {isChecking ? (
                         <FaSpinner className='h-8 w-8 animate-spin duration-150 text-accent' />
                     ) : (
@@ -185,8 +181,8 @@ export default function ProductDetailSection({ user, product }) {
                                             </Link>
                                         </div>
                                     ) : (
-                                        <p className='font-lato text-lg font-semibold'>
-                                            ${product?.sale_offer?.price}
+                                        <p className='font-lato text-lg font-semibold tracking-wide'>
+                                            $ {product?.sale_offer?.price}
                                         </p>
                                     )}
                                 </div>
@@ -221,6 +217,15 @@ export default function ProductDetailSection({ user, product }) {
                         </>
                     )}
                 </div>
+
+                <div className='flex gap-4 mt-4'>
+                    <div className=' m-4 flex sm:gap-2'>
+                        <ProfilePic user={user} />
+                        <ProfileUserInfo user={user} />
+                    </div>
+                    <ContactDetails user={user} />
+                </div>
+
                 <div className=' w-full flex mt-8 gap-2'>
                     <p className=' text-sm sm:text-base text-[#3A3A3A] font-semibold '>
                         {t("Category:")}
@@ -232,7 +237,6 @@ export default function ProductDetailSection({ user, product }) {
                         {product?.categories?.category_name}
                     </Link>
                 </div>
-                <ContactDetails user={user} />
             </div>
         </section>
     );

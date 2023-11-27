@@ -18,8 +18,8 @@ const intlMiddleware = createMiddleware({
 });
 
 export async function middleware(request) {
-    const res = await supabseMiddleware(request);
-    const response = await intlMiddleware(request, res);
+    const res = await intlMiddleware(request);
+    const response = await supabseMiddleware(request, res);
     return response;
 }
 

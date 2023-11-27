@@ -67,23 +67,6 @@ export default function Navbar() {
             <>
                 <div className='mx-auto px-2 sm:px-6 lg:px-8 '>
                     <div className='relative flex h-16 items-center justify-between'>
-                        {/* <button
-                            onClick={toggleMobileMenu}
-                            className=' sm:hidden inline-flex items-center justify-center rounded-md p-2  hover:bg-accent2 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white transition-all duration-300 ease-in-out'
-                        >
-                            {isOpen ? (
-                                <BiMenu
-                                    className='block h-8 w-8 '
-                                    aria-hidden='true'
-                                />
-                            ) : (
-                                <BiMenuAltRight
-                                    className='block h-8 w-8'
-                                    aria-hidden='true'
-                                />
-                            )}
-                        </button> */}
-
                         <div className='flex flex-1 items-center justify-between'>
                             <Link href='/'>
                                 <div className='flex flex-shrink-0 items-center  w-1/3'>
@@ -112,14 +95,13 @@ export default function Navbar() {
                                     ))}
                                 </div>
                             </div>
-                            <div className='flex spacing-x-5 items-center md:hidden mr-4'>
+                            <div className='flex gap-4 items-center sm:hidden mr-4'>
                                 <NotificationsDropdown />
                                 <Searchbar />
                             </div>
-                            <div className='hidden md:block'>
+                            <div className='hidden sm:block'>
                                 <div className='flex space-x-4 items-center'>
-                                    <Searchbar toggleMobileMenu={() => {}} />
-
+                                    <Searchbar />
                                     <UserStatus />
                                     <NotificationsDropdown />
                                 </div>

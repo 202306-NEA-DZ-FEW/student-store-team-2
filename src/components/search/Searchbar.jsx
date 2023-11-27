@@ -85,7 +85,7 @@ const Searchbar = ({ toggleMobileMenu }) => {
                         handleClick();
                         setIsOpen(!isOpen);
                     }}
-                    className={`sm:mr-4 z-10 cursor-pointer my-auto h-6 w-6 hover:text-accent ${
+                    className={`sm:mr-4 z-10 cursor-pointer my-auto sm:w-8 sm:h-8 h-6 w-6 rounded-full overflow-hidden border-1 mr-2 border-accent hover:text-accent ${
                         toggleSearch && "text-accent"
                     } text-inherit`}
                 />
