@@ -745,3 +745,27 @@ export const sendAdditionalInfo = async (additionalInfoData) => {
         throw ("Error sending additional information:", error);
     }
 };
+
+/**
+ * The function `getAdditionalInfo` fetches additional information for a given product ID from a
+ * Supabase server.
+ * @param productId - The `productId` parameter is the unique identifier of the product for which you
+ * want to retrieve additional information. It is used to filter the records in the "additional_info"
+ * table and fetch the relevant data.
+ * @returns the data fetched from the "additional_info" table in the Supabase database, filtered by the
+ * "pid" column matching the provided productId.
+ */
+export const getAdditionalInfo = async (productId) => {
+    const supabase = await createSupabaseServerClient();
+
+    try {
+        const { data, error } = await supabase
+            .from("additional_info")
+            .select()
+            .eq("pid", productId);
+        return data;
+    } catch (error) {
+        console.error("Error fetching testimonials:", error);
+        throw error;
+    }
+};

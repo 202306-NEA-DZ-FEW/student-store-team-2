@@ -12,11 +12,11 @@ function ContactDetails({ user }) {
         return phoneNumber; // Return the original number if it doesn't start with '0'
     }
     return (
-        <div className='mt-8'>
+        <div className='flex  m-4 flex-col sm:p-2 sm:ml-4 ml-2 border-l-1'>
             <h1 className='font-lato text-md font-semibold text-[#55585B]'>
                 {t("Contact Details")}
             </h1>
-            <div className='ml-4 mt-3 font-jost flex gap-1 text-[#72ADC7]'>
+            <div className='flex items-center mt-3 font-jost font-semibold text-base text-[#72ADC7]'>
                 <FaPhoneVolume />
                 <p className='text-sm font-medium'>
                     {user.phone_num
@@ -24,7 +24,7 @@ function ContactDetails({ user }) {
                         : "Phone Number Not Available"}
                 </p>
             </div>
-            <div className='ml-4 mt-1 font-jost flex gap-1 text-[#72ADC7]'>
+            <div className='flex items-center mt-3 font-jost font-semibold text-base text-[#72ADC7]'>
                 <MdEmail />
                 <p className='text-sm font-medium'>
                     {" "}

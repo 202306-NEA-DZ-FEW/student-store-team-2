@@ -35,7 +35,7 @@ function ProfileUserInfo({ user }) {
         fetcher();
     }, [user]);
     return (
-        <div className='flex flex-col p-2 ml-4 border-l-1 '>
+        <div className='flex flex-col sm:p-2 sm:ml-4 ml-2 border-l-1 '>
             <h2 className='font-semibold text-base text-[#55585B]'>
                 {user ? user.full_name : null}
             </h2>
