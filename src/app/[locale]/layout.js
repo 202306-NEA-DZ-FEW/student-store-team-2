@@ -22,7 +22,6 @@ import "./carousel.css";
 import "./loader.css";
 import "react-toastify/dist/ReactToastify.css";
 
-import Footer from "@/components/footer/Footer";
 import MobileNavigation from "@/components/mobileNavigation/MobileNavigation";
 import { UserProvider } from "@/components/userProvider/UserProvider";
 
@@ -105,7 +104,7 @@ export default async function RootLayout({ children, params: { locale } }) {
                         <div className='max-sm:pb-4'>{children}</div>
                         {/* <Footer /> */}
                         <ToastContainer />
-                        <Footer />
+
                         <MobileNavigation />
                     </UserProvider>
                 </NextIntlClientProvider>
