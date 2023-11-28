@@ -148,7 +148,7 @@ export default function MobileSidebar({ toggleMobileMenu, isOpen }) {
                         </li>
                     </ul>
                     <span className='block uppercase   font-semibold mb-2'>
-                        {t("About MadauraStore")}
+                        {t("About Madaura")}
                     </span>
                     <ul className='list-unstyled'>
                         <li>

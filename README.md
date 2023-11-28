@@ -1,6 +1,6 @@
-# MadauraStore Website
+# Madaura Website
 
-Welcome to MadauraStore, a fully-responsive web application platform for students to lend, borrow, sell, and buy new and used items of different categories from each other.
+Welcome to Madaura, a fully-responsive web application platform for students to lend, borrow, sell, and buy new and used items of different categories from each other.
 
 ## Table of Contents
 - [Features](#features)
@@ -18,7 +18,7 @@ Welcome to MadauraStore, a fully-responsive web application platform for student
 
 ## Features
 
-- **Responsive Design**: MadauraStore is accessible on various devices, providing a seamless experience.
+- **Responsive Design**: Madaura is accessible on various devices, providing a seamless experience.
 - **Category Carousel**: Easily navigate through different product categories on the home page.
 - **User Testimonials**: Explore experiences shared by other users.
 - **Product Search**: Quickly find specific items using the search functionality.
@@ -34,7 +34,7 @@ Welcome to MadauraStore, a fully-responsive web application platform for student
 
 ### Installation
 
-No installation is required since MadauraStore is a web-based platform. Simply visit [MadauraStore Website](#) in your preferred web browser.
+No installation is required since Madaura is a web-based platform. Simply visit [Madaura Website](#) in your preferred web browser.
 
 ### Usage
 
@@ -63,7 +63,7 @@ No installation is required since MadauraStore is a web-based platform. Simply v
 
 ## Support and Donations
 
-If you appreciate the service and want to support MadauraStore, consider visiting our [Donate Page](#) (leading to a mock checkout page) and choose from three donation options: $5, $10, and $25. Your support is crucial as the website runs purely on donations.
+If you appreciate the service and want to support Madaura, consider visiting our [Donate Page](#) (leading to a mock checkout page) and choose from three donation options: $5, $10, and $25. Your support is crucial as the website runs purely on donations.
 
 **Note: This website is a template and is not live yet. It is connected to Firebase and Supabase for authentication, real-time database, and database storage. Cloudinary is used for image storage, and React Leaflet is integrated for geolocation maps.**
 

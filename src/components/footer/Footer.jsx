@@ -85,7 +85,7 @@ function Footer() {
                             </div>
                             <div className='w-full lg:w-4/12 px-4'>
                                 <span className='block uppercase text-blueGray-500 text-sm font-semibold mb-2'>
-                                    {t("About MadauraStore")}
+                                    {t("About Madaura")}
                                 </span>
                                 <ul className='list-unstyled'>
                                     <li>
