@@ -102,7 +102,7 @@ export default async function RootLayout({ children, params: { locale } }) {
                 >
                     <UserProvider getCurrentUser={getCurrentUser}>
                         <Navbar />
-                        {children}
+                        <div className='max-sm:pb-4'>{children}</div>
                         {/* <Footer /> */}
                         <ToastContainer />
                         <Footer />

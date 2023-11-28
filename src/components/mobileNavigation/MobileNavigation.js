@@ -24,7 +24,7 @@ function MobileNavigation() {
         <>
             <section
                 id='bottom-navigation'
-                className='block sm:hidden fixed inset-x-0 bottom-0 pb-1 z-50 bg-white shadow max-w-screen-sm'
+                className='block sm:hidden fixed inset-x-0 bottom-0 pb-1 z-50 bg-white shadow max-w-screen-sm mt-10'
             >
                 <div id='tabs' className='flex justify-between'>
                     <a
