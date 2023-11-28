@@ -52,7 +52,7 @@ function MobileSideBar({ categories }) {
                 </button>
             </div>
             <div
-                className={`p-10  bg-white z-20 fixed overflow-auto -translate-x-full h-screen w-3/4 top-0 left-0 transition-all ease-in  lg:translate-x-0 ${
+                className={`p-10 pb-24 bg-white z-20 fixed overflow-auto -translate-x-full h-screen w-3/4 top-0 left-0 transition-all ease-in  lg:translate-x-0 ${
                     isSidebarOpen ? "translate-x-0" : ""
                 }`}
             >

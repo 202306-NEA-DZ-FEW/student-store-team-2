@@ -12,7 +12,7 @@ import { NextResponse } from "next/server";
 
 export async function supabseMiddleware(request, response) {
     // let response = NextResponse.next({
-    //     request: {
+    //     request: {///////////////////
     //         headers: request.headers,
     //     },
     // });

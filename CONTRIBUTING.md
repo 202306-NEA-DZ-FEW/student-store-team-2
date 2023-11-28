@@ -1,4 +1,4 @@
-# Contributing to LaCité
+# Contributing to MadauraStore
 
 Thank you for considering contributing to our project! We welcome contributions from everyone to make this project better. Before contributing, please take a moment to review this document for guidelines and tips on how to participate.
 

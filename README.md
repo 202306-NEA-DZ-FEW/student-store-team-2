@@ -1,6 +1,6 @@
-# LaCité Website
+# MadauraStore Website
 
-Welcome to LaCité, a fully-responsive web application platform for students to lend, borrow, sell, and buy new and used items of different categories from each other.
+Welcome to MadauraStore, a fully-responsive web application platform for students to lend, borrow, sell, and buy new and used items of different categories from each other.
 
 ## Table of Contents
 - [Features](#features)
@@ -18,7 +18,7 @@ Welcome to LaCité, a fully-responsive web application platform for students to 
 
 ## Features
 
-- **Responsive Design**: LaCité is accessible on various devices, providing a seamless experience.
+- **Responsive Design**: MadauraStore is accessible on various devices, providing a seamless experience.
 - **Category Carousel**: Easily navigate through different product categories on the home page.
 - **User Testimonials**: Explore experiences shared by other users.
 - **Product Search**: Quickly find specific items using the search functionality.
@@ -34,7 +34,7 @@ Welcome to LaCité, a fully-responsive web application platform for students to 
 
 ### Installation
 
-No installation is required since LaCité is a web-based platform. Simply visit [LaCité Website](#) in your preferred web browser.
+No installation is required since MadauraStore is a web-based platform. Simply visit [MadauraStore Website](#) in your preferred web browser.
 
 ### Usage
 
@@ -63,7 +63,7 @@ No installation is required since LaCité is a web-based platform. Simply visit 
 
 ## Support and Donations
 
-If you appreciate the service and want to support LaCité, consider visiting our [Donate Page](#) (leading to a mock checkout page) and choose from three donation options: $5, $10, and $25. Your support is crucial as the website runs purely on donations.
+If you appreciate the service and want to support MadauraStore, consider visiting our [Donate Page](#) (leading to a mock checkout page) and choose from three donation options: $5, $10, and $25. Your support is crucial as the website runs purely on donations.
 
 **Note: This website is a template and is not live yet. It is connected to Firebase and Supabase for authentication, real-time database, and database storage. Cloudinary is used for image storage, and React Leaflet is integrated for geolocation maps.**
 

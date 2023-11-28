@@ -56,7 +56,7 @@ const notoKufi = Noto_Kufi_Arabic({
 });
 
 export const metadata = {
-    title: "LaCité",
+    title: "MadauraStore",
     description:
         "Your one-stop destination for all your academic needs! Explore, buy, sell, or borrow items for your academic journey",
     icons: {

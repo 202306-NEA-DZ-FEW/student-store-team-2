@@ -11,10 +11,10 @@ function AdditionalInfoTab({ items }) {
                 <div className='bg-[#EDF1F3] p-1 m-2 rounded flex items-center text-sm font-base text-gray-700 '>
                     <div className='w-full border-2 border-gray-200 rounded-lg p-4'>
                         <h1 className=' text-2xl text-accent mb-4'>
-                            {items ? items[0].description : null}
+                            {items ? items[0]?.description : null}
                         </h1>
                         <p className='text-[#3A3A3A] text-base '>
-                            {items ? items[0].additional_information : null}
+                            {items ? items[0]?.additional_information : null}
                         </p>
                     </div>
                 </div>
