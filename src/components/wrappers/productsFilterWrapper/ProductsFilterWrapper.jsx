@@ -105,14 +105,25 @@ function ProductsFilterWrapper({
         }
     }, [price.min, price.max, status, note, category]);
     return (
-        <div>
-            <div className=' mb-6'>
-                <button
-                    onClick={resetState}
-                    className='block text-md py-1 px-3 ml-auto mb-4 w-fit bg-gray-200 rounded-sm hover:bg-gray-400 active:bg-gray-200'
-                >
-                    {t("Reset")}
-                </button>
+        <div className='max-sm:pb-12 '>
+            <div className=' mb-6 '>
+                <div className='flex w-full justify-between  mb-4 '>
+                    <button
+                        onClick={resetState}
+                        className='block text-md py-1 px-3  bg-gray-200 rounded-sm hover:bg-gray-400 active:bg-gray-200'
+                    >
+                        {t("Reset")}
+                    </button>
+                    {/* show only in mobile view */}
+                    {!autoSendRequest && (
+                        <button
+                            onClick={handleSendRequest}
+                            className='block text-md py-1 px-3 text-white bg-accent rounded-sm hover:bg-gray-400 active:bg-gray-500'
+                        >
+                            {t("Filter")}
+                        </button>
+                    )}
+                </div>
                 <h1 className='block uppercase text-lg '>{t("Filter By")}: </h1>
             </div>
             <div className='flex flex-col gap-8'>
@@ -135,15 +146,6 @@ function ProductsFilterWrapper({
                     handleCategoryChange={handleCategoryChange}
                 />
             </div>
-            {/* show only in mobile view */}
-            {!autoSendRequest && (
-                <button
-                    onClick={handleSendRequest}
-                    className='bg-accent  mt-4 float-right bottom-2 px-3 py-1 text-white active:bg-slate-600'
-                >
-                    {t("Filter")}
-                </button>
-            )}
         </div>
     );
 }

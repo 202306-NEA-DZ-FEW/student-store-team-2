@@ -572,7 +572,9 @@ export async function getLatestProducts() {
 
     const { data, error } = await supabase
         .from("products")
-        .select("*")
+        .select(
+            "pid,image,name,condition,offer_type, categories!inner(*),sale_offer(price),borrow_offer(price)"
+        )
         .order("created_at", { ascending: false })
         .limit(8);
 

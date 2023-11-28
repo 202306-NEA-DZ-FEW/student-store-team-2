@@ -133,7 +133,7 @@ const Page = () => {
     return (
         <div>
             <Head>
-                <title>Welcome to LaCité</title>
+                <title>Welcome to Madaura</title>
 
                 {/* Description */}
                 <meta
@@ -198,7 +198,7 @@ const Page = () => {
                                 <div className='mb-12 md:mt-12 lg:mt-0 lg:mb-0'>
                                     <div className='relative z-[1] block rounded-lg bg-[hsla(0,0%,100%,0.55)]  py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] backdrop-blur-[25px] dark:bg-[hsla(0,0%,5%,0.55)] dark:shadow-black/20  lg:-mr-14'>
                                         <h2 className='mb-6 text-3xl font-bold'>
-                                            {t("Why Choose LaCité?")}
+                                            {t("Why Choose Madaura?")}
                                         </h2>
 
                                         <p className='mb-8 text-neutral-500 dark:text-neutral-300'>

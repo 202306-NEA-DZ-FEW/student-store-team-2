@@ -22,7 +22,6 @@ import "./carousel.css";
 import "./loader.css";
 import "react-toastify/dist/ReactToastify.css";
 
-import Footer from "@/components/footer/Footer";
 import MobileNavigation from "@/components/mobileNavigation/MobileNavigation";
 import { UserProvider } from "@/components/userProvider/UserProvider";
 
@@ -56,7 +55,7 @@ const notoKufi = Noto_Kufi_Arabic({
 });
 
 export const metadata = {
-    title: "LaCité",
+    title: "Madaura",
     description:
         "Your one-stop destination for all your academic needs! Explore, buy, sell, or borrow items for your academic journey",
     icons: {
@@ -102,10 +101,10 @@ export default async function RootLayout({ children, params: { locale } }) {
                 >
                     <UserProvider getCurrentUser={getCurrentUser}>
                         <Navbar />
-                        {children}
+                        <div className='max-sm:pb-4'>{children}</div>
                         {/* <Footer /> */}
                         <ToastContainer />
-                        <Footer />
+
                         <MobileNavigation />
                     </UserProvider>
                 </NextIntlClientProvider>

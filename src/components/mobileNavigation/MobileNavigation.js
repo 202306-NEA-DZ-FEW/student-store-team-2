@@ -18,13 +18,13 @@ function MobileNavigation() {
     const toggleMobileMenu = () => {
         setIsOpen(!isOpen);
     };
-    const { userData, loading } = useUser();
+    const { user, userData, loading } = useUser();
 
     return (
         <>
             <section
                 id='bottom-navigation'
-                className='block sm:hidden fixed inset-x-0 bottom-0 pb-1 z-50 bg-white shadow max-w-screen-sm'
+                className='block sm:hidden fixed inset-x-0 bottom-0 pb-1 z-50 bg-white shadow max-w-screen-sm mt-4'
             >
                 <div id='tabs' className='flex justify-between'>
                     <a
@@ -36,16 +36,17 @@ function MobileNavigation() {
                             {t("Home")}
                         </span>
                     </a>
-                    <a
-                        href='/inbox'
-                        className='w-full focus:text-accent hover:text-accent justify-center inline-block text-center pt-2 pb-1'
-                    >
-                        <BiMessageSquare className='inline-block mb-1 h-6 w-6' />
-                        <span className='tab tab-kategori block text-xs'>
-                            {t("Messages")}
-                        </span>
-                    </a>
-
+                    {user && (
+                        <Link
+                            href='/inbox'
+                            className='w-full focus:text-accent hover:text-accent justify-center inline-block text-center pt-2 pb-1'
+                        >
+                            <BiMessageSquare className='inline-block mb-1 h-6 w-6' />
+                            <span className='tab tab-kategori block text-xs'>
+                                {t("Messages")}
+                            </span>
+                        </Link>
+                    )}
                     <Link
                         href='/products?page=1'
                         className='w-full focus:text-accent hover:text-accent justify-center inline-block text-center pt-2 pb-1'
@@ -53,16 +54,19 @@ function MobileNavigation() {
                         <FaTh className='inline-block mb-1 h-6 w-6' />
                         <span className=' block text-xs'> {t("Products")}</span>
                     </Link>
-                    <Link
-                        href='/dashboard'
-                        className='w-full focus:text-accent hover:text-accent justify-center inline-block text-center pt-2 pb-1'
-                    >
-                        <MdDashboard className='inline-block mb-1 h-6 w-6' />
-                        <span className=' block text-xs'>
-                            {" "}
-                            {t("Dashboard")}
-                        </span>
-                    </Link>
+                    {user && (
+                        <Link
+                            href='/dashboard'
+                            className='w-full focus:text-accent hover:text-accent justify-center inline-block text-center pt-2 pb-1'
+                        >
+                            <MdDashboard className='inline-block mb-1 h-6 w-6' />
+                            <span className=' block text-xs'>
+                                {" "}
+                                {t("Dashboard")}
+                            </span>
+                        </Link>
+                    )}
+
                     <div className='w-full focus:text-accent hover:text-accent justify-center inline-block text-center pt-2 pb-1'>
                         {loading ? (
                             <div>

@@ -2,6 +2,7 @@ import { getLatestProducts, getTestimonials } from "@/lib/_supabase";
 
 import AddedGrid from "@/components/addedGrid/AddedGrid";
 import FeatureBanner from "@/components/features-banner/FeatureBanner";
+import Footer from "@/components/footer/Footer";
 import HeroCarousel from "@/components/heroCarousel/HeroCarousel";
 import HowItWorks from "@/components/sections/HowItWorks";
 import Testimonials from "@/components/testimonials/Testimonials";
@@ -16,6 +17,7 @@ export default async function Home() {
             <AddedGrid latestProducts={latestProducts} />
             <HowItWorks />
             <Testimonials testimonials={testimonials} />
+            <Footer />
         </main>
     );
 }

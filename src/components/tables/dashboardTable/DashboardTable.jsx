@@ -111,6 +111,7 @@ function DashboardTableRow({ item, type }) {
         completed: "bg-blue-200",
         aborted: "bg-rose-200",
     };
+    console.log(item);
     return (
         <tr className='hover:bg-gray-100 align-middle'>
             <td className='p-4  mr-20'>
@@ -127,7 +128,8 @@ function DashboardTableRow({ item, type }) {
                 <div className='flex items-center'>
                     <div className='h-10 w-10 rounded-full relative overflow-hidden '>
                         <Image
-                            layout='fill'
+                            width={50}
+                            height={50}
                             src={item?.raw_user_meta_data?.avatar_url}
                             alt={` avatar picture`}
                         />

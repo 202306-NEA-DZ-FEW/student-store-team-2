@@ -1,16 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<div>
+<div
+  className="max-sm:pb-12 "
+>
   <div
-    className=" mb-6"
+    className=" mb-6 "
   >
-    <button
-      className="block text-md py-1 px-3 ml-auto mb-4 w-fit bg-gray-200 rounded-sm hover:bg-gray-400 active:bg-gray-200"
-      onClick={[Function]}
+    <div
+      className="flex w-full justify-between  mb-4 "
     >
-      Reset
-    </button>
+      <button
+        className="block text-md py-1 px-3  bg-gray-200 rounded-sm hover:bg-gray-400 active:bg-gray-200"
+        onClick={[Function]}
+      >
+        Reset
+      </button>
+    </div>
     <h1
       className="block uppercase text-lg "
     >

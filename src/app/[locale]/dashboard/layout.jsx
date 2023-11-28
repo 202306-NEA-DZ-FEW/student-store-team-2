@@ -1,5 +1,6 @@
 import React from "react";
 
+import DropdownSelect from "@/components/dashboardNavLinks/mobileNavLinks";
 import NavLinks from "@/components/dashboardNavLinks/NavLinks";
 
 function layout({ children }) {
@@ -11,6 +12,8 @@ function layout({ children }) {
                 <NavLinks />
 
                 <div className='flex-1 max-w-screen overflow-scroll sm:overflow-hidden flex-col justify-center p-4 mt-40   sm:ml-64'>
+                    <DropdownSelect />
+
                     {children}
                 </div>
 

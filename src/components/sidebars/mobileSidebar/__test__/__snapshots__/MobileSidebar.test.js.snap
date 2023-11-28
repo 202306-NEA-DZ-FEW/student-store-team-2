@@ -34,18 +34,30 @@ exports[`renders correctly 1`] = `
     </button>
   </div>
   <div
-    className="p-10  bg-white z-20 fixed overflow-auto -translate-x-full h-screen w-3/4 top-0 left-0 transition-all ease-in  lg:translate-x-0 "
+    className="p-10 bg-white z-20 fixed overflow-auto -translate-x-full h-screen w-3/4 top-0 left-0 transition-all ease-in  lg:translate-x-0 "
   >
-    <div>
+    <div
+      className="max-sm:pb-12 "
+    >
       <div
-        className=" mb-6"
+        className=" mb-6 "
       >
-        <button
-          className="block text-md py-1 px-3 ml-auto mb-4 w-fit bg-gray-200 rounded-sm hover:bg-gray-400 active:bg-gray-200"
-          onClick={[Function]}
+        <div
+          className="flex w-full justify-between  mb-4 "
         >
-          Reset
-        </button>
+          <button
+            className="block text-md py-1 px-3  bg-gray-200 rounded-sm hover:bg-gray-400 active:bg-gray-200"
+            onClick={[Function]}
+          >
+            Reset
+          </button>
+          <button
+            className="block text-md py-1 px-3 text-white bg-accent rounded-sm hover:bg-gray-400 active:bg-gray-500"
+            onClick={[Function]}
+          >
+            Filter
+          </button>
+        </div>
         <h1
           className="block uppercase text-lg "
         >
@@ -221,12 +233,6 @@ exports[`renders correctly 1`] = `
           />
         </div>
       </div>
-      <button
-        className="bg-accent  mt-4 float-right bottom-2 px-3 py-1 text-white active:bg-slate-600"
-        onClick={[Function]}
-      >
-        Filter
-      </button>
     </div>
   </div>
   <button
