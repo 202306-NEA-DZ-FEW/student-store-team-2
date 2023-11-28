@@ -22,10 +22,9 @@ exports[`renders correctly 1`] = `
     width={139}
   />
   <div
-    className="font-jost font-extrabold text-sm text-bkg absolute bottom-1 left-2"
+    className="font-jost font-extrabold text-sm text-bkg absolute bottom-1 left-2 w-fit"
   >
-    State
-    : 
+    $
   </div>
 </div>
 `;

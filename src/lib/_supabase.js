@@ -563,24 +563,39 @@ export const searchProduct = async (value) => {
 };
 
 /**
- * The function `getLatestProducts` retrieves the latest 8 products from a Supabase server and returns
- * the data.
- * @returns the latest 8 products from the "products" table in the Supabase database.
+ * The function `getLatestProducts` retrieves the latest 8 items from both the "borrow_offer" and "sale_offer" tables
+ * and returns the merged data.
+ * @returns the latest 8 items from both the "borrow_offer" and "sale_offer" tables in the Supabase database.
  */
 export async function getLatestProducts() {
     const supabase = await createSupabaseServerClient();
 
-    const { data, error } = await supabase
-        .from("products")
+    const { data: borrowData, error: borrowError } = await supabase
+        .from("borrow_offer")
         .select("*")
         .order("created_at", { ascending: false })
         .limit(8);
 
-    if (error) {
-        throw error;
+    const { data: saleData, error: saleError } = await supabase
+        .from("sale_offer")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(8);
+
+    if (borrowError || saleError) {
+        throw borrowError || saleError;
     }
 
-    return data;
+    // Merge the results from borrowData and saleData
+    const mergedData = [...borrowData, ...saleData];
+
+    // Sort the merged data by created_at in descending order
+    mergedData.sort((a, b) => (a.created_at < b.created_at ? 1 : -1));
+
+    // Trim the merged data to return only the latest 8 items
+    const latestProducts = mergedData.slice(0, 8);
+
+    return latestProducts;
 }
 
 /**
