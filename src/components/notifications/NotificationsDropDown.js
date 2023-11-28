@@ -127,7 +127,7 @@ function NotificationsDropdown() {
                                     <li key={item.id}>
                                         <Link
                                             href={
-                                                "dashboard?type=" +
+                                                "/dashboard?type=" +
                                                 item.data.path
                                             }
                                             className={`text-titleContent px-5 py-3 ${
