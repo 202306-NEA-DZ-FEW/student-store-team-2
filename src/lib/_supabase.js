@@ -571,8 +571,10 @@ export async function getLatestProducts() {
     const supabase = await createSupabaseServerClient();
 
     const { data, error } = await supabase
-        .from("sale_offer")
-        .select("*")
+        .from("products")
+        .select(
+            "pid,image,name,condition,offer_type, categories!inner(*),sale_offer(price),borrow_offer(price)"
+        )
         .order("created_at", { ascending: false })
         .limit(8);
 
